@@ -3,6 +3,7 @@ import apostrophe from 'apostrophe';
 apostrophe({
   root: import.meta,
   shortName: 'essential-app',
+  baseUrl: 'http://localhost:3000',
   modules: {
     // Apostrophe module configuration
     // *******************************
@@ -16,17 +17,24 @@ apostrophe({
     // `className` options set custom CSS classes for Apostrophe core widgets.
     '@apostrophecms/rich-text-widget': {
       options: {
-        className: 'bp-rich-text'
+        className: 'th-rich-text'
       }
     },
     '@apostrophecms/image-widget': {
       options: {
-        className: 'bp-image-widget'
+        className: 'th-image-widget'
       }
     },
     '@apostrophecms/video-widget': {
       options: {
-        className: 'bp-video-widget'
+        className: 'th-video-widget'
+      },
+    },
+    '@apostrophecms/sitemap': {
+      options: {
+        cacheLifetime: 1800,
+        excludeTypes: [ 'exclusive-page', 'category' ],
+        piecesPerBatch: 500
       }
     },
     // `asset` supports the project's build for client-side assets.
@@ -34,6 +42,8 @@ apostrophe({
     // use vite for asset bundling and hot module reloading
     '@apostrophecms/vite': {},
     // The project's first custom page type.
-    'default-page': {}
+    'default-page': {},
+    'product-line': {},
+    'product-line-page': {}
   }
 });

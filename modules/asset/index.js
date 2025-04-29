@@ -1,9 +1,15 @@
 export default {
+  init(self) {
+    console.log("DBG INIT ", process.env.THAPIKEY);
+  },
   handlers(self) {
     return {
       '@apostrophecms/page:beforeSend': {
-        webpack(req) {
+        thirstie(req) {
           req.data.isDev = (process.env.NODE_ENV !== 'production');
+          req.data.thirstieEnvironment = process.env.THENV;
+          req.data.thirstieAPIKey = process.env.THAPIKEY;
+          req.data.thirstieMapsKey = process.env.THMAPSKEY;
         }
       }
     };
