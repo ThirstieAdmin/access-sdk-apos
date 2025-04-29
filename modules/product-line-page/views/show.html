@@ -1,0 +1,10 @@
+{# modules/article-page/views/show.html #}
+{% extends "layout.html" %}
+
+{% block main %}
+  <h1>{{ data.piece.title }}</h1>
+  <section>
+    {% area data.piece, 'primaryImage' %}
+    <th-pdp-commerce product-line-id="{{ data.piece.thirstiePLID }}"></th-pdp-commerce>
+  </section>
+{% endblock %}
