@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% import '@apostrophecms/pager:macros.html' as pager with context %}
+
+{% block main %}
+  <h1>{{ data.page.title }}</h1>
+
+  {% for productLine in data.pieces %}
+    <article>
+      <h2>
+        <a href="{{ productLine._url }}">{{ productLine.title }}</a>
+      </h2>
+    </article>
+  {% endfor %}
+
+  {{ pager.render({
+    page: data.currentPage,
+    total: data.totalPages,
+    class: 'product-pager'
+  }, data.url) }}
+{% endblock %}
