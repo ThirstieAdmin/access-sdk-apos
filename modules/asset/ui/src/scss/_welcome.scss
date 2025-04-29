@@ -1,25 +1,25 @@
-.bp-welcome {
+.th-welcome {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 
 }
 
-.bp-welcome__area {
+.th-welcome__area {
   margin-top: 40px;
 }
 
-.bp-welcome__headline {
+.th-welcome__headline {
   position: relative;
   margin: 0 0 50px;
 }
 
-.bp-welcome__verson-wrapper {
+.th-welcome__verson-wrapper {
   display: flex;
   justify-content: center;
 }
 
-.bp-welcome__version {
+.th-welcome__version {
   position: relative;
   background-color: #a992ff;
   padding: 4px 5px;
@@ -33,20 +33,20 @@
   text-transform: uppercase;
 }
 
-.bp-welcome__help {
+.th-welcome__help {
   font-weight: 600;
   font-size: 22px;
   margin-bottom: 24px;
 }
 
-.bp-welcome p {
+.th-welcome p {
   max-width: 500px;
   margin: 20px auto;
   line-height: 1.5;
   font-size: 1.1rem;
 }
 
-.bp-welcome__code__context {
+.th-welcome__code__context {
   position: absolute;
   display: inline-block;
   bottom: auto;
@@ -70,16 +70,16 @@
   letter-spacing: 1px;
 }
 
-.bp-welcome__code {
+.th-welcome__code {
   margin: 40px auto;
 }
 
-p.bp-welcome__cta {
+p.th-welcome__cta {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.bp-mode {
+.th-mode {
   display: inline-block;
   padding: 5px 5px;
   font-size: 12px;

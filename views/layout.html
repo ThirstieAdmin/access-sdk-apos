@@ -8,17 +8,33 @@
     {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
   {% endif %}
 {% endblock %}
+{% block extraHead %}
+<script>
+  window.thData = {};
+  window.thData.k = "{{ data.thirstieAPIKey }}";
+  window.thData.m = "{{ data.mapsKey }}";
+  window.thData.e = "{{ data.thirstieEnvironment }}"
+  window.thData.primaryColor = "{{ data.global.primaryColor }}";
+  window.thData.secondaryColor = "{{ data.global.secondaryColor }}";
+  window.thData.secondaryColor = "{{ data.global.secondaryColor }}";
+  window.thData.primaryContrastingColor = "{{ data.global.primaryContrastingColor }}";
+  window.thData.secondaryContrastingColor = "{{ data.global.secondaryContrastingColor }}";
+  window.thData.brandLogo = "{{ data.global.brandLogo }}";
+  window.thData.brandLogoAltText = "{{ data.global.brandLogoAltText }}";
+  window.thData.supportEmail = "{{ data.global.supportEmail }}";
+</script>
+{% endblock %}
 
 {% block beforeMain %}
-<div class="bp-wrapper">
-  <header class="bp-header">
-    <img class="bp-header__logo" src="/images/logo.png" alt="ApostropheCMS logo">
-    <nav class="bp-nav"></nav>
+<div class="th-wrapper">
+  <header class="th-header">
+    <img class="th-header__logo" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}">
+    <nav class="th-nav"></nav>
     {% if not data.user %}
-      <a class="bp-button bp-header__login" href="/login">Login</a>
+      <a class="th-button th-header__login" href="/login">Login</a>
     {% endif %}
   </header>
-  <main class="bp-main">
+  <main class="th-main">
 {% endblock %}
 
 {% block main %}
@@ -31,14 +47,8 @@
 
 {% block afterMain %}
   </main>
-  <footer class="bp-footer">
-    <h3>Essential Links</h3>
-    <ul class="bp-footer__links">
-      <li><a href="https://apostrophecms.com/" target="_blank">About ApostropheCMS</a></li>
-      <li><a href="https://chat.apostrophecms.com/" target="_blank">Discord</a></li>
-      <li><a href="https://twitter.com/apostrophecms" target="_blank">Twitter</a></li>
-      <li><a href="https://github.com/apostrophecms/apostrophe/discussions" target="_blank">GitHub Discussions</a></li>
-    </ul>
+  <footer class="th-footer">
+    <th-disclaimer />
   </footer>
-</div>{# Close .bp-wrapper #}
+</div>{# Close .th-wrapper #}
 {% endblock %}

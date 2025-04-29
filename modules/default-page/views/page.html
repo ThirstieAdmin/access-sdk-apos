@@ -6,8 +6,9 @@
 {% extends "layout.html" %}
 
 {% block main %}
-  <section class="bp-content">
+  <section class="th-content">
     <h1>{{ data.page.title }}</h1>
     {% area data.page, 'main' %}
+    <h2>after</h2>
   </section>
 {% endblock %}

@@ -5,8 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon",
+    "start": "dotenv -e .env.local -- node app",
+    "dev": "dotenv -e .env.local -- nodemon",
+    "dev:admin": "APOS_DEV=1 npm run dev",
     "build": "NODE_ENV=production node app @apostrophecms/asset:build",
     "serve": "NODE_ENV=production node app",
     "release": "npm install && npm run build && node app @apostrophecms/migration:migrate"
@@ -34,17 +35,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/apostrophecms/starter-kit-essentials"
+    "url": "https://github.com/ThirstieAdmin/access-sdk-apos"
   },
-  "author": "Apostrophe Technologies, Inc.",
+  "author": "Thirstie, Inc.",
   "license": "MIT",
   "dependencies": {
+    "@apostrophecms/sitemap": "^1.1.0",
     "@apostrophecms/vite": "^1.0.0",
+    "@thirstie/ecomm-vue": "^1.1.2",
     "apostrophe": "^4.9.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^8.0.0",
     "eslint-config-apostrophe": "^4.0.0",
     "nodemon": "^3.0.1"

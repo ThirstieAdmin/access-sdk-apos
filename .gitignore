@@ -17,3 +17,7 @@ node_modules
 .jshintrc
 .DS_Store
 
+# THIRSTIE
+# exclude env files
+.env
+.env.*

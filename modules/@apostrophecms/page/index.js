@@ -9,6 +9,10 @@ export default {
         label: 'Default'
       },
       {
+        name: 'product-line-page',
+        label: 'Product Line Page'
+      },
+      {
         name: '@apostrophecms/home-page',
         label: 'Home'
       }

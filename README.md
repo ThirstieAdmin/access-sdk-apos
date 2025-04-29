@@ -18,9 +18,12 @@ Here, `<repo-name>` should be the URL of your forked repository, excluding the `
 
 **Note: This template is NOT designed to be installed into an existing project.**
 
+
 ## Running the project
 
 Run `npm run dev` to build the Apostrophe UI and start the site up. Remember, this is during alpha development, so we're all in "dev mode." The `dev` script will watch for saves in client-side CSS and Javascript and trigger a build and page refresh if they are detected. It will also restart the app when server-side code is saved.
+
+- Add credentials to `.env.local`, see `env.tpl` for structure.
 
 ## Making it your own
 
@@ -79,6 +82,19 @@ Right now, [all the juicy info is in the ApostropheCMS docs](https://docs.apostr
 
 
 TTD:
-- [ ] github repo thirstiejs-starter-apos
+- [ ] solve
+    1. batch operation to update product list from Thirstie MPL (product-lines)
+    2. context menu item to update from Thirstie
+- [ ] github repo thirstiejs-starter-apos, following **Manual setup** above
 - [ ] move as much of Access code base as practical
 - [ ] implement deployment
+- [ ] [extensions](https://docs.apostrophecms.org/tutorials/adding-extensions.html): seo, ???? 
+
+## Access site structure
+
+/
+/checkout
+/faq
+/contact
+/user
+/order-status-update
