@@ -71,3 +71,22 @@ main,
   margin-left: auto;
   margin-right: auto;
 }
+
+.th-admin-nav {
+  position: fixed;
+  z-index: 99;
+  bottom: 3rem;
+  right: 2rem;
+  color: #18244f;
+  background-color: white;
+  border: 1px solid #18244f;
+  padding: .75rem 1rem;
+}
+.th-admin-nav-hidden {
+  display: none;
+}
+.th-admin-nav-item:visited {
+  color: 18244f;
+  text-decoration: none;
+  cursor: pointer;
+}

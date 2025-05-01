@@ -9,6 +9,9 @@
       <h2>
         <a href="{{ productLine._url }}">{{ productLine.title }}</a>
       </h2>
+      {% if data.user %}
+      <button data-plid="th-prod-{{ productLine.thirstiePLID }}" data-aposid="{{ productLine._id }}" class="th-admin-btn">EDIT ME</button>
+      {% endif %}
     </article>
   {% endfor %}
 

@@ -1,5 +1,10 @@
 import ThirstieClient from '@thirstie/thirstieclient';
 
+
+
+/**
+ * icons: https://github.com/apostrophecms/apostrophe/blob/main/modules/%40apostrophecms/asset/lib/globalIcons.js
+ */
 export default {
   extend: '@apostrophecms/piece-type',
   options: {
@@ -8,53 +13,45 @@ export default {
     shortcut: 'L'
   },
   init(self) {
-    self.apos.adminBar.add('thirstie-productline-sync', 'ThirstieSync', false, {
+    self.apos.adminBar.add('thirstie-admin-menu-toggle', 'ThirstieSync', false, {
       contextUtility: true,
-      tooltip: 'Sync Thirstie Products',
-      icon: 'sync-icon'
+      tooltip: 'Toggle Thirstie Menu',
+      icon: 'binoculars-icon'
     });
-  },
-  batchOperations: {
-    add: {
-      sync: {
-        label: 'Sync Selected Product Lines',
-        icon: 'sync-icon',
-        messages: {
-          progress: 'Syncing {{ type }}...',
-          completed: 'Finished sync'
-        },
-        modalOptions: {
-          title: 'Synch items with Thirstie MPL',
-          description: 'Are you sure?',
-          confirmationButton: 'Yes'
-        },
-        permission: 'edit'
-      }
-    }
+
+    self.apos.doc.addContextOperation({
+      context: 'update',
+      action: 'thirstie-productline-sync',
+      label: 'Sync Product Line with Thirstie',
+      type: 'event'
+    });
   },
   icons: {
     'sync-icon': 'Refresh'
   },
   apiRoutes(self) {
+    // TODO: could this be moved into the init for the products page? and enabled only for admin users?
     return {
-      post: {
-        sync(req) {
-          if (!Array.isArray(req.body._ids)) {
-            throw self.apos.error('invalid Sync request');
-          }
+      get: {
+        async synchronize(req) {
 
+          console.log("DBG >>>>>>> synchronize", req.data.global?.thirstieAPIKey);
           const apiConfig = {
-            env:  process.env.THENV || 'dev',
+            env:  req.data.global?.thirstieEnvironment || 'dev',
             initState: {}
           };
-
-          const thirstieClient = new ThirstieClient({ apiKey: process.env.THAPIKEY, mapsKey: process.env.THMAPSKEY, apiConfig });
-          console.log("DBG >>>>>>>>>", req.body._ids);
-          console.log("DBG vars", thirstieClient.sessionState);
-
-          thirstieClient.dispatch('fetchProductListing').then( (response) => {
-            console.log("DBG response", response?.catalogProductLines?.length);
+          const thirstieClient = new ThirstieClient({
+            apiKey: req.data.global?.thirstieAPIKey,
+            mapsKey: req.data.global?.thirstieMapsKey,
+            apiConfig
           });
+          const response = await thirstieClient.dispatch('fetchProductListing');
+          const plResponse = response?.catalogProductLines;
+          // TODO: sort into matched / unmatched
+          // - add ui to trigger creating new products, link to edit for others
+          const products = await self.find(req, {thirstiePLID: { $eq: "1831"}}).toArray();
+          console.log("DBG PRODUCTS >>", products[0]?._id, products[0]?.thirstiePLID, products[0]?.slug);
+          return { products };
         }
       }
     }
