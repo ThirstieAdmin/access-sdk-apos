@@ -84,7 +84,16 @@ Right now, [all the juicy info is in the ApostropheCMS docs](https://docs.apostr
 TTD:
 - [ ] solve
     1. batch operation to update product list from Thirstie MPL (product-lines)
-    2. context menu item to update from Thirstie
+    2. admin widget to pull thirstie product list
+        - see: https://docs.apostrophecms.org/tutorials/dynamic-routing.html
+        - https://docs.apostrophecms.org/guide/module-configuration-patterns.html#the-three-types-of-module-customization
+        - https://docs.apostrophecms.org/reference/module-api/module-overview.html#extendhandlers-self
+        - https://docs.apostrophecms.org/guide/server-events.html#multiple-handlers-for-an-event
+        - https://docs.apostrophecms.org/reference/server-events.html#apostrophecms-doc-events
+        - https://docs.apostrophecms.org/guide/custom-ui.html#components-with-a-logic-mixin-are-safer-and-easier-to-override
+        - https://docs.apostrophecms.org/guide/custom-ui.html#adding-custom-modal-controls
+
+- [ ] update Admin UI: [logo](https://docs.apostrophecms.org/guide/custom-ui.html#example-overriding-the-apostrophe-logo)
 - [ ] github repo thirstiejs-starter-apos, following **Manual setup** above
 - [ ] move as much of Access code base as practical
 - [ ] implement deployment
