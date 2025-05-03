@@ -7,9 +7,6 @@ globalThis.__VUE_OPTIONS_API__ = false;
 
 export default () => {
   // Your own project level JS may go here
-  console.log('Hello World');
-  console.log("DBG apos", apos);
-  console.log("DBG window.thcfg", window.thData);
   const {
     primaryColor, secondaryColor, primaryContrastingColor, secondaryContrastingColor,
     brandLogo, brandLogoAltText, supportEmail

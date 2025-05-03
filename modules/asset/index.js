@@ -1,6 +1,6 @@
 export default {
   init(self) {
-    console.log("DBG INIT ", process.env.THAPIKEY);
+    console.log(`INITIALIZING ASSET MODULE FOR ENVIRONMENT: ${process.env.THENV}`);
   },
   handlers(self) {
     return {

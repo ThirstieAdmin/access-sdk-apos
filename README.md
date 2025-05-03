@@ -98,6 +98,7 @@ TTD:
 - [ ] move as much of Access code base as practical
 - [ ] implement deployment
 - [ ] [extensions](https://docs.apostrophecms.org/tutorials/adding-extensions.html): seo, ???? 
+- [ ] custom icons: https://docs.apostrophecms.org/reference/module-api/module-overview.html#icons
 
 ## Access site structure
 
