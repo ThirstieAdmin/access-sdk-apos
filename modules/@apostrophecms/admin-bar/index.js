@@ -12,11 +12,10 @@ export default {
         ]
       }
     ]
-  }, 
+  },
   extendMethods(self) {
     return {
       getShowAdminBar(_super, req) {
-        console.log("DBG getShowAdminBar", req.user?.role);
         if (req.user?.role !== 'admin') {
           return false;
         }
