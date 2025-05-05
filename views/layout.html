@@ -36,8 +36,12 @@
 
     {% if data.user %}
     <nav id="th-admin-menu" class="th-admin-nav">
-      <img src="https://media.thirstie.cloud/banners/v3p3HLxx6nwtVz4GVvYKWQ,x32f.png" alt="logo" />
-      <a href="https://docs.thirstie.com" class="th-admin-nav-item" target="_blank">Docs</a>
+      <div id="th-admin-nav-header" class="th-admin-nav-header">
+        <img src="https://media.thirstie.cloud/banners/v3p3HLxx6nwtVz4GVvYKWQ,x32f.png" alt="logo" />
+      </div>
+      <div class="th-admin-nav-content">
+        <a href="https://docs.thirstie.com" class="th-admin-nav-item" target="_blank">Docs</a>
+      </div>
     </nav>
     {% endif %}
   </header>

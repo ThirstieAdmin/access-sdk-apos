@@ -1,5 +1,3 @@
-import ThirstieClient from '@thirstie/thirstieclient';
-
 const thirstieDownloadProducts = async () => {
   try {
     const updateResponse = await fetch('/api/v1/product-line/thirstiesyncall', {

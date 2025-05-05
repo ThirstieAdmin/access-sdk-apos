@@ -73,20 +73,39 @@ main,
 }
 
 .th-admin-nav {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   z-index: 99;
-  bottom: 3rem;
-  right: 2rem;
-  color: #18244f;
-  background-color: white;
+  top: 80vh;
+  left: 90vw;
+  width: auto;
+  padding: 0;
+  margin: 0;
   border: 1px solid #18244f;
-  padding: .75rem 1rem;
+  border-radius: 4px;
 }
 .th-admin-nav-hidden {
   display: none;
 }
+.th-admin-nav-header {
+  cursor: move;
+  background-color: white;
+  padding: .5rem;
+  margin: auto;
+}
+.th-admin-nav-content {
+  color: whitesmoke;
+  background-color: #18244f;
+  padding: .75rem 1rem;
+  width: fit-content;
+}
+.th-admin-nav-item {
+  padding: 1rem 0;
+  color: whitesmoke;
+}
 .th-admin-nav-item:visited {
-  color: 18244f;
+  color: whitesmoke;
   text-decoration: none;
   cursor: pointer;
 }
