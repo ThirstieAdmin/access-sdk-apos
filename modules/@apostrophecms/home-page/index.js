@@ -26,6 +26,10 @@ export default {
                   label: 'Paragraph (P)'
                 },
                 {
+                  tag: 'h2',
+                  label: 'Heading 2 (H2)'
+                },
+                {
                   tag: 'h3',
                   label: 'Heading 3 (H3)'
                 },
@@ -40,7 +44,8 @@ export default {
               ]
             },
             '@apostrophecms/image': {},
-            '@apostrophecms/video': {}
+            '@apostrophecms/video': {},
+            'thirstie-disclaimer': {}
           }
         }
       }

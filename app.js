@@ -37,6 +37,7 @@ apostrophe({
         piecesPerBatch: 500
       }
     },
+    '@apostrophecms/seo': {},
     // `asset` supports the project's build for client-side assets.
     asset: {},
     // use vite for asset bundling and hot module reloading
@@ -44,6 +45,7 @@ apostrophe({
     // The project's first custom page type.
     'default-page': {},
     'product-line': {},
-    'product-line-page': {}
+    'product-line-page': {},
+    'thirstie-disclaimer-widget': {}
   }
 });

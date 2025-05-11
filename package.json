@@ -40,6 +40,7 @@
   "author": "Thirstie, Inc.",
   "license": "MIT",
   "dependencies": {
+    "@apostrophecms/seo": "^1.3.0",
     "@apostrophecms/sitemap": "^1.1.0",
     "@apostrophecms/vite": "^1.0.0",
     "@thirstie/ecomm-vue": "^1.1.2",
