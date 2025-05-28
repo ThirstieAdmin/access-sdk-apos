@@ -7,13 +7,9 @@ export default () => {
       if (headerElement) {
         /* if present, the header is where you move the DIV from:*/
         headerElement.onmousedown = dragMouseDown;
-      } else {
-        /* otherwise, move the DIV from anywhere inside the DIV:*/
-        elmnt.onmousedown = dragMouseDown;
       }
     
       function dragMouseDown(e) {
-        e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
