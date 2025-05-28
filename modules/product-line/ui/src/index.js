@@ -4,7 +4,6 @@ export default () => {
      * https://docs.apostrophecms.org/guide/custom-ui.html#overriding-standard-vue-js-components-through-configuration-in-apostrophecms
      */
     const buttons = document.querySelectorAll('.th-admin-btn');
-    const productButton = document.getElementById('th-admin-products');
 
     if (buttons && apos.modules['product-line']?.canEdit) {
       buttons.forEach( (button) => {

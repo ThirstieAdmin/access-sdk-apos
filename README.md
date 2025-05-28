@@ -40,32 +40,6 @@ Right now, [all the juicy info is in the ApostropheCMS docs](https://docs.apostr
 
 ## DESIDERATA
 
-- customize repo
-    - className prefix -> 'th-' or 'thbp-' (thirstie boilerplate) 
-    - load SDK as dependency
-        - `./modules/asset/ui/src/index.js`
-        - if possible/easy, leverage SSR
-    - basic pages/layout: most settings should be on components/widgets
-        - landing
-        - header
-        - footer 
-            - compliance
-            - contact & social
-        - plp / catagory widgets
-        - product detail page
-        - recipes
-        - user
-        - legal/compliance: FAQ, Privacy, Terms, etc.
-        - checkout
-        - favicon
-        - global banner / alert
-        - custom code
-
-    - implement dataLayer / GTM configuration
-        - Thirstie defaults, plus custom
-    - rewrite README
-    - implement tests
-
 - cli to automate the other steps in [Making it your own](#making-it-your-own)
     - generate app config for Thirstie API /SDK
     - shortname -> Thirstie app canonical name
@@ -82,7 +56,7 @@ Right now, [all the juicy info is in the ApostropheCMS docs](https://docs.apostr
 
 
 TTD:
-- [ ] solve
+- [x] solve
     1. batch operation to update product list from Thirstie MPL (product-lines)
     2. admin widget to pull thirstie product list
         - see: https://docs.apostrophecms.org/tutorials/dynamic-routing.html
@@ -93,18 +67,155 @@ TTD:
         - https://docs.apostrophecms.org/guide/custom-ui.html#components-with-a-logic-mixin-are-safer-and-easier-to-override
         - https://docs.apostrophecms.org/guide/custom-ui.html#adding-custom-modal-controls
 
+- [ ] custom css, import from @thirstie/ecomm-vue
+- [ ] handle FUOC (e.g. footer logo)
+- [ ] global settings
+  - favicon
+  - custom code
+  - font
+  - implement dataLayer / GTM configuration (thirstie defaults plus custom)
+- [ ] pages
+  - layout 
+    - header, implement layout options
+      - sub links
+    - footer, implement standard/optional links, standard content, layout options
+    - age gate
+    - delivery address/zipcode
+    - global alert banner (with begin/end date-time, queue)
+    - checkout alert banner (with begin/end date-time, queue)
+  - / 
+  - /products
+  - /products/slug
+  - /checkout
+  - /terms & /privacy
+  - /faq
+  - /about
+  - /recipes
+  - /blogs /articles page type
+  - /contact
+  - /user
+  - /order-status-update
+- [ ] widgets
+  - product card
+  - product group
+  - hero banner
+  - nav card (see "our selection" on cocktailcourier.com)
+  - signup form
+- [ ] documentation
+  - readme
+  - /setup page (as "brown M&M" test)
+    - see: https://site2.thirstie.dev/styleguide
+  - docs.thirstie.com
 - [ ] update Admin UI: [logo](https://docs.apostrophecms.org/guide/custom-ui.html#example-overriding-the-apostrophe-logo)
 - [ ] github repo thirstiejs-starter-apos, following **Manual setup** above
 - [ ] move as much of Access code base as practical
 - [ ] implement deployment
-- [ ] [extensions](https://docs.apostrophecms.org/tutorials/adding-extensions.html): seo, ???? 
 - [ ] custom icons: https://docs.apostrophecms.org/reference/module-api/module-overview.html#icons
+- [ ] extensions: seo, pa11y-ci, etc
 
-## Access site structure
+### header layouts
 
-/
-/checkout
-/faq
-/contact
-/user
-/order-status-update
+Desktop:
+logo  < menu items >  CTA (*default)
+logo | menu items --- CTA
+logo --- menu items | CTA
+menu items < logo > - CTA
+
+or 
+
+Address   < logo >   CTA
+  -- menu items --
+
+Mobile (w/ sticky address)
+HB < logo > CTA (*default)
+CTA < logo > HB
+logo < CTA > HB
+
+### footer layouts
+
+(*) optional sections
+NOTE: thirstie logo centered if brand trademark section disabled/empty
+[ brand content top* ]
+[ thirstie links ] [ brand links* ]
+[thirstie logo ] [ brand trademark* ] 
+
+### setup
+
+Add "/setup" page with instructions.  Including a note to remove before deploying (can be used as a "brown M&M test" for final site review)
+
+
+## other apostrophe docs
+
+### setting CSS variables
+To set CSS variables using global settings in ApostropheCMS, you can follow these steps:
+
+Define the global fields: First, add the fields you want to use for your CSS variables in the @apostrophecms/global module configuration.
+
+```js
+// modules/@apostrophecms/global/index.js
+export default {
+  fields: {
+    add: {
+      primaryColor: {
+        type: 'color',
+        label: 'Primary Color'
+      },
+      secondaryColor: {
+        type: 'color',
+        label: 'Secondary Color'
+      }
+      // Add more color fields as needed
+    }
+  }
+}
+```
+
+Create a custom widget or piece to inject the CSS variables: You'll need to create a custom widget or piece that will inject the CSS variables into your site's `<head>` tag.
+
+N.B.: Make sure to define both the `init` method to place the template in the `<head>` and the `components` method associated with the template view. Components are a little like fragments, but they allow you to execute javascript.
+
+```js
+// modules/theme/index.js
+export default {
+  extend: '@apostrophecms/widget-type',
+  options: {
+    label: 'Theme Settings'
+  },
+  init(self) {
+    self.apos.template.prepend('head', 'theme:customStyles');
+  },
+  components(self) {
+    return {
+      async customStyles(req, data) {}
+    };
+  }
+};
+```
+
+Create a Nunjucks template to render the CSS variables: Create a new file modules/theme/views/customStyles.html and add the following content:
+
+```js
+{# modules/theme/views/customStyles.html #}
+{% if data.global %}
+  <style>
+    :root {
+      --primary-color: {{ data.global.primaryColor or '#000000' }};
+      --secondary-color: {{ data.global.secondaryColor or '#ffffff' }};
+      /* Add more variables as needed */
+    }
+  </style>
+{% endif %}
+```
+
+Use the CSS variables in your stylesheets: Now you can use these variables in your CSS files:
+
+```css
+/* Your CSS file */
+body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+```
+
+Update the global settings: In the ApostropheCMS admin UI, navigate to the "Global" settings and set your color values. These will now be applied as CSS variables across your site.
+This approach allows you to manage your theme colors and other CSS variables through the ApostropheCMS admin interface, making it easy to update your site's appearance without modifying code.

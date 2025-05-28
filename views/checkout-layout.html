@@ -1,9 +1,5 @@
 {# Automatically extends the right outer layout and also handles AJAX siutations #}
-{# See: https://docs.apostrophecms.org/guide/layout-template.html #}
 {% extends data.outerLayout %}
-
-{% import 'header-fragment.html' as headerFragment %}
-{% import 'footer-fragment.html' as footerFragment %}
 
 {% set title = data.piece.title or data.page.title %}
 {% block title %}
@@ -12,7 +8,6 @@
     {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
   {% endif %}
 {% endblock %}
-
 {% block extraHead %}
 <script>
   window.thData = {};
@@ -31,9 +26,31 @@
 {% endblock %}
 
 {% block beforeMain %}
-{% render headerFragment.heading(data.user) %}
-<div class="th-wrapper">
-  <main class="th-main">
+  <div id="hostapp" class="th-fouc-block">
+
+    <th-checkout
+      continue-button-label="Go on"
+      complete-button-label="Complete Checkout" 
+      opt-in-required
+    >
+        <div id="th-stripe-mount-point" slot="th-stripe-payment"></div>
+        <div slot="support-content" class="th-fouc-block"></div>
+        <div slot="additional-checkout-content" class="th-fouc-block">
+          <div class="navbar-cta">
+            <p>Custom checkout content goes here.</p>
+          </div>
+        </div>
+        <div slot="additional-confirmation-content" class="th-fouc-block">
+          <div class="navbar-cta">
+            <!-- th-header-nav also enables a slide in drawer to preview shopping cart details -->
+            <!-- Test that cart is emptied on confirmation page-->
+            <th-header-nav></th-header-nav>
+          </div>
+        </div>
+    </th-checkout>
+
+  </div>
+  <section class="th-main">
 {% endblock %}
 
 {% block main %}
@@ -45,18 +62,9 @@
 {% endblock %}
 
 {% block afterMain %}
-  </main>{# Close .th-main #}
-  {% if data.user %}
-    {# floating menu for Thirstie specific admin functions #}
-    <nav id="th-admin-menu" class="th-admin-nav">
-      <div id="th-admin-nav-header" class="th-admin-nav-header">
-        <img src="https://media.thirstie.cloud/banners/v3p3HLxx6nwtVz4GVvYKWQ,x32f.png" alt="logo" />
-      </div>
-      <div class="th-admin-nav-content">
-        <a href="https://docs.thirstie.com" class="th-admin-nav-item" target="_blank">Docs</a>
-      </div>
-    </nav>
-  {% endif %}
-{% render footerFragment.footer() %}
+  </section>{# Close .th-main #}
+  <footer class="th-footer">
+    <th-disclaimer />
+  </footer>
 </div>{# Close .th-wrapper #}
 {% endblock %}

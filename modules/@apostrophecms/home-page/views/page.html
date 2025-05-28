@@ -4,7 +4,6 @@
 #}
 
 {% extends "layout.html" %}
-{% import 'header-fragment.html' as headerFragment %}
 
 {% block main %}
   <section class="th-welcome">
@@ -30,9 +29,7 @@
     <p>
       For a guide on how to configure and customize this project, <a href="https://a3.docs.apostrophecms.com/">please check out the Apostrophe 3 documentation</a>.
     </p>
-    <div class="th-welcome__area">
-      {% render headerFragment.heading() %}
-    </div>
+
     <div class="th-welcome__area">
       {% if data.user %}
         {# Message only for logged in users. #}

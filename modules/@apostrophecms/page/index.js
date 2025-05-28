@@ -5,6 +5,10 @@ export default {
   options: {
     types: [
       {
+        name: '@apostrophecms/home-page',
+        label: 'Home'
+      },
+      {
         name: 'default-page',
         label: 'Default'
       },
@@ -13,8 +17,12 @@ export default {
         label: 'Product Line Page'
       },
       {
-        name: '@apostrophecms/home-page',
-        label: 'Home'
+        name: 'sitemap-page',
+        label: 'Sitemap Page'
+      },
+      {
+        name: 'thirstie-checkout',
+        label: 'Checkout'
       }
     ]
   }

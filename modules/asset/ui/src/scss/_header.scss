@@ -1,0 +1,189 @@
+.th-header {
+  box-sizing:border-box;
+  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+  background-color: #fff;
+  position: fixed;
+  width: 100vw;
+  height: 4rem;
+  z-index: 3;
+  top:0;
+  left:0;
+  padding: 0;
+  margin: 0;
+}
+.th-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.th-header-adminuser {
+  top: 7rem;
+}
+.th-header__logo {
+  display: block;
+  width: 190px;
+  max-width: 100%;
+  object-fit: contain;
+  max-height: 3rem;
+}
+
+.th-header__login {
+
+  &:visited {
+    color: white;
+  }
+}
+
+.th-navbar {
+  display: block;
+  width: 100vw;
+  height: 4rem;
+  line-height: 4rem;
+}
+.th-navbar a {
+  color: #000;
+  text-decoration: none;
+}
+.nav-el {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  text-align: center;
+}
+.nav-profile {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  max-width: 15%;
+}
+.nav-logo {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 60%;
+}
+.nav-menu {
+  margin: 0;
+  padding: 0;
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+  background-color: #fff;
+}
+ul.nav-menu {
+  overflow: hidden;
+  list-style-type: none;
+}
+.nav-menu li {
+  padding: 0 .25rem;
+}
+
+.nav-menu-icon {
+  cursor: pointer;
+  float: left;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+  max-width: 15%;
+}
+.nav-menu-icon .nav-icon {
+  background-color: #333;
+  display: block;
+  height: .125rem;
+  position: relative;
+  transition: background-color .2s ease-out;
+  width: 1.125rem;
+}
+.nav-menu-icon .nav-icon:before,
+.nav-menu-icon .nav-icon:after {
+  display: block;
+  background: #333;
+  content: '';
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+.nav-menu-icon .nav-icon:before {
+  top: .375rem
+}
+.nav-menu-icon .nav-icon:after {
+  top: -.375rem
+}
+.nav-menu-btn {
+  display: none;
+}
+
+/* nav button click behavior */
+.nav-menu-btn:checked ~ .nav-menu {
+  position:absolute;
+  top:4rem;
+  width:100%;
+  min-height: 95vh;
+  overflow-y: scroll;
+}
+.nav-menu-btn:checked ~ .nav-menu-icon .nav-icon {
+  background: transparent;
+}
+.nav-menu-btn:checked ~ .nav-menu-icon .nav-icon:before {
+  transform: rotate(-45deg);
+}
+.nav-menu-btn:checked ~ .nav-menu-icon .nav-icon:after {
+  transform: rotate(45deg);
+}
+.nav-menu-btn:checked ~ .nav-menu-icon .nav-icon:before,
+.nav-menu-btn:checked ~ .nav-menu-icon .nav-icon:after {
+  top:0;
+}
+
+
+@media (min-width: 450px) {
+  .th-navbar {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;  
+    padding: 0 1rem;
+  }
+  .nav-menu {
+    clear: none;
+    max-height: none;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+  }
+  .nav-profile {
+    position:relative;
+    display: flex;
+    float: none;
+    width: auto;
+  }
+  .nav-logo {
+    display: flex;
+    float: none;
+    text-align: center;
+    width: 10%;
+  }
+  .nav-el {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    text-align: center;
+  }
+  .nav-menu-icon {
+    display:none;
+  }
+  .th-navbar .nav-menu-btn {
+    display: none;
+  }
+}

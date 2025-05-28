@@ -1,3 +1,31 @@
-{% fragment heading() %}
-  <h2>This is a heading fragment</h2>
+{% fragment heading(adminUser) %}
+{% if adminUser %}
+  {% set headerClass = "th-header th-header-adminuser" %}
+{% else %}
+  {% set headerClass = "th-header" %}
+{% endif %}
+
+<header class="{{ headerClass }}">
+  <nav class="th-navbar">
+    
+    <div class="nav-el nav-logo"><a href="/"><img class="th-header__logo" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}"></a></div>
+
+    <input class="nav-el nav-menu-btn th-overlay-btn" type="checkbox" id="menu-btn" />
+    <label class="nav-menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+
+    <ul class="nav-el nav-menu th-overlay">
+      {% for item in data.global.headerNav %}
+        {% if item.urlType === 'custom' %}
+          <li class="nav-el"><a href="{{ item.url }}" target="_blank">{{ item.label }}</a></li>
+        {% else %}
+          <li class="nav-el"><a href="{{ item._page[0].slug }}">{{ item.label }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  
+    <div class="nav-el nav-profile">
+      <th-header-nav></th-header-nav>
+    </div>
+  </nav>
+ </header>
 {% endfragment %}
