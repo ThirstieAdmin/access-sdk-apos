@@ -4,6 +4,7 @@
 
 {% import 'header-fragment.html' as headerFragment %}
 {% import 'footer-fragment.html' as footerFragment %}
+{% import 'thirstie-admin-fragment.html' as thirstieAdminFragment %}
 
 {% set title = data.piece.title or data.page.title %}
 {% block title %}
@@ -31,8 +32,8 @@
 {% endblock %}
 
 {% block beforeMain %}
-{% render headerFragment.heading(data.user) %}
 <div class="th-wrapper">
+  {% render headerFragment.heading() %}
   <main class="th-main">
 {% endblock %}
 
@@ -46,17 +47,17 @@
 
 {% block afterMain %}
   </main>{# Close .th-main #}
+  {% render footerFragment.footer() %}
   {% if data.user %}
-    {# floating menu for Thirstie specific admin functions #}
-    <nav id="th-admin-menu" class="th-admin-nav">
-      <div id="th-admin-nav-header" class="th-admin-nav-header">
-        <img src="https://media.thirstie.cloud/banners/v3p3HLxx6nwtVz4GVvYKWQ,x32f.png" alt="logo" />
-      </div>
-      <div class="th-admin-nav-content">
-        <a href="https://docs.thirstie.com" class="th-admin-nav-item" target="_blank">Docs</a>
-      </div>
-    </nav>
+    {% render thirstieAdminFragment.floatingMenu() %}
   {% endif %}
-{% render footerFragment.footer() %}
 </div>{# Close .th-wrapper #}
+
+<th-agegate-modal type="yesno" class="th-fouc-block">
+<h2 slot="header">Are you old enough to drink?</h2>
+<div slot="additional-msg">
+  <div>For information about enjoying Alcohol RESPONSIBLY visit <a href="https://responsibility.org">responsibility.org</a> & <a href="https://responsibledrinking.org">responsibledrinking.org</a></div>
+</div>
+<div slot="fail-msg">You must 21 or older to enter. Click <a href="https://responsibility.org" target="_blank">here</a></div>
+</th-agegate-modal>
 {% endblock %}

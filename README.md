@@ -67,6 +67,7 @@ TTD:
         - https://docs.apostrophecms.org/guide/custom-ui.html#components-with-a-logic-mixin-are-safer-and-easier-to-override
         - https://docs.apostrophecms.org/guide/custom-ui.html#adding-custom-modal-controls
 
+- [ ] fix preview views
 - [ ] custom css, import from @thirstie/ecomm-vue
 - [ ] handle FUOC (e.g. footer logo)
 - [ ] global settings
