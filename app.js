@@ -37,6 +37,12 @@ apostrophe({
             type: 'sitemap-page',
             slug: '/sitemap',
             parkedId: 'thirstieSitemapPage'
+          },
+          {
+            title: 'Styleguide',
+            type: 'styleguide-page',
+            slug: '/styleguide',
+            parkedId: 'thirstieStyleguidePage'
           }
         ]
       }
@@ -76,6 +82,7 @@ apostrophe({
     'product-line': {},
     'product-line-page': {},
     'sitemap-page': {},
+    'styleguide-page': {},
     'thirstie-disclaimer-widget': {}
   }
 });

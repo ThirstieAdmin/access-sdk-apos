@@ -1,11 +1,5 @@
-{% fragment heading(adminUser) %}
-{% if adminUser %}
-  {% set headerClass = "th-header th-header-adminuser" %}
-{% else %}
-  {% set headerClass = "th-header" %}
-{% endif %}
-
-<header class="{{ headerClass }}">
+{% fragment heading() %}
+<header class="th-header">
   <nav class="th-navbar">
     
     <div class="nav-el nav-logo"><a href="/"><img class="th-header__logo" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}"></a></div>
