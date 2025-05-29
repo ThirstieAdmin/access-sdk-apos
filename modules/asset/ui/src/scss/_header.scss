@@ -10,24 +10,25 @@
   left:0;
   padding: 0;
   margin: 0;
+}
+
+.th-header-icons {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  width:100%;
+  height:4rem;
+  margin: auto 0;
+  cursor: pointer;
 }
 
 .th-header__logo {
   display: block;
-  width: 190px;
+  width: auto;
   max-width: 100%;
   object-fit: contain;
-  max-height: 3rem;
-}
-
-.th-header__login {
-  &:visited {
-    color: white;
-  }
+  max-height: 2.5rem;
 }
 
 .th-navbar {
@@ -56,27 +57,34 @@
   top: 0;
   right: 1rem;
   max-width: 15%;
+  order:3;
 }
 .nav-logo {
   display: inline-block;
   margin: 0 auto;
   text-align: center;
   vertical-align: middle;
-  width: 60%;
+  width: 100%;
+  order: 2;
 }
 .nav-menu {
   margin: 0;
   padding: 0;
   clear: both;
+  order:1;
+}
+.nav-items {
+  margin: 0;
+  padding: 0;
   max-height: 0;
   transition: max-height .2s ease-out;
   background-color: #fff;
 }
-ul.nav-menu {
+ul.nav-items {
   overflow: hidden;
   list-style-type: none;
 }
-.nav-menu li {
+.nav-items li {
   padding: 0 .25rem;
 }
 
@@ -117,7 +125,7 @@ ul.nav-menu {
 }
 
 /* nav button click behavior */
-.nav-menu-btn:checked ~ .nav-menu {
+.nav-menu-btn:checked ~ .nav-items {
   position:absolute;
   top:4rem;
   width:100%;
@@ -150,10 +158,21 @@ ul.nav-menu {
     width: 100vw;
     padding: 0 1rem;
   }
+  .nav-logo {
+    display: flex;
+    float: none;
+    text-align: center;
+    width: 10%;
+    order:1;
+  }
   .nav-menu {
+    width: 50%;
+    order:2;
+  }
+  .nav-items {
     clear: none;
     max-height: none;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -166,12 +185,7 @@ ul.nav-menu {
     display: flex;
     float: none;
     width: auto;
-  }
-  .nav-logo {
-    display: flex;
-    float: none;
-    text-align: center;
-    width: 10%;
+    order:3;
   }
   .nav-el {
     margin: 0;

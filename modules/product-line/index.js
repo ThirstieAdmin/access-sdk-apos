@@ -6,6 +6,7 @@ export default {
     label: 'Product Line',
     pluralLabel: 'Product Lines',
     shortcut: 'L',
+    perPage: 12,
     localized: false
   },
   init(self) {
