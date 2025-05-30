@@ -2,12 +2,9 @@
 
 {% block main %}
   <section class="th-welcome">
-    <h1 class="th-welcome__headline">
-      Welcome to Thirstie Access
-    </h1>
     {% if not data.user %}
       {# Message only for logged out users. #}
-      <h3 class="th-welcome__help">First time spinning up the ApostropheCMS 3 demo?</h3>
+      <h3 class="th-welcome__help">This page is for admins only</h3>
       <p>
         Use the credentials created during setup with the CLI tool or create a new user with the CLI command:
       </p>
@@ -21,12 +18,12 @@
         <a class="th-button th-button--cta" href="/login">Then log in here</a>
       </p>
     {% endif %}
-    <p>
-      For a guide on how to configure and customize this project, <a href="https://a3.docs.apostrophecms.com/">please check out the Apostrophe 3 documentation</a>.
-    </p>
 
     <div class="th-welcome__area">
       {% if data.user %}
+        <h1 class="th-welcome__headline">
+          Welcome to Thirstie Access
+        </h1>
         {# Message only for logged in users. #}
         {% if not data.query['apos-edit'] %}
           <p>
@@ -37,10 +34,10 @@
             Add and edit content below in the content area. 👇
           </p>
         {% endif %}
+        <p>
+          For a guide on how to configure and customize this project, <a href="https://a3.docs.apostrophecms.com/" target="_blank">please check out the Apostrophe 3 documentation</a>.
+        </p>
       {% endif %}
-      <div style="border:1px solid orange">
-        {% area data.page, 'main' %}
-      </div>
     </div>
   </section>
 {% endblock %}

@@ -15,10 +15,13 @@
 {% endblock %}
 
 {% block extraHead %}
+{% if not data.global.favicon.items[0] %}
+<link rel="icon" href="/images/thirstie_dkblue.ico" />
+{% endif %}
 <script>
   window.thData = {};
   window.thData.k = "{{ data.thirstieAPIKey }}";
-  window.thData.m = "{{ data.mapsKey }}";
+  window.thData.m = "{{ data.thirstieMapsKey }}";
   window.thData.e = "{{ data.thirstieEnvironment }}"
   window.thData.primaryColor = "{{ data.global.primaryColor }}";
   window.thData.secondaryColor = "{{ data.global.secondaryColor }}";
@@ -32,6 +35,7 @@
 {% endblock %}
 
 {% block beforeMain %}
+{# TODO: use grid layout #}
 <div class="th-wrapper">
   {% render headerFragment.heading() %}
   <main class="th-main">
@@ -47,10 +51,8 @@
 
 {% block afterMain %}
   </main>{# Close .th-main #}
+  {% render thirstieAdminFragment.floatingMenu() %}
   {% render footerFragment.footer() %}
-  {% if data.user %}
-    {% render thirstieAdminFragment.floatingMenu() %}
-  {% endif %}
 </div>{# Close .th-wrapper #}
 
 <th-agegate-modal type="yesno" class="th-fouc-block">

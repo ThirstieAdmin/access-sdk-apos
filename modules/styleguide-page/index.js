@@ -5,7 +5,8 @@ export default {
   options: {
     label: 'Styleguide',
     orphan: true,
-    singleton: true
+    singleton: true,
+    loginRequired: true
   },
   fields: {
     add: {

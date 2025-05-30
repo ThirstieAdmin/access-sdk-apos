@@ -15,6 +15,7 @@ apostrophe({
     // have a minimal configuration here to turn them on: `moduleName: {}`
     // ***********************************************************************
     // `className` options set custom CSS classes for Apostrophe core widgets.
+    'admin-ui-overrides': {},
     '@apostrophecms/page': {
       options: {
         /*
@@ -69,6 +70,8 @@ apostrophe({
         piecesPerBatch: 500
       }
     },
+    '@apostrophecms/favicon': {},
+    'custom-code-editor-a3': {},
     '@apostrophecms/seo': {},
     // `asset` supports the project's build for client-side assets.
     asset: {},
@@ -83,6 +86,7 @@ apostrophe({
     'product-line-page': {},
     'sitemap-page': {},
     'styleguide-page': {},
+    'products-widget': {},
     'thirstie-disclaimer-widget': {}
   }
 });

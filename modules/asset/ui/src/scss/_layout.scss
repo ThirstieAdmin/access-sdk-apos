@@ -4,6 +4,7 @@ body,
 .th-wrapper {
   display: flex;
   flex-direction: column;
+  height:100vh;
 }
 
 [data-apos-refreshable],
@@ -41,7 +42,7 @@ main {
   flex-direction: column;
   position: fixed;
   z-index: 99;
-  top: 80vh;
+  top: 60vh;
   left: 90vw;
   width: auto;
   padding: 0;
@@ -74,4 +75,16 @@ main {
   color: whitesmoke;
   text-decoration: none;
   cursor: pointer;
+}
+
+.apos-login__logo.th-admin-thirstie-logo {
+  fill: #fff;
+  height: 4rem;
+}
+.th-admin-thirstie-logo-icon,
+.th-admin-thirstie-logo-padless {
+  fill: #18244f;
+}
+body[data-breakpoint-preview-mode] .hide-in-preview {
+  display: none;
 }

@@ -13,6 +13,15 @@ export default {
       }
     ]
   },
+    init(self) {
+    // add a button to the admin bar, clicking triggers `admin-menu-click` event with name `thirstie-admin-menu-toggle`
+    self.apos.adminBar.add('thirstie-admin-menu-toggle', 'ThirstieMenu', false, {
+      contextUtility: true,
+      tooltip: 'Toggle Thirstie Menu',
+      icon: 'binoculars-icon',
+      last: true
+    });
+  },
   extendMethods(self) {
     return {
       getShowAdminBar(_super, req) {

@@ -1,11 +1,15 @@
 {% fragment floatingMenu() %}
 {# floating menu for Thirstie specific admin functions #}
-<nav id="th-admin-menu" class="th-admin-nav">
+{% if data.user %}
+<nav id="th-admin-menu" class="th-admin-nav hide-in-preview ">
   <div id="th-admin-nav-header" class="th-admin-nav-header">
     <img src="https://media.thirstie.cloud/banners/v3p3HLxx6nwtVz4GVvYKWQ,x32f.png" alt="logo" />
   </div>
   <div class="th-admin-nav-content">
-    <a href="https://docs.thirstie.com" class="th-admin-nav-item" target="_blank">Docs</a>
+    <p><a href="https://docs.thirstie.com" class="th-admin-nav-item" target="_blank">Docs</a></p>
+    <p><a href="/styleguide" class="th-admin-nav-item">Styleguide</a></p>
+    <p><a href="/sitemap" class="th-admin-nav-item">Sitemap</a></p>
   </div>
 </nav>
+{% endif %}
 {% endfragment %}
