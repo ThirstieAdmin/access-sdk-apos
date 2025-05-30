@@ -111,6 +111,16 @@ export default {
           }
         }
       },
+      footerLogo: {
+        type: 'area',
+        label: 'Footer Logo',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/image': {}
+          }
+        }
+      },
       footerNav: {
         type: 'array',
         label: 'footerNav',
@@ -132,6 +142,11 @@ export default {
           }
         }
       },
+      footerTrademarkText: {
+        type: 'string',
+        label: 'Trademark Text',
+        def: 'All rights reserved'
+      },
       primaryColor: {
         type: 'color',
         label: 'Primary brand color'
@@ -147,6 +162,17 @@ export default {
       secondaryContrastingColor: {
         type: 'color',
         label: 'Contrasting color for secondary'
+      },
+      customHead: {
+        type: 'custom-code-editor-a3',
+        label: 'Custom HEAD',
+        help: 'This it output in the HEAD tag so write it accordingly (for CSS, wrap it in a style tag). For debugging append the query string ?disableCustomHead=1 to any URL',
+        ace: {
+          defaultMode: 'html',
+          config: {
+              saveCommand: null
+          }
+        }
       }
     },
     group: {
@@ -164,7 +190,11 @@ export default {
       },
       footerContent: {
         label: 'Footer',
-        fields: [ 'footerTop', 'footerNav' ]
+        fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText' ]
+      },
+      advanced: {
+        label: 'Advanced',
+        fields: [ 'customHead' ]
       }
     }
   }

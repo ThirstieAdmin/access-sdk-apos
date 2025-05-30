@@ -67,13 +67,13 @@ TTD:
         - https://docs.apostrophecms.org/guide/custom-ui.html#components-with-a-logic-mixin-are-safer-and-easier-to-override
         - https://docs.apostrophecms.org/guide/custom-ui.html#adding-custom-modal-controls
 
-- [ ] fix preview views
+- [x] fix preview views
 - [ ] custom css, import from @thirstie/ecomm-vue
 - [ ] handle FUOC (e.g. footer logo)
 - [ ] global settings
-  - favicon
-  - custom code
-  - font
+  - [x] favicon
+  - custom code: `custom-code-editor-a3` not working in global settings
+  - font: advanced, later
   - implement dataLayer / GTM configuration (thirstie defaults plus custom)
 - [ ] pages
   - layout 
@@ -112,7 +112,8 @@ TTD:
 - [ ] move as much of Access code base as practical
 - [ ] implement deployment
 - [ ] custom icons: https://docs.apostrophecms.org/reference/module-api/module-overview.html#icons
-- [ ] extensions: seo, pa11y-ci, etc
+- [ ] other extensions: open graph, pa11y, security-headers
+  - see: https://apostrophecms.com/extensions?autocomplete=&license=openSource
 
 ### header layouts
 
@@ -220,3 +221,40 @@ body {
 
 Update the global settings: In the ApostropheCMS admin UI, navigate to the "Global" settings and set your color values. These will now be applied as CSS variables across your site.
 This approach allows you to manage your theme colors and other CSS variables through the ApostropheCMS admin interface, making it easy to update your site's appearance without modifying code.
+
+#### preview
+To hide an element in preview mode in ApostropheCMS, you can use the apos-area-widget-wrapper--preview class. This class is automatically added to widget wrappers when in preview mode. Here's how you can use it:
+
+In your template or widget template, add a custom class to the element you want to hide:
+<div class="my-element hide-in-preview">
+  <!-- Your content here -->
+</div>
+In your CSS, use the following selector to hide the element when in preview mode:
+.apos-area-widget-wrapper--preview .hide-in-preview {
+  display: none;
+}
+Alternatively, if you want to hide an element only when it's empty in preview mode, you can use the apos-empty class, which Apostrophe adds to empty widgets in preview mode:
+
+.apos-area-widget-wrapper--preview .apos-empty {
+  display: none;
+}
+If you need to hide elements based on more complex conditions or if you're working with custom JavaScript, you can also check for preview mode programmatically:
+
+if (apos.area.inPreviewMode()) {
+  // Hide elements or perform other preview-specific actions
+}
+Remember that hiding elements in preview mode should be done thoughtfully to maintain a good editing experience. It's often better to show placeholder content or a visual indicator rather than completely hiding elements.
+
+
+#### migration
+- https://shop.us.glenfiddich.com/
+- https://shop.austincocktails.com/
+- https://shop.senorsangria.com/
+- https://www.reservebar.com/collections/spirits?page=2
+- https://us.thebar.com/engravable-bottles-personalized/whiskey
+
+
+## Principles
+
+- deliver to the consumer clean e-commerce UX
+- deliver a excellent development experience

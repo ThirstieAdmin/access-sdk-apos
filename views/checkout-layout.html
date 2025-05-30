@@ -12,7 +12,7 @@
 <script>
   window.thData = {};
   window.thData.k = "{{ data.thirstieAPIKey }}";
-  window.thData.m = "{{ data.mapsKey }}";
+  window.thData.m = "{{ data.thirstieMapsKey }}";
   window.thData.e = "{{ data.thirstieEnvironment }}"
   window.thData.primaryColor = "{{ data.global.primaryColor }}";
   window.thData.secondaryColor = "{{ data.global.secondaryColor }}";
@@ -42,9 +42,7 @@
         </div>
         <div slot="additional-confirmation-content" class="th-fouc-block">
           <div class="navbar-cta">
-            <!-- th-header-nav also enables a slide in drawer to preview shopping cart details -->
-            <!-- Test that cart is emptied on confirmation page-->
-            <th-header-nav></th-header-nav>
+            <p>Thanks for shopping with us!</p>
           </div>
         </div>
     </th-checkout>

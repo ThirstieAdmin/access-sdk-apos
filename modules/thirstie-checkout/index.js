@@ -7,4 +7,9 @@ export default {
 };
 /*
 https://docs.apostrophecms.org/guide/pages.html#creating-a-page-type
+
+TODO:
+- add main widget
+- add slot content
+- options: opt-in, etc
 */

@@ -10,6 +10,7 @@ export default {
           req.data.thirstieEnvironment = process.env.THENV;
           req.data.thirstieAPIKey = process.env.THAPIKEY;
           req.data.thirstieMapsKey = process.env.THMAPSKEY;
+          req.data.copyrightYear = new Date().getFullYear();
         }
       }
     };

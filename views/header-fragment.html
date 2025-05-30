@@ -16,11 +16,15 @@
             <li class="nav-el"><a href="{{ item._page[0].slug }}">{{ item.label }}</a></li>
           {% endif %}
         {% endfor %}
+
+        {# TODO: Make this a series of links at the bottom of the footer #}
+        {% if data.user %}
+          <li class="nav-el"><a href="/styleguide">Help</a></li>
+        {% endif %}
       </ul>
     </div>
 
     <div class="nav-el nav-profile">
-      <!-- th-header-nav></th-header-nav -->
       <div class="th-header-icons">
         <th-user-nav></th-user-nav>
         <th-cart-nav></th-cart-nav>

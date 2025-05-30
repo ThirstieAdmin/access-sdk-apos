@@ -40,11 +40,13 @@
   "author": "Thirstie, Inc.",
   "license": "MIT",
   "dependencies": {
+    "@apostrophecms/favicon": "^1.1.2",
     "@apostrophecms/seo": "^1.3.0",
     "@apostrophecms/sitemap": "^1.1.0",
     "@apostrophecms/vite": "^1.0.0",
     "@thirstie/ecomm-vue": "^1.2.0",
     "apostrophe": "^4.9.0",
+    "custom-code-editor-a3": "^2.0.1",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {

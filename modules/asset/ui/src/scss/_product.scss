@@ -1,0 +1,15 @@
+.product-pager {
+  grid-column: 1 / 3;
+  padding: 1rem 0;
+}
+.product-pager__item {
+  padding: .5rem 1rem;
+  border: 1px solid #aaa;
+  border-radius: var(--th-border-radius);
+}
+.product-pager__item.is-active {
+  border-width:.25rem;
+}
+.product-pager__item a {
+  color: inherit;
+}

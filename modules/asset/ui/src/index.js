@@ -33,7 +33,6 @@ export default () => {
   initApp(thirstieAppConfig);
 
   // Add site helper functions, listeners, etc
-  // TODO: update aria elements
   const thOverlayBtns = document.querySelectorAll('.th-overlay-btn');
   const thOverlay = document.querySelector('.th-overlay');
   

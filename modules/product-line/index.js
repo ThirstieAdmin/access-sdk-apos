@@ -10,13 +10,6 @@ export default {
     localized: false
   },
   init(self) {
-    // add a button to the admin bar, clicking triggers `admin-menu-click` event with name `thirstie-admin-menu-toggle`
-    self.apos.adminBar.add('thirstie-admin-menu-toggle', 'ThirstieMenu', false, {
-      contextUtility: true,
-      tooltip: 'Toggle Thirstie Menu',
-      icon: 'binoculars-icon'
-    });
-
     // add a button to the admin bar, clicking triggers a sync with 
     self.apos.adminBar.add('thirstie-admin-productline-syncall', 'ThirstieProductSync', false, {
       contextUtility: true,

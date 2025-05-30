@@ -2,7 +2,7 @@ export default {
   extend: '@apostrophecms/widget-type',
   options: {
     label: 'Thirstie Disclaimer Widget',
-    icon: 'text-subject'
+    icon: 'circle-icon'
   },
   fields: {
     add: {
