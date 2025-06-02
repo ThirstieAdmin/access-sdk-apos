@@ -1,4 +1,4 @@
-import { default as richTextOptions } from '../../../lib/richTextOptions.js';
+import { default as richTextOptions } from '../../../lib/rich-text-options.js';
 
 export default {
   options: {
@@ -15,7 +15,7 @@ export default {
             '@apostrophecms/image': {},
             '@apostrophecms/video': {},
             'thirstie-disclaimer': {},
-            'products': {}
+            'product-grid': {}
           }
         }
       }

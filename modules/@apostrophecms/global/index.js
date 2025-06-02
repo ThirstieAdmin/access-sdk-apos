@@ -1,90 +1,7 @@
-const richTextOptions = {
-  toolbar: [
-    'styles',
-    '|',
-    'bold',
-    'italic',
-    'strike',
-    'link',
-    '|',
-    'alignLeft',
-    'alignRight',
-    'alignCenter',
-    'alignJustify',
-    '|',
-    'bulletList',
-    'orderedList',
-    'horizontalRule',
-    'link'
-  ],
-  styles: [
-    {
-      tag: 'p',
-      label: 'Paragraph (P)'
-    },
-    {
-      tag: 'h3',
-      label: 'Heading 3 (H3)'
-    },
-    {
-      tag: 'h4',
-      label: 'Heading 4 (H4)'
-    }
-  ],
-  insert: [
-    'table',
-    'image'
-  ]
-};
+import apostrophe from 'apostrophe';
+import { default as richTextOptions } from '../../../lib/rich-text-options.js';
+import { default as urlScheme } from '../../../lib/url-scheme.js';
 
-const urlScheme = {
-  label: {
-    type: 'string',
-    label: 'app:label'
-  },
-  urlType: {
-    label: 'app:type',
-    type: 'select',
-    choices: [
-      {
-        label: 'app:page',
-        value: 'page'
-      },
-      {
-        label: 'app:customUrl',
-        value: 'custom'
-      }
-    ]
-  },
-  url: {
-    type: 'url',
-    label: 'app:url',
-    required: true,
-    if: {
-      urlType: 'custom'
-    }
-  },
-  _page: {
-    label: 'app:page',
-    type: 'relationship',
-    withType: '@apostrophecms/any-page-type',
-    max: 1,
-    builders: {
-      areas: false,
-      relationships: false,
-      project: {
-        title: 1,
-        slug: 1,
-        _url: 1,
-        type: 1
-      }
-    },
-    required: true,
-    if: {
-      urlType: 'page'
-    }
-  }
-};
 
 export default {
   fields: {
@@ -163,15 +80,51 @@ export default {
         type: 'color',
         label: 'Contrasting color for secondary'
       },
-      customHead: {
-        type: 'custom-code-editor-a3',
-        label: 'Custom HEAD',
-        help: 'This it output in the HEAD tag so write it accordingly (for CSS, wrap it in a style tag). For debugging append the query string ?disableCustomHead=1 to any URL',
-        ace: {
-          defaultMode: 'html',
-          config: {
-              saveCommand: null
+      enableSiteBanner: {
+        type: 'boolean',
+        label: 'Enable Site Banner',
+        def: false
+      },
+      siteBannerText: {
+        type: 'area',
+        label: 'Site Banner',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/rich-text': {
+              toolbar: [
+                'bold',
+                'italic',
+                'strike',
+                'link',
+                '|',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+                'alignJustify',
+                '|',
+                'undo',
+                'redo'
+              ]
+            }
           }
+        },
+        if: {
+          enableSiteBanner: true
+        }
+      },
+      siteBannerTextColor: {
+        type: 'color',
+        label: 'Banner Text Color',
+        if: {
+          enableSiteBanner: true
+        }
+      },
+      siteBannerBackgroundColor: {
+        type: 'color',
+        label: 'Banner Background Color',
+        if: {
+          enableSiteBanner: true
         }
       }
     },
@@ -184,6 +137,10 @@ export default {
         label: 'Theme',
         fields: [ 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor' ]
       },
+      bannerContent: {
+        label: 'Banners',
+        fields: [ 'enableSiteBanner', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor' ]
+      },
       headerContent: {
         label: 'Header',
         fields: [ 'headerNav' ]
@@ -191,10 +148,6 @@ export default {
       footerContent: {
         label: 'Footer',
         fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText' ]
-      },
-      advanced: {
-        label: 'Advanced',
-        fields: [ 'customHead' ]
       }
     }
   }

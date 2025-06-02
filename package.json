@@ -46,7 +46,6 @@
     "@apostrophecms/vite": "^1.0.0",
     "@thirstie/ecomm-vue": "^1.2.0",
     "apostrophe": "^4.9.0",
-    "custom-code-editor-a3": "^2.0.1",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {

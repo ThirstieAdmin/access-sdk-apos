@@ -1,12 +1,17 @@
 {# modules/theme/views/customStyles.html #}
+{% set headerOffset = "7rem" if data.global.enableSiteBanner else "4rem" %}
 {% if data.global %}
   <style>
     :root {
+      /* global settings */
       --primary-color: {{ data.global.primaryColor or '#000000' }};
       --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#ffffff' }};
       --secondary-color: {{ data.global.secondaryColor or '#ffffff' }};
       --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000000' }};
-      
+      --banner-text-color: {{ data.global.siteBannerTextColor or '#FFF1CC' }};
+      --banner-background-color: {{ data.global.siteBannerBackgroundColor or '#BA8808' }};
+      --header-offset: {{ headerOffset }};
+
       /* Standard values */
       --th-c-white: #FFF;
       --th-c-smokywhite: #FAFAFA;

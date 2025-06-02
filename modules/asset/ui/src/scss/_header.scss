@@ -2,23 +2,27 @@
   box-sizing:border-box;
   box-shadow: 1px 1px 4px 0 color-mix(in srgb, var(--primary-color), #FFF 80%);
   background-color: #fff;
-  position: sticky;
+  position: fixed !important;
   width: 100%;
-  height: 4rem;
   z-index: 3;
   top:0;
   left:0;
-  padding: 0;
-  margin: 0;
 }
-
+.th-header__banner {
+  box-sizing:border-box;
+  background-color: var(--banner-background-color, #BA8808);
+  height: 3rem;
+  padding: 1rem 0;
+}
+.th-header__banner * {
+  color: var(--banner-text-color, #FFF1CC);
+  text-decoration: none;
+}
 .th-header-icons {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  width:100%;
-  height:4rem;
   margin: auto 0;
   cursor: pointer;
 }
@@ -27,8 +31,9 @@
   display: block;
   width: auto;
   max-width: 100%;
-  object-fit: contain;
   max-height: 2.5rem;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .th-navbar {
@@ -53,11 +58,9 @@
   text-align: center;
 }
 .nav-profile {
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  max-width: 15%;
+  width: 15%;
   order:3;
+  padding-right: 1rem;
 }
 .nav-logo {
   display: inline-block;
@@ -72,6 +75,7 @@
   padding: 0;
   clear: both;
   order:1;
+  width:15%;
 }
 .nav-items {
   margin: 0;
@@ -127,7 +131,7 @@ ul.nav-items {
 /* nav button click behavior */
 .nav-menu-btn:checked ~ .nav-items {
   position:absolute;
-  top:4rem;
+  top: var(--header-offset, 4rem);
   width:100%;
   min-height: 95vh;
   overflow-y: scroll;
