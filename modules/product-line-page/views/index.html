@@ -8,7 +8,7 @@
       <div class="grid grid-cols-3 md:grid-cols-1 items-center justify-center">
         {% for productLine in data.pieces %}
         <div>
-          <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" cta-label="Buy Now"></th-product-add-to-cart>
+          <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" cta-label="Buy Now" link-text="Learn more" show-link></th-product-add-to-cart>
           {% if data.user %}
           <button data-plid="th-prod-{{ productLine.thirstiePLID }}" data-aposid="{{ productLine._id }}" class="th-admin-btn">EDIT ME</button>
           {% endif %}

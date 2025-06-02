@@ -12,9 +12,8 @@ body,
 main {
   flex-grow: 1;
 }
-
-.th-main {
-  margin-top: 4rem;
+.th-inner-wrapper {
+  margin-top: var(--header-offset);
 }
 
 body {
@@ -32,7 +31,6 @@ main {
 }
 
 .th-content {
-  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }

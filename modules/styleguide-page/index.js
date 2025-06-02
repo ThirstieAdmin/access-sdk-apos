@@ -1,4 +1,4 @@
-import { default as richTextOptions } from '../../lib/richTextOptions.js';
+import { default as richTextOptions } from '../../lib/rich-text-options.js';
 
 export default {
   extend: '@apostrophecms/page-type',

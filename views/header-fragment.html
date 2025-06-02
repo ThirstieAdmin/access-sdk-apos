@@ -1,7 +1,14 @@
 {% fragment heading() %}
-<header class="th-header">
+{% set enableBanner = data.global.enableSiteBanner %}
+<header class="th-header m-0 p-0">
+  {% if enableBanner %}
+    <div class="th-header__banner w-full py-2 px-0 m-0 flex flex-row items-center justify-center">
+      {% if data.global.siteBannerText.items[0].type === "@apostrophecms/rich-text" %}
+      {{ apos.area.richText(data.global.siteBannerText) }}
+      {% endif %}
+    </div>
+  {% endif %}
   <nav class="th-navbar">
-    
     <div class="nav-el nav-logo"><a href="/"><img class="th-header__logo" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}"></a></div>
 
     <div class="nav-el nav-menu">
@@ -16,11 +23,6 @@
             <li class="nav-el"><a href="{{ item._page[0].slug }}">{{ item.label }}</a></li>
           {% endif %}
         {% endfor %}
-
-        {# TODO: Make this a series of links at the bottom of the footer #}
-        {% if data.user %}
-          <li class="nav-el"><a href="/styleguide">Help</a></li>
-        {% endif %}
       </ul>
     </div>
 

@@ -71,7 +71,6 @@ apostrophe({
       }
     },
     '@apostrophecms/favicon': {},
-    'custom-code-editor-a3': {},
     '@apostrophecms/seo': {},
     // `asset` supports the project's build for client-side assets.
     asset: {},
@@ -86,7 +85,7 @@ apostrophe({
     'product-line-page': {},
     'sitemap-page': {},
     'styleguide-page': {},
-    'products-widget': {},
+    'product-grid-widget': {},
     'thirstie-disclaimer-widget': {}
   }
 });
