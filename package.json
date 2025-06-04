@@ -5,12 +5,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "dotenv -e .env.local -- node app",
-    "dev": "dotenv -e .env.local -- nodemon",
+    "start": "dotenv -e .env -- node app",
+    "dev": "dotenv -e .env -- nodemon",
     "dev:admin": "APOS_DEV=1 npm run dev",
     "build": "NODE_ENV=production node app @apostrophecms/asset:build",
     "serve": "NODE_ENV=production node app",
-    "release": "npm install && npm run build && node app @apostrophecms/migration:migrate"
+    "release": "npm install && npm run build && node app @apostrophecms/migration:migrate",
+    "release:env": "dotenv -e .env -- npm run release", 
+    "serve:env": "dotenv -e .env -- npm run serve"
   },
   "nodemonConfig": {
     "delay": 1000,

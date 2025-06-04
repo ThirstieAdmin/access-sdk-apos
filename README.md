@@ -258,3 +258,10 @@ Remember that hiding elements in preview mode should be done thoughtfully to mai
 
 - deliver to the consumer clean e-commerce UX
 - deliver a excellent development experience
+
+
+## Lightsail deploy
+
+- Ubuntu (OS Only) 24 LTS
+- SSH KeyPair: AccessSDKApos
+- Instance Name: AccessSDKApos
