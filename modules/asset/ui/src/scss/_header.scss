@@ -11,9 +11,11 @@
 
 #apos-admin-bar ~ [data-apos-refreshable] .th-wrapper .th-header {
   top: 7rem;
+  left: 0;
 }
 body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th-wrapper .th-header {
   top: 0;
+  left: 0;
 }
 
 .th-header__banner {

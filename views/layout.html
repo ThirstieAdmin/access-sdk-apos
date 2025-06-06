@@ -7,6 +7,13 @@
 {% import 'thirstie-admin-fragment.html' as thirstieAdminFragment %}
 
 {% set title = data.piece.title or data.page.title %}
+
+{% set enableBanner = data.global.enableSiteBanner %}
+{% set headerHeight = 112 if enableBanner else 64 %}
+{% if data.user %}
+  {% set headerHeight = headerHeight + 112 %}
+{% endif %}
+
 {% block title %}
   {{ title }}
   {% if not title %}
@@ -35,13 +42,7 @@
 {% endblock %}
 
 {% block beforeMain %}
-{% set enableBanner = data.global.enableSiteBanner %}
-{% set headerHeight = 112 if enableBanner else 64 %}
-{% if data.user %}
-  {% set headerHeight = headerHeight + 112 %}
-{% endif %}
-{# TODO: use grid layout #}
-<div class="th-wrapper">
+<div class="th-wrapper th-fouc-block">
   {% render headerFragment.heading() %}
   <div class="th-inner-wrapper">
     <th-availability-wrapper header-height="{{ headerHeight }}" buffer-height="-8" check-type="address">
@@ -63,7 +64,9 @@
   </div>
   {% render thirstieAdminFragment.floatingMenu() %}
 </div>{# Close .th-wrapper #}
+{% endblock %}
 
+{% block ageGateModal %}
 <th-agegate-modal type="yesno" class="th-fouc-block">
 <h2 slot="header">Are you old enough to drink?</h2>
 <div slot="additional-msg">
