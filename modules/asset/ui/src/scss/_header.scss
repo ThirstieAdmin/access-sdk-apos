@@ -8,6 +8,14 @@
   top:0;
   left:0;
 }
+
+#apos-admin-bar ~ [data-apos-refreshable] .th-wrapper .th-header {
+  top: 7rem;
+}
+body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th-wrapper .th-header {
+  top: 0;
+}
+
 .th-header__banner {
   box-sizing:border-box;
   background-color: var(--banner-background-color, #BA8808);
