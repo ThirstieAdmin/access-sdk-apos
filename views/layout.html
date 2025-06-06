@@ -36,26 +36,29 @@
 
 {% block beforeMain %}
 {% set enableBanner = data.global.enableSiteBanner %}
-{% set headerHeight = "112" if enableBanner else "64" %}
+{% set headerHeight = 112 if enableBanner else 64 %}
+{% if data.user %}
+  {% set headerHeight = headerHeight + 112 %}
+{% endif %}
 {# TODO: use grid layout #}
 <div class="th-wrapper">
   {% render headerFragment.heading() %}
   <div class="th-inner-wrapper">
     <th-availability-wrapper header-height="{{ headerHeight }}" buffer-height="-8" check-type="address">
-    <main class="th-main">
+      <main class="th-main">
 {% endblock %}
 
 {% block main %}
-    {#
+      {#
       Usually, your page templates in the @apostrophecms/pages module will override
       this block. It is safe to assume this is where your page-specific content
       should go.
-    #}
+      #}
 {% endblock %}
 
 {% block afterMain %}
-    </main>{# Close .th-main #}
-    {% render footerFragment.footer() %}
+      {% render footerFragment.footer() %}
+      </main>{# Close .th-main #}
     </th-availability-wrapper>
   </div>
   {% render thirstieAdminFragment.floatingMenu() %}
