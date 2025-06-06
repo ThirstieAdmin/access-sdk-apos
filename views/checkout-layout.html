@@ -1,33 +1,9 @@
 {# Automatically extends the right outer layout and also handles AJAX siutations #}
-{% extends data.outerLayout %}
-
-{% set title = data.piece.title or data.page.title %}
-{% block title %}
-  {{ title }}
-  {% if not title %}
-    {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
-  {% endif %}
-{% endblock %}
-{% block extraHead %}
-<script>
-  window.thData = {};
-  window.thData.k = "{{ data.thirstieAPIKey }}";
-  window.thData.m = "{{ data.thirstieMapsKey }}";
-  window.thData.e = "{{ data.thirstieEnvironment }}"
-  window.thData.primaryColor = "{{ data.global.primaryColor }}";
-  window.thData.secondaryColor = "{{ data.global.secondaryColor }}";
-  window.thData.secondaryColor = "{{ data.global.secondaryColor }}";
-  window.thData.primaryContrastingColor = "{{ data.global.primaryContrastingColor }}";
-  window.thData.secondaryContrastingColor = "{{ data.global.secondaryContrastingColor }}";
-  window.thData.brandLogo = "{{ data.global.brandLogo }}";
-  window.thData.brandLogoAltText = "{{ data.global.brandLogoAltText }}";
-  window.thData.supportEmail = "{{ data.global.supportEmail }}";
-</script>
-{% endblock %}
+{% extends "layout.html" %}
 
 {% block beforeMain %}
-  <div id="hostapp" class="th-fouc-block">
-
+  <div class="th-wrapper th-fouc-block">
+    <main class="th-main">
     <th-checkout
       continue-button-label="Go on"
       complete-button-label="Complete Checkout" 
@@ -46,9 +22,6 @@
           </div>
         </div>
     </th-checkout>
-
-  </div>
-  <section class="th-main">
 {% endblock %}
 
 {% block main %}
@@ -60,9 +33,7 @@
 {% endblock %}
 
 {% block afterMain %}
-  </section>{# Close .th-main #}
-  <footer class="th-footer">
-    <th-disclaimer />
-  </footer>
+  {% render footerFragment.footer() %}
+  </main>{# Close .th-main #}
 </div>{# Close .th-wrapper #}
 {% endblock %}
