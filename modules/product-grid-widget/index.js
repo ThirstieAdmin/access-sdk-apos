@@ -43,17 +43,32 @@ export default {
           { label: 'flex', value: 'flex'}
         ]
       },
+      showProductCardImageAs: {
+        type: 'select',
+        label: 'Product Card Image Type',
+        help: 'How product image is displayed on product card',
+        def: 'primary-image',
+        choices: [
+          {label: 'no image', value: 'no-image'},
+          {label: 'primary image only', value: 'primary-image'},
+          {label: 'carousel', value: 'carousel'},
+        ]
+      },
       _productlines: {
         type: 'relationship',
         label: 'Product Lines',
         withType: 'product-line',
+        withRelationships: ['_images'],
         builders: {
           project: {
             title: 1,
             slug: 1,
             type: 1,
             _url: 1,
-            thirstiePLID: 1
+            thirstiePLID: 1,
+            primaryImage: 1,
+            imageSpec: 1,
+            _images: true
           }
         }
       }
@@ -61,7 +76,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: ['title', 'textColor', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
+        fields: ['title', 'textColor', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
       }
     }
   }

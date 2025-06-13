@@ -234,17 +234,36 @@ export default {
       },
       imageSpec: {
         // TODO: create custom type
+        // display and save resizing
         type: 'url',
         label: 'Image Spec',
         required: false
       },
       primaryImage: {
         label: 'Primary product image',
+        help: 'Override main image from Thirstie',
         type: 'area',
+        required: false,
         options: {
           max: 1,
           widgets: {
             '@apostrophecms/image': {}
+          }
+        }
+      },
+      _images: {
+        label: 'Additional images (Carousel)',
+        type: 'relationship',
+        withType: '@apostrophecms/image',
+        max: 5,
+        builders: {
+          project: {
+            titleSortified: 0,
+            highSearchText: 0,
+            highSearchWords: 0,
+            lowSearchText: 0,
+            searchSummary: 0,
+            advisoryLock: 0
           }
         }
       }
@@ -252,11 +271,11 @@ export default {
     group: {
       basics: {
         label: 'Basics',
-        fields: ['thirstiePLID', 'title', 'description', 'productType', 'proof', 'abvPercent', 'imageSpec']
+        fields: ['thirstiePLID', 'title', 'description', 'productType', 'proof', 'abvPercent', 'imageSpec', 'id']
       },
       images: {
         label: 'Images',
-        fields: ['primaryImage']
+        fields: ['primaryImage', '_images' ]
       }
     }
   },

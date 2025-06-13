@@ -6,6 +6,7 @@
 {% if item.primaryImage.items | length %}
   {% set attachment = apos.image.first(item.primaryImage or {}) %}
   {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+  {% set altText = attachment.title %}
 {% else %}
   {% set imageUrl = item.imageSpec | replace("{dims}.", ".") %}
 {% endif %}
@@ -14,14 +15,74 @@
 {% block main %}
 <section class="th-pdp-content flex flex-row md:flex-col items-start md:items-center justify-center">
   <div class="th-pdp-left">
-    <img 
-      src="{{ imageUrl }}" 
-      alt="{{ altText }}"
-    />
+    <div class="th-pdp-left-content">
+      {% if data.page.showPDPImageAs == 'carousel' %}
+      {# TODO: see [customization options](https://swiperjs.com/swiper-api#navigation) #}
+      <swiper-container
+        class="th-pdp-swiper__container"
+        thumbs-swiper="#th-pdp-thumbs"
+        space-between="10"
+        navigation="true"
+        pagination="true"
+        loop="true"
+        style="--swiper-navigation-color: #0f0f0f; --swiper-pagination-color: #0f0f0f;--swiper-navigation-size: 28px;"
+      >
+        <swiper-slide>
+          <img
+          class="th-pdp-left__primary_img"
+          src="{{ imageUrl }}" 
+          alt="{{ altText }}"
+        /></swiper-slide>
+        {% for productImage in data.piece._images %}
+          {% set imgAttachment = apos.image.first(productImage or {}) %}
+          {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
+          {% set altImageAltText = imgAttachment.title or "product image" %}
+          <swiper-slide>
+            <img
+            class="th-pdp-left__primary_img"
+            src="{{ altImageUrl }}" 
+            alt="{{altImageAltText}}"
+          /></swiper-slide>
+        {% endfor %}
+      </swiper-container>
+      {% if data.piece._images | length %}
+      <swiper-container
+        id="th-pdp-thumbs"
+        class="th-pdp-thumbs"
+        space-between="10"
+        slides-per-view="5"
+        free-mode="true"
+        watch-slides-progress="true"
+      >
+        <swiper-slide class="th-pdp-thumb__slide">
+          <img 
+          class="th-pdp-thumb__img"
+          src="{{ imageUrl }}" 
+          alt="{{ altText }}"
+        /></swiper-slide>
+        {% for productImage in data.piece._images %}
+          {% set imgAttachment = apos.image.first(productImage or {}) %}
+          {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
+          {% set altImageAltText = imgAttachment.title or "product image" %}
+          <swiper-slide class="th-pdp-thumb__slide"><img
+            class="th-pdp-thumb__img"
+            src="{{ altImageUrl }}" 
+            alt="{{altImageAltText}}"
+          /></swiper-slide>
+        {% endfor %}
+      </swiper-container>
+      {% endif %}
+      {% else %}
+      <img
+        class="th-pdp-left__primary_img"
+        src="{{ imageUrl }}" 
+        alt="{{ altText }}"
+      />
+      {% endif %}
+    </div>
   </div>
   <div class="th-pdp-right">
-    <th-pdp-commerce product-line-id="{{ item.thirstiePLID }}">
-    </th-pdp-commerce>
+    <th-pdp-commerce product-line-id="{{ item.thirstiePLID }}"></th-pdp-commerce>
   </div>
 </section>
 {% endblock %}
