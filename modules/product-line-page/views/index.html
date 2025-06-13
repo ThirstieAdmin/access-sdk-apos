@@ -2,26 +2,64 @@
 {% import '@apostrophecms/pager:macros.html' as pager with context %}
 
 {% block main %}
+{% set showLink = "show-link" if data.page.showLink else "" %}
+{% if data.page.showProductCardImageAs in ("no-image", "carousel") %}
+  {% set showImage = "no-image" %}
+{% else %}
+  {% set showImage = "" %}
+{% endif %}
   <h2>{{ data.page.title }}</h2>
   <th-catalog-collection>
-    <div class="my-1 mx-auto px-4 gap-4 w-full th-fouc-block"><p>{{ data.totalPieces }} products</p>
+    <div class="my-4 mx-0 px-4 md:p-0 gap-4 w-full th-fouc-block">
       <div class="grid grid-cols-3 md:grid-cols-1 items-center justify-center">
         {% for productLine in data.pieces %}
-        <div>
-          <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" cta-label="Buy Now" link-text="Learn more" show-link></th-product-add-to-cart>
-          {% if data.user %}
-          <button data-plid="th-prod-{{ productLine.thirstiePLID }}" data-aposid="{{ productLine._id }}" class="th-admin-btn">EDIT ME</button>
-          {% endif %}
-        </div>
-      {% endfor %}
+          <div class="my-4 mx-auto">
+            {% if data.page.showProductCardImageAs == 'carousel' %}
+              {% if productLine.primaryImage.items | length %}
+                {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
+                {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+                {% set altText = attachment.title %}
+              {% else %}
+                {% set imageUrl = productLine.imageSpec | replace("{dims}.", ".") %}
+              {% endif %}
+              <swiper-container
+                class="th-plp-swiper__container"
+                space-between="10"
+                navigation="true"
+                pagination="false"
+                loop="true"
+                style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+              >
+                <swiper-slide>
+                  <img
+                  class="th-plp__primary_img"
+                  src="{{ imageUrl }}" 
+                  alt="{{ altText }}"
+                /></swiper-slide>
+                {% for productImage in productLine._images %}
+                  {% set imgAttachment = apos.image.first(productImage or {}) %}
+                  {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
+                  {% set altImageAltText = imgAttachment.title or "product image" %}
+                  <swiper-slide>
+                    <img
+                    class="th-plp__primary_img"
+                    src="{{ altImageUrl }}" 
+                    alt="{{altImageAltText}}"
+                  /></swiper-slide>
+                {% endfor %}
+              </swiper-container>
+            {% endif %}
+            <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" cta-label="{{ data.page.ctaLabel }}" link-text="{{ data.page.linkText }}" {{ showLink }} {{ showImage }}></th-product-add-to-cart>
+          </div>
+        {% endfor %}
       </div>
-
       {{ pager.render({
         page: data.currentPage,
         total: data.totalPages,
         class: 'product-pager'
       }, data.url
       ) }}
+      <p class="my-0 mx-auto product-pager">{{ data.totalPieces }} products</p>
     </div>
   </th-catalog-collection>
 {% endblock %}

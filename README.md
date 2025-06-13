@@ -86,6 +86,7 @@ TTD:
     - checkout alert banner (with begin/end date-time, queue)
   - / 
   - /products
+    - [ ] with swiper carousel (https://swiperjs.com/element)
   - /products/slug
   - /checkout
   - /terms & /privacy
@@ -99,7 +100,9 @@ TTD:
 - [ ] widgets
   - product card
   - product group
-  - hero banner
+  - [ ] hero banner
+    - [ ] with swiper carousel (https://swiperjs.com/element)
+    - parallax display
   - nav card (see "our selection" on cocktailcourier.com)
   - signup form
 - [ ] documentation
