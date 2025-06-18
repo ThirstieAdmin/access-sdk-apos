@@ -15,7 +15,8 @@ export default {
             '@apostrophecms/image': {},
             '@apostrophecms/video': {},
             'thirstie-disclaimer': {},
-            'product-grid': {}
+            'product-grid': {},
+            'recipe-grid': {}
           }
         }
       }

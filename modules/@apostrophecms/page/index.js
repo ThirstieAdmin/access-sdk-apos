@@ -17,6 +17,10 @@ export default {
         label: 'Product Line Page'
       },
       {
+        name: 'recipe-page',
+        label: 'Recipe Page'
+      },
+      {
         name: 'sitemap-page',
         label: 'Sitemap Page'
       },
