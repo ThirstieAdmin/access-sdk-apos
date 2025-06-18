@@ -68,7 +68,7 @@ export default {
             thirstiePLID: 1,
             primaryImage: 1,
             imageSpec: 1,
-            _images: true
+            _images: 1
           }
         }
       }

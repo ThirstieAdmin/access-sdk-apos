@@ -82,10 +82,13 @@ apostrophe({
     'thirstie-checkout': {},
     'default-page': {},
     'product-line': {},
+    'recipe': {},
     'product-line-page': {},
+    'recipe-page': {},
     'sitemap-page': {},
     'styleguide-page': {},
     'product-grid-widget': {},
+    'recipe-grid-widget': {},
     'thirstie-disclaimer-widget': {}
   }
 });
