@@ -268,3 +268,5 @@ Remember that hiding elements in preview mode should be done thoughtfully to mai
 - Ubuntu (OS Only) 24 LTS
 - SSH KeyPair: AccessSDKApos
 - Instance Name: AccessSDKApos
+- see: https://docs.apostrophecms.org/cookbook/ubuntu-hosting.html
+  - use `npm run release:env` & `npm run serve:env` for deploy
