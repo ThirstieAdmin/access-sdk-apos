@@ -1,9 +1,11 @@
 import apostrophe from 'apostrophe';
 
+const BASE_URL = process.env.THBASEURL;
+
 apostrophe({
   root: import.meta,
   shortName: 'essential-app',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: BASE_URL,
   modules: {
     // Apostrophe module configuration
     // *******************************
