@@ -1,4 +1,21 @@
+{% import 'recipe-fragment.html' as recipeFragment %}
+
 <div>
   <h2>{{ data.widget.title }}</h2>
   <h3>{{ data.widget.subTitle }}</h3>
 </div>
+<swiper-container
+  class="th-recipe-grid-swiper__container"
+  space-between="10"
+  navigation="true"
+  pagination="true"
+  pagination-clickable="true"
+  loop="false"
+  style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+>
+{% for recipe in data.widget._recipes %}
+<swiper-slide>
+  {% render recipeFragment.recipeCard(recipe) %}
+</swiper-slide>
+{% endfor %}
+</swiper-container>

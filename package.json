@@ -5,9 +5,10 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "dotenv -e .env -- node app",
+    "start": "npm run dev",
     "dev": "dotenv -e .env -- nodemon",
     "dev:admin": "APOS_DEV=1 npm run dev",
+    "local": "dotenv -e .env -- node app",
     "build": "NODE_ENV=production node app @apostrophecms/asset:build",
     "serve": "NODE_ENV=production node app",
     "release": "npm install && npm run build && node app @apostrophecms/migration:migrate",
@@ -46,7 +47,7 @@
     "@apostrophecms/seo": "^1.3.0",
     "@apostrophecms/sitemap": "^1.1.0",
     "@apostrophecms/vite": "^1.0.0",
-    "@thirstie/ecomm-vue": "^1.2.0",
+    "@thirstie/ecomm-vue": "^1.2.1",
     "apostrophe": "^4.18.0",
     "normalize.css": "^8.0.1"
   },

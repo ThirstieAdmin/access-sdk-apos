@@ -1,11 +1,10 @@
 {# modules/recipe/views/show.html #}
 {% extends "layout.html" %}
-{% set item = data.piece %}
+
+{% import 'recipe-fragment.html' as recipeFragment %}
+
+{% set recipe = data.piece %}
 
 {% block main %}
-<section class="flex flex-row md:flex-col items-start md:items-center justify-center">
-  <div>
-    <h2>{{ item.title }}</h2>
-  </div>
-</section>
+  {% render recipeFragment.recipeCard(recipe) %}
 {% endblock %}

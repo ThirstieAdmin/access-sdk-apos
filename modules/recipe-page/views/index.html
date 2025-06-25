@@ -7,8 +7,28 @@
   <div class="my-4 mx-0 px-4 md:p-0 gap-4 w-full th-fouc-block">
     <div class="grid grid-cols-3 md:grid-cols-1 items-center justify-center">
       {% for recipe in data.pieces %}
+        {% set attachment = apos.image.first(recipe.primaryImage or {}) %}
+        {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+        {% set altText = attachment.title %}
+        {% if recipe._productlines | length %}
+          {% set product = recipe._productlines[0] %}
+          {% set productType = product.productType %}
+        {% else %}
+          {% set product = {"title": "n/a"} %}
+          {% set productType = "" %}
+        {% endif %}
         <div class="my-4 mx-auto">
-          <h3>{{ recipe.title }}</h3>
+          <figure>
+            <a href="{{ recipe._url }}">
+              <img
+                class="th-recipe-card__primary_img"
+                src="{{ imageUrl }}" 
+                alt="{{altText}}"
+              />
+            </a>
+            <figcaption class="th-recipe-card__title">{{ recipe.title }}</figcaption>
+            <figcaption class="th-recipe-card__subtitle">{{ productType }}</figcaption>
+          </figure>
         </div>
       {% endfor %}
     </div>
@@ -18,6 +38,6 @@
       class: 'recipe-pager'
     }, data.url
     ) }}
-    <p class="my-0 mx-auto recipe-pager">{{ data.totalPieces }} products</p>
+    <p class="my-0 mx-auto recipe-pager">{{ data.totalPieces }} recipes</p>
   </div>
 {% endblock %}

@@ -1,4 +1,5 @@
 import { default as richTextOptions } from '../../lib/rich-text-options.js';
+import { default as areaWidgetFullConfig } from '../../lib/area.js';
 
 export default {
   extend: '@apostrophecms/piece-type',
@@ -82,6 +83,7 @@ export default {
             slug: 1,
             type: 1,
             _url: 1,
+            productType: 1,
             thirstiePLID: 1
           }
         }
@@ -118,6 +120,12 @@ export default {
       totalTime: {
         type: 'string',
         label: 'Total Time'
+      },
+      extraContent: {
+        type: 'area',
+        options: {
+          widgets: areaWidgetFullConfig
+        }
       }
     },
     group: {
@@ -132,6 +140,10 @@ export default {
       about: {
         label: 'About',
         fields: [ 'difficulty', 'totalTime', 'author' ]
+      },
+      additionalContent: {
+        label: 'Additional',
+        fields: [ 'extraContent' ]
       }
     }
   }

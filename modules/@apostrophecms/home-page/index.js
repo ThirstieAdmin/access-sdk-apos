@@ -1,4 +1,4 @@
-import { default as richTextOptions } from '../../../lib/rich-text-options.js';
+import { default as areaWidgetFullConfig } from '../../../lib/area.js';
 
 export default {
   options: {
@@ -9,15 +9,7 @@ export default {
       main: {
         type: 'area',
         options: {
-          widgets: {
-            '@apostrophecms/rich-text': richTextOptions,
-            '@apostrophecms/html': {},
-            '@apostrophecms/image': {},
-            '@apostrophecms/video': {},
-            'thirstie-disclaimer': {},
-            'product-grid': {},
-            'recipe-grid': {}
-          }
+          widgets: areaWidgetFullConfig
         }
       }
     },

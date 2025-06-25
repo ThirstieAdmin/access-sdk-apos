@@ -1,0 +1,63 @@
+{% fragment recipeCard(recipe) %}
+
+{% set attachment = apos.image.first(recipe.primaryImage or {}) %}
+{% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+{% set altText = attachment.title %}
+
+<section class="flex flex-row md:flex-col items-start md:items-center justify-center">
+  <div class="th-recipe-left">
+    <figure class="mx-auto">
+      <img
+        class="th-recipe__primary_img"
+        src="{{ imageUrl }}" 
+        alt="{{altText}}"
+      />
+    </figure>
+  </div>
+  <div class="th-recipe-right mx-4">
+    <h2>{{ recipe.title }}</h2>
+    <div class="flex flex-col">
+      <h4 class="my-2">Ingredients</h4>
+      <ul class="my-2">
+        {% for row in recipe._productlines %}
+          <li><p>{{ row._fields.quantity }} <a href="{{ row._url }}" class="no-underline font-bold link-no-decoration">{{ row.title }}</a></p></li>
+        {% endfor %}
+        {% for row in recipe.ingredients %}
+          <li><p>{{ row.quantity }} {{ row.ingredient }}</p></li>
+        {% endfor %}
+      </ul>
+      <h4 class="my-2">Directions</h4>
+      <ul class="my-2">
+        {% for row in recipe.directions %}
+          {% set stepContent = row.step.items[0].content %}
+          <li>{{ stepContent | safe }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="flex flex-col items-center justify-center m-0 p-0">
+  {% if recipe._productlines | length %}
+  <div class="flex flex-col">
+    <h4>Featured products</h4>
+    <swiper-container
+      class="th-recipe-swiper__container"
+      space-between="10"
+      navigation="true"
+      pagination="false"
+      loop="false"
+      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+    >
+    {% for productLine in recipe._productlines %}
+      <swiper-slide style="width:auto">
+        <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" no-image show-link no-collection></th-product-add-to-cart>
+      </swiper-slide>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="mx-auto my-4">
+    {% area recipe, 'extraContent' %}
+  </div>
+</section>
+{% endfragment %}
