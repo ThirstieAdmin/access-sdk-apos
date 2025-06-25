@@ -34,6 +34,11 @@ th-icon {
 .block {
   display: block;
 }
+.link-no-decoration,
+.link-no-decoration:visited {
+  text-decoration-line: none;
+  color: inherit;
+}
 
 /* Position */
 .relative {
@@ -898,6 +903,13 @@ th-icon {
 }
 
 /* Background and Text Color Classes */
+.bg-inherit {
+  background-color: inherit;
+}
+.text-inherit {
+  color: inherit
+}
+
 .bg-white { background-color: var(--th-c-white); }
 .text-white { color: var(--th-c-white); }
 

@@ -70,7 +70,8 @@ export default {
       },
       primaryContrastingColor: {
         type: 'color',
-        label: 'Contrasting color for primary'
+        label: 'Contrasting color for primary',
+        help: 'Used for text on primaryColor background'
       },
       secondaryColor: {
         type: 'color',

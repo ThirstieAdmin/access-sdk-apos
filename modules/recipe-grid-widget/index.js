@@ -22,15 +22,17 @@ export default {
       },
       _recipes: {
         type: 'relationship',
-        label: 'Product Lines',
-        withType: 'product-line',
-        withRelationships: ['_images'],
+        label: 'Recipes',
+        withType: 'recipe',
+        withRelationships: ['_productlines'],
         builders: {
           project: {
             title: 1,
             slug: 1,
             _url: 1,
-            primaryImage: 1
+            primaryImage: 1,
+            directions: 1,
+            extraContent: 1
           }
         }
       }
