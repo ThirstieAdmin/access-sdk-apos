@@ -24,25 +24,29 @@
         space-between="10"
         navigation="true"
         pagination="true"
-        loop="true"
+        loop="false"
         style="--swiper-navigation-color: #0f0f0f; --swiper-pagination-color: #0f0f0f;--swiper-navigation-size: 28px;"
       >
         <swiper-slide>
-          <img
-          class="th-pdp-left__primary_img"
-          src="{{ imageUrl }}" 
-          alt="{{ altText }}"
-        /></swiper-slide>
+          <div class="th-pdp-img-container">
+            <img
+            src="{{ imageUrl }}" 
+            alt="{{ altText }}"
+            />
+          </div>
+        </swiper-slide>
         {% for productImage in data.piece._images %}
           {% set imgAttachment = apos.image.first(productImage or {}) %}
           {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
           {% set altImageAltText = imgAttachment.title or "product image" %}
           <swiper-slide>
-            <img
-            class="th-pdp-left__primary_img"
-            src="{{ altImageUrl }}" 
-            alt="{{altImageAltText}}"
-          /></swiper-slide>
+            <div class="th-pdp-img-container">
+              <img
+              class="th-pdp-left__primary_img"
+              src="{{ altImageUrl }}" 
+              alt="{{altImageAltText}}"
+            /></div>
+          </swiper-slide>
         {% endfor %}
       </swiper-container>
       {% if data.piece._images | length %}

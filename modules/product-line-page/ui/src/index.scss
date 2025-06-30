@@ -35,9 +35,17 @@
   margin: auto;
 }
 
-.th-pdp-left__primary_img {
+.th-pdp-img-container {
+  width: 400px;
+  height: 400px;
   margin: auto;
-  width:100%;
+  background-color: #FFF;
+}
+.th-pdp-img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  background-color: #FFF;
 }
 
 .th-pdp-left-content swiper-container {
@@ -45,7 +53,7 @@
 }
 .th-pdp-swiper__container {
   width:100%;
-  height:80%;
+  height:100%;
 }
 .th-pdp-thumbs {
   height: 20%;
@@ -94,6 +102,10 @@
 
   .th-pdp-right {
     width: 100vw;
+  }
+  .th-pdp-img-container {
+    width:100%;
+    height:100%;
   }
 }
 
