@@ -1,11 +1,13 @@
 import apostrophe from 'apostrophe';
 
 const BASE_URL = process.env.THBASEURL;
+const THAPPNAME = process.env.THAPPNAME;
 
 apostrophe({
   root: import.meta,
-  shortName: 'essential-app',
+  shortName: THAPPNAME,
   baseUrl: BASE_URL,
+  port: process.env.PORT || 3000,
   modules: {
     // Apostrophe module configuration
     // *******************************
