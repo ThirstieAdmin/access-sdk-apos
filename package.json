@@ -48,7 +48,7 @@
     "@apostrophecms/sitemap": "^1.1.0",
     "@apostrophecms/vite": "^1.0.0",
     "@thirstie/ecomm-vue": "^1.2.1",
-    "apostrophe": "^4.18.0",
+    "apostrophe": "^4.19.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block beforeMain %}
-  <div class="th-wrapper th-fouc-block">
+  <div class="th-wrapper">
     <main class="th-main">
     <th-checkout
       continue-button-label="Go on"
@@ -10,13 +10,13 @@
       opt-in-required
     >
         <div id="th-stripe-mount-point" slot="th-stripe-payment"></div>
-        <div slot="support-content" class="th-fouc-block"></div>
-        <div slot="additional-checkout-content" class="th-fouc-block">
+        <div slot="support-content"></div>
+        <div slot="additional-checkout-content">
           <div class="navbar-cta">
             <p>Custom checkout content goes here.</p>
           </div>
         </div>
-        <div slot="additional-confirmation-content" class="th-fouc-block">
+        <div slot="additional-confirmation-content">
           <div class="navbar-cta">
             <p>Thanks for shopping with us!</p>
           </div>
