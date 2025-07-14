@@ -97,7 +97,7 @@
 {% endblock %}
 
 {% block beforeMain %}
-<div class="th-wrapper th-fouc-block">
+<div class="th-wrapper">
   {% render headerFragment.heading() %}
   <div class="th-inner-wrapper">
     <th-availability-wrapper header-height="{{ headerHeight }}" buffer-height="-8" check-type="address">
@@ -119,7 +119,7 @@
   </div>
   {% render thirstieAdminFragment.floatingMenu() %}
 </div>{# Close .th-wrapper #}
-<th-agegate-modal type="yesno" class="th-fouc-block">
+<th-agegate-modal type="yesno">
 <h2 slot="header">Are you old enough to drink?</h2>
 <div slot="additional-msg">
   <div>For information about enjoying Alcohol RESPONSIBLY visit <a href="https://responsibility.org">responsibility.org</a> & <a href="https://responsibledrinking.org">responsibledrinking.org</a></div>
