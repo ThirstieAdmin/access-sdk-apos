@@ -13,7 +13,9 @@
     "serve": "NODE_ENV=production node app",
     "release": "npm install && npm run build && node app @apostrophecms/migration:migrate",
     "release:env": "dotenv -e .env -- npm run release", 
-    "serve:env": "dotenv -e .env -- npm run serve"
+    "serve:env": "dotenv -e .env -- npm run serve",
+    "release:www": "dotenv -e /var/www/.env.access -- npm run release",
+    "serve:www": "dotenv -e /var/www/.env.access -- npm run serve"
   },
   "nodemonConfig": {
     "delay": 1000,
