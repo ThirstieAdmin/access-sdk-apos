@@ -9,8 +9,10 @@
       --secondary-color: {{ data.global.secondaryColor or '#ffffff' }};
       --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000000' }};
       --banner-text-color: {{ data.global.siteBannerTextColor or '#FFF1CC' }};
-      --banner-background-color: {{ data.global.siteBannerBackgroundColor or '#BA8808' }};
+      --banner-background-color: {{ data.global.siteBannerBackgroundColor or '#ffffff' }};
       --header-offset: {{ headerOffset }};
+      --header-background-color: {{ data.global.headerBackgroundColor or data.global.primaryColor or '#000000' }};
+      --header-text-color: {{ data.global.headerTextColor or data.global.primaryContrastingColor or '#ffffff' }};
 
       /* Standard values */
       --th-c-white: #FFF;
