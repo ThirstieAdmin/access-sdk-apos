@@ -127,6 +127,16 @@ export default {
         if: {
           enableSiteBanner: true
         }
+      },
+      headerBackgroundColor: {
+        type: 'color',
+        label: 'Header Background Color',
+        help: 'Defaults to Brand Primary Color'
+      },
+      headerTextColor: {
+        type: 'color',
+        label: 'Header Text Color',
+        help: 'Defaults to Brand Primary Contrasting Color'
       }
     },
     group: {
@@ -144,7 +154,7 @@ export default {
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerNav' ]
+        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor' ]
       },
       footerContent: {
         label: 'Footer',
