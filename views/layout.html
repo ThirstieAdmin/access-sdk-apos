@@ -9,7 +9,7 @@
 {% set title = data.piece.title or data.page.title %}
 
 {% set enableBanner = data.global.enableSiteBanner %}
-{% set headerHeight = 112 if enableBanner else 64 %}
+{% set headerHeight = 112 if enableBanner else 50 %}
 {% if data.user %}
   {% set headerHeight = headerHeight + 112 %}
 {% endif %}
@@ -94,13 +94,18 @@
     line-height: 1.3;
   }
 </style>
+
+{% if data.global.customCode.items[0].type === "@apostrophecms/html" %}
+  {{ data.global.customCode.items[0].code | safe}}
+{% endif %}
+
 {% endblock %}
 
 {% block beforeMain %}
 <div class="th-wrapper">
   {% render headerFragment.heading() %}
   <div class="th-inner-wrapper">
-    <th-availability-wrapper header-height="{{ headerHeight }}" buffer-height="-8" check-type="address">
+    <th-availability-minify header-height="{{ headerHeight }}" initial-offset="0" background-color-min="{{ data.global.secondaryColor }}" text-color-min="{{ data.global.secondaryContrastingColor }}">
       <main class="th-main">
 {% endblock %}
 
@@ -115,7 +120,7 @@
 {% block afterMain %}
       {% render footerFragment.footer() %}
       </main>{# Close .th-main #}
-    </th-availability-wrapper>
+    </th-availability-minify>
   </div>
   {% render thirstieAdminFragment.floatingMenu() %}
 </div>{# Close .th-wrapper #}

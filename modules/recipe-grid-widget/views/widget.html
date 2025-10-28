@@ -4,6 +4,8 @@
   <h2>{{ data.widget.title }}</h2>
   <h3>{{ data.widget.subTitle }}</h3>
 </div>
+
+{% if data.widget.displayType === 'carousel' %}
 <swiper-container
   class="th-recipe-grid-swiper__container"
   space-between="10"
@@ -15,7 +17,21 @@
 >
 {% for recipe in data.widget._recipes %}
 <swiper-slide>
-  {% render recipeFragment.recipeCard(recipe) %}
+  {% render recipeFragment.recipeCardWide(recipe) %}
 </swiper-slide>
 {% endfor %}
 </swiper-container>
+
+{% endif %}
+
+{% if data.widget.displayType === 'grid' %}
+
+<div class="my-1 mx-auto px-4 w-full">
+  <div class="flex flex-row items-center justify-center w-full">
+  {% for recipe in data.widget._recipes %}
+    {% render recipeFragment.recipeCard(recipe) %}
+  {% endfor %}
+  </div>
+</div>
+
+{% endif %}
