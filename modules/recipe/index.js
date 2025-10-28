@@ -38,8 +38,7 @@ export default {
               label: 'Step',
               options: {
                 widgets: {
-                  '@apostrophecms/rich-text': richTextOptions,
-                  '@apostrophecms/html': {}
+                  '@apostrophecms/rich-text': richTextOptions
                 }
               }
             }
@@ -124,7 +123,9 @@ export default {
       extraContent: {
         type: 'area',
         options: {
-          widgets: areaWidgetFullConfig
+          widgets: {
+            '@apostrophecms/rich-text': richTextOptions
+          }
         }
       }
     },

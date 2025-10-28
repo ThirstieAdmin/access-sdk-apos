@@ -14,6 +14,17 @@ export default {
         type: 'string',
         label: 'Alt text for brand logo'
       },
+      customCode: {
+        type: 'area',
+        label: 'Custom code',
+        help: 'Placed in page head',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/html': {}
+          }
+        }
+      },
       supportEmail: {
         type: 'email',
         label: 'support@email.com'
@@ -142,7 +153,7 @@ export default {
     group: {
       brandContent: {
         label: 'Brand Content',
-        fields: [ 'brandLogo', 'brandLogoAltText', 'supportEmail' ]
+        fields: [ 'brandLogo', 'brandLogoAltText', 'supportEmail', 'customCode' ]
       },
       theme: {
         label: 'Theme',

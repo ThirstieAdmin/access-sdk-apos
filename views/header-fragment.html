@@ -28,7 +28,10 @@
 
     <div class="nav-el nav-profile">
       <div class="th-header-icons">
-        <th-cart-nav></th-cart-nav>
+        <th-cart-nav 
+          icon-color="{{ data.global.headerTextColor or data.global.primaryContrastingColor or '#ffffff' }}"
+          count-color="{{ data.global.headerBackgroundColor or data.global.primaryColor or '#000000' }}"
+        ></th-cart-nav>
       </div>
     </div>
   </nav>

@@ -13,6 +13,9 @@
       --header-offset: {{ headerOffset }};
       --header-background-color: {{ data.global.headerBackgroundColor or data.global.primaryColor or '#000000' }};
       --header-text-color: {{ data.global.headerTextColor or data.global.primaryContrastingColor or '#ffffff' }};
+      --header-icon: var(--header-text-color);
+      --th-c-header-icon-count: var(--header-background-color);
+      --th-zip-entry-bg: var(--primary-contrasting-color);
 
       /* Standard values */
       --th-c-white: #FFF;

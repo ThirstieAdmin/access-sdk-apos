@@ -20,6 +20,15 @@ export default {
         label: 'Subtitle',
         required: false
       },
+      displayType: {
+        type: 'select',
+        label: 'Choose how to display the recipe list',
+        def: 'grid',
+        choices: [
+          { label: 'carousel', value: 'carousel'},
+          { label: 'grid', value: 'grid' }
+        ]
+      },
       _recipes: {
         type: 'relationship',
         label: 'Recipes',
@@ -28,9 +37,11 @@ export default {
         builders: {
           project: {
             title: 1,
+            description: 1,
             slug: 1,
             _url: 1,
             primaryImage: 1,
+            ingredients: 1,
             directions: 1,
             extraContent: 1
           }

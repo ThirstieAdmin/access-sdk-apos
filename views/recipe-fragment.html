@@ -1,4 +1,50 @@
+
 {% fragment recipeCard(recipe) %}
+
+{% set attachment = apos.image.first(recipe.primaryImage or {}) %}
+{% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+{% set altText = attachment.title %}
+
+<section class="th-recipe-card flex flex-col items-start justify-center">
+  <div class="th-recipe-card-header">
+    <figure class="mx-auto">
+      <img
+        class="th-recipe__primary_img"
+        src="{{ imageUrl }}" 
+        alt="{{altText}}"
+      />
+    </figure>
+  </div>
+  <div class="th-recipe-card-details">
+    <h2>{{ recipe.title }}</h2>
+    <p>{{ recipe.description }}</p>
+    <div class="flex flex-col">
+      <h4 class="my-1">Ingredients</h4>
+      <ul class="my-1 list-noindent">
+        {% for row in recipe._productlines %}
+          <li class="list-style-none my-1">{{ row._fields.quantity }} <a href="{{ row._url }}" class="no-underline font-bold link-no-decoration">{{ row.title }}</a></li>
+        {% endfor %}
+        {% for row in recipe.ingredients %}
+          <li class="list-style-none my-1">{{ row.quantity }} {{ row.ingredient }}</li>
+        {% endfor %}
+      </ul>
+      <h4 class="my-2">Method</h4>
+      <ul class="th-recipe-card-directions my-1 list-noindent">
+        {% for row in recipe.directions %}
+          {% set stepContent = row.step.items[0].content %}
+          <li class="list-style-none">{{ stepContent | safe }}</li>
+        {% endfor %}
+      </ul>
+      <div class="mx-0 my-2">
+        {% area recipe, 'extraContent' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endfragment %}
+
+{% fragment recipeCardWide(recipe) %}
 
 {% set attachment = apos.image.first(recipe.primaryImage or {}) %}
 {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
@@ -33,6 +79,9 @@
           <li>{{ stepContent | safe }}</li>
         {% endfor %}
       </ul>
+      <div class="my-2">
+        {% area recipe, 'extraContent' %}
+      </div>
     </div>
   </div>
 </section>
@@ -56,8 +105,5 @@
     {% endfor %}
   </div>
   {% endif %}
-  <div class="mx-auto my-4">
-    {% area recipe, 'extraContent' %}
-  </div>
 </section>
 {% endfragment %}

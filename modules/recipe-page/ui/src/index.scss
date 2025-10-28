@@ -1,5 +1,7 @@
 .th-recipe-card {
     box-sizing: border-box;
+    max-width: 33.33%;
+    padding: 1rem;
 }
 
 .th-recipe-card__primary_img {
@@ -21,6 +23,11 @@
   font-weight: 600;
   padding: 0;
   color: var(--th-c-greysDarkGrey);
+}
+
+.th-recipe-card-directions li p {
+  margin: .25rem 0;
+  padding: 0;
 }
 
 .th-recipe-left {
