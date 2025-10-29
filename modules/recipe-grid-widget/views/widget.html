@@ -26,8 +26,8 @@
 
 {% if data.widget.displayType === 'grid' %}
 
-<div class="my-1 mx-auto px-4 w-full">
-  <div class="flex flex-row items-center justify-center w-full">
+<div class="my-1 mx-auto px-4">
+  <div class="grid grid-cols-3 md:grid-cols-1 gap-4 items-start justify-center">
   {% for recipe in data.widget._recipes %}
     {% render recipeFragment.recipeCard(recipe) %}
   {% endfor %}
