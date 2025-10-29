@@ -112,7 +112,7 @@ ul.nav-items {
   max-width: 15%;
 }
 .nav-menu-icon .nav-icon {
-  background-color: #333;
+  background-color: var(--header-text-color, #333);
   display: block;
   height: .125rem;
   position: relative;
@@ -122,7 +122,7 @@ ul.nav-items {
 .nav-menu-icon .nav-icon:before,
 .nav-menu-icon .nav-icon:after {
   display: block;
-  background: #333;
+  background: var(--header-text-color, #333);
   content: '';
   height: 100%;
   position: absolute;
