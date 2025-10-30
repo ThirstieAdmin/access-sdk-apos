@@ -1,8 +1,11 @@
 {# modules/product-line/views/show.html #}
 {% extends "layout.html" %}
-{% set item = data.piece %}
 
+{% import 'recipe-fragment.html' as recipeFragment %}
+
+{% set item = data.piece %}
 {% set altText = item.title %}
+
 {% if item.primaryImage.items | length %}
   {% set attachment = apos.image.first(item.primaryImage or {}) %}
   {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
@@ -35,7 +38,7 @@
             />
           </div>
         </swiper-slide>
-        {% for productImage in data.piece._images %}
+        {% for productImage in item._images %}
           {% set imgAttachment = apos.image.first(productImage or {}) %}
           {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
           {% set altImageAltText = imgAttachment.title or "product image" %}
@@ -49,7 +52,7 @@
           </swiper-slide>
         {% endfor %}
       </swiper-container>
-      {% if data.piece._images | length %}
+      {% if item._images | length %}
       <swiper-container
         id="th-pdp-thumbs"
         class="th-pdp-thumbs"
@@ -64,7 +67,7 @@
           src="{{ imageUrl }}" 
           alt="{{ altText }}"
         /></swiper-slide>
-        {% for productImage in data.piece._images %}
+        {% for productImage in item._images %}
           {% set imgAttachment = apos.image.first(productImage or {}) %}
           {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
           {% set altImageAltText = imgAttachment.title or "product image" %}
