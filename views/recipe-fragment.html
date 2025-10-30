@@ -21,11 +21,8 @@
     <div class="flex flex-col">
       <h4 class="my-1">Ingredients</h4>
       <ul class="my-1 list-noindent">
-        {% for row in recipe._productlines %}
-          <li class="list-style-none my-1">{{ row._fields.quantity }} <a href="{{ row._url }}" class="no-underline font-bold link-no-decoration">{{ row.title }}</a></li>
-        {% endfor %}
         {% for row in recipe.ingredients %}
-          <li class="list-style-none my-1">{{ row.quantity }} {{ row.ingredient }}</li>
+          <li class="list-style-none my-1">{{ row.quantity }} {% if row._productLine | length %}<a href="{{ row._productLine[0]._url }}" class="no-underline font-bold link-no-decoration">{{ row._productLine[0].title }}</a>{% else %}{{ row.ingredient }}{% endif %}</li>
         {% endfor %}
       </ul>
       <h4 class="my-2">Method</h4>
@@ -65,11 +62,8 @@
     <div class="flex flex-col">
       <h4 class="my-2">Ingredients</h4>
       <ul class="my-2">
-        {% for row in recipe._productlines %}
-          <li><p>{{ row._fields.quantity }} <a href="{{ row._url }}" class="no-underline font-bold link-no-decoration">{{ row.title }}</a></p></li>
-        {% endfor %}
         {% for row in recipe.ingredients %}
-          <li><p>{{ row.quantity }} {{ row.ingredient }}</p></li>
+          <li><p>{{ row.quantity }} {% if row._productLine | length %}<a href="{{ row._productLine[0]._url }}" class="no-underline font-bold link-no-decoration">{{ row._productLine[0].title }}</a>{% else %}{{ row.ingredient }}{% endif %}</p></li>
         {% endfor %}
       </ul>
       <h4 class="my-2">Directions</h4>
@@ -85,23 +79,29 @@
     </div>
   </div>
 </section>
+{% endfragment %}
 
-<section class="flex flex-col items-center justify-center m-0 p-0">
+
+{% fragment recipeProductSlider(recipe) %}
+<section class="flex flex-col items-start justify-center m-4 p-4">
   {% if recipe._productlines | length %}
   <div class="flex flex-col">
     <h4>Featured products</h4>
     <swiper-container
-      class="th-recipe-swiper__container"
+      class="th-swiper__container"
       space-between="10"
       navigation="true"
       pagination="false"
       loop="false"
       style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
     >
-    {% for productLine in recipe._productlines %}
-      <swiper-slide style="width:auto">
-        <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" no-image show-link no-collection></th-product-add-to-cart>
-      </swiper-slide>
+    {% for ingredient in recipe.ingredients %}
+      {% if ingredient._productLine | length %}
+      {% set productLine = ingredient._productLine[0] %}
+        <swiper-slide style="width:auto">
+          <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" no-image show-link no-collection></th-product-add-to-cart>
+        </swiper-slide>
+      {% endif %}
     {% endfor %}
   </div>
   {% endif %}

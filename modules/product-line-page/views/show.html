@@ -92,4 +92,46 @@
     <th-pdp-commerce product-line-id="{{ item.thirstiePLID }}"></th-pdp-commerce>
   </div>
 </section>
+
+<section class="flex flex-col items-center justify-center m-0 p-0">
+  {% if item._productlines | length %}
+  <div class="flex flex-col items-center justify-center">
+    <h4>Related products</h4>
+    <swiper-container
+      class="th-swiper__container"
+      space-between="10"
+      navigation="true"
+      pagination="false"
+      loop="false"
+      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+    >
+    {% for productLine in item._productlines %}
+      <swiper-slide style="width:auto">
+        <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" show-link no-collection></th-product-add-to-cart>
+      </swiper-slide>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<section class="flex flex-col items-center justify-center m-0 p-0">
+  {% if item._recipes | length %}
+  <div class="flex flex-col items-center justify-center">
+    <h4>Featured Cocktails</h4>
+    <swiper-container
+      class="th-swiper__container"
+      space-between="10"
+      navigation="true"
+      pagination="false"
+      loop="false"
+      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+    >
+    {% for recipe in item._recipes %}
+      <swiper-slide style="width:auto">
+        {% render recipeFragment.recipeCardWide(recipe) %}
+      </swiper-slide>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
 {% endblock %}

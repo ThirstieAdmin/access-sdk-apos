@@ -95,3 +95,15 @@ main {
 body[data-breakpoint-preview-mode] .hide-in-preview {
   display: none;
 }
+
+.th-swiper__container {
+  background-color: #FFF;
+}
+.th-swiper__container swiper-slide {
+  padding: 0 1.875rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items:baseline;
+  color: inherit;
+  width: auto !important;
+}

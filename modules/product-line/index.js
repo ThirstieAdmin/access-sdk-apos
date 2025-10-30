@@ -266,8 +266,67 @@ export default {
             advisoryLock: 0
           }
         }
+      },
+      _productlines: {
+        type: 'relationship',
+        label: 'Related Products',
+        help: 'Product lines to show in related products section',
+        withType: 'product-line',
+        ifOnlyOne: true,
+        builders: {
+          project: {
+            title: 1,
+            slug: 1,
+            type: 1,
+            _url: 1,
+            productType: 1,
+            thirstiePLID: 1
+          }
+        }
+      },
+      _recipes: {
+        type: 'relationship',
+        label: 'Related Recipes',
+        help: 'Product lines to show in related recipes section',
+        withType: 'recipe',
+        ifOnlyOne: true,
+        builders: {
+          project: {
+            _id: 1,
+            title: 1,
+            description: 1,
+            ingredients: 1,
+            directions: 1,
+            primaryImage: 1,
+            _images: 1,
+            extraContent: 1,
+            slug: 1,
+            type: 1,
+            _url: 1
+          }
+        }
       }
     },
+    /*
+        group: {
+      basics: {
+        label: 'Basics',
+        fields: [ 'title', 'description', '_productlines', 'ingredients', 'directions' ]
+      },
+      images: {
+        label: 'Images',
+        fields: [ 'primaryImage', '_images' ]
+      },
+      about: {
+        label: 'About',
+        fields: [ 'difficulty', 'totalTime', 'author' ]
+      },
+      additionalContent: {
+        label: 'Additional',
+        fields: [ 'extraContent' ]
+      }
+    }
+    */
     group: {
       basics: {
         label: 'Basics',
@@ -276,6 +335,10 @@ export default {
       images: {
         label: 'Images',
         fields: ['primaryImage', '_images']
+      },
+      relationships: {
+        label: "Related Items",
+        fields: ['_productlines', '_recipes']
       }
     }
   },
