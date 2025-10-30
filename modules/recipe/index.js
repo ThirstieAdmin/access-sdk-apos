@@ -23,7 +23,23 @@ export default {
         fields: {
           add: {
             ingredient: { type: 'string', label: 'Ingredient', required: true },
-            quantity: { type: 'string', label: 'quantity'}
+            quantity: { type: 'string', label: 'quantity'},
+            _productLine: {
+              type: 'relationship',
+              label: 'product',
+              withType: 'product-line',
+              max: 1,
+              builders: {
+                project: {
+                  title: 1,
+                  slug: 1,
+                  type: 1,
+                  _url: 1,
+                  productType: 1,
+                  thirstiePLID: 1
+                }
+              }
+            }
           }
         }
       },
@@ -55,7 +71,6 @@ export default {
           }
         }
       },
-      // TODO: use relationshipReverse to expose on products: https://docs.apostrophecms.org/reference/field-types/relationship-reverse.html#relationshipreverse
       _productlines: {
         type: 'relationship',
         label: 'Product Ingredients',
