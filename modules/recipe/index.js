@@ -1,5 +1,4 @@
 import { default as richTextOptions } from '../../lib/rich-text-options.js';
-import { default as areaWidgetFullConfig } from '../../lib/area.js';
 
 export default {
   extend: '@apostrophecms/piece-type',

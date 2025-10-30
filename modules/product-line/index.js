@@ -271,11 +271,11 @@ export default {
     group: {
       basics: {
         label: 'Basics',
-        fields: ['thirstiePLID', 'title', 'description', 'productType', 'proof', 'abvPercent', 'imageSpec', 'id']
+        fields: ['thirstiePLID', 'title', 'description', 'productType', 'proof', 'abvPercent', 'imageSpec']
       },
       images: {
         label: 'Images',
-        fields: ['primaryImage', '_images' ]
+        fields: ['primaryImage', '_images']
       }
     }
   },
