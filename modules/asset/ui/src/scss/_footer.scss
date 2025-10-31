@@ -1,9 +1,11 @@
 .th-footer {
   background-color: var(--primary-color);
   color: var(--primary-contrasting-color);
+  background-size: cover;
   margin: 2rem 0 0;
+  height: var(--footer-height, auto);
   width: 100%;
-  grid-template-rows: 3rem minmax(0, 1fr) minmax(0, 1fr); 
+  grid-template-rows: 3rem minmax(0, 1fr) minmax(0, 1fr);
 }
 .th-footer-nav {
   grid-column: 1 / 3;
