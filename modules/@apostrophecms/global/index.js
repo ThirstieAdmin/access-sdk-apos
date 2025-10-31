@@ -39,6 +39,7 @@ export default {
           }
         }
       },
+      /* Footer settings */
       footerLogo: {
         type: 'area',
         label: 'Footer Logo',
@@ -75,6 +76,29 @@ export default {
         label: 'Trademark Text',
         def: 'All rights reserved'
       },
+      footerBackgroundImage: {
+        type: 'area',
+        label: 'Footer Background Image',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/image': {}
+          }
+        }
+      },
+      footerHeight: {
+        type: 'string',
+        label: 'Footer height',
+        def: '40vh'
+      },
+      /* Theme settings */
+      primaryFontFamily: {
+        type: 'string',
+        label: 'Primary font family',
+        def: 'Inter, system-ui, Helvetica Neue, Helvetica, Arial, sans-serif'
+        //  Inter, system-ui, Avenir, Helvetica, Arial, sans-serif
+        //  Nice system fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+      },
       primaryColor: {
         type: 'color',
         label: 'Primary brand color'
@@ -92,6 +116,7 @@ export default {
         type: 'color',
         label: 'Contrasting color for secondary'
       },
+      /* Banner settings */
       enableSiteBanner: {
         type: 'boolean',
         label: 'Enable Site Banner',
@@ -128,6 +153,7 @@ export default {
       siteBannerTextColor: {
         type: 'color',
         label: 'Banner Text Color',
+        help: 'Defaults to Brand Primary Color',
         if: {
           enableSiteBanner: true
         }
@@ -135,10 +161,21 @@ export default {
       siteBannerBackgroundColor: {
         type: 'color',
         label: 'Banner Background Color',
+        help: 'Defaults to Brand Primary Contrasting Color',
         if: {
           enableSiteBanner: true
         }
       },
+      siteBannerFontFamily: {
+        type: 'string',
+        label: 'Font family for site banners',
+        help: 'Default: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+        def: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+        if: {
+          enableSiteBanner: true
+        }
+      },
+      /* Header settings */
       headerBackgroundColor: {
         type: 'color',
         label: 'Header Background Color',
@@ -157,11 +194,11 @@ export default {
       },
       theme: {
         label: 'Theme',
-        fields: [ 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor' ]
+        fields: [ 'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor' ]
       },
       bannerContent: {
         label: 'Banners',
-        fields: [ 'enableSiteBanner', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor' ]
+        fields: [ 'enableSiteBanner', 'siteBannerFontFamily', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor' ]
       },
       headerContent: {
         label: 'Header',
@@ -169,7 +206,7 @@ export default {
       },
       footerContent: {
         label: 'Footer',
-        fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText' ]
+        fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText', 'footerBackgroundImage', 'footerHeight' ]
       }
     }
   }
