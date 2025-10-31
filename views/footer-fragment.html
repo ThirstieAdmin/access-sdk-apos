@@ -1,5 +1,12 @@
 {% fragment footer() %}
-<footer class="th-footer grid grid-cols-2">
+
+{% if data.global.footerBackgroundImage.items | length %}
+  {% set backgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
+  {% set backgroundImgUrl = apos.attachment.url(backgroundImg, { size: 'full' }) %}
+  <footer class="th-footer grid grid-cols-2" style="background-image: url({{ backgroundImgUrl }});">
+{% else %}
+  <footer class="th-footer grid grid-cols-2">
+{% endif %}
   <nav class="th-footer-nav my-0 py-0">
     <ul class="th-footer-nav__links flex flex-row justify-around">
       <li><a href="/" target="_blank">Terms & Conditions</a></li>

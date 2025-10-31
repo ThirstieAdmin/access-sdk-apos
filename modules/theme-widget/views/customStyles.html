@@ -1,6 +1,14 @@
 {# modules/theme/views/customStyles.html #}
 {% set headerOffset = "7rem" if data.global.enableSiteBanner else "4rem" %}
 {% if data.global %}
+
+{% if data.global.footerBackgroundImage.items | length %}
+  {% set backgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
+  {% set backgroundImgUrl = apos.attachment.url(backgroundImg, { size: 'full' }) %}
+{% else %}
+  {% set backgroundImgUrl = "" %}
+{% endif %}
+
   <style>
     :root {
       /* global settings */
@@ -8,12 +16,15 @@
       --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#ffffff' }};
       --secondary-color: {{ data.global.secondaryColor or '#ffffff' }};
       --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000000' }};
-      --banner-text-color: {{ data.global.siteBannerTextColor or '#FFF1CC' }};
-      --banner-background-color: {{ data.global.siteBannerBackgroundColor or '#ffffff' }};
+      --banner-text-color: {{ data.global.siteBannerTextColor or data.global.primaryColor or '#000000' }};
+      --banner-background-color: {{ data.global.siteBannerBackgroundColor or data.global.primaryContrastingColor or '#ffffff' }};
+      --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
       --header-offset: {{ headerOffset }};
       --header-background-color: {{ data.global.headerBackgroundColor or data.global.primaryColor or '#000000' }};
       --header-text-color: {{ data.global.headerTextColor or data.global.primaryContrastingColor or '#ffffff' }};
       --header-icon: var(--header-text-color);
+      --footer-height: {{ data.global.footerHeight or '40vh' }};
+      --footer-bg-img: {{ backgroundImgUrl}};
       --th-c-header-icon-count: var(--header-background-color);
       --th-zip-entry-bg: var(--primary-contrasting-color);
 
@@ -48,7 +59,7 @@
 
       /* Style design tokens */
       --th-color-scheme: light dark;
-      --th-font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      --th-font-family: {{ data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }};
       --th-font-weight: 400;
       --th-line-height: 1.5;
       --th-border-color: var(--th-c-greysMediumLightGrey);

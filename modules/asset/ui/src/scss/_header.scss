@@ -21,12 +21,13 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
 
 .th-header__banner {
   box-sizing:border-box;
-  background-color: var(--banner-background-color, #BA8808);
+  background-color: var(--banner-background-color, var(--th-primary-contrasting-color, #BA8808));
+  font-family: var(--banner-font-family, var(--th-font-family));
   height: 3rem;
   padding: 1rem 0;
 }
 .th-header__banner * {
-  color: var(--banner-text-color, #FFF1CC);
+  color: var(--banner-text-color, var(--th-primary-color, #FFF1CC));
   text-decoration: none;
 }
 .th-header-icons {
@@ -59,7 +60,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   line-height: 4rem;
 }
 .th-navbar a {
-  color: #000;
+  color: var(--header-text-color, #000);
   text-decoration: none;
 }
 .nav-el {
@@ -171,7 +172,7 @@ ul.nav-items {
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
   .nav-logo {
     display: flex;
