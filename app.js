@@ -24,13 +24,24 @@ apostrophe({
       options: {
         /*
         TODO: should also park:
-          - product listing: /products
           - faq
           - privacy / terms
           - /user
           - /order-status-update 
         */
         park: [
+          {
+            title: 'Our Products',
+            type: 'product-line-page',
+            slug: '/products',
+            parkedId: 'productListingPage'
+          },
+          {
+            title: 'Cocktails',
+            type: 'recipe-page',
+            slug: '/cocktails',
+            parkedId: 'cocktailRecipes'
+          },
           {
             title: 'Checkout',
             type: 'thirstie-checkout',
