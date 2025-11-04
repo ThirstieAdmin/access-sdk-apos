@@ -59,6 +59,16 @@ export default {
           {label: 'primary image only', value: 'primary-image'},
           {label: 'carousel', value: 'carousel'},
         ]
+      },
+      showRelatedProductsPDP: {
+        type: 'boolean',
+        label: 'Show related products on PDP',
+        def: true
+      },
+      showRecipesPDP: {
+        type: 'boolean',
+        label: 'Show related recipes on PDP',
+        def: true
       }
     },
     group: {
