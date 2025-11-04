@@ -33,7 +33,6 @@ export default {
         type: 'relationship',
         label: 'Recipes',
         withType: 'recipe',
-        withRelationships: ['_productlines'],
         builders: {
           project: {
             title: 1,

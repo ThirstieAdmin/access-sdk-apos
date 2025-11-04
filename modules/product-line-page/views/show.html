@@ -11,16 +11,15 @@
   {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
   {% set altText = attachment.title %}
 {% else %}
-  {% set imageUrl = item.imageSpec | replace("{dims}.", ".") %}
+  {% set imageUrl = item.imageSpec | replace("{dims}.", ",x600f.") %}
 {% endif %}
 
 
 {% block main %}
 <section class="th-pdp-content flex flex-row md:flex-col items-start md:items-center justify-center">
   <div class="th-pdp-left">
-    <div class="th-pdp-left-content">
+    <div class="th-pdp-left-content flex items-center">
       {% if data.page.showPDPImageAs == 'carousel' %}
-      {# TODO: see [customization options](https://swiperjs.com/swiper-api#navigation) #}
       <swiper-container
         class="th-pdp-swiper__container"
         thumbs-swiper="#th-pdp-thumbs"
@@ -81,7 +80,7 @@
       {% endif %}
       {% else %}
       <img
-        class="th-pdp-left__primary_img"
+        class="th-pdp-left__primary_img my-4 mx-auto"
         src="{{ imageUrl }}" 
         alt="{{ altText }}"
       />
@@ -93,45 +92,32 @@
   </div>
 </section>
 
-<section class="flex flex-col items-center justify-center m-0 p-0">
-  {% if item._productlines | length %}
-  <div class="flex flex-col items-center justify-center">
-    <h4>Related products</h4>
-    <swiper-container
-      class="th-swiper__container"
-      space-between="10"
-      navigation="true"
-      pagination="false"
-      loop="false"
-      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
-    >
-    {% for productLine in item._productlines %}
-      <swiper-slide style="width:auto">
-        <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" show-link no-collection></th-product-add-to-cart>
-      </swiper-slide>
-    {% endfor %}
-  </div>
-  {% endif %}
-</section>
+{% if data.page.showRelatedProductsPDP and item._productlines | length %}
+<h3>Related products</h3>
+<div class="flex flex-row md:flex-col items-center justify-center gap-4 m-0 p-8">
+  {% for productLine in item._productlines %}
+    <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" show-link no-collection></th-product-add-to-cart>
+  {% endfor %}
+</div>
+{% endif %}
 
-<section class="flex flex-col items-center justify-center m-0 p-0">
-  {% if item._recipes | length %}
-  <div class="flex flex-col items-center justify-center">
-    <h4>Featured Cocktails</h4>
-    <swiper-container
-      class="th-swiper__container"
-      space-between="10"
-      navigation="true"
-      pagination="false"
-      loop="false"
-      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
-    >
-    {% for recipe in item._recipes %}
-      <swiper-slide style="width:auto">
+{% if data.page.showRecipesPDP and item._recipes | length %}
+<div class="relative">
+  <h3>Featured Cocktails</h3>
+  <swiper-container
+    class="th-pdp-recipe-swiper"
+    navigation="true"
+    pagination="false"
+    loop="true"
+    style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+  >
+  {% for recipe in item._recipes %}
+    <swiper-slide>
+      <div class="th-pdp-recipe-card">
         {% render recipeFragment.recipeCardWide(recipe) %}
-      </swiper-slide>
-    {% endfor %}
-  </div>
-  {% endif %}
-</section>
+      </div>
+    </swiper-slide>
+  {% endfor %}
+</div>
+{% endif %}
 {% endblock %}
