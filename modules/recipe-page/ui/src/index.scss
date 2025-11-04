@@ -1,13 +1,15 @@
+/* simple recipe card styles */
 .th-recipe-card {
     box-sizing: border-box;
     padding: 1rem;
+    width: 300px;
 }
 
 .th-recipe-card__primary_img {
   margin:0;
   padding: 0;
-  width: calc(300px - 3.75rem);
-  height: calc(300px - 3.75rem);
+  width: 300px;
+  height: 300px;
   object-fit: cover;
 }
 
@@ -29,36 +31,61 @@
   padding: 0;
 }
 
-.th-recipe-left {
-  width: 40%;
+/* responsive card styles */
+.th-recipe-res-card {
+  --card-width: 760px;
+  --card-height: 475px;
+  --card-width-banner: 45%;
+  --card-width-detail: calc(100% - var(--card-width-banner));
+  background-color: var(--th-recipe-bg, var(--secondary-color));
+  width: var(--card-width);
   height: auto;
-  padding: 2rem 0;
-  margin: 0 1rem;
+  min-height: var(--card-height);
+  margin: 1rem;
 }
-.th-recipe-right {
-  width: 60%;
-  height: auto;
-  padding: 2rem 0;
-  margin: 0 auto;
+.th-recipe-res-card-banner {
+  background-color: var(--secondary-color);
+  width: var(--card-width-banner);
 }
-.th-recipe-right li p {
-  margin: .5rem 0;
-  padding: 0;
+.th-recipe-res-card-banner__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
-.th-recipe__primary_img {
-  margin:0;
-  padding:0;
-  width:100%;
-  height:auto;
+.th-recipe-res-card-content {
+  background-color: var(--th-recipe-bg, var(--secondary-color));
+  padding: 0.5rem 1rem;
+  width: var(--card-width-detail);
+}
+.th-recipe-res-card-content h2 {
+  text-align: left;
 }
 
 @media screen and (max-width: 768px) {
-  .th-recipe-left,
-  .th-recipe-right {
-    width: 100%;
-    display: block;
+  .th-recipe-res-card {
+    --card-width: calc(100vw - 6rem);
+    --card-height: auto;
+    width: var(--card-width);
     height: auto;
-    padding: 2rem 0;
-    margin: 0 auto;
+    margin: 1rem auto;
+  }
+  .th-recipe-res-card-banner {
+    width: 100%;
+    height: var(--card-width);
+    margin: 0;
+    padding: 0;
+    order: 3;
+  }
+  .th-recipe-res-card-banner__img {
+    width: 100%;
+    height: var(--card-width);
+    object-fit: cover;
+    object-position: center center;
+    overflow: hidden;
+  }
+  .th-recipe-res-card-content {
+    width: 100%;
+    padding: 0.5rem;
   }
 }
