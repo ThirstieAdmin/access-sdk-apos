@@ -50,7 +50,7 @@
     "@apostrophecms/sitemap": "^1.1.0",
     "@apostrophecms/vite": "^1.0.0",
     "@thirstie/ecomm-vue": "^1.4.3",
-    "apostrophe": "^4.22.0",
+    "apostrophe": "^4.23.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
