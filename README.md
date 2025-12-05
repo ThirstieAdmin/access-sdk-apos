@@ -73,7 +73,7 @@ TTD:
         - https://docs.apostrophecms.org/guide/custom-ui.html#adding-custom-modal-controls
 
 - [x] fix preview views
-- [ ] custom css, import from @thirstie/ecomm-vue
+- [x] custom css, import from @thirstie/ecomm-vue
 - [ ] handle FUOC (e.g. footer logo)
 - [ ] global settings
   - [x] favicon
