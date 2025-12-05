@@ -177,13 +177,13 @@ ul.nav-items {
   .nav-logo {
     display: flex;
     float: none;
-    text-align: center;
-    width: 10%;
-    order:1;
+    justify-content: flex-start;
+    width: 25%;
+    order: 1;
   }
   .nav-menu {
     width: 50%;
-    order:2;
+    order: 2;
   }
   .nav-items {
     clear: none;
@@ -193,14 +193,15 @@ ul.nav-items {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: transparent;
   }
   .nav-profile {
     position:relative;
     display: flex;
     float: none;
-    width: auto;
+    justify-content: flex-end;
+    width: 25%;
     order:3;
   }
   .nav-el {
