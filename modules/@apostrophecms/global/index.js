@@ -39,6 +39,15 @@ export default {
           }
         }
       },
+      navFormat:{
+        type: 'select',
+        label: 'Navigation Format',
+        def: 'left',
+        choices: [
+          { label: 'Left align logo and navigation', value: 'left' },
+          { label: 'Center align logo, left align navigation', value: 'center' }
+        ]
+      },
       /* Footer settings */
       footerLogo: {
         type: 'area',
@@ -202,7 +211,7 @@ export default {
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor' ]
+        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'navFormat' ]
       },
       footerContent: {
         label: 'Footer',

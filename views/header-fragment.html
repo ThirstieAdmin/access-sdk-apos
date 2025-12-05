@@ -1,5 +1,6 @@
 {% fragment heading() %}
 {% set enableBanner = data.global.enableSiteBanner %}
+{% set navFormat = data.global.navFormat or 'left' %}
 <header class="th-header m-0 p-0">
   {% if enableBanner %}
     <div class="th-header__banner w-full py-2 px-0 m-0 flex flex-row items-center justify-center">
@@ -8,7 +9,7 @@
       {% endif %}
     </div>
   {% endif %}
-  <nav class="th-navbar">
+  <nav class="th-navbar nav--format-{{ navFormat }}">
     <div class="nav-el nav-logo"><a href="/"><img class="th-header__logo" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}"></a></div>
 
     <div class="nav-el nav-menu">

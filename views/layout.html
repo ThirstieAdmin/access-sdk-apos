@@ -84,7 +84,10 @@
   </div>
   {% render thirstieAdminFragment.floatingMenu() %}
 </div>{# Close .th-wrapper #}
-<th-agegate-modal type="yesno">
+<th-agegate-modal
+  type="yesno"
+  style="--th-modal-width:100vw;--th-ag-modal-width: 100vw;--th-ag-modal-height:100vh;--th-ag-textcolor:{{ data.global.primaryContrastingColor }};--th-ag-background: {{ data.global.primaryColor }}"
+>
 <h2 slot="header">Are you old enough to drink?</h2>
 <div slot="additional-msg">
   <div>For information about enjoying Alcohol RESPONSIBLY visit <a href="https://responsibility.org">responsibility.org</a> & <a href="https://responsibledrinking.org">responsibledrinking.org</a></div>
