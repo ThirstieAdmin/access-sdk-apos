@@ -95,6 +95,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   max-height: 0;
   transition: max-height .2s ease-out;
   background-color: #fff;
+  line-height: 1.25rem;
 }
 ul.nav-items {
   overflow: hidden;
@@ -172,7 +173,13 @@ ul.nav-items {
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    padding: 0 2rem;
+    padding: 0 1rem;
+  }
+  .nav-el {
+    margin: 0;
+    padding: 0 .5rem;
+    height: auto;
+    text-align: center;
   }
   .nav-logo {
     display: flex;
@@ -204,12 +211,33 @@ ul.nav-items {
     width: 25%;
     order:3;
   }
-  .nav-el {
-    margin: 0;
-    padding: 0 .5rem;
-    height: auto;
-    text-align: center;
+  
+  .nav--format-center {
+    position: relative;
+    .nav-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      order: 2;
+      justify-content: center;
+    }
+    .nav-menu {
+      width: auto;
+      order: 1;
+      flex: 1;
+      justify-content: flex-start;
+      line-height: 1;
+    }
+    .nav-items {
+      width: 46.875%;
+    }
+    .nav-profile {
+      width: auto;
+      flex: 0 1 auto;
+    }
   }
+
   .nav-menu-icon {
     display:none;
   }
