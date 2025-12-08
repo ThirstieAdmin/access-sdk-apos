@@ -39,7 +39,7 @@ export default {
           }
         }
       },
-      navFormat:{
+      navFormat: {
         type: 'select',
         label: 'Navigation Format',
         def: 'left',
@@ -194,6 +194,85 @@ export default {
         type: 'color',
         label: 'Header Text Color',
         help: 'Defaults to Brand Primary Contrasting Color'
+      },
+      /* Age Gate Settings */
+      ageGateType: {
+        type: 'select',
+        label: 'Age Gate Type',
+        def: 'dob',
+        help: 'Defaults to date of birth. If set to disabled, users will be asked to enter date of birth at checkout.',
+        choices: [
+          { label: 'Date of Birth', value: 'dob' },
+          { label: 'Yes/No', value: 'yesno' },
+          { label: 'Confirm', value: 'confirm' },
+          { label: 'Disabled', value: 'disabled' }
+        ]
+      },
+      ageGateHidLogo: {
+        type: 'boolean',
+        label: 'Hide brand logo on age gate',
+        help: 'Logo is set in brand content',
+        def: false
+      },
+      ageGateHeaderText: {
+        type: 'string',
+        label: 'Age Gate header message'
+      },
+      ageGateSubHeaderContent: {
+        type: 'area',
+        label: 'Age Gate extra content',
+        help: 'Optional. Will be left blank if no content is provided',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/rich-text': richTextOptions,
+            '@apostrophecms/html': {}
+          }
+        }
+      },
+      ageGateFailContent: {
+        type: 'area',
+        label: 'Age Gate failed content',
+        help: 'Defaults to link to responsibility.org',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/rich-text': richTextOptions,
+            '@apostrophecms/html': {}
+          }
+        }
+      },
+      ageGateBackgroundImage: {
+        type: 'area',
+        label: 'Age Gate Background Image',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/image': {}
+          }
+        }
+      },
+      ageGateBackgroundColor: {
+        type: 'color',
+        label: 'Background Color'
+      },
+      ageGateTextColor: {
+        type: 'color',
+        label: 'Text Color'
+      },
+      ageGateFormInputBG: {
+        type: 'color',
+        label: 'Input Background Color'
+      },
+      ageGateFormInputTextColor: {
+        type: 'color',
+        label: 'Input Text Color'
+      },
+      ageGateFormBG: {
+        type: 'color',
+        def: 'transparent',
+        label: 'Background for form elements',
+        help: 'Use to ensure form is visible against background image'
       }
     },
     group: {
@@ -216,6 +295,14 @@ export default {
       footerContent: {
         label: 'Footer',
         fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText', 'footerBackgroundImage', 'footerHeight' ]
+      },
+      ageGate: {
+        label: 'Age Gate',
+        fields: [
+          'ageGateType', 'ageGateHidLogo', 'ageGateHeaderText', 'ageGateSubHeaderContent', 'ageGateFailContent',
+          'ageGateBackgroundColor', 'ageGateTextColor', 'ageGateFormInputBG', 'ageGateFormInputTextColor',
+          'ageGateBackgroundImage', 'ageGateFormBG'
+        ]
       }
     }
   }

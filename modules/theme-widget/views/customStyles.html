@@ -3,93 +3,100 @@
 {% if data.global %}
 
 {% if data.global.footerBackgroundImage.items | length %}
-  {% set backgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
-  {% set backgroundImgUrl = apos.attachment.url(backgroundImg, { size: 'full' }) %}
+  {% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
+  {% set footerBackgroundImgUrl = apos.attachment.url(footerBackgroundImg, { size: 'full' }) %}
 {% else %}
-  {% set backgroundImgUrl = "" %}
+  {% set footerBackgroundImgUrl = "" %}
 {% endif %}
 
-  <style>
-    :root {
-      /* global settings */
-      --primary-color: {{ data.global.primaryColor or '#000000' }};
-      --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#ffffff' }};
-      --secondary-color: {{ data.global.secondaryColor or '#ffffff' }};
-      --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000000' }};
-      --banner-text-color: {{ data.global.siteBannerTextColor or data.global.primaryColor or '#000000' }};
-      --banner-background-color: {{ data.global.siteBannerBackgroundColor or data.global.primaryContrastingColor or '#ffffff' }};
-      --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
-      --header-offset: {{ headerOffset }};
-      --header-background-color: {{ data.global.headerBackgroundColor or data.global.primaryColor or '#000000' }};
-      --header-text-color: {{ data.global.headerTextColor or data.global.primaryContrastingColor or '#ffffff' }};
-      --header-icon: var(--header-text-color);
-      --footer-height: {{ data.global.footerHeight or '40vh' }};
-      --footer-bg-img: {{ backgroundImgUrl}};
-      --th-c-header-icon-count: var(--header-background-color);
-      --th-zip-entry-bg: var(--primary-contrasting-color);
+<style>
+  :root {
+    /* global settings */
+    --primary-color: {{ data.global.primaryColor or '#000' }};
+    --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
+    --secondary-color: {{ data.global.secondaryColor or '#fff' }};
+    --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000' }};
+    --banner-text-color: {{ data.global.siteBannerTextColor or data.global.primaryColor or '#000' }};
+    --banner-background-color: {{ data.global.siteBannerBackgroundColor or data.global.primaryContrastingColor or '#fff' }};
+    --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
+    --header-offset: {{ headerOffset }};
+    --header-background-color: {{ data.global.headerBackgroundColor or data.global.primaryColor or '#000' }};
+    --header-text-color: {{ data.global.headerTextColor or data.global.primaryContrastingColor or '#fff' }};
+    --header-icon: var(--header-text-color);
+    --footer-height: {{ data.global.footerHeight or '40vh' }};
+    --footer-bg-img: {{ footerBackgroundImgUrl}};
+    --th-c-header-icon-count: var(--header-background-color);
+    --th-zip-entry-bg: var(--primary-contrasting-color);
+    --th-ag-modal-width: 100vw;
+    --th-ag-modal-height: 100vh;
+    --th-ag-form-bg: {{ data.global.ageGateFormBG or 'transparent' }};
+    --th-ag-textcolor: {{ data.global.ageGateTextColor or data.global.primaryContrastingColor or '#fff' }};
+    --th-ag-form-input-bg: {{ data.global.ageGateFormInputBG or data.global.secondaryColor or '#FFF' }};
+    --th-ag-form-input-text: {{ data.global.ageGateFormInputTextColor or data.global.secondaryContrastingColor or '#000' }};
 
-      /* Standard values */
-      --th-c-white: #FFF;
-      --th-c-smokywhite: #FAFAFA;
-      --th-c-light: #e4e4e4;
-      --th-c-greysLightestGrey: #F2F2F2;
-      --th-c-greysLightGrey: #aaa;
-      --th-c-greysMediumLightGrey: #BDBDBD;
-      --th-c-greysMediumDarkGrey: #828282;
-      --th-c-greysDarkGrey: #4F4F4F;
-      --th-c-dark: #242424;
-      --th-c-black: #000;
+    /* Standard values */
+    --th-c-white: #FFF;
+    --th-c-smokywhite: #FAFAFA;
+    --th-c-light: #e4e4e4;
+    --th-c-greysLightestGrey: #F2F2F2;
+    --th-c-greysLightGrey: #aaa;
+    --th-c-greysMediumLightGrey: #BDBDBD;
+    --th-c-greysMediumDarkGrey: #828282;
+    --th-c-greysDarkGrey: #4F4F4F;
+    --th-c-dark: #242424;
+    --th-c-black: #000;
 
-      --th-c-greysDisabledGrey: var(--th-c-greysMediumLightGrey);
-      --th-c-black-Blur: rgba(0, 0, 0, 0.14);
-      --th-c-blackLight-Blur: rgba(0, 0, 0, 0.2);
-      --th-c-blackLightest-Blur: rgba(0, 0, 0, 0.12);
-      --th-c-greysMediumDarkGrey-Blur: rgba(130,130,130, .25);
+    --th-c-greysDisabledGrey: var(--th-c-greysMediumLightGrey);
+    --th-c-black-Blur: rgba(0, 0, 0, 0.14);
+    --th-c-blackLight-Blur: rgba(0, 0, 0, 0.2);
+    --th-c-blackLightest-Blur: rgba(0, 0, 0, 0.12);
+    --th-c-greysMediumDarkGrey-Blur: rgba(130,130,130, .25);
 
-      --th-c-alertWrongPrimary: #B71C1C;
-      --th-c-alertWrongTint: #FFE0E3;
-      --th-c-alertSuccessPrimary: #1B5E20;
-      --th-c-alertSuccessTint: #E3FAE4;
-      --th-c-alertWarningPrimary: #BA8808;
-      --th-c-alertWarningTint: #FFF1CC;
+    --th-c-alertWrongPrimary: #B71C1C;
+    --th-c-alertWrongTint: #FFE0E3;
+    --th-c-alertSuccessPrimary: #1B5E20;
+    --th-c-alertSuccessTint: #E3FAE4;
+    --th-c-alertWarningPrimary: #BA8808;
+    --th-c-alertWarningTint: #FFF1CC;
 
-      --th-c-lavendarIndigoLight: #646cff;
-      --th-c-fuchsia: #E600B4;
-      --th-c-paleYellow: #FFF8E1;
+    --th-c-lavendarIndigoLight: #646cff;
+    --th-c-fuchsia: #E600B4;
+    --th-c-paleYellow: #FFF8E1;
 
-      /* Style design tokens */
-      --th-color-scheme: light dark;
-      --th-font-family: {{ data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }};
-      --th-font-weight: 400;
-      --th-line-height: 1.5;
-      --th-border-color: var(--th-c-greysMediumLightGrey);
-      --th-border-form: 1px solid var(--th-border-color);
-      --th-input-focus-outline: 2px solid var(--th-c-greysDarkGrey);
-      --th-border-radius: 4px;
-      --th-header-dividers: 1px solid var(--th-c-greysLightestGrey);
-      --th-account-dividers: 1px solid var(--th-c-gray);
+    /* Style design tokens */
+    --th-color-scheme: light dark;
+    --th-font-family: {{ data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }};
+    --th-font-weight: 400;
+    --th-line-height: 1.5;
+    --th-border-color: var(--th-c-greysMediumLightGrey);
+    --th-border-form: 1px solid var(--th-border-color);
+    --th-input-focus-outline: 2px solid var(--th-c-greysDarkGrey);
+    --th-border-radius: 4px;
+    --th-header-dividers: 1px solid var(--th-c-greysLightestGrey);
+    --th-account-dividers: 1px solid var(--th-c-gray);
 
-      /* Checkout and cart styling variables */
-      --th-checkout-breadcrumb-completed: var(--th-c-brandPrimaryColor, var(--th-c-dark));
-      --th-checkout-breadcrumb-inactive: var(--th-c-greysDisabledGrey);
+    /* Checkout and cart styling tokens */
+    --th-checkout-breadcrumb-completed: var(--th-c-brandPrimaryColor, var(--th-c-dark));
+    --th-checkout-breadcrumb-inactive: var(--th-c-greysDisabledGrey);
 
-      --th-c-cart-message-bg: var(--th-c-greysLightestGrey);
-      --th-c-cart-message-text-color: var(--th-c-alertWarningPrimary);
+    --th-c-cart-message-bg: var(--th-c-greysLightestGrey);
+    --th-c-cart-message-text-color: var(--th-c-alertWarningPrimary);
 
-      --th-checkout-bg: var(--th-c-smokywhite, #fafafa);  /* .th-checkout */
-      --th-checkout-container-bg: var(--th-checkout-bg); /* .th-checkout-section--container */
-      --th-checkout-container-text-color: var(--th-c-dark, #242424); /* .th-checkout-form--container */
+    --th-checkout-bg: var(--th-c-smokywhite, #fafafa);  /* .th-checkout */
+    --th-checkout-container-bg: var(--th-checkout-bg); /* .th-checkout-section--container */
+    --th-checkout-container-text-color: var(--th-c-dark, #242424); /* .th-checkout-form--container */
 
-      --th-checkout-payment-border: var(--th-border-form);
-      --th-checkout-payment-border-radius: var(--th-border-radius);
-      --th-checkout-payment-background-color: var(--th-c-white);
-      --th-checkout-payment-text-color: var(--th-c-dark);
-      --th-checkout-payment-header-color: var(--th-checkout-payment-text-color);
-      --th-checkout-payment-input-border: var(--th-border-form);
-      --th-checkout-payment-input-bg: var(--th-c-white);
-      --th-checkout-payment-input-text-color: var(--th-c-black);
-      --th-checkout-payment-placeholder-text-color: var(--th-c-greysMediumDarkGrey);
-      --th-checkout-payment-input-focus-outline: var(--th-input-focus-outline);
-    }
-  </style>
+    --th-checkout-payment-border: var(--th-border-form);
+    --th-checkout-payment-border-radius: var(--th-border-radius);
+    --th-checkout-payment-background-color: var(--th-c-white);
+    --th-checkout-payment-text-color: var(--th-c-dark);
+    --th-checkout-payment-header-color: var(--th-checkout-payment-text-color);
+    --th-checkout-payment-input-border: var(--th-border-form);
+    --th-checkout-payment-input-bg: var(--th-c-white);
+    --th-checkout-payment-input-text-color: var(--th-c-black);
+    --th-checkout-payment-placeholder-text-color: var(--th-c-greysMediumDarkGrey);
+    --th-checkout-payment-input-focus-outline: var(--th-input-focus-outline);
+  }
+</style>
+
 {% endif %}

@@ -1,9 +1,9 @@
 {% fragment footer() %}
 
 {% if data.global.footerBackgroundImage.items | length %}
-{% set backgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
-{% set backgroundImgUrl = apos.attachment.url(backgroundImg, { size: 'full' }) %}
-<footer class="th-footer grid grid-cols-2 gap-2" style="background-image: url({{ backgroundImgUrl }})">
+{% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
+{% set footerBackgroundImgUrl = apos.attachment.url(footerBackgroundImg, { size: 'full' }) %}
+<footer class="th-footer grid grid-cols-2 gap-2" style="background-image: url({{ footerBackgroundImgUrl }})">
 {% else %}
 <footer class="th-footer grid grid-cols-2 gap-2">
 {% endif %}
