@@ -1,11 +1,11 @@
 {% fragment footer() %}
 
 {% if data.global.footerBackgroundImage.items | length %}
-  {% set backgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
-  {% set backgroundImgUrl = apos.attachment.url(backgroundImg, { size: 'full' }) %}
-  <footer class="th-footer grid grid-cols-2" style="background-image: url({{ backgroundImgUrl }})">
+{% set backgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
+{% set backgroundImgUrl = apos.attachment.url(backgroundImg, { size: 'full' }) %}
+<footer class="th-footer grid grid-cols-2 gap-2" style="background-image: url({{ backgroundImgUrl }})">
 {% else %}
-  <footer class="th-footer grid grid-cols-2">
+<footer class="th-footer grid grid-cols-2 gap-2">
 {% endif %}
   <nav class="th-footer-nav my-0 py-0">
     <ul class="th-footer-nav__links flex flex-row justify-around">
@@ -31,7 +31,7 @@
     {% endif %}
   </div>
   <div class="th-footer-thirstie flex flex-col justify-end items-center">
-    <div class="m-0 p-0 th-font-12">
+    <div class="mx-0 my-1 p-0 th-font-12">
       <span class="m-0 p-0">Shopping experience powered by</span>
       <a
         href="https://thirstie.com"
@@ -47,7 +47,7 @@
       </a>
     </div>
   </div>
-  <div class="th-footer-brand flex flex-col justify-center items-center">
+  <div class="th-footer-brand flex flex-col justify-end items-center">
     {% if data.global.footerLogo.items | length %}
       {% set imageObj = apos.image.first(data.global.footerLogo) %}
       {% set imageText = data.global.footerLogo.items[0].alt or data.global.footerLogo.items[0].title %}
@@ -57,7 +57,7 @@
       </div>
     {% endif %}
     <div class="th-font-12">
-      {% set disclaimerText = data.global.footerTrademarkText or "Reserved" %}
+      {% set disclaimerText = data.global.footerTrademarkText or "All rights reserved" %}
       <span>&copy; {{ data.copyrightYear }}&nbsp;{{ disclaimerText }}</span> 
     </div>
   </div>
