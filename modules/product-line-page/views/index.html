@@ -10,7 +10,7 @@
 {% endif %}
   <h2>{{ data.page.title }}</h2>
   <th-catalog-collection>
-    <div class="my-4 mx-0 px-4 md:p-0 gap-4 w-full">
+    <div class="my-4 mx-0 px-4 md:p-0 gap-0 w-full">
       <div class="grid grid-cols-3 md:grid-cols-1 items-center justify-center">
         {% for productLine in data.pieces %}
           <div class="my-4 mx-auto">
@@ -59,7 +59,6 @@
         class: 'product-pager'
       }, data.url
       ) }}
-      <p class="my-0 mx-auto product-pager">{{ data.totalPieces }} products</p>
     </div>
   </th-catalog-collection>
 {% endblock %}
