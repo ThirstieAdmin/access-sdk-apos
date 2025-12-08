@@ -1,6 +1,5 @@
 .th-header {
   box-sizing:border-box;
-  box-shadow: 1px 1px 4px 0 color-mix(in srgb, var(--primary-color), #FFF 80%);
   background-color: var(--header-background-color, #000);
   color: var(--header-text-color, #fff);
   position: fixed !important;
