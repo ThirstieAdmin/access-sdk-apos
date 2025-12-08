@@ -11,7 +11,7 @@
       {% if data.widget.gridType == 'flex' %}
       <div class="flex flex-wrap gap-x-0 gap-y-4 items-center justify-between">
       {% else %}
-      <div class="grid grid-cols-{{ data.widget.gridType}} md:grid-cols-1 gap-4 items-center justify-between">
+      <div class="grid grid-cols-{{ data.widget.gridType}} md:grid-cols-1 gap-0 items-center justify-between">
       {% endif %}
         {% for productLine in data.widget._productlines %}
         <div class="flex flex-grow flex-basis-3 flex-col items-center">
