@@ -58,6 +58,12 @@
   }
 </style>
 
+{% if data.global.typekitId %}
+  <style>
+    @import url("https://use.typekit.net/{{ data.global.typekitId }}.css");
+  </style>
+{% endif %}
+
 {% if data.global.customCode.items[0].type === "@apostrophecms/html" %}
   {{ data.global.customCode.items[0].code | safe}}
 {% endif %}

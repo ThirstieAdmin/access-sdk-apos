@@ -25,6 +25,7 @@ Run `npm run dev` to build the Apostrophe UI and start the site up. Remember, th
 
 - Add credentials to `.env`, see `env.tpl` for structure.
 - Create admin: `npx dotenv -e .env -- node app @apostrophecms/user:add myUsername admin`
+- We usually create `thirstieadmin` user: `npx dotenv -e .env -- node app @apostrophecms/user:add thirstieadmin admin`
 
 
 ## Making it your own
