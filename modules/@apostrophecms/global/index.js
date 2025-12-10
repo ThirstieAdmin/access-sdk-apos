@@ -2,6 +2,12 @@ import apostrophe from 'apostrophe';
 import { default as richTextOptions } from '../../../lib/rich-text-options.js';
 import { default as urlScheme } from '../../../lib/url-scheme.js';
 
+const standardPresetColors = [
+  '--primary-color', '--primary-contrasting-color', '--secondary-color', '--secondary-contrasting-color',
+  '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
+  'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
+  'transparent'
+]
 
 export default {
   fields: {
@@ -100,6 +106,20 @@ export default {
         label: 'Footer height',
         def: '40vh'
       },
+      footerBackgroundColor: {
+        type: 'color',
+        label: 'Footer Background color',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      footerTextColor: {
+        type: 'color',
+        label: 'Footer text color',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
       /* Theme settings */
       primaryFontFamily: {
         type: 'string',
@@ -165,6 +185,9 @@ export default {
         help: 'Defaults to Brand Primary Color',
         if: {
           enableSiteBanner: true
+        },
+        options: {
+          presetColors: standardPresetColors
         }
       },
       siteBannerBackgroundColor: {
@@ -173,6 +196,9 @@ export default {
         help: 'Defaults to Brand Primary Contrasting Color',
         if: {
           enableSiteBanner: true
+        },
+        options: {
+          presetColors: standardPresetColors
         }
       },
       siteBannerFontFamily: {
@@ -184,16 +210,27 @@ export default {
           enableSiteBanner: true
         }
       },
+      typekitId: {
+        type: 'string',
+        label: 'Typekit ID',
+        help: 'like 03b90b08892e1b1ccd363b84150dbb71e7fcc76f'
+      },
       /* Header settings */
       headerBackgroundColor: {
         type: 'color',
         label: 'Header Background Color',
-        help: 'Defaults to Brand Primary Color'
+        help: 'Defaults to Brand Primary Color',
+        options: {
+          presetColors: standardPresetColors
+        }
       },
       headerTextColor: {
         type: 'color',
         label: 'Header Text Color',
-        help: 'Defaults to Brand Primary Contrasting Color'
+        help: 'Defaults to Brand Primary Contrasting Color',
+        options: {
+          presetColors: standardPresetColors
+        }
       },
       /* Age Gate Settings */
       ageGateType: {
@@ -254,25 +291,50 @@ export default {
       },
       ageGateBackgroundColor: {
         type: 'color',
-        label: 'Background Color'
+        label: 'Background Color',
+        options: {
+          presetColors: standardPresetColors
+        }
       },
       ageGateTextColor: {
         type: 'color',
-        label: 'Text Color'
+        label: 'Text Color',
+        options: {
+          presetColors: standardPresetColors
+        }
       },
       ageGateFormInputBG: {
         type: 'color',
-        label: 'Input Background Color'
+        label: 'Input Background Color',
+        options: {
+          presetColors: standardPresetColors
+        }
       },
       ageGateFormInputTextColor: {
         type: 'color',
-        label: 'Input Text Color'
+        label: 'Input Text Color',
+        options: {
+          presetColors: standardPresetColors
+        }
       },
       ageGateFormBG: {
         type: 'color',
-        def: 'transparent',
         label: 'Background for form elements',
-        help: 'Use to ensure form is visible against background image'
+        help: 'Use to ensure form is visible against background image',
+        def: 'transparent',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      /* Location UX */
+      locationType: {
+        type: 'select',
+        label: 'Delivery location type',
+        def: 'stickyzip',
+        choices: [
+          { label: 'Address entry', value: 'address' },
+          { label: 'Sticky ZipCode', value: 'stickyzip' }
+        ]
       }
     },
     group: {
@@ -282,7 +344,7 @@ export default {
       },
       theme: {
         label: 'Theme',
-        fields: [ 'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor' ]
+        fields: [ 'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor', 'typekitId' ]
       },
       bannerContent: {
         label: 'Banners',
@@ -294,7 +356,7 @@ export default {
       },
       footerContent: {
         label: 'Footer',
-        fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText', 'footerBackgroundImage', 'footerHeight' ]
+        fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText', 'footerBackgroundColor', 'footerTextColor', 'footerBackgroundImage', 'footerHeight' ]
       },
       ageGate: {
         label: 'Age Gate',
@@ -303,6 +365,10 @@ export default {
           'ageGateBackgroundColor', 'ageGateTextColor', 'ageGateFormInputBG', 'ageGateFormInputTextColor',
           'ageGateBackgroundImage', 'ageGateFormBG'
         ]
+      },
+      location: {
+        label: 'Delivery Location UX',
+        fields: [ 'locationType' ]
       }
     }
   }
