@@ -11,5 +11,16 @@ export default {
     return {
       async customStyles(req, data) {}
     };
+  },
+  helpers(self) {
+    return {
+      convertPreset(color) {
+        if (color?.startsWith('--')) {
+          return `var($color)`;
+        } else {
+          return color;
+        }
+      }
+    }
   }
 };
