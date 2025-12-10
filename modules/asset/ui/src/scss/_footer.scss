@@ -1,6 +1,6 @@
 .th-footer {
-  background-color: var(--primary-color);
-  color: var(--primary-contrasting-color);
+  background-color: var(--footer-background-color, var(--secondary-color));
+  color: var(--footer-text-color, var(--secondary-contrasting-color));
   background-size: cover;
   margin: 2rem 0 0;
   height: var(--footer-height, auto);
@@ -52,10 +52,10 @@
 }
 .th-footer-brand-logo {}
 .th-disclaimer-content {
-  color: var(--primary-contrasting-color);
+  color: var(--footer-text-color, var(--secondary-contrasting-color));
 }
 .th-disclaimer-logo {
-  color: var(--primary-contrasting-color);
+  color: var(--footer-text-color, var(--secondary-contrasting-color));
   vertical-align: middle;
   height: 1rem;
 }
