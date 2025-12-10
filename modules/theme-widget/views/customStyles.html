@@ -16,23 +16,28 @@
     --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
     --secondary-color: {{ data.global.secondaryColor or '#fff' }};
     --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000' }};
-    --banner-text-color: {{ data.global.siteBannerTextColor or data.global.primaryColor or '#000' }};
-    --banner-background-color: {{ data.global.siteBannerBackgroundColor or data.global.primaryContrastingColor or '#fff' }};
+    --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
+    --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
     --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
     --header-offset: {{ headerOffset }};
-    --header-background-color: {{ data.global.headerBackgroundColor or data.global.primaryColor or '#000' }};
-    --header-text-color: {{ data.global.headerTextColor or data.global.primaryContrastingColor or '#fff' }};
+    --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
+    --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
     --header-icon: var(--header-text-color);
+    --footer-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerBackgroundColor) or data.global.secondaryColor or '#fff' }};
+    --footer-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerTextColor) or data.global.secondaryContrastingColor or '#000' }};
     --footer-height: {{ data.global.footerHeight or '40vh' }};
     --footer-bg-img: {{ footerBackgroundImgUrl}};
     --th-c-header-icon-count: var(--header-background-color);
     --th-zip-entry-bg: var(--primary-contrasting-color);
     --th-ag-modal-width: 100vw;
     --th-ag-modal-height: 100vh;
-    --th-ag-form-bg: {{ data.global.ageGateFormBG or 'transparent' }};
-    --th-ag-textcolor: {{ data.global.ageGateTextColor or data.global.primaryContrastingColor or '#fff' }};
-    --th-ag-form-input-bg: {{ data.global.ageGateFormInputBG or data.global.secondaryColor or '#FFF' }};
-    --th-ag-form-input-text: {{ data.global.ageGateFormInputTextColor or data.global.secondaryContrastingColor or '#000' }};
+    --th-ag-form-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormBG) or 'transparent' }};
+    --th-ag-textcolor: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateTextColor) or data.global.primaryContrastingColor or '#fff' }};
+    --th-ag-form-input-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputBG) or data.global.secondaryColor or '#FFF' }};
+    --th-ag-form-input-text: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputTextColor) or data.global.secondaryContrastingColor or '#000' }};
+    /* TODO set in global settings */
+    --th-ag-form-btn-bg: transparent;
+    --th-ag-form-btn-border: 2px solid white;
 
     /* Standard values */
     --th-c-white: #FFF;
