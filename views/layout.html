@@ -74,8 +74,12 @@
 <div class="th-wrapper">
   {% render headerFragment.heading() %}
   <div class="th-inner-wrapper">
+    {% if data.global.locationType === 'stickyzip' %}
     <th-availability-minify header-height="{{ headerHeight }}" initial-offset="0" background-color-min="{{ data.global.secondaryColor }}" text-color-min="{{ data.global.secondaryContrastingColor }}">
       <main class="th-main">
+    {% else %}
+      <main class="th-main">
+    {% endif %}
 {% endblock %}
 
 {% block main %}
@@ -87,9 +91,11 @@
 {% endblock %}
 
 {% block afterMain %}
-      {% render footerFragment.footer() %}
-      </main>{# Close .th-main #}
+    {% render footerFragment.footer() %}
+    </main>{# Close .th-main #}
+    {% if data.global.locationType === 'stickyzip' %}
     </th-availability-minify>
+    {% endif %}
   </div>
   {% render thirstieAdminFragment.floatingMenu() %}
 </div>{# Close .th-wrapper #}

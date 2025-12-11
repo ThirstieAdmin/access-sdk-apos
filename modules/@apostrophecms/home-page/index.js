@@ -11,6 +11,12 @@ export default {
         options: {
           widgets: areaWidgetFullConfig
         }
+      },
+      hero: {
+        type: 'area',
+        options: {
+          widgets: areaWidgetFullConfig
+        }
       }
     },
     group: {
@@ -18,7 +24,8 @@ export default {
         label: 'Basics',
         fields: [
           'title',
-          'main'
+          'main',
+          'hero'
         ]
       }
     }
