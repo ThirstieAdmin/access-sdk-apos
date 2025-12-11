@@ -332,8 +332,8 @@ export default {
         label: 'Delivery location type',
         def: 'stickyzip',
         choices: [
-          { label: 'Address entry', value: 'address' },
-          { label: 'Sticky ZipCode', value: 'stickyzip' }
+          { label: 'Sticky ZipCode', value: 'stickyzip' },
+          { label: 'Address entry', value: 'address' }
         ]
       }
     },
