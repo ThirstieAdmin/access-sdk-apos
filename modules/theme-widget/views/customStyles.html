@@ -27,8 +27,13 @@
     --footer-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerTextColor) or data.global.secondaryContrastingColor or '#000' }};
     --footer-height: {{ data.global.footerHeight or '40vh' }};
     --footer-bg-img: {{ footerBackgroundImgUrl}};
+    --body-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.bodyBackgroundColor) or '#fff' }};
     --th-c-header-icon-count: var(--header-background-color);
-    --th-zip-entry-bg: var(--primary-contrasting-color);
+    --th-availability-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBG) or data.global.primaryContrastingColor or '#fff' }};
+    --th-availability-border: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBorderColor) or 'var(--th-c-light)' }};
+    --th-availability-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.locationTextColor) or 'var(--primary-color)' }};
+    --th-zip-entry-bg: var(--th-availability-bg);
+    --th-zip-entry-border: var(--th-availability-border);
     --th-ag-modal-width: 100vw;
     --th-ag-modal-height: 100vh;
     --th-ag-form-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormBG) or 'transparent' }};

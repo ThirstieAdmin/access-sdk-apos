@@ -15,11 +15,11 @@ export default {
   helpers(self) {
     return {
       convertPreset(color) {
+        let result = color;
         if (color?.startsWith('--')) {
-          return `var($color)`;
-        } else {
-          return color;
+          result = `var(${color})`;
         }
+        return result;
       }
     }
   }

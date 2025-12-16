@@ -54,6 +54,14 @@ export default {
           { label: 'Center align logo, left align navigation', value: 'center' }
         ]
       },
+      navShadow: {
+        type: 'select',
+        label: 'Navigation border',
+        choices: [
+          { label: 'None', value: 'none' },
+          { label: 'Box shadow', value: 'shadow' }
+        ]
+      },
       /* Footer settings */
       footerLogo: {
         type: 'area',
@@ -326,7 +334,14 @@ export default {
           presetColors: standardPresetColors
         }
       },
-      /* Location UX */
+      /* General */
+      bodyBackgroundColor: {
+        type: 'color',
+        label: 'Page body background',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
       locationType: {
         type: 'select',
         label: 'Delivery location type',
@@ -335,6 +350,27 @@ export default {
           { label: 'Sticky ZipCode', value: 'stickyzip' },
           { label: 'Address entry', value: 'address' }
         ]
+      },
+      locationBG: {
+        type: 'color',
+        label: 'Availability background',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      locationBorderColor: {
+        type: 'color',
+        label: 'Availability border color',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      locationTextColor: {
+        type: 'color',
+        label: 'Availability text color',
+        options: {
+          presetColors: standardPresetColors
+        }
       }
     },
     group: {
@@ -346,13 +382,17 @@ export default {
         label: 'Theme',
         fields: [ 'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor', 'typekitId' ]
       },
+      generalContent: {
+        label: 'General',
+        fields: [ 'bodyBackgroundColor', 'locationType', 'locationBG', 'locationBorderColor' ]
+      },
       bannerContent: {
         label: 'Banners',
         fields: [ 'enableSiteBanner', 'siteBannerFontFamily', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor' ]
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'navFormat' ]
+        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'navFormat', 'navShadow' ]
       },
       footerContent: {
         label: 'Footer',
@@ -365,10 +405,6 @@ export default {
           'ageGateBackgroundColor', 'ageGateTextColor', 'ageGateFormInputBG', 'ageGateFormInputTextColor',
           'ageGateBackgroundImage', 'ageGateFormBG'
         ]
-      },
-      location: {
-        label: 'Delivery Location UX',
-        fields: [ 'locationType' ]
       }
     }
   }
