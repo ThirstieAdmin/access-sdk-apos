@@ -83,6 +83,10 @@
 .th-pdp-right {
   width: 40vw;
 }
+h1.th-pdp-right__title {
+  font-size: 2rem;
+  text-align: left;
+}
 @media screen and (max-width: 768px) {
   .th-pdp-content {
     grid-template-columns: 1fr;
