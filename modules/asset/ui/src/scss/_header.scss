@@ -29,7 +29,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   color: var(--banner-text-color, var(--th-primary-color, #FFF1CC));
   text-decoration: none;
 }
-th-header__banner > p {
+.th-header__banner > p {
   box-sizing: border-box;
   width: 100%;
   overflow-wrap: break-word;
@@ -230,6 +230,10 @@ ul.nav-items {
     order:3;
   }
   
+  .nav--format--shadow {
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,.2);
+  }
+
   .nav--format-center {
     position: relative;
     .nav-logo {
