@@ -37,11 +37,11 @@ export default {
       },
       headerNav: {
         type: 'array',
-        label: 'headerNav',
+        label: 'Header navigation menu items',
         titleField: 'label',
         fields: {
           add: {
-            ...urlScheme
+            ...urlScheme,
           }
         }
       },
@@ -60,6 +60,14 @@ export default {
         choices: [
           { label: 'None', value: 'none' },
           { label: 'Box shadow', value: 'shadow' }
+        ]
+      },
+      navHeight: {
+        type: 'select',
+        label: 'Navigation bar height',
+        choices: [
+          { label: 'Normal (110px)', value: 'normal' },
+          { label: 'Narrow (70px)', value: 'short' }
         ]
       },
       /* Footer settings */
@@ -384,7 +392,7 @@ export default {
       },
       generalContent: {
         label: 'General',
-        fields: [ 'bodyBackgroundColor', 'locationType', 'locationBG', 'locationBorderColor' ]
+        fields: [ 'bodyBackgroundColor', 'locationType', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
       },
       bannerContent: {
         label: 'Banners',
@@ -392,7 +400,7 @@ export default {
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'navFormat', 'navShadow' ]
+        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'navFormat', 'navHeight', 'navShadow' ]
       },
       footerContent: {
         label: 'Footer',
