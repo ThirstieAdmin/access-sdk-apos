@@ -1,3 +1,10 @@
+const standardPresetColors = [
+  '--primary-color', '--primary-contrasting-color', '--secondary-color', '--secondary-contrasting-color',
+  '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
+  'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
+  'transparent'
+];
+
 export default {
   extend: '@apostrophecms/piece-page-type',
   options: {
@@ -11,12 +18,26 @@ export default {
         type: 'string',
         label: 'Subtitle',
         required: false
+      },
+      textColor: {
+        type: 'color',
+        label: 'Text Color',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      backgroundColor: {
+        type: 'color',
+        label: 'Recipe Background Color',
+        options: {
+          presetColors: standardPresetColors
+        }
       }
     },
     group: {
       basics: {
         label: 'Basics',
-        fields: ['title', 'subTitle']
+        fields: ['title', 'subTitle', 'textColor', 'backgroundColor']
       }
     }
   }

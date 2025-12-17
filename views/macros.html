@@ -1,0 +1,11 @@
+{% macro renderSectionTitle(sectionTitle, options) %}
+{% set textColor = ("color: " + options.textColor) + ";" if options.textColor else "" %}
+{% set fontSize = ("font-size: " + options.fontSize) + ";" if options.fontSize else "" %}
+{% set fontWeight = ("font-weight: " + options.fontWeight) + ";" if options.fontWeight else "" %}
+{% if sectionTitle | length %}
+  <div class="th-section-title">
+    <p class="th-section-title__label {{ options.className }}" style="{{ textColor }} {{ fontSize }}">{{ sectionTitle }}</p>
+    {% if options.showDivider %}<hr class="th-section-title__rule" />{% endif %}
+  </div>
+{% endif %}
+{% endmacro %}

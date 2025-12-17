@@ -108,3 +108,31 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   color: inherit;
   width: auto !important;
 }
+
+.th-section-title {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.th-section-title__rule {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  outline: none;
+  background-color: var(--th-c-greysMediumDarkGrey-Blur);
+  color: transparent;
+  border: none;
+  z-index: 0;
+}
+
+.th-section-title__label {
+  z-index: 1;
+  position: relative;
+  padding: 10px 30px;
+  background-color: var(--body-background-color);
+}

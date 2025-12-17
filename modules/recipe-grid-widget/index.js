@@ -1,3 +1,10 @@
+const standardPresetColors = [
+  '--primary-color', '--primary-contrasting-color', '--secondary-color', '--secondary-contrasting-color',
+  '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
+  'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
+  'transparent'
+];
+
 export default {
   extend: '@apostrophecms/widget-type',
   options: {
@@ -15,10 +22,32 @@ export default {
         type: 'string',
         label: 'Title'
       },
-      subTitle: {
+      textColor: {
+        type: 'color',
+        label: 'Title text Color',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      titleFontSize: {
         type: 'string',
-        label: 'Subtitle',
-        required: false
+        label: 'Title font-size'
+      },
+      titleFontFamily: {
+        type: 'string',
+        label: 'Title font-family'
+      },
+      titleFontWeight: {
+        type: 'string',
+        label: 'Title font-weight'
+      },
+      titleClassName: {
+        type: 'string',
+        label: 'Class to apply to title'
+      },
+      showDivider: {
+        type: 'boolean',
+        label: 'Show section divider with title'
       },
       displayType: {
         type: 'select',
@@ -50,7 +79,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: [ 'title', 'subTitle', '_recipes' ]
+        fields: [ 'title', 'textColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'displayType', '_recipes' ]
       }
     }
   }

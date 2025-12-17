@@ -7,7 +7,7 @@ const standardPresetColors = [
   '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
   'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
   'transparent'
-]
+];
 
 export default {
   fields: {
@@ -56,7 +56,7 @@ export default {
       },
       navShadow: {
         type: 'select',
-        label: 'Navigation border',
+        label: 'Navigation bar bottom border',
         choices: [
           { label: 'None', value: 'none' },
           { label: 'Box shadow', value: 'shadow' }
