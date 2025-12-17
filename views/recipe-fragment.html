@@ -39,13 +39,16 @@
 
 {% endfragment %}
 
-{% fragment recipeCardWide(recipe) %}
+{% fragment recipeCardWide(recipe, options) %}
 
 {% set attachment = apos.image.first(recipe.primaryImage or {}) %}
 {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
 {% set altText = attachment.title %}
 
-<section class="th-recipe-res-card flex flex-row md:flex-col gap-0" style="--th-recipe-bg: var(--secondary-contrasting-color);">
+<section
+  class="th-recipe-res-card flex flex-row md:flex-col gap-0"
+  style="--th-recipe-bg: {{ options.backgroundColor or 'var(--secondary-contrasting-color)' }};--th-recipe-textcolor: {{ options.textColor or 'var(--secondary-contrasting-color)' }}"
+  >
   <div class="th-recipe-res-card-banner box-border">
     <img
       class="th-recipe-res-card-banner__img"

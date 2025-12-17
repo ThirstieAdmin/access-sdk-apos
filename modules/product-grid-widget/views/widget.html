@@ -1,3 +1,5 @@
+{% import 'macros.html' as macros %}
+
 {% set pdpLink = "show-link" if data.widget.showPDPLink else "" %}
 {% if data.widget.showProductCardImageAs in ("no-image", "carousel") %}
   {% set showImage = "no-image" %}
@@ -5,7 +7,7 @@
   {% set showImage = "" %}
 {% endif %}
 <div>
-  <h2>{{ data.widget.title }}</h2>
+  {{ macros.renderSectionTitle(data.widget.title, { showDivider: data.widget.showDivider, textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor) }) }}
   <th-catalog-collection>
     <div class="my-1 mx-auto px-4 w-full">
       {% if data.widget.gridType == 'flex' %}

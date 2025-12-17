@@ -1,8 +1,16 @@
 {% import 'recipe-fragment.html' as recipeFragment %}
+{% import 'macros.html' as macros %}
 
 <div>
-  <h2>{{ data.widget.title }}</h2>
-  <h3>{{ data.widget.subTitle }}</h3>
+  {{ macros.renderSectionTitle(data.widget.title, {
+    showDivider: data.widget.showDivider,
+    textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor),
+    fontFamily: data.widget.titleFontFamily,
+    fontSize: data.widget.titleFontSize,
+    fontWeight: data.widget.titleFontWeight,
+    className: data.widget.titleClassName
+  }) }}
+  <p>{{ data.widget.subTitle }}</p>
 </div>
 
 {% if data.widget.displayType === 'carousel' %}
