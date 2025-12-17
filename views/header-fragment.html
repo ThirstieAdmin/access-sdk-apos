@@ -2,6 +2,7 @@
 {% set enableBanner = data.global.enableSiteBanner %}
 {% set navFormat = data.global.navFormat or 'left' %}
 {% set navShadow = data.global.navShadow or 'none' %}
+{% set navHeight = data.global.navHeight or 'normal' %}
 
 <header class="th-header m-0 p-0">
   {% if enableBanner %}
@@ -11,8 +12,12 @@
       {% endif %}
     </div>
   {% endif %}
-  <nav class="th-navbar nav--format-{{ navFormat }} nav--format--{{ navShadow }}">
-    <div class="nav-el nav-logo"><a href="/"><img class="th-header__logo" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}"></a></div>
+  <nav class="th-navbar nav--format-{{ navFormat }} nav--format--{{ navShadow }} nav--format--{{ navHeight }}">
+    <div class="nav-el nav-logo">
+      <a href="/">
+        <img class="th-header__logo nav--format--{{ navHeight }}" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}">
+      </a>
+    </div>
 
     <div class="nav-el nav-menu">
       <input class="nav-menu-btn th-overlay-btn" type="checkbox" id="menu-btn" />
@@ -20,11 +25,45 @@
 
       <ul class="nav-items th-overlay">
         {% for item in data.global.headerNav %}
-          {% if item.urlType === 'custom' %}
-            <li class="nav-el"><a href="{{ item.url }}" target="_blank">{{ item.label }}</a></li>
+          {% if item.subMenuItems | length %}
+            {% set navElClassList = 'nav-el nav-el--has-subitems' %}
           {% else %}
-            <li class="nav-el"><a href="{{ item._page[0].slug }}">{{ item.label }}</a></li>
+            {% set navElClassList = 'nav-el' %}
           {% endif %}
+
+          {% if item.newPage %}
+            {% set linkTarget = '_blank' %}
+          {% else %}
+            {% set linkTarget = '_self' %}
+          {% endif %}
+
+          <li class="{{ navElClassList }}">
+          {% if item.urlType === 'custom' %}
+            <a href="{{ item.url }}" target="{{ linkTarget}}">{{ item.label }}</a>
+          {% elif item.urlType === 'page' %}
+            <a href="{{ item._page[0].slug }}" target="_self">{{ item.label }}</a>
+          {% else %}
+            <span">{{ item.label }}</span>
+          {% endif %}
+          {% if item.subMenuItems | length %}
+          <ul class="nav-subitems">
+            {% for subItem in item.subMenuItems %}
+
+            {% if subItem.newPage %}
+              {% set linkTarget = '_blank' %}
+            {% else %}
+              {% set linkTarget = '_self' %}
+            {% endif %}
+
+            {% if subItem.urlType === 'custom' %}
+            <li class="nav-el"><a href="{{ subItem.url }}" target="{{ linkTarget}}">{{ subItem.label }}</a></li>
+            {% elif subItem.urlType === 'page' %}
+              <li class="nav-el"><a href="{{ subItem._page[0].slug }}" target="_self">{{ subItem.label }}</a></li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+          </li>
         {% endfor %}
       </ul>
     </div>

@@ -47,11 +47,13 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: 2.5rem;
+  max-height: 4.375em;
   margin: 0 auto;
   object-fit: contain;
 }
-
+.th-header__logo.nav--format--short {
+  max-height: 2.75rem;
+}
 .th-navbar {
   display: flex;
   box-sizing: border-box;
@@ -60,8 +62,11 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   align-items: center;
   justify-content: space-between;
   width: 100vw;
-  height: 4rem;
+  height: 6.875rem;
   line-height: 4rem;
+}
+.th-navbar.nav--format--short {
+  height: 4.375rem;
 }
 .th-navbar a {
   color: var(--header-text-color, #000);
@@ -72,6 +77,9 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   padding: 0;
   height: auto;
   text-align: center;
+}
+.nav-el:hover > a {
+  text-decoration: underline;
 }
 .nav-logo {
   display: flex;
@@ -103,11 +111,19 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   transition: max-height .2s ease-out;
   line-height: 1.25rem;
 }
-ul.nav-items {
+.nav-subitems {
+  background-color: var(--header-background-color, #000);
+  color: var(--header-text-color, #fff);
+  margin: 0;
+  padding: 1rem 0;
+}
+ul.nav-items,
+ul.nav-subitems {
   overflow: hidden;
   list-style-type: none;
 }
-.nav-items li {
+.nav-items li,
+.nav-subitems li {
   padding: 0 .25rem;
 }
 
@@ -191,7 +207,7 @@ ul.nav-items {
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
   .nav-el {
     margin: 0;
@@ -199,10 +215,14 @@ ul.nav-items {
     height: auto;
     text-align: center;
   }
+  .nav-subitems > .nav-el {
+    padding: .5rem 1rem;
+    text-align: left;
+  }
   .nav-logo {
     display: flex;
     float: none;
-    justify-content: center;
+    justify-content: flex-start;
     width: 25%;
     order: 1;
   }
@@ -220,6 +240,19 @@ ul.nav-items {
     align-items: center;
     justify-content: space-evenly;
     background-color: transparent;
+  }
+  .nav-subitems {
+    position: absolute;
+    display: none;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 250px;
+    min-width: 250px;
+    padding: 1rem 0;
+    box-shadow: 0 10px 15px rgba(115, 115, 115, .4509803922);
+  }
+  .nav-el--has-subitems:hover .nav-subitems {
+    display: flex;
   }
   .nav-profile {
     position:relative;
