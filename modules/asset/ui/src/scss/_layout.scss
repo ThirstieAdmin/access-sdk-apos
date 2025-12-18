@@ -136,3 +136,26 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   padding: 10px 30px;
   background-color: var(--body-background-color);
 }
+
+.th-availability-container {
+  background-color: var(--th-availability-bg, transparent);
+  padding:2rem 0 1rem;
+}
+.th-availability__form {
+  border: 1px solid var(--th-availability-border);
+  padding:2rem 2rem .5rem;
+  margin:0 auto;
+  width: 600px;
+  max-width: 100%;
+}
+.th-availability__form__title {
+  background-color: var(--th-availability-bg, transparent);
+  color: var(--th-availability-text-color);
+  position: relative;
+  top: -42px;
+  margin: 0 auto -32px;
+  padding: 0 1rem;
+  text-align: center;
+  width: fit-content;
+  line-height: 120%;
+}
