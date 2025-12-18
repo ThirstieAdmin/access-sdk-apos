@@ -7,7 +7,14 @@
   {% set showImage = "" %}
 {% endif %}
 <div>
-  {{ macros.renderSectionTitle(data.widget.title, { showDivider: data.widget.showDivider, textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor) }) }}
+  {{ macros.renderSectionTitle(data.widget.title, {
+    showDivider: data.widget.showDivider,
+    textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor),
+    fontFamily: data.widget.titleFontFamily,
+    fontSize: data.widget.titleFontSize,
+    fontWeight: data.widget.titleFontWeight,
+    className: data.widget.titleClassName
+  }) }}
   <th-catalog-collection>
     <div class="my-1 mx-auto px-4 w-full">
       {% if data.widget.gridType == 'flex' %}
@@ -52,7 +59,13 @@
               {% endfor %}
             </swiper-container>
           {% endif %}
-          <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" cta-label="Buy Now" link-text="{{ data.widget.pdpLinkText }}" {{ pdpLink }}  {{ showImage }}></th-product-add-to-cart>
+          <th-product-add-to-cart
+            product-line-id="{{ productLine.thirstiePLID }}"
+            pdp-link="{{ productLine._url }}"
+            cta-label="Buy Now"
+            link-text="{{ data.widget.pdpLinkText }}"
+            {{ pdpLink }} {{ showImage }}
+          ></th-product-add-to-cart>
         </div>
       {% endfor %}
       </div>

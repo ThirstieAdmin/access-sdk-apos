@@ -29,6 +29,22 @@ export default {
           presetColors: standardPresetColors
         }
       },
+      titleFontSize: {
+        type: 'string',
+        label: 'Title font-size'
+      },
+      titleFontFamily: {
+        type: 'string',
+        label: 'Title font-family'
+      },
+      titleFontWeight: {
+        type: 'string',
+        label: 'Title font-weight'
+      },
+      titleClassName: {
+        type: 'string',
+        label: 'Class to apply to title'
+      },
       showDivider: {
         type: 'boolean',
         label: 'Show section divider with title'
@@ -90,7 +106,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: ['title', 'textColor', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
+        fields: ['title', 'textColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
       }
     }
   }

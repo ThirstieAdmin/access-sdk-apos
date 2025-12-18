@@ -359,6 +359,13 @@ export default {
           { label: 'Address entry', value: 'address' }
         ]
       },
+      locationTitle: {
+        type: 'string',
+        lable: 'Heading for availabilty widget',
+        if: {
+          locationType: 'address'
+        }
+      },
       locationBG: {
         type: 'color',
         label: 'Availability background',
@@ -392,7 +399,7 @@ export default {
       },
       generalContent: {
         label: 'General',
-        fields: [ 'bodyBackgroundColor', 'locationType', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
+        fields: [ 'bodyBackgroundColor', 'locationTitle', 'locationType', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
       },
       bannerContent: {
         label: 'Banners',
