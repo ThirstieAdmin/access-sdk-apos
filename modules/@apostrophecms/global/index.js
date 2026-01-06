@@ -161,6 +161,16 @@ export default {
         type: 'color',
         label: 'Contrasting color for secondary'
       },
+      borderRadius: {
+        type: 'string',
+        label: 'General border radius',
+        help: 'Defaults to 4px'
+      },
+      buttonBorderRadius: {
+        type: 'string',
+        label: 'Button border radius',
+        help: 'Defaults to borderRadius(4px)'
+      },
       /* Banner settings */
       enableSiteBanner: {
         type: 'boolean',
@@ -395,7 +405,11 @@ export default {
       },
       theme: {
         label: 'Theme',
-        fields: [ 'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor', 'typekitId' ]
+        fields: [
+          'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
+          'borderRadius', 'buttonBorderRadius',
+          'typekitId'
+        ]
       },
       generalContent: {
         label: 'General',
