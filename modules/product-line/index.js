@@ -217,6 +217,13 @@ export default {
         textarea: true,
         required: true
       },
+      shortDescription: {
+        type: 'string',
+        label: 'Description',
+        max: 200,
+        textarea: true,
+        required: false
+      },
       productType: {
         type: 'string',
         label: 'Product Type',
@@ -307,30 +314,10 @@ export default {
         }
       }
     },
-    /*
-        group: {
-      basics: {
-        label: 'Basics',
-        fields: [ 'title', 'description', '_productlines', 'ingredients', 'directions' ]
-      },
-      images: {
-        label: 'Images',
-        fields: [ 'primaryImage', '_images' ]
-      },
-      about: {
-        label: 'About',
-        fields: [ 'difficulty', 'totalTime', 'author' ]
-      },
-      additionalContent: {
-        label: 'Additional',
-        fields: [ 'extraContent' ]
-      }
-    }
-    */
     group: {
       basics: {
         label: 'Basics',
-        fields: ['thirstiePLID', 'title', 'description', 'productType', 'proof', 'abvPercent', 'imageSpec']
+        fields: ['thirstiePLID', 'title', 'description', 'shortDescription', 'productType', 'proof', 'abvPercent', 'imageSpec']
       },
       images: {
         label: 'Images',
