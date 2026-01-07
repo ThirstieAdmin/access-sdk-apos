@@ -29,6 +29,22 @@ export default {
           presetColors: standardPresetColors
         }
       },
+      bgColor: {
+        type: 'color',
+        label: 'Background Color',
+        def: '#FFF',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      borderColor: {
+        type: 'color',
+        label: 'Border Color',
+        def: 'transparent',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
       titleFontSize: {
         type: 'string',
         label: 'Title font-size'
@@ -98,6 +114,8 @@ export default {
             thirstiePLID: 1,
             primaryImage: 1,
             imageSpec: 1,
+            shortDescription: 1,
+            description: 1,
             _images: 1
           }
         }
@@ -106,7 +124,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: ['title', 'textColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
+        fields: ['title', 'textColor', 'bgColor', 'borderColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
       }
     }
   }
