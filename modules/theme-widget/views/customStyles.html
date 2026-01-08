@@ -21,15 +21,14 @@
     --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
     --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
     --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
-    --header-height: {{ headerHeight }}px;
-    --header-offset: calc(var(--header-height) + 1rem);
+    --header-offset: {{ headerHeight }}px;
     --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
     --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
     --header-icon: var(--header-text-color);
     --footer-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerBackgroundColor) or data.global.secondaryColor or '#fff' }};
     --footer-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerTextColor) or data.global.secondaryContrastingColor or '#000' }};
     --footer-height: {{ data.global.footerHeight or '40vh' }};
-    --footer-bg-img: {{ footerBackgroundImgUrl}};
+    --footer-bg-img: url({{ footerBackgroundImgUrl }});
     --body-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.bodyBackgroundColor) or '#fff' }};
     --th-c-header-icon-count: var(--header-background-color);
     --th-availability-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBG) or data.global.primaryContrastingColor or '#fff' }};
@@ -113,4 +112,56 @@
   }
 </style>
 
+{% if data.global.footerBackgroundImage.items | length %}
+
+<style>
+  .th-footer::before {
+    content: "";
+    background: linear-gradient(to bottom, rgba(50, 48, 44, 0.6) 0%, rgba(50, 48, 44, 0) 100%);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height, 40vh);
+    z-index: 0;
+  }
+  .th-footer-background {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: var(--footer-height, 40vh);
+    padding: 0;
+  }
+  .th-footer-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height, 40vh);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    filter: blur(4px);
+    overflow: hidden;
+    z-index: -1;
+    background-image: var(--footer-bg-img);
+  }
+</style>
+
+{% else %}
+
+<style>
+  .th-footer-background {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: var(--footer-height, auto);
+    margin: 0;
+    padding: 0;
+    background-color: var(--footer-background-color, var(--secondary-color));
+  }
+</style>
+
+{% endif %}
 {% endif %}
