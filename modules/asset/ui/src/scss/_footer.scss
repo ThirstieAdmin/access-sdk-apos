@@ -1,9 +1,13 @@
+/* NOTE: styles which depend on global settings are defined in customStyles */
+
 .th-footer {
-  background-color: var(--footer-background-color, var(--secondary-color));
+  display: block;
+  height: var(--footer-height, 40vh);
+  width: 100vw;
+}
+.th-footer-content {
   color: var(--footer-text-color, var(--secondary-contrasting-color));
-  background-size: cover;
-  margin: 2rem 0 0;
-  height: var(--footer-height, auto);
+  height: var(--footer-height, 40vh);
   width: 100%;
   grid-template-rows: 3rem minmax(0, 1fr) minmax(0, 1fr);
 }
