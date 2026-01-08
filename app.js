@@ -37,12 +37,6 @@ apostrophe({
             parkedId: 'productListingPage'
           },
           {
-            title: 'Cocktails',
-            type: 'recipe-page',
-            slug: '/cocktails',
-            parkedId: 'cocktailRecipes'
-          },
-          {
             title: 'Checkout',
             type: 'thirstie-checkout',
             slug: '/checkout',
