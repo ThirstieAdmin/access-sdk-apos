@@ -30,42 +30,42 @@
           class="th-product-grid__card flex flex-grow flex-basis-3 flex-col items-center"
           style="--product-grid-bg: {{ backgroundColor }};--product-grid-border: {{ borderColor }};"
         >
-          {% if data.widget.showProductCardImageAs == 'carousel' %}
-            {% if productLine.primaryImage.items | length %}
-              {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
-              {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
-              {% set altText = attachment.title or productLine.title or "product image" %}
-            {% else %}
-              {% set imageUrl = productLine.imageSpec | replace("{dims}.", ".") %}
-              {% set altText = productLine.title or "product image" %}
-            {% endif %}
-            <swiper-container
-              class="th-plp-swiper__container"
-              space-between="10"
-              navigation="true"
-              pagination="false"
-              loop="false"
-              style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
-            >
+
+          {% if productLine.primaryImage.items | length %}
+            {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
+            {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+            {% set altText = attachment.title or productLine.title or "product image" %}
+          {% else %}
+            {% set imageUrl = productLine.imageSpec | replace("{dims}.", ".") %}
+            {% set altText = productLine.title or "product image" %}
+          {% endif %}
+          <swiper-container
+            class="th-plp-swiper__container"
+            space-between="10"
+            navigation="true"
+            pagination="false"
+            loop="false"
+            style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+          >
+            <swiper-slide>
+              <img
+              class="th-plp__primary_img"
+              src="{{ imageUrl }}" 
+              alt="{{ altText }}"
+            /></swiper-slide>
+            {% for productImage in productLine._images %}
+              {% set imgAttachment = apos.image.first(productImage or {}) %}
+              {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
+              {% set altImageAltText = imgAttachment.title or productLine.title or "product image" %}
               <swiper-slide>
                 <img
                 class="th-plp__primary_img"
-                src="{{ imageUrl }}" 
-                alt="{{ altText }}"
+                src="{{ altImageUrl }}" 
+                alt="{{altImageAltText}}"
               /></swiper-slide>
-              {% for productImage in productLine._images %}
-                {% set imgAttachment = apos.image.first(productImage or {}) %}
-                {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
-                {% set altImageAltText = imgAttachment.title or productLine.title or "product image" %}
-                <swiper-slide>
-                  <img
-                  class="th-plp__primary_img"
-                  src="{{ altImageUrl }}" 
-                  alt="{{altImageAltText}}"
-                /></swiper-slide>
-              {% endfor %}
-            </swiper-container>
-          {% endif %}
+            {% endfor %}
+          </swiper-container>
+
           <div class="md:w-full">
             <th-product-line-selector
               product-line-id="{{ productLine.thirstiePLID }}"
