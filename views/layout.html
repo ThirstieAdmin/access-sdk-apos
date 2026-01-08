@@ -7,15 +7,9 @@
 {% import 'thirstie-admin-fragment.html' as thirstieAdminFragment %}
 
 {% set title = data.piece.title or data.page.title %}
-
-{% set enableBanner = data.global.enableSiteBanner %}
-{% set headerHeight = 112 if enableBanner else 50 %}
-
 {% set ageGateType = data.global.ageGateType or 'dob' %}
 
-{% if data.user %}
-  {% set headerHeight = headerHeight + 112 %}
-{% endif %}
+{% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 112) %}
 
 {% block title %}
   {{ title }}
