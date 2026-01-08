@@ -20,6 +20,21 @@ export default {
           result = `var(${color})`;
         }
         return result;
+      },
+      calcHeaderHeight(data, adminUserAdjustment) {
+        let headerHeight = 0;
+        if(data?.global?.navHeight === 'short') {
+          headerHeight = 70;
+        } else {
+          headerHeight = 110;
+        }
+        if(data?.global?.enableSiteBanner) {
+          headerHeight += 48;
+        }
+        if(data?.user) {
+          headerHeight += adminUserAdjustment;
+        }
+        return headerHeight;
       }
     }
   }
