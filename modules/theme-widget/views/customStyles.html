@@ -1,6 +1,8 @@
 {# modules/theme/views/customStyles.html #}
-{% set headerOffset = "7rem" if data.global.enableSiteBanner else "4rem" %}
+
 {% if data.global %}
+
+{% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 0) %}
 
 {% if data.global.footerBackgroundImage.items | length %}
   {% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
@@ -19,7 +21,8 @@
     --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
     --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
     --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
-    --header-offset: {{ headerOffset }};
+    --header-height: {{ headerHeight }}px;
+    --header-offset: calc(var(--header-height) + 1rem);
     --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
     --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
     --header-icon: var(--header-text-color);
