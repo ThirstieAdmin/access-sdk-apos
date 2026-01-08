@@ -12,7 +12,7 @@ Options:
   -d, --domain          STOREFRONT_DOMAIN (required, e.g. fujiwhiskey)
   -a, --app             THAPPNAME (required, e.g. fuji_whiskey)
   -k, --apikey          THAPIKEY (required)
-  -o, --out             output filename (default: .env.<brand>)
+  -o, --out             output filename (default: .env.<domain>)
   -c, --create-admin    create admin user
       --admin-file      path to admin env file to read (default: .env-admin)
   -f, --force           overwrite existing file without prompting
@@ -44,7 +44,7 @@ confirm(){
   esac
 }
 
-brand=""
+domain=""
 app=""
 apikey=""
 outfile=""
@@ -55,8 +55,8 @@ NONINTERACTIVE=false
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
-    -b|--domain) brand="$2"; shift 2;;
-    --domain=*) brand="${1#*=}"; shift;;
+    -b|--domain) domain="$2"; shift 2;;
+    --domain=*) domain="${1#*=}"; shift;;
     -a|--app) app="$2"; shift 2;;
     --app=*) app="${1#*=}"; shift;;
     -k|--apikey) apikey="$2"; shift 2;;
@@ -75,11 +75,11 @@ while [ "$#" -gt 0 ]; do
 done
 
 # Interactive prompts
-if [ -z "$brand" ]; then
+if [ -z "$domain" ]; then
   if [ "$NONINTERACTIVE" = true ]; then
     echo "STOREFRONT_DOMAIN is required" >&2; exit 2
   fi
-  read -r -p "STOREFRONT_DOMAIN (e.g. fujiwhiskey): " brand
+  read -r -p "STOREFRONT_DOMAIN (e.g. fujiwhiskey): " domain
 fi
 
 if [ -z "$app" ]; then
@@ -97,11 +97,11 @@ if [ -z "$apikey" ]; then
 fi
 
 if [ -z "$outfile" ]; then
-  outfile=".env.$brand"
+  outfile=".env.$domain"
 fi
 
-# Validate brand and app
-if ! printf '%s' "$brand" | grep -Eq '^[a-z0-9-]+$' ; then
+# Validate domain and app
+if ! printf '%s' "$domain" | grep -Eq '^[a-z0-9-]+$' ; then
   echo "STOREFRONT_DOMAIN must match ^[a-z0-9-]+$" >&2; exit 2
 fi
 if ! printf '%s' "$app" | grep -Eq '^[a-z0-9_-]+$' ; then
@@ -114,6 +114,15 @@ if [ -e "$outfile" ] && [ "$FORCE" = false ]; then
   fi
 fi
 
+if [ -z "$APOS_MONGODB_DOMAIN" -o -z "$APOS_MONGODB_USER" -o -z "$APOS_MONGODB_SECRET" -o -z "$APOS_MONGODB_CLUSTER" ]; then
+  echo "APOS_MONGODB_DOMAIN, etc are not set in the environment; cannot create admin user." >&2
+  exit 5
+fi
+
+echo ""
+echo "Beginning environment file creation for domain '$domain', app '$app'"
+
+
 # Generate THEXPRESS_SECRET (always use scripts/gen_secret.js)
 thexpress_secret=""
 if ! thexpress_secret=$(gen_secret_node); then
@@ -121,12 +130,10 @@ if ! thexpress_secret=$(gen_secret_node); then
   exit 3
 fi
 
-echo ""
 echo "THEXPRESS_SECRET created $thexpress_secret"
 echo ""
 
-# Create file content based on the template env.tpl
-tpl="$(dirname "$0")/../env.tplxxx"
+# Create file content
 tmpfile="$(mktemp)"
 chmod 600 "$tmpfile"
 
@@ -137,7 +144,7 @@ THENV=${THENV:-sandbox}
 THAPIKEY=$apikey
 THMAPSKEY=${THMAPSKEY:-}
 THEXPRESS_SECRET=${thexpress_secret:-}
-APOS_MONGODB_URI=mongodb+srv://${APOS_MONGODB_USER}:${APOS_MONGODB_SECRET}@thirstieaccessdev.uc73kq1.mongodb.net/${app}?appName=${APOS_MONGODB_CLUSTER}&retryWrites=true&w=majority
+APOS_MONGODB_URI=mongodb+srv://${APOS_MONGODB_USER}:${APOS_MONGODB_SECRET}@${APOS_MONGODB_DOMAIN}/${app}?appName=${APOS_MONGODB_CLUSTER}&retryWrites=true&w=majority
 APOS_S3_BUCKET=${APOS_S3_BUCKET:-}
 APOS_S3_REGION=${APOS_S3_REGION:-}
 APOS_S3_KEY=${APOS_S3_KEY:-}
@@ -149,7 +156,7 @@ chmod 600 "$outfile"
 
 echo "Wrote $outfile (mode 600)."
 echo "DO NOT commit this file. Add to .gitignore if needed."
-echo
+echo ""
 echo "Next step (create admin user):"
 echo "npx dotenv -e $outfile -- node app @apostrophecms/user:add thirstieadmin admin"
 
@@ -164,7 +171,6 @@ if [ "$create_admin" = true ]; then
   fi
 
   echo "Creating admin user '$APOS_ADMIN' using environment variables (admin file: $admin_file) (will not echo password)..."
-  echo ">>> $APOS_ADMIN_SECRET "
 
   # Provide password. Use printf to supply newline-terminated inputs.
   if printf '%s\n%s\n' "$APOS_ADMIN_SECRET" | npx dotenv -e "$outfile" -- node app @apostrophecms/user:add "$APOS_ADMIN" admin; then
@@ -174,11 +180,17 @@ if [ "$create_admin" = true ]; then
     echo "  npx dotenv -e $outfile -- node app @apostrophecms/user:add $APOS_ADMIN admin" >&2
     exit 6
   fi
+else
+
+  echo "Next step (create admin user):"
+  echo "Use the following command to create the admin user:"
+  echo "> npx dotenv -e $outfile -- node app @apostrophecms/user:add thirstieadmin admin"
+  echo
+
 fi
 
 echo ""
 echo "Setup complete"
-echo "npx dotenv -e $outfile -- nodemon"
+echo "To launch a local instance of the site:"
+echo "> npx dotenv -e $outfile -- nodemon"
 echo ""
-
-# TODO: password is not set correctly
