@@ -112,12 +112,30 @@
   }
 </style>
 
+{% if data.user %}
+  <style>
+    .th-fouc-block {
+      visibility: inherit;
+      opacity: inherit;
+      display: inherit;
+    }
+  </style>
+{% else %}
+  <style>
+    .th-fouc-block {
+      visibility: visible;
+      opacity: 0;
+      display: none;
+    }
+  </style>
+{% endif %}
+
 {% if data.global.footerBackgroundImage.items | length %}
 
 <style>
   .th-footer::before {
     content: "";
-    background: linear-gradient(to bottom, rgba(50, 48, 44, 0.6) 0%, rgba(50, 48, 44, 0) 100%);
+    background: linear-gradient(to bottom, rgba(50, 48, 44, 0.875) 0%, rgba(50, 48, 44, 0) 100%);
     position: absolute;
     left: 0;
     width: 100%;
