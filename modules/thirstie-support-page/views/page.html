@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block beforeMain %}
+<div class="th-wrapper">
+  {% render headerFragment.heading() %}
+  <div class="th-inner-wrapper">
+      <main class="th-main">
+{% endblock %}
+
+{% block main %}
+  <section class="th-welcome">
+    <div class="th-welcome__area">
+      <h1>Contact Us</h1>
+      <th-order-status></th-order-status>
+    </div>
+  </section>
+{% endblock %}
+
+
+{% block afterMain %}
+    {% render footerFragment.footer() %}
+    </main>{# Close .th-main #}
+  </div>
+</div>{# Close .th-wrapper #}
+{% endblock %}
+
