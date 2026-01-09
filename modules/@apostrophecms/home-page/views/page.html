@@ -5,16 +5,21 @@
 {% block main %}
   <section class="th-welcome">
     <div class="th-welcome__area">
-      <div>
+
+      {# TODO: overlay caption on hero #}
+      {# TODO: allow overlay of html block #}
+      <div class="th-welcome__hero">
         {% area data.page, 'hero' %}
       </div>
 
       {% if data.global.locationType === 'address' %}
         {{ macros.renderAddressAvailability() }}
       {% endif %}
+
       <div>
         {% area data.page, 'main' %}
       </div>
+
     </div>
   </section>
 {% endblock %}

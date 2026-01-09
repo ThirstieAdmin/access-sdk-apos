@@ -399,13 +399,10 @@ export default {
       }
     },
     group: {
-      brandContent: {
-        label: 'Brand Content',
-        fields: [ 'brandLogo', 'brandLogoAltText', 'supportEmail', 'customCode' ]
-      },
-      theme: {
-        label: 'Theme',
+      themeBrandContent: {
+        label: 'Theme & Brand Content',
         fields: [
+          'brandLogo', 'brandLogoAltText', 'supportEmail', 'customCode',
           'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
           'borderRadius', 'buttonBorderRadius',
           'typekitId'
