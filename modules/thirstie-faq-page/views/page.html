@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block beforeMain %}
+<div class="th-wrapper">
+  {% render headerFragment.heading() %}
+  <div class="th-inner-wrapper">
+      <main class="th-main">
+{% endblock %}
+
+{% block main %}
+  <section class="th-welcome">
+    <div class="th-welcome__area">
+      <div id="faq-orders" class="my-7">
+          <div class="avc-c-faq__top-content py-2">
+            <a class="avc-c-faq__primary-text mb-1.5 o-h3" href="#faq-orders">Your Order</a>
+          </div>
+          <p class="avc-c-faq__normal-text o-body mb-3">
+            Orders are fulfilled by licensed beverage alcohol retailers on the Thirstie 
+            network. Retailers advertise beverage alcohol products for sale on this site 
+            at their own discretion and are solely responsible for pricing.
+          </p>
+          <hr>
+          <ul class="list-disc pt-3">
+            <li class="mb-4 list-none">
+              <p question="When will my order ship?">
+                Orders are fulfilled by licensed beverage alcohol retailers on the Thirstie 
+                network. It is our goal for all orders to be fulfilled and
+                shipped within 2-5 business days after an order is placed.
+                Fulfillment time depends on what day the order is placed, the
+                time of the day and if the product is currently in stock. We
+                strive to notify customers if there are any product
+                out-of-stock issues, weather delays or carrier issues. If you
+                have not received an email notification with tracking
+                information within 4 business days, please contact
+                <a
+                  :href="`mailto:${issuesEmail}`"
+                  target="_blank"
+                  class="o-body"
+                  aria-label="contact support -  opens in new tab"
+                  >{{ issuesEmail }}</a
+                >
+                for assistance, or vist our <a
+                  :href="'/order-status-update'
+                  
+                  "
+                  target="_blank"
+                  class="o-body"
+                  aria-label="order status update -  opens in new tab"
+                  >order status update</a
+                > page.</p>
+            </li>
+            <li class="mb-4 list-none">
+              <p question="Do I need to sign for my order?">
+                All shipments containing alcohol require an adult signature (21 years or
+                older) upon delivery. Please plan accordingly and
+                monitor tracking information for shipments. Please keep a
+                valid form of ID on hand upon delivery.
+              </p>
+            </li>
+            <li class="mb-4 list-none">
+              <p question="How can I track my order?">
+                Please visit our <a
+                :href="'/order-status-update'"
+                target="_blank"
+                aria-label="order status update -  opens in new tab"
+                >order status update</a
+              > page to see the current status of your order. You will need the order number
+              that was provided when you received your confirmation, and the email that you
+              used when placing the order.
+              </p>
+            </li>
+            <li class="mb-4 list-none">
+              <p question="How much does shipping cost?">
+                Shipping costs vary depending on where you are shipping and
+                how much product you order. Thirstie does our best to keep costs as
+                low as possible.
+              </p>
+            </li>
+            <li class="mb-4 list-none">
+              <p question="What's your return policy?">
+                We are not able to accept any returns or exchanges, and do not
+                provide any refunds. If you have a question about the product,
+                please feel free to reach out to us via email
+                <a
+                  :href="`mailto:${issuesEmail}`"
+                  target="_blank"
+                  aria-label="contact support -  opens in new tab"
+                  >{{ issuesEmail }}</a
+                >.
+              </p>
+            </li>
+            <li class="mb-4 list-none">
+              <p question="How is my order being shipped?">
+                Your order will be processed by a licensed retailer on the
+                Thirstie network. The retailer has discretion over what
+                carrier service is used. Note that US Postal Service regulations
+                prohibit the delivery of beverage alcohol to a PO box.
+              </p>
+            </li>
+            <li class="mb-4 list-none">
+              <p question="Why are the prices different for different delivery areas?">
+                Orders are fulfilled by licensed beverage alcohol retailers on the
+                Thirstie network. Retailers advertise beverage alcohol products for sale
+                on this site at their own discretion and are solely responsible for pricing.
+              </p>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+{% block afterMain %}
+    {% render footerFragment.footer() %}
+    </main>{# Close .th-main #}
+  </div>
+</div>{# Close .th-wrapper #}
+{% endblock %}
+

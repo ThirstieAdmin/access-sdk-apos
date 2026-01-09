@@ -10,13 +10,14 @@
 {% else %}
   {% set showImage = "" %}
 {% endif %}
+
+  {% if data.global.locationType === 'address' %}
+    {{ macros.renderAddressAvailability() }}
+  {% endif %}
+
   <h1 class="text-xl leading-loose mt-8">{{ data.page.title }}</h1>
   <th-catalog-collection>
     <div class="my-4 mx-0 px-4 md:p-0 gap-0 w-full">
-
-      {% if data.global.locationType === 'address' %}
-        {{ macros.renderAddressAvailability() }}
-      {% endif %}
 
       <div class="grid grid-cols-3 md:grid-cols-1 items-center justify-center">
         {% for productLine in data.pieces %}

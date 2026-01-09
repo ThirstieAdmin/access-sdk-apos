@@ -53,6 +53,36 @@ apostrophe({
             type: 'styleguide-page',
             slug: '/styleguide',
             parkedId: 'thirstieStyleguidePage'
+          },
+          {
+            title: 'Thirstie Terms of Use',
+            type: 'thirstie-termsofuse-page',
+            slug: '/terms-of-use',
+            parkedId: 'thirstieTermsOfUsePage'
+          },
+          {
+            title: 'Thirstie Privacy Policy',
+            type: 'thirstie-privacy-page',
+            slug: '/privacy-policy',
+            parkedId: 'thirstiePrivacyPage'
+          },
+          {
+            title: 'Thirstie FAQ',
+            type: 'thirstie-faq-page',
+            slug: '/faq',
+            parkedId: 'thirstieFaqPage'
+          },
+          {
+            title: 'Thirstie Order Status',
+            type: 'thirstie-orderstatus-page',
+            slug: '/order-status-update',
+            parkedId: 'thirstieOrderStatusPage'
+          },
+          {
+            title: 'Thirstie Support',
+            type: 'thirstie-support-page',
+            slug: '/support',
+            parkedId: 'thirstieSupportPage'
           }
         ]
       }
@@ -96,6 +126,11 @@ apostrophe({
     'recipe-page': {},
     'sitemap-page': {},
     'styleguide-page': {},
+    'thirstie-termsofuse-page': {},
+    'thirstie-privacy-page': {},
+    'thirstie-faq-page': {},
+    'thirstie-orderstatus-page': {},
+    'thirstie-support-page': {},
     'product-grid-widget': {},
     'recipe-grid-widget': {},
     'thirstie-disclaimer-widget': {}
