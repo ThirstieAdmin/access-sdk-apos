@@ -4,7 +4,7 @@
 <div>
   {{ macros.renderSectionTitle(data.widget.title, {
     showDivider: data.widget.showDivider,
-    textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor),
+    textColor: apos.modules['theme-widget'].convertPreset(data.widget.titleTextColor),
     fontFamily: data.widget.titleFontFamily,
     fontSize: data.widget.titleFontSize,
     fontWeight: data.widget.titleFontWeight,
@@ -37,7 +37,11 @@
 <div class="my-4 mx-auto px-8">
   <div class="grid grid-cols-3 md:grid-cols-1 gap-4 items-start justify-center">
   {% for recipe in data.widget._recipes %}
-    {% render recipeFragment.recipeCard(recipe) %}
+    {% render recipeFragment.recipeCard(
+      recipe,
+      {textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.widget.backgroundColor),
+      borderRadius: data.widget.borderRadius, imgHeight: data.widget.imgHeight}
+    ) %}
   {% endfor %}
   </div>
 </div>
