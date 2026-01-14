@@ -15,8 +15,7 @@ export default {
         options: {
           widgets: {
             '@apostrophecms/rich-text': richTextOptions,
-            '@apostrophecms/html': {},
-            '@apostrophecms/image': {}
+            '@apostrophecms/html': {}
           }
         }
       }

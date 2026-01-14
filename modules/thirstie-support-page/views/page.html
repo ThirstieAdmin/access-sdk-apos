@@ -8,12 +8,20 @@
 {% endblock %}
 
 {% block main %}
-  <section class="th-welcome">
-    <div class="th-welcome__area">
-      <h1>Contact Us</h1>
-      <th-order-status></th-order-status>
-    </div>
-  </section>
+      <section class="th-welcome">
+        <div class="th-welcome__area">
+          <h1>Contact Us</h1>
+          <p>
+            <span>For any questions related to your order, please reach out to our support team at:</span>
+            <br/>
+            <span><strong><a href="mailto:{{data.global.supportEmail}}">{{ data.global.supportEmail }}</a></strong></span>
+          </p>
+        </div>
+
+        <div>
+          {% area data.page, 'additionalContent' %}
+        </div>
+      </section>
 {% endblock %}
 
 
