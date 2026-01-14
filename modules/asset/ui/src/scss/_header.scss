@@ -186,19 +186,6 @@ ul.nav-subitems {
   top:0;
 }
 
-@media screen and (max-width: 768px) {
-  ul.nav-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 2rem;
-  }
-  .nav-items li {
-    padding: 1rem 0;
-    font-size: larger;
-  }
-}
-
 @media screen and (min-width: 768px) {
   .th-navbar {
     display: flex;
@@ -299,5 +286,27 @@ ul.nav-subitems {
   }
   .th-navbar .nav-menu-btn {
     display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  ul.nav-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2rem;
+  }
+  .nav-items li {
+    padding: 1rem 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .nav-subitems {
+    padding: 0.75rem 0 0;
+  }
+  .nav-subitems li {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 1.5rem 0 0;
   }
 }
