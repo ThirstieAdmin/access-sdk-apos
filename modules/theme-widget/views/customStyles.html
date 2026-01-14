@@ -122,7 +122,6 @@
     --th-image-widget__caption-flex-align:center;
     --th-image-widget__caption-flex-justify:center;
   }
-
 </style>
 
 {% if data.user %}
@@ -146,37 +145,14 @@
 {% if data.global.footerBackgroundImage.items | length %}
 
 <style>
-  .th-footer::before {
-    content: "";
-    background: linear-gradient(to bottom, rgba(50, 48, 44, 0.875) 0%, rgba(50, 48, 44, 0) 100%);
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: var(--footer-height, 40vh);
-    z-index: 0;
-  }
   .th-footer-background {
-    position: relative;
-    overflow: hidden;
-    width: 100vw;
-    height: var(--footer-height, 40vh);
-    padding: 0;
-  }
-  .th-footer-background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--footer-height, 40vh);
+    background-image:
+      linear-gradient(to bottom, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 0%, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 100%),
+      var(--footer-bg-img);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-clip: border-box;
-    filter: blur(4px);
-    overflow: hidden;
-    z-index: -1;
-    background-image: var(--footer-bg-img);
   }
 </style>
 
@@ -184,12 +160,6 @@
 
 <style>
   .th-footer-background {
-    position: relative;
-    overflow: hidden;
-    width: 100vw;
-    height: var(--footer-height, auto);
-    margin: 0;
-    padding: 0;
     background-color: var(--footer-background-color, var(--secondary-color));
   }
 </style>

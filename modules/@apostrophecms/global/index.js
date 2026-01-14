@@ -125,6 +125,7 @@ export default {
       footerBackgroundColor: {
         type: 'color',
         label: 'Footer Background color',
+        help: 'This color is used as an overlay if a footer background image is set, so it should be a semi-transparent color',
         options: {
           presetColors: standardPresetColors
         }
