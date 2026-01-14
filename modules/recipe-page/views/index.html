@@ -4,13 +4,19 @@
 {% import 'macros.html' as macros %}
 
 {% block main %}
-  <div class="my-4 mx-0 px-4 md:p-0 gap-4 w-full">
-    <h1 class="text-xl leading-loose mt-8">{{ data.page.title }}</h1>
+  <div class="mt-0 mb-4 mx-0 px-4 md:p-0 gap-4 w-full">
+
     {% if data.global.locationType === 'address' %}
-        {{ macros.renderAddressAvailability() }}
+      {{ macros.renderAddressAvailability() }}
     {% endif %}
+
+    <h1 class="th-recipe-page__title text-xl leading-loose mt-8">{{ data.page.title }}</h1>
+    {% if data.page.subTitle %}
+      <h2 class="th-recipe-page__subtitle text-xl my-4">{{ data.page.subTitle }}</h2>
+    {% endif %}
+ 
     <div class="grid grid-cols-3 md:grid-cols-1 items-center justify-center">
-      {% for recipe in data.pieces %}
+      {% for recipe in data.pieces | sort(false, false, 'title') %}
         {% set attachment = apos.image.first(recipe.primaryImage or {}) %}
         {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
         {% set altText = attachment.title %}
@@ -21,16 +27,16 @@
           {% set product = {"title": "n/a"} %}
           {% set productType = "" %}
         {% endif %}
-        <div class="my-4 mx-auto">
-          <figure>
+        <div class="flex flex-col items-start justify-start my-4 mx-auto">
+          <figure style="height:30vh">
             <a href="{{ recipe._url }}">
               <img
-                class="th-recipe-card__primary_img"
+                class="th-recipe-card__primary_img h-full"
                 src="{{ imageUrl }}" 
                 alt="{{altText}}"
               />
             </a>
-            <figcaption class="th-recipe-card__title">{{ recipe.title }}</figcaption>
+            <figcaption class="th-recipe-card__title"><a href="{{ recipe._url }}">{{ recipe.title }}</a></figcaption>
             <figcaption class="th-recipe-card__subtitle">{{ productType }}</figcaption>
           </figure>
         </div>
