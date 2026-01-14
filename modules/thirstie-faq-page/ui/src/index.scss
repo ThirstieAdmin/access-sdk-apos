@@ -1,0 +1,32 @@
+.th-faq {
+  margin: 2rem auto 4rem;
+}
+
+.th-faq__area {
+  margin-top: 0;
+}
+
+.th-faq__area h1 {
+  font-size: 3rem;
+}
+
+.th-faq__top-list {
+  padding-inline-start: 0;
+}
+
+.th-faq__normal-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.th-faq__normal-text > a {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .th-faq__area {
+    margin-top: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
