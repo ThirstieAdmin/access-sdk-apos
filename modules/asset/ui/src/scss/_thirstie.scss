@@ -76,6 +76,12 @@ th-icon {
 .list-noindent {
   padding-inline-start: 0;
 }
+.list-none {
+    list-style-type: none;
+}
+.list-disc {
+    list-style-type: disc;
+}
 
 /* Background and Text Color Classes */
 .bg-inherit {
@@ -83,6 +89,13 @@ th-icon {
 }
 .text-inherit {
   color: inherit
+}
+
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+.max-w-screen-md {
+  max-width: 612px;
 }
 
 /* md */
