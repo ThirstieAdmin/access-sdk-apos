@@ -22,7 +22,7 @@ export default {
         type: 'string',
         label: 'Title'
       },
-      textColor: {
+      titleTextColor: {
         type: 'color',
         label: 'Title text Color',
         options: {
@@ -44,6 +44,30 @@ export default {
       titleClassName: {
         type: 'string',
         label: 'Class to apply to title'
+      },
+      textColor: {
+        type: 'color',
+        label: 'Text Color',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      backgroundColor: {
+        type: 'color',
+        label: 'Recipe Background Color',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      borderRadius: {
+        type: 'string',
+        label: 'Recipe Border Radius',
+        help: 'Defaults to --th-border-radius'
+      },
+      imgHeight: {
+        type: 'string',
+        label: 'Recipe Image Height',
+        help: 'Defaults to 416px'
       },
       showDivider: {
         type: 'boolean',
@@ -79,7 +103,11 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: [ 'title', 'textColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'displayType', '_recipes' ]
+        fields: [
+          'title', 'titleTextColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName',
+          'textColor', 'backgroundColor', 'borderRadius', 'imgHeight',
+          'showDivider', 'displayType', '_recipes'
+        ]
       }
     }
   }

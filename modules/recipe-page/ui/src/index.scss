@@ -2,6 +2,9 @@
 .th-recipe-card {
     box-sizing: border-box;
     padding: 1rem;
+    background-color: var(--th-recipe-bg, var(--secondary-contrasting-color));
+    color: var(--th-recipe-textcolor, var(--secondary-color));
+    border-radius: var(--th-recipe-card__border-radius, var(--th-border-radius, 0.5rem));
 }
 
 .th-recipe-card-header {
@@ -14,6 +17,7 @@
   height: 100%;
   max-height: var(--th-recipe-card__img-max-height, 416px);
   object-fit: cover;
+  border-radius: var(--th-recipe-card__border-radius, var(--th-border-radius, 0.5rem));
 }
 
 .th-recipe-card__title {
@@ -71,7 +75,7 @@
   .th-recipe-res-card {
     --card-width: calc(100vw - 6rem);
     --card-height: auto;
-    width: var(--card-width);
+    width: 100%;
     height: auto;
     margin: 1rem auto;
   }
