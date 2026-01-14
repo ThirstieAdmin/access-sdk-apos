@@ -10,6 +10,20 @@
       {{ macros.renderAddressAvailability() }}
     {% endif %}
 
+    {% if data.page and data.page._ancestors.length %}
+    <nav class="my-4 mx-2 th-breadcrumb">
+      {% for page in data.page._ancestors %}
+        <a href="{{ page._url }}">{{ page.title }}</a>&nbsp;<th-icon icon="chevron-forward" width="14" height="14"></th-icon>
+      {% endfor %}
+      {% if data.piece %}
+        <a href="{{ data.page._url }}">{{ data.page.title }}</a>&nbsp;<th-icon icon="chevron-forward" width="14" height="14"></th-icon>
+        <span>{{ data.piece.title }}</span>
+      {% else %}
+        <span>{{ data.page.title }}</span>
+      {% endif %}
+    </nav>
+    {% endif %}
+
     <h1 class="th-recipe-page__title text-xl leading-loose mt-8">{{ data.page.title }}</h1>
     {% if data.page.subTitle %}
       <h2 class="th-recipe-page__subtitle text-xl my-4">{{ data.page.subTitle }}</h2>

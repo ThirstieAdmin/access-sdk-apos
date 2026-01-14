@@ -159,3 +159,9 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   width: fit-content;
   line-height: 120%;
 }
+
+.th-breadcrumb {
+  align-self: start;
+  text-align: left;
+  color: var(--th-c-greysMediumDarkGrey)
+}
