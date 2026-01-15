@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 
 {% block main %}
-  <section class="th-welcome">
+  <section class="th-welcome my-8">
     {% if not data.user %}
       {# Message only for logged out users. #}
       <h3 class="th-welcome__help">This page is for admins only</h3>
       <p>
-        Use the credentials created during setup with the CLI tool or create a new user with the CLI command:
+        Use the credentials provided by Thirstie
+      </p>
+      <p class="th-welcome__cta">
+        <a class="th-button th-button--cta" href="/login">Log in for <th-data-query context="session" query="application"></th-data-query></a>
       </p>
       <pre class="th-welcome__code">
         <span class="th-welcome__code__context">Command Line</span>
@@ -14,9 +17,6 @@
           node app @apostrophecms/user:add myUsername admin
         </code>
       </pre>
-      <p class="th-welcome__cta">
-        <a class="th-button th-button--cta" href="/login">Then log in here</a>
-      </p>
     {% endif %}
 
     <div class="th-welcome__area">
@@ -25,18 +25,20 @@
           Welcome to Thirstie Access
         </h1>
         {# Message only for logged in users. #}
-        {% if not data.query['apos-edit'] %}
-          <p>
-            Enter <span class="th-mode">Edit</span> mode from the admin bar <span style="display:inline-block; transform: rotate(45deg)">👆</span> to begin.
-          </p>
-        {% else %}
-          <p>
-            Add and edit content below in the content area. 👇
-          </p>
-        {% endif %}
+        <p>
+          Enter <span class="th-mode">Edit</span> mode from the admin bar <span style="display:inline-block; transform: rotate(45deg)">👆</span> to begin.
+        </p>
         <p>
           For a guide on how to configure and customize this project, <a href="https://a3.docs.apostrophecms.com/" target="_blank">please check out the Apostrophe 3 documentation</a>.
         </p>
+        <hr>
+        <figure>
+          <figcaption><h2>Site settings</h2></figcaption>
+          <ul>
+            <li>Storefront application: <th-data-query context="session" query="application"></th-data-query></li>
+            <li>Environment: {{ data.thirstieEnvironment }}</li>
+          </ul>
+        </figure>
       {% endif %}
     </div>
   </section>
