@@ -4,6 +4,8 @@
   display: block;
   height: var(--footer-height, 40vh);
   width: 100vw;
+  padding: 0;
+  margin: 4rem 0 0;
 }
 .th-footer-content {
   color: var(--footer-text-color, var(--secondary-contrasting-color));
@@ -54,7 +56,7 @@
   grid-column: 2;
   grid-row: 3 ; 
 }
-.th-footer-brand-logo {}
+.th-footer-brand__logo {}
 .th-disclaimer-content {
   color: var(--footer-text-color, var(--secondary-contrasting-color));
 }

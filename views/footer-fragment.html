@@ -1,10 +1,10 @@
 {% fragment footer() %}
 
-<footer class="th-footer m-0 mt-8 p-0">
+<footer class="th-footer">
 
-  <div class="th-footer-content th-footer-background grid grid-cols-2 gap-2">
-    <nav class="th-footer-nav my-0 py-0">
-      <ul class="th-footer-nav__links flex flex-row justify-around">
+  <div class="grid grid-cols-2 gap-2 th-footer-content th-footer-background">
+    <nav class="my-0 py-0 th-footer-nav ">
+      <ul class="flex flex-row justify-around th-footer-nav__links">
         <li><a href="/terms-of-use">Terms & Conditions</a></li>
         <li><a href="/privacy-policy">Privacy</a></li>
         <li><a href="/faq">FAQ</a></li>
@@ -26,7 +26,7 @@
         {{ data.global.footerTop.items[0].code | safe}}
       {% endif %}
     </div>
-    <div class="th-footer-thirstie flex flex-col justify-end items-center">
+    <div class="flex flex-col justify-end items-center th-footer-thirstie">
       <div class="mx-0 my-1 p-0 th-font-12">
         <span class="m-0 p-0">Shopping experience powered by</span>
         <a
@@ -43,18 +43,18 @@
         </a>
       </div>
     </div>
-    <div class="th-footer-brand flex flex-col justify-end items-center">
+    <div class="flex flex-col justify-end items-center th-footer-brand">
       {% if data.global.footerLogo.items | length %}
         {% set imageObj = apos.image.first(data.global.footerLogo) %}
         {% set imageText = data.global.footerLogo.items[0].alt or data.global.footerLogo.items[0].title %}
         {% set imageUrl = apos.attachment.url(imageObj, { size: 'one-third' }) %}
-        <div class="my-1 th-footer-brand-logo">
+        <div class="my-1 th-footer-brand__logo">
           <img src="{{ imageUrl }}" alt="{{imageText}}" height="36"/>
         </div>
       {% endif %}
-      <div class="th-font-12">
+      <div class="th-font-12 th-footer-brand__copyright">
         {% set disclaimerText = data.global.footerTrademarkText or "All rights reserved" %}
-        <span>&copy; {{ data.copyrightYear }}&nbsp;{{ disclaimerText }}</span> 
+        <span>&copy; {{ data.copyrightYear }}&nbsp;{{ disclaimerText }}</span>
       </div>
     </div>
   </div>

@@ -26,18 +26,10 @@ export default {
         help: 'Message displayed if product is out of stock for provided location. "Product not available" (default)',
         required: false
       },
-      showLink: {
-        type: 'boolean',
-        label: 'Always show PDP link on product card',
-        def: true
-      },
       linkText: {
         type: 'string',
         label: 'Text for link to PDP',
-        def: 'Learn more',
-        if: {
-          showLink: true
-        }
+        def: 'Learn more'
       },
       showProductCardImageAs: {
         type: 'select',
@@ -74,7 +66,7 @@ export default {
     group: {
       productCard: {
         label: 'Product Cards',
-        fields: ['ctaLabel', 'locationLabel', 'unavailableLabel', 'showProductCardImageAs', 'showLink', 'linkText']
+        fields: ['ctaLabel', 'locationLabel', 'unavailableLabel', 'showProductCardImageAs', 'linkText']
       },
       productDetail: {
         label: 'Product Detail Page',
