@@ -57,13 +57,13 @@ apostrophe({
           {
             title: 'Thirstie Terms of Use',
             type: 'thirstie-termsofuse-page',
-            slug: '/terms-of-use',
+            slug: '/thirstie-terms-of-use',
             parkedId: 'thirstieTermsOfUsePage'
           },
           {
             title: 'Thirstie Privacy Policy',
             type: 'thirstie-privacy-page',
-            slug: '/privacy-policy',
+            slug: '/thirstie-privacy-policy',
             parkedId: 'thirstiePrivacyPage'
           },
           {
