@@ -2,11 +2,19 @@
 
 {% block main %}
 <h1>Sitemap</h1>
-<ul>
-  <li><a href="{{ data.home._url }}">{{ data.home.title }}</a></li>
-  {% for page in data.home._children %}
-    <li><a href="{{ page._url }}">{{ page.title }}</a></li>
-  {% endfor %}
-  <li><a href="/sitemap.xml" target="_blank">sitemap.xml</a></li>
-</ul>
+<figure>
+  <figcaption>
+    <th-data-query context="session" query="application"></th-data-query>
+    {% if data.thirstieEnvironment == 'sandbox' %}
+      <span>&mdash; {{ data.thirstieEnvironment }}</span>
+    {% endif %}
+  </figcaption>
+  <ul>
+    <li><a href="{{ data.home._url }}">{{ data.home.title }}</a></li>
+    {% for page in data.home._children %}
+      <li><a href="{{ page._url }}">{{ page.title }}</a></li>
+    {% endfor %}
+    <li><a href="/sitemap.xml" target="_blank">sitemap.xml</a></li>
+  </ul>
+</figure>
 {% endblock %}
