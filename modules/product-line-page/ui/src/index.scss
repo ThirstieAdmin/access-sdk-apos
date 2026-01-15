@@ -18,16 +18,9 @@
   max-height: calc(300px - 3.75rem);
 }
 
-.th-pdp-content {
-  box-sizing: border-box;
-  margin: 0 2rem;
-}
-
 .th-pdp-left {
   width: 60vw;
   height: 642px;
-  padding: 2rem 0;
-  margin: 0 auto;
 }
 
 .th-pdp-left-content {
@@ -51,6 +44,15 @@
 .th-pdp-left-content swiper-container {
   background-color: #FFF;
 }
+
+.th-pdp-description {
+  border: none;
+  border-top: 1px solid var(--th-availability-border);
+}
+.th-pdp-description__title {
+  line-height: 150%;
+}
+
 .th-pdp-swiper__container {
   width:100%;
   height:100%;
@@ -91,14 +93,11 @@ h1.th-pdp-right__title {
 @media screen and (max-width: 768px) {
   .th-pdp-content {
     grid-template-columns: 1fr;
-    margin: 0 1rem;
   }
 
   .th-pdp-left {
     width: 100vw;
     height: 100%;
-    padding: 2rem 0;
-    margin: 0 auto;
   }
 
   .th-pdp-left-content {

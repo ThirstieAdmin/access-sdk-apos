@@ -141,6 +141,10 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   background-color: var(--th-availability-bg, transparent);
   padding:2rem 0 1rem;
 }
+.th-availability-inline-container {
+  background-color: transparent;
+  padding:2rem 0 1rem;
+}
 .th-availability__form {
   border: 1px solid var(--th-availability-border);
   padding:2rem 2rem .5rem;
@@ -160,8 +164,27 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   line-height: 120%;
 }
 
+.th-availability-inline-container {
+  background-color: transparent;
+  padding: 2rem 0 .5rem;
+}
+.th-availability-inline__form {
+  border: none;
+  border-top: 1px solid var(--th-availability-border);
+  border-bottom: 1px solid var(--th-availability-border);
+  padding:1rem 0 0;
+  margin:0 auto;
+  width: 600px;
+  max-width: 100%;
+}
+
+.th-availability-inline__form__title {
+  color: var(--th-availability-text-color);
+  font-weight:900;
+}
+
 .th-breadcrumb {
   align-self: start;
   text-align: left;
-  color: var(--th-c-greysMediumDarkGrey)
+  color: var(--th-c-greysMediumDarkGrey);
 }
