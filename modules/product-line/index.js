@@ -1,4 +1,5 @@
 import ThirstieClient from '@thirstie/thirstieclient';
+import { default as richTextOptions } from '../../lib/rich-text-options.js';
 
 export default {
   extend: '@apostrophecms/piece-type',
@@ -217,9 +218,38 @@ export default {
         textarea: true,
         required: true
       },
+      altDescription: {
+        type: 'area',
+        label: 'Alternative Description',
+        help: 'If provided, this description will be used instead of the main description on product detail pages',
+        textarea: true,
+        required: false,
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/rich-text': richTextOptions,
+            '@apostrophecms/html': {}
+          }
+        }
+      },
+      tastingNotes: {
+        type: 'area',
+        label: 'Tasting Notes',
+        help: 'If provided, tasting notes will be shown on product detail pages',
+        textarea: true,
+        required: false,
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/rich-text': richTextOptions,
+            '@apostrophecms/html': {}
+          }
+        }
+      },
       shortDescription: {
         type: 'string',
-        label: 'Description',
+        label: 'Short Description',
+        help: 'A brief description shown on product listings',
         max: 200,
         textarea: true,
         required: false
@@ -317,7 +347,11 @@ export default {
     group: {
       basics: {
         label: 'Basics',
-        fields: ['thirstiePLID', 'title', 'description', 'shortDescription', 'productType', 'proof', 'abvPercent', 'imageSpec']
+        fields: ['thirstiePLID', 'title', 'description', 'productType', 'proof', 'abvPercent', 'imageSpec']
+      },
+      additionalInformation: {
+        label: 'Additional Information',
+        fields: ['shortDescription', 'altDescription', 'tastingNotes']
       },
       images: {
         label: 'Images',

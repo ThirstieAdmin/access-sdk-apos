@@ -15,7 +15,6 @@
   {% set imageUrl = item.imageSpec | replace("{dims}.", ",x600f.") %}
 {% endif %}
 
-
 {% block main %}
 {% if data.page and data.page._ancestors.length %}
   <nav class="w-full my-4 mx-2 th-breadcrumb ">
@@ -30,10 +29,10 @@
     {% endif %}
   </nav>
 {% endif %}
-<section class="th-pdp-content flex flex-row md:flex-col items-start md:items-center justify-center">
-  <div class="th-pdp-left">
-    <div class="th-pdp-left-content flex items-center">
-      {% if data.page.showPDPImageAs == 'carousel' %}
+<section class="border-box flex flex-row md:flex-col items-start md:items-center justify-center px-4 th-pdp-content">
+  <div class="my-0 mx-auto pt-8 th-pdp-left">
+    <div class="flex flex-col items-center th-pdp-left-content ">
+      {% if data.page.showPDPImageAs == 'carousel' or (item._images | length > 0) %}
       <swiper-container
         class="th-pdp-swiper__container"
         thumbs-swiper="#th-pdp-thumbs"
@@ -68,7 +67,7 @@
       {% if item._images | length %}
       <swiper-container
         id="th-pdp-thumbs"
-        class="th-pdp-thumbs"
+        class="th-pdp-thumbs w-full"
         space-between="10"
         slides-per-view="5"
         free-mode="true"
@@ -102,18 +101,52 @@
     </div>
   </div>
   <div class="th-pdp-right">
-    <th-pdp-commerce product-line-id="{{ item.thirstiePLID }}" hide-product-name>
+    <th-pdp-commerce product-line-id="{{ item.thirstiePLID }}" hide-product-name hide-other-info hide-details-footer>
       <div slot="additional-content">
         <h1 class="th-pdp-right__title">{{ item.title }}</h1>
         {% if data.global.locationType === 'address' %}
-          {{ macros.renderAddressAvailability() }}
+          {{ macros.renderAddressAvailabilityInLine() }}
         {% endif %}
       </div>
     </th-pdp-commerce>
+    {% if item.description or item.altDescription.items | length %}
+    <div class="mt-4 py-4 th-pdp-description">
+      <div class="font-bold th-pdp-description__title">Description</div>
+      <div class="th-pdp-description__content">
+        {% if item.altDescription.items[0].type === "@apostrophecms/rich-text" %}
+          {{ apos.area.richText(item.altDescription.items) }}
+        {% elif item.altDescription.items[0].type === "@apostrophecms/html" %}
+          {{ item.altDescription.items[0].code | safe}}
+        {% else %}
+          {{ item.description }}
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if item.tastingNotes.items | length %}
+    <div class="mt-4 py-4 th-pdp-description">
+      <div class="th-pdp-description__title font-bold">Tasting Notes</div>
+      <div class="th-pdp-description__content">
+        {% if item.tastingNotes.items[0].type === "@apostrophecms/rich-text" %}
+          {{ apos.area.richText(item.tastingNotes.items) }}
+        {% elif item.tastingNotes.items[0].type === "@apostrophecms/html" %}
+          {{ item.tastingNotes.items[0].code | safe}}
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    <div class="mt-4 py-4 th-pdp-description">
+      <div class="th-pdp-description__content flex flex-row justify-between">
+        <div><span class="font-bold">Alc./Vol.</span>&nbsp;&nbsp;<span>{{ apos.modules['theme-widget'].percentString(item.abvPercent) }}</span></div>
+        <div><span class="font-bold">Proof</span>&nbsp;&nbsp;<span>{{ item.proof }}</span></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-{% if data.page.showRelatedProductsPDP and item._productlines | length %}
+{% if item._productlines | length and not data.page.hideRelatedProductsPDP %}
 <h3>Related products</h3>
 <div class="flex flex-row md:flex-col items-center justify-center gap-4 m-0 p-8">
   {% for productLine in item._productlines %}
@@ -122,7 +155,7 @@
 </div>
 {% endif %}
 
-{% if data.page.showRecipesPDP and item._recipes | length %}
+{% if item._recipes | length and not data.page.hideRecipesPDP %}
 <div class="relative">
   <h3>Featured Cocktails</h3>
   <swiper-container
@@ -135,7 +168,10 @@
   {% for recipe in item._recipes %}
     <swiper-slide>
       <div class="th-pdp-recipe-card">
-        {% render recipeFragment.recipeCardWide(recipe) %}
+        {% render recipeFragment.recipeCardWide(
+          recipe,
+          {textColor: apos.modules['theme-widget'].convertPreset(data.global.primaryColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.global.primaryContrastingColor)}
+        ) %}
       </div>
     </swiper-slide>
   {% endfor %}
