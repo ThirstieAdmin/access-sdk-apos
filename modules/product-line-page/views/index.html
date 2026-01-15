@@ -4,7 +4,7 @@
 {% import 'macros.html' as macros %}
 
 {% block main %}
-{% set showLink = "show-link" if data.page.showLink else "" %}
+
 {% if data.page.showProductCardImageAs in ("no-image", "carousel") %}
   {% set showImage = "no-image" %}
 {% else %}
@@ -71,7 +71,7 @@
                 {% endfor %}
               </swiper-container>
             {% endif %}
-            <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" cta-label="{{ data.page.ctaLabel }}" link-text="{{ data.page.linkText }}" {{ showLink }} {{ showImage }}></th-product-add-to-cart>
+            <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" cta-label="{{ data.page.ctaLabel }}"  show-link link-text="{{ data.page.linkText }}" {{ showImage }}></th-product-add-to-cart>
           </div>
         {% endfor %}
       </div>
