@@ -4,9 +4,7 @@
 {% set attachment = apos.image.first(recipe.primaryImage or {}) %}
 {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
 {% set altText = attachment.title %}
-<style>
-  
-</style>
+
 <section
  class="th-recipe-card h-full flex flex-col items-start justify-start"
  style="--th-recipe-bg: {{ options.backgroundColor or 'var(--secondary-contrasting-color)' }};--th-recipe-textcolor: {{ options.textColor or 'var(--secondary-color)' }};--th-recipe-card__border-radius: {{ options.borderRadius or 'var(--th-border-radius, 0.5rem)' }};">
