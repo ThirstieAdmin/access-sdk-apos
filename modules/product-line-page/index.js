@@ -52,15 +52,17 @@ export default {
           {label: 'carousel', value: 'carousel'},
         ]
       },
-      showRelatedProductsPDP: {
+      hideRelatedProductsPDP: {
         type: 'boolean',
-        label: 'Show related products on PDP',
-        def: true
+        label: 'Hide related products on PDP',
+        help: 'Add related products in Product Line page',
+        def: false
       },
-      showRecipesPDP: {
+      hideRecipesPDP: {
         type: 'boolean',
-        label: 'Show related recipes on PDP',
-        def: true
+        label: 'Hide related recipes on PDP',
+        help: 'Hide related recipes on Product Line page',
+        def: false
       }
     },
     group: {
@@ -70,7 +72,7 @@ export default {
       },
       productDetail: {
         label: 'Product Detail Page',
-        fields: ['showPDPImageAs']
+        fields: ['showPDPImageAs', 'hideRelatedProductsPDP', 'hideRecipesPDP']
       }
     }
   }

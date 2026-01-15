@@ -36,8 +36,9 @@ export default {
         }
         return headerHeight;
       },
-      fetchThirstieEnvironment(data) {
-        return data?.thirstieEnvironment || process.env.THENV;
+      percentString(txtValue, precision) {
+        const abv = parseFloat(txtValue).toFixed(precision || 1);
+        return txtValue ? `${abv}%` : '';
       }
     }
   }

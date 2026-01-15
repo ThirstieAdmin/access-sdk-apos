@@ -68,6 +68,20 @@ th-icon {
   margin-bottom: 0.25rem;
 }
 
+.p-8 {
+  padding: 2rem;
+}
+.pt-8 {
+  padding-top:2rem;
+}
+.pb-8 {
+  padding-bottom:2rem;
+}
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 /* List items */
 .list-style-none {
   overflow: hidden;
@@ -102,5 +116,18 @@ th-icon {
 @media screen and (max-width: 768px) {
   .md\:p-0 {
     padding: 0!important;
+  }
+  .md\:p-8 {
+  padding: 2rem;
+  }
+  .md\:pt-8 {
+    padding-top:2rem;
+  }
+  .md\:pb-8 {
+    padding-bottom:2rem;
+  }
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
