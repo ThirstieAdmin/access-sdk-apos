@@ -35,6 +35,9 @@ export default {
           headerHeight += adminUserAdjustment;
         }
         return headerHeight;
+      },
+      fetchThirstieEnvironment(data) {
+        return data?.thirstieEnvironment || process.env.THENV;
       }
     }
   }
