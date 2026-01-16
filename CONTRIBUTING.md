@@ -30,3 +30,6 @@ Note that we do not specify scopes in the commit.
 ## Branching
 
 Branch names should reference the ticket in which the changes were requested, and a short description, `TH-0000_make_it_better`
+
+What about tickets?
+
