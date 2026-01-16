@@ -31,5 +31,12 @@ Note that we do not specify scopes in the commit.
 
 Branch names should reference the ticket in which the changes were requested, and a short description, `TH-0000_make_it_better`
 
-What about tickets?
+### Referencing tickets in commits
 
+Requiring a ticket reference in commits adds unnecessary process overhead. However, if a branch contains commits that impact multiple tickets you can add ticket references in the footer of the commit message as follows:
+
+```
+feat: I did some work
+
+Refs: TH-0001, TH-0002
+```
