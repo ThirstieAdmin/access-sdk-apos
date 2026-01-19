@@ -3,7 +3,7 @@ echo " BEGINING LAUNCH SCRIPT "
 mkdir /etc/codedeploy-agent/
 mkdir /etc/codedeploy-agent/conf
 
-# configure codedeploy agent
+# 1. configure codedeploy agent
 cat <<EOT >> /etc/codedeploy-agent/conf/codedeploy.onpremises.yml
 
 ---
@@ -28,7 +28,7 @@ chmod +x ./install
 
 sudo ./install auto
 
-# install Apostrophe prerequisites
+# 2. install Apostrophe prerequisites
 sudo apt-get install -y nginx
 sudo apt-get install -y curl
 
@@ -37,7 +37,7 @@ sudo apt-get install -y nodejs
 
 sudo npm install -g pm2
 
-# configure nginx
+# 3. configure nginx
 
 PROXY_HOST='Host $host'
 PROXY_REAL_IP='X-Real-IP $remote_addr'
@@ -74,12 +74,12 @@ unset PROXY_FORWARDED_FOR
 unset PROXY_FORWARDED_PROTO
 unset TRY_FILES
 
-# whitelist ec instance ip address with mongodb
+# 4. whitelist ec instance ip address with mongodb
 PUBLIC_IP=$(curl -s http://checkip.amazonaws.com) && curl --user "{{APOS_MONGO_ADMIN_API_KEY}}:{{APOS_MONGO_ADMIN_API_SECRET}}" \
 --digest --include \
 --header "Accept: application/vnd.atlas.2025-03-12+json" \
 --header "Content-Type: application/json" \
--X POST "https://cloud.mongodb.com/api/atlas/v2/groups/68eaabf57a133970207e6a11/accessList" \
+-X POST "https://cloud.mongodb.com/api/atlas/v2/groups/{{APOS_MONGO_ATLAS_GROUPID}}/accessList" \
 -d '[{"comment":"{{APOS_REPO_NAME}}-{{instance_name}}","cidrBlock":"'$PUBLIC_IP'/32"}]'
 
 # configure env file
