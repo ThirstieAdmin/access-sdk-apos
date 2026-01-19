@@ -29,11 +29,6 @@ DEFAULT_BASE_URL_FOR_ENVIRONMENT = {
     'dev': 'getthirstie.com',
     'sandbox': 'sandbox.thirstie.com',
     'prod': 'thirstie.com'
-    }
-HOSTED_ZONES = {
-    'getthirstie.com': 'Z1SYISUN6KCJA',
-    'sandbox.thirstie.com': 'Z00186611GKEFSLY2SRZ1',
-    'thirstie.com': 'Z3AC37MGDUJYRO'
 }
 
 # Lightsail configuration
@@ -67,7 +62,8 @@ def create_site_config(instance_name, brand_urn, site_api_key, site_maps_key, th
     ssm_client = boto3.client('ssm', region_name=AWS_REGION)
     params = ssm_client.get_parameter(Name=ssm_key, WithDecryption=True).get('Parameter', {}).get('Value')
     base_config = json.loads(params)
-
+    HOSTED_ZONES= base_config.get('HOSTED_ZONES')
+ 
     base_url = DEFAULT_BASE_URL_FOR_ENVIRONMENT.get(th_environment, DEFAULT_BASE_URL_FOR_ENVIRONMENT['sandbox'])
     site_hosted_zone = HOSTED_ZONES.get(base_url)
     apos_mongodb_conn_str = Template(APOS_MONGODB_CONN_STRING_TPL).render(
@@ -88,6 +84,7 @@ def create_site_config(instance_name, brand_urn, site_api_key, site_maps_key, th
         'site_server_name': f'{brand_urn}.{base_url}',
         'site_environment': th_environment,
         'site_hosted_zone': site_hosted_zone,
+        'APOS_REPO_URL': f'https://github.com/ThirstieAdmin/{base_config.get("APOS_REPO_NAME")}.git',
         'APOS_MONGODB_URI': apos_mongodb_conn_str,
         'APOS_MONGO_ATLAS_GROUPID': base_config.get('APOS_MONGO_ATLAS_GROUPID')
     }
@@ -126,7 +123,7 @@ class LightsailClient:
         client.create_instance('my-app', brand_urn='mybrand', site_api_key='...', ...)
 
         # Set up load balancer with TLS and DNS
-        client.setup_lb_tls_for_instance('my-app', 'getthirstie.com')
+        client.setup_lb_tls_for_instance('my-app', resource_names=client.resource_names)
 
         # List existing instances
         instances = client.get_instances(service_tag='thirstieaccess')
@@ -178,7 +175,7 @@ class LightsailClient:
 
         response = request_method(urljoin(mongodb_url, action), auth=auth, headers=headers, **kwargs)
         
-        if response.status_code == 200:
+        if response.status_code in (200, 201, 202):
             return response.json()
         else:
             self.logger.error(f"Failed to call MongoDB admin API: {response.status_code}")
@@ -195,11 +192,11 @@ class LightsailClient:
         ip_list = self.get_mongodb_ip_list()
         return ip_address in [ip['cidrBlock'].split('/')[0] for ip in ip_list]
 
-    def add_ip_to_mongodb_access_list(self, ip_address):
+    def add_ip_to_mongodb_access_list(self, ip_address, type='static'):
 
         if not self.check_mongodb_access_list(ip_address):
             APOS_REPO_NAME = self.site_config.get('APOS_REPO_NAME')
-            data = [{"comment": f"{APOS_REPO_NAME}-{self.instance_name}","cidrBlock":f"{ip_address}/32"}]
+            data = [{"comment": f"{APOS_REPO_NAME}-{self.instance_name}-{type}","cidrBlock":f"{ip_address}/32"}]
 
             self.logger.info(f"Adding IP address {ip_address} to MongoDB access list")
             self.logger.info(f"{APOS_REPO_NAME}-{self.instance_name}")
@@ -286,7 +283,7 @@ class LightsailClient:
 
     def get_instances(self, service_tag=None):
         '''
-        Retrieve 
+        Retrieve list of lightsail instances
         '''
 
         def filter_by_service(record):
@@ -364,7 +361,7 @@ class LightsailClient:
 
         # 3. close port 22, only allow ssh access via lightsail consle
         if instance_state == 'running':
-            logging.info('closing ports')
+            logging.info('Restricting instance port 22 to lightsail console only')
             self.close_instance_ports(instance_name)
 
         # 4. ensure static_ip is allocated and attached
@@ -441,9 +438,199 @@ class LightsailClient:
             instance_static_ip = self.check_instance_static_ip()
 
         return instance_static_ip
+    
+    # load balancer and certificate management
+    ##########################################
+
+    def create_load_balancer(self, resource_names=None):
+        if not resource_names:
+            resource_names = self.configure_resource_names(instance_name)
+
+        instance_name = resource_names['instance_name']
+        host_name = resource_names['host_name']
+        site_domain_name = resource_names['site_domain_name']
+        load_balancer_name = resource_names['load_balancer_name']
+        certificate_name = resource_names['certificate_name']
+
+        lb_response = self.lightsail.create_load_balancer(
+            loadBalancerName=load_balancer_name,
+            instancePort=80,
+            certificateName=certificate_name,
+            certificateDomainName=site_domain_name,
+            ipAddressType='dualstack',
+            tags=[
+                {'key': 'service', 'value': 'thirstieaccess'},
+                {'key': 'environment', 'value': 'test'}
+            ]
+        )
+
+        return lb_response
+
+    def attach_load_balancer(self, lb_response, resource_names=None):
+
+        if not resource_names:
+            resource_names = self.configure_resource_names(self.instance_name)
+
+        instance_name = resource_names['instance_name']
+
+        load_balancer_name = lb_response['operations'][0]['resourceName']
+
+        # 1. Attach your Lightsail instance to the load balancer
+        self.lightsail.attach_instances_to_load_balancer(
+            loadBalancerName=load_balancer_name,
+            instanceNames=[instance_name]  # Replace with your instance name
+        )
+        
+        # 2. Get load balancer DNS name for Route 53 record
+        lb_details = self.lightsail.get_load_balancer(
+            loadBalancerName=load_balancer_name
+        )
+
+        return lb_details
+
+    def validate_and_attach_certificate(self, lb_details, resource_names=None):
+
+        if not resource_names:
+            resource_names = self.configure_resource_names(self.instance_name)
+
+        hosted_zone_id = resource_names['hosted_zone_id']
+
+        # 1. Extract certificate name from lb_details (from creating load balancer and attaching to instance)
+        load_balancer_name = lb_details['loadBalancer']['name']
+        assert load_balancer_name == resource_names['load_balancer_name'], f'Load Balancer Name mismatch: {load_balancer_name} vs {resource_names['load_balancer_name']}'
+
+        # 2. Get certificate validation records
+        cert_details_response = self.lightsail.get_load_balancer_tls_certificates(
+            loadBalancerName=load_balancer_name
+        )
+        cert_details = cert_details_response['tlsCertificates'][0]
+        certificate_name = cert_details['name']
+        status = cert_details['status']
+        is_attached = cert_details['isAttached']
+
+        # 3. Add DNS validation record to Route 53
+        if status != 'ISSUED':
+            validation_record = cert_details['domainValidationRecords'][0]
+
+            try:
+                self.route53.change_resource_record_sets(
+                    HostedZoneId=hosted_zone_id,
+                    ChangeBatch={
+                        'Changes': [{
+                            'Action': 'CREATE',
+                            'ResourceRecordSet': {
+                                'Name': validation_record['name'],
+                                'Type': validation_record['type'],
+                                'TTL': 300,
+                                'ResourceRecords': [{'Value': validation_record['value']}]
+                            }
+                        }]
+                    }
+                )
+            except Exception as e:
+                self.logger.error(f"error creating route53 record set: {e}")
+                raise e
+            
+            # 4. Wait for certificate validation
+            print("Waiting for certificate validation...")
+            self.logger.info("Waiting for certificate validation {certificate_name}...")
+            status = ''
+            num_tries = 0
+            while num_tries < 30 and status != 'ISSUED':
+                cert_details_response = self.lightsail.get_load_balancer_tls_certificates(
+                    loadBalancerName=load_balancer_name
+                )
+                cert_details = cert_details_response['tlsCertificates'][0]
+                status = cert_details['status']
+                is_attached = cert_details['isAttached']
+                print(f"Certificate status: {status}")
+                
+                if status == 'ISSUED':
+                    break
+                elif status == 'FAILED':
+                    raise Exception("Certificate validation failed")
+                
+                time.sleep(30)
+                num_tries += 1
+
+        self.logger.info(f"Certificate validated: {certificate_name}")
+        if not is_attached:
+            cert_details = self.attach_cert_to_load_balancer(load_balancer_name, certificate_name)
+        
+        return {'certificate_name': certificate_name, 'status': status, 'cert_details': cert_details}
+
+    def attach_cert_to_load_balancer(self, load_balancer_name, certificate_name):
+
+        lb_attached = self.lightsail.attach_load_balancer_tls_certificate(
+            loadBalancerName=load_balancer_name,
+            certificateName=certificate_name
+        )
+        cert_details_response = self.lightsail.get_load_balancer_tls_certificates(
+            loadBalancerName=load_balancer_name
+        )
+        cert_details = cert_details_response['tlsCertificates'][0]
+
+        return cert_details
+
+    def create_route53_a_record(self, lb_details, resource_names=None):
+
+        if not resource_names:
+            resource_names = self.configure_resource_names(self.instance_name)
+
+        site_domain_name = resource_names.get('site_domain_name')
+        hosted_zone_id = resource_names.get('hosted_zone_id')
+
+        # ELB hosted zone for us-east-2
+        lightsail_elb_hosted_zone = 'Z3AADJGX6KTTL2'
+
+        # Create Route 53 A record pointing to load balancer
+        r53_response = self.route53.change_resource_record_sets(
+            HostedZoneId=hosted_zone_id,
+            ChangeBatch={
+                'Changes': [{
+                    'Action': 'CREATE',
+                    'ResourceRecordSet': {
+                        'Name': site_domain_name,
+                        'Type': 'A',
+                        'AliasTarget': {
+                            'DNSName': lb_details['loadBalancer']['dnsName'],
+                            'EvaluateTargetHealth': False,
+                            'HostedZoneId': lightsail_elb_hosted_zone
+                        }
+                    }
+                }]
+            }
+        )
+
+        return r53_response
+
+    def setup_lb_tls_for_instance(self, instance_name=None, resource_names=None):
+
+        instance_name = instance_name or self.instance_name
+
+        resource_names = resource_names or self.resource_names
+
+        site_domain_name = resource_names.get('site_domain_name')
+        load_balancer_name = resource_names.get('load_balancer_name')
+        certificate_name = resource_names.get('certificate_name')
+        hosted_zone_id = resource_names.get('hosted_zone_id')
+
+        # 1. Load Balancer with TLS Cert
+        lb_response = self.create_load_balancer(resource_names)
+        
+        # 2. Attach to instance
+        lb_details = self.attach_load_balancer(lb_response, resource_names=resource_names)
+        
+        # 3. Validate certificate and then attach to load balancer
+        cert_details = self.validate_and_attach_certificate(lb_details, resource_names=resource_names)
+
+        # 4. Create Route 53 A record pointing to load balancer
+        r53 = self.create_route53_a_record(lb_details, resource_names=resource_names)
+
+        return {'lb_details': lb_details, 'cert_details': cert_details, 'route53': r53}
 
     # instance management / delete_instance methods
-    #########################
+    ###############################################
 
     def get_load_balancer_for_instance(self, instance_name):
         load_balancers = self.lightsail.get_load_balancers()['loadBalancers']
@@ -477,7 +664,8 @@ class LightsailClient:
         host_name = site_domain_name.lstrip(f"{instance_name}.")
         domain_validation_records = cert_details['tlsCertificates'][0]['domainValidationRecords']
 
-        hosted_zone_id = HOSTED_ZONES.get(host_name)
+
+        hosted_zone_id = self.site_config.get('HOSTED_ZONES').get(host_name)
 
         response = dict(
             instance_name=instance_name,
@@ -559,7 +747,8 @@ class LightsailClient:
         else:
             self.logger.info(f"Successfully deleted validation CNAME records for instance {instance_name}")
         
-        self.release_static_ip(instance_name=instance_name, static_ip_name=instance_resources.get('static_ip_name'))
+        if instance_resources.get('static_ip_name'):
+            self.release_static_ip(instance_name=instance_name, static_ip_name=instance_resources.get('static_ip_name'))
 
         return instance_resources
 
@@ -579,8 +768,7 @@ class LightsailClient:
                 self.lightsail.detach_static_ip(staticIpName=static_ip_name)
             except Exception as e:
                 self.logger.error(f"Error removing static IP {instance_name}: {e}")
-                response = e
-            else:
+            finally:
                 response = self.lightsail.release_static_ip(staticIpName=static_ip_name)
 
         return response
