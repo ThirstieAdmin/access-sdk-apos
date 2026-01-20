@@ -27,8 +27,8 @@ from requests.auth import HTTPDigestAuth
 MAX_PAGES = 10
 DEFAULT_BASE_URL_FOR_ENVIRONMENT = {
     'dev': 'getthirstie.com',
-    'sandbox': 'sandbox.thirstie.com',
-    'prod': 'thirstie.com'
+    'sandbox': 'getthirstie.com',
+    'prod': 'access.thirstie.com'
 }
 
 # Lightsail configuration
@@ -138,11 +138,14 @@ class LightsailClient:
         self.route53 = boto3.client('route53')
 
         self.logger = get_logger('LightsailClient')
-        self.environment = environment
 
+        self.environment = environment
         self.instance_name = instance_name
+
         self.site_config = create_site_config(instance_name, brand_urn, site_api_key, site_maps_key, th_environment=environment)
-        self.resource_names = self.configure_resource_names(instance_name)
+        self.resource_names = self.configure_resource_names()
+
+        self.logger.info(f"Initialized LightsailClient for instance: {self.instance_name}, environment: {self.environment}")
 
     @property
     def launch_script(self):
@@ -175,7 +178,7 @@ class LightsailClient:
 
         response = request_method(urljoin(mongodb_url, action), auth=auth, headers=headers, **kwargs)
         
-        if response.status_code in (200, 201, 202):
+        if response.status_code in (200, 201, 202, 204):
             return response.json()
         else:
             self.logger.error(f"Failed to call MongoDB admin API: {response.status_code}")
@@ -223,24 +226,22 @@ class LightsailClient:
         
         return self.get_mongodb_ip_list()
 
-    def configure_resource_names(self, instance_name, host_name=None):
+    def configure_resource_names(self):
+
         environment = getattr(self, 'environment', 'sandbox')
+        instance_name = self.site_config.get('instance_name')
+        host_name = self.site_config.get('base_url', DEFAULT_BASE_URL_FOR_ENVIRONMENT.get(environment))
+        brand_urn = self.site_config.get('brand_urn')
+        hosted_zone_id = self.site_config['site_hosted_zone']
+        site_server_name = self.site_config['site_server_name']
 
-        host_name = host_name or DEFAULT_BASE_URL_FOR_ENVIRONMENT.get(environment)
-        try:
-            hosted_zone_id = self.site_config['site_hosted_zone']
-        except Exception:
-            self.logger.error(f"Could not find hosted zone for host_name: {host_name}")
-
-        sld, tld = host_name.rsplit('.', 1)
+        sld, tld = site_server_name.rsplit('.', 1)
         sld = sld.replace('.', '-')
-
-        site_domain_name = f'{instance_name}.{host_name}'
 
         cfg = dict(
             instance_name=instance_name,
             host_name=host_name,
-            site_domain_name=site_domain_name,
+            site_domain_name=site_server_name,
             certificate_name=f'{instance_name}-{sld}-{tld}-lbcert',
             load_balancer_name=f'{instance_name}-{sld}-lb',
             static_ip_name=f'{instance_name}-{sld}-static-ip',
@@ -438,47 +439,75 @@ class LightsailClient:
             instance_static_ip = self.check_instance_static_ip()
 
         return instance_static_ip
-    
+
     # load balancer and certificate management
     ##########################################
 
     def create_load_balancer(self, resource_names=None):
         if not resource_names:
-            resource_names = self.configure_resource_names(instance_name)
+            resource_names = self.resource_names
 
-        instance_name = resource_names['instance_name']
-        host_name = resource_names['host_name']
-        site_domain_name = resource_names['site_domain_name']
         load_balancer_name = resource_names['load_balancer_name']
+        site_domain_name = resource_names['site_domain_name']
         certificate_name = resource_names['certificate_name']
 
-        lb_response = self.lightsail.create_load_balancer(
-            loadBalancerName=load_balancer_name,
-            instancePort=80,
-            certificateName=certificate_name,
-            certificateDomainName=site_domain_name,
-            ipAddressType='dualstack',
-            tags=[
-                {'key': 'service', 'value': 'thirstieaccess'},
-                {'key': 'environment', 'value': 'test'}
-            ]
-        )
+        # 1) check for existing
+        try:
+            lb_details = self.lightsail.get_load_balancer(loadBalancerName=load_balancer_name)
+        except Exception:
+            lb_details = None
 
-        return lb_response
+        if not lb_details:
+            # 2) otherwise, create it
+            self.logger.info(f"Creating load balancer {load_balancer_name}")
+            try:
+                lb_response = self.lightsail.create_load_balancer(
+                    loadBalancerName=load_balancer_name,
+                    instancePort=80,
+                    certificateName=certificate_name,
+                    certificateDomainName=site_domain_name,
+                    ipAddressType='dualstack',
+                    tags=[
+                        {'key': 'service', 'value': 'thirstieaccess'},
+                        {'key': 'environment', 'value': self.environment}
+                    ]
+                )
+            except Exception as e:
+                self.logger.error(f"Error creating load balancer {load_balancer_name}: {e}")
+                raise
 
-    def attach_load_balancer(self, lb_response, resource_names=None):
+            lb_details = self.lightsail.get_load_balancer(
+                loadBalancerName=load_balancer_name
+            )
+        else:
+            self.logger.info(f"Load balancer {load_balancer_name} already exists.")
+
+        return lb_details
+
+    def attach_load_balancer(self, resource_names=None):
 
         if not resource_names:
-            resource_names = self.configure_resource_names(self.instance_name)
+            resource_names = self.configure_resource_names()
 
         instance_name = resource_names['instance_name']
+        load_balancer_name = resource_names['load_balancer_name']
+         # 1) check for existing
+        try:
+            lb_details = self.create_load_balancer(resource_names=resource_names)
+        except Exception:
+            lb_details = None
+            return lb_details
 
-        load_balancer_name = lb_response['operations'][0]['resourceName']
+        if not lb_details:
+            self.logger.info(f"Load balancer {load_balancer_name} exists.")
+            assert False, f"Load balancer {load_balancer_name} does not exist."
+
+        assert instance_name == self.instance_name and load_balancer_name == resource_names['load_balancer_name']
 
         # 1. Attach your Lightsail instance to the load balancer
         self.lightsail.attach_instances_to_load_balancer(
             loadBalancerName=load_balancer_name,
-            instanceNames=[instance_name]  # Replace with your instance name
+            instanceNames=[instance_name, ]  # Replace with your instance name
         )
         
         # 2. Get load balancer DNS name for Route 53 record
@@ -488,29 +517,34 @@ class LightsailClient:
 
         return lb_details
 
-    def validate_and_attach_certificate(self, lb_details, resource_names=None):
+    def validate_and_attach_certificate(self, resource_names=None):
 
         if not resource_names:
-            resource_names = self.configure_resource_names(self.instance_name)
+            resource_names = self.resource_names
 
         hosted_zone_id = resource_names['hosted_zone_id']
+        load_balancer_name = resource_names['load_balancer_name']
 
-        # 1. Extract certificate name from lb_details (from creating load balancer and attaching to instance)
-        load_balancer_name = lb_details['loadBalancer']['name']
-        assert load_balancer_name == resource_names['load_balancer_name'], f'Load Balancer Name mismatch: {load_balancer_name} vs {resource_names['load_balancer_name']}'
+        # 1. Get certificate validation records
+        try:
+            cert_details_response = self.lightsail.get_load_balancer_tls_certificates(
+                loadBalancerName=load_balancer_name
+            )
+        except Exception as e:
+            self.logger.error(f"Error getting load balancer TLS certificates: {e}")
+            raise e
 
-        # 2. Get certificate validation records
-        cert_details_response = self.lightsail.get_load_balancer_tls_certificates(
-            loadBalancerName=load_balancer_name
-        )
         cert_details = cert_details_response['tlsCertificates'][0]
         certificate_name = cert_details['name']
         status = cert_details['status']
         is_attached = cert_details['isAttached']
 
-        # 3. Add DNS validation record to Route 53
+        # 2. Add DNS validation record to Route 53
         if status != 'ISSUED':
             validation_record = cert_details['domainValidationRecords'][0]
+
+            self.logger.info(f"Creating Route53 record set for certificate {certificate_name} in hosted zone {hosted_zone_id}")
+            self.logger.info(f"validation record: {validation_record['name']} {validation_record['type']} = {validation_record['value']}")
 
             try:
                 self.route53.change_resource_record_sets(
@@ -530,10 +564,11 @@ class LightsailClient:
             except Exception as e:
                 self.logger.error(f"error creating route53 record set: {e}")
                 raise e
-            
-            # 4. Wait for certificate validation
-            print("Waiting for certificate validation...")
-            self.logger.info("Waiting for certificate validation {certificate_name}...")
+
+            self.logger.info(f"Created Route53 record set for certificate {certificate_name}")
+
+            # 3. Wait for certificate validation
+            self.logger.info(f"Waiting for certificate validation {certificate_name}...")
             status = ''
             num_tries = 0
             while num_tries < 30 and status != 'ISSUED':
@@ -553,11 +588,16 @@ class LightsailClient:
                 time.sleep(30)
                 num_tries += 1
 
+        if status != 'ISSUED':
+            raise Exception("Certificate validation failed")
+
         self.logger.info(f"Certificate validated: {certificate_name}")
-        if not is_attached:
-            cert_details = self.attach_cert_to_load_balancer(load_balancer_name, certificate_name)
         
-        return {'certificate_name': certificate_name, 'status': status, 'cert_details': cert_details}
+        if not is_attached:
+            self.logger.info(f"Attaching certificate {certificate_name} to load balancer {load_balancer_name}")
+            cert_details = self.attach_cert_to_load_balancer(load_balancer_name, certificate_name)
+
+        return {'certificate_name': certificate_name, 'status': status, 'cert_details': cert_details, 'is_attached': is_attached}
 
     def attach_cert_to_load_balancer(self, load_balancer_name, certificate_name):
 
@@ -572,13 +612,23 @@ class LightsailClient:
 
         return cert_details
 
-    def create_route53_a_record(self, lb_details, resource_names=None):
+    def create_route53_a_record(self, resource_names=None):
 
         if not resource_names:
-            resource_names = self.configure_resource_names(self.instance_name)
+            resource_names = self.configure_resource_names()
 
         site_domain_name = resource_names.get('site_domain_name')
         hosted_zone_id = resource_names.get('hosted_zone_id')
+        load_balancer_name = resource_names.get('load_balancer_name')
+
+        # 1) check that load balancer exists
+        try:
+            lb_details = self.lightsail.get_load_balancer(loadBalancerName=load_balancer_name)
+        except Exception:
+            self.logger.info(f"Load balancer {load_balancer_name} does not exist")
+            raise
+
+        load_balancer_dns_name = lb_details['loadBalancer']['dnsName']
 
         # ELB hosted zone for us-east-2
         lightsail_elb_hosted_zone = 'Z3AADJGX6KTTL2'
@@ -593,7 +643,7 @@ class LightsailClient:
                         'Name': site_domain_name,
                         'Type': 'A',
                         'AliasTarget': {
-                            'DNSName': lb_details['loadBalancer']['dnsName'],
+                            'DNSName': load_balancer_dns_name,
                             'EvaluateTargetHealth': False,
                             'HostedZoneId': lightsail_elb_hosted_zone
                         }
@@ -604,9 +654,7 @@ class LightsailClient:
 
         return r53_response
 
-    def setup_lb_tls_for_instance(self, instance_name=None, resource_names=None):
-
-        instance_name = instance_name or self.instance_name
+    def setup_lb_tls_for_instance(self, resource_names=None):
 
         resource_names = resource_names or self.resource_names
 
@@ -616,23 +664,30 @@ class LightsailClient:
         hosted_zone_id = resource_names.get('hosted_zone_id')
 
         # 1. Load Balancer with TLS Cert
+        self.logger.info(f"1. Setting up TLS for load balancer {load_balancer_name}")
         lb_response = self.create_load_balancer(resource_names)
         
         # 2. Attach to instance
-        lb_details = self.attach_load_balancer(lb_response, resource_names=resource_names)
-        
-        # 3. Validate certificate and then attach to load balancer
-        cert_details = self.validate_and_attach_certificate(lb_details, resource_names=resource_names)
+        self.logger.info(f"2. Attaching load balancer {load_balancer_name} to instance {self.instance_name}")
+        lb_details = self.attach_load_balancer(resource_names=resource_names)
 
-        # 4. Create Route 53 A record pointing to load balancer
-        r53 = self.create_route53_a_record(lb_details, resource_names=resource_names)
+        # 3. Create Route 53 A record pointing to load balancer
+        self.logger.info(f"3. Creating Route 53 A record for load balancer {load_balancer_name}")
+        r53 = self.create_route53_a_record(resource_names=resource_names)
+
+        # 4. Validate certificate and then attach to load balancer
+        self.logger.info(f"4. Validating and attaching certificate {certificate_name} to load balancer {load_balancer_name}")
+        cert_details = self.validate_and_attach_certificate(resource_names=resource_names)
+
 
         return {'lb_details': lb_details, 'cert_details': cert_details, 'route53': r53}
 
     # instance management / delete_instance methods
     ###############################################
 
-    def get_load_balancer_for_instance(self, instance_name):
+    def get_load_balancer_for_instance(self, instance_name=None):
+        instance_name = instance_name or self.instance_name
+
         load_balancers = self.lightsail.get_load_balancers()['loadBalancers']
 
         for lb in load_balancers:
@@ -680,26 +735,39 @@ class LightsailClient:
 
         return response
 
-    def cleanup_network_resources(self, instance_name):
+    def cleanup_network_resources(self):
 
-        instance_resources = self.get_resource_names(instance_name)
+        resource_names = self.configure_resource_names()
+        instance_name = self.instance_name
+        load_balancer_name = resource_names.get('load_balancer_name')
+        site_domain_name = resource_names.get('site_domain_name')
+        hosted_zone_id = resource_names.get('hosted_zone_id')
 
-        if not instance_resources:
+        if not resource_names:
             self.logger.warning(f"No networkresources found for {instance_name}")
             return None
 
-        # 1. Delete Route 53 A record
+        # 1) check that load balancer exists
+        try:
+            lb_details = self.lightsail.get_load_balancer(loadBalancerName=load_balancer_name)
+        except Exception:
+            self.logger.info(f"Load balancer {load_balancer_name} does not exist")
+            raise
+
+        load_balancer_dns_name = lb_details['loadBalancer']['dnsName']
+
+        self.logger.info(f"1) Deleting Route 53 A record for instance {instance_name}")
         try:
             self.route53.change_resource_record_sets(
-                HostedZoneId=instance_resources['hosted_zone_id'],
+                HostedZoneId=hosted_zone_id,
                 ChangeBatch={
                     'Changes': [{
                         'Action': 'DELETE',
                         'ResourceRecordSet': {
-                            'Name': instance_resources['site_domain_name'],
+                            'Name': site_domain_name,
                             'Type': 'A',
                             'AliasTarget': {
-                                'DNSName': instance_resources['load_balancer_dns_name'],
+                                'DNSName': load_balancer_dns_name,
                                 'EvaluateTargetHealth': False,
                                 'HostedZoneId': AWS_LIGHTSAIL_ELB_HOSTED_ZONE
                             }
@@ -708,21 +776,21 @@ class LightsailClient:
                 }
             )
         except Exception as e:
-            self.logger.error(f"Deleting A record: {e}")
+            self.logger.error(f"Error deleting A record: {e}")
         else:
             self.logger.info(f"Successfully deleted A record for instance {instance_name}")
 
-        # 2. Delete load balancer (this incurs charges)
+        self.logger.info(f"2) Deleting load balancer for instance {instance_name}")
         try:
             self.lightsail.delete_load_balancer(
                 loadBalancerName=instance_resources['load_balancer_name']
             )
         except Exception as e:
-            self.logger.error(f"Deleting load balancer: {e}")
+            self.logger.error(f"Error deleting load balancer: {e}")
         else:
             self.logger.info(f"Successfully deleted load balancer for instance {instance_name}")
 
-        # 4. Delete DNS validation record
+        self.logger.info(f"3) Deleting DNS Validation record for instance {instance_name}")
         try:
             for record in instance_resources['domain_validation_records']:
                 record_name = record['name']
@@ -743,12 +811,9 @@ class LightsailClient:
                     }
                 )
         except Exception as e:
-            self.logger.error(f"Deleting Validation CNAME records: {e}")
+            self.logger.error(f"Error deleting Validation CNAME records: {e}")
         else:
             self.logger.info(f"Successfully deleted validation CNAME records for instance {instance_name}")
-        
-        if instance_resources.get('static_ip_name'):
-            self.release_static_ip(instance_name=instance_name, static_ip_name=instance_resources.get('static_ip_name'))
 
         return instance_resources
 
@@ -773,13 +838,23 @@ class LightsailClient:
 
         return response
 
-    def delete_instance(self, instance_name, with_all_resources=True):
+    def delete_instance(self, with_all_resources=True):
+
+        instance_name = self.instance_name
 
         if with_all_resources:
-            self.cleanup_network_resources(instance_name)
+            self.logger.info(f"Cleaning up network resources for instance: {instance_name}")
+            self.cleanup_network_resources()
+
+        instance_resources = self.get_resource_names(instance_name)
+        self.logger.info(f"instance resources: {instance_resources}")
+
+        static_ip_name = instance_resources.get('static_ip_name')
+        if static_ip_name:
+            self.logger.info(f"Releasing static IP for instance: {instance_name}, {static_ip_name}")
+            self.release_static_ip(instance_name=instance_name, static_ip_name=static_ip_name)
 
         self.logger.info(f"Deleting instance: {instance_name}")
-
         try:
             response = self.lightsail.delete_instance(instanceName=instance_name, forceDeleteAddOns=True)
         except Exception as e:
