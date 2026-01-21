@@ -587,18 +587,18 @@ class LightsailClient:
                         ChangeBatch={
                         'Changes': [{
                             'Action': 'CREATE',
-                            'ResourceRecordSet': {
-                                'Name': validation_record['name'],
-                                'Type': validation_record['type'],
-                                'TTL': 300,
-                                'ResourceRecords': [{'Value': validation_record['value']}]
-                            }
-                        }]
-                    }
-                )
-            except Exception as e:
-                self.logger.error(f"error creating route53 record set: {e}")
-                raise e
+                                'ResourceRecordSet': {
+                                    'Name': validation_record['name'],
+                                    'Type': validation_record['type'],
+                                    'TTL': 300,
+                                    'ResourceRecords': [{'Value': validation_record['value']}]
+                                }
+                            }]
+                        }
+                    )
+                except Exception as e:
+                    self.logger.error(f"error creating route53 record set: {e}")
+                    raise e
 
             self.logger.info(f"Created Route53 record set for certificate {certificate_name}")
 
@@ -698,6 +698,14 @@ class LightsailClient:
 
         return r53_response
 
+    def set_lb_http_redirect(self, load_balancer_name):
+        response = self.lightsail.update_load_balancer_attribute(
+            loadBalancerName=load_balancer_name,
+            attributeName='HttpsRedirectionEnabled',
+            attributeValue='true'
+        )
+        return response
+
     def setup_lb_tls_for_instance(self, resource_names=None):
 
         resource_names = resource_names or self.resource_names
@@ -723,6 +731,9 @@ class LightsailClient:
         self.logger.info(f"4. Validating and attaching certificate {certificate_name} to load balancer {load_balancer_name}")
         time.sleep(10)  # make sure load balancer updates have completed
         cert_details = self.validate_and_attach_certificate(resource_names=resource_names)
+
+        #5. update-load-balancer-attribute HttpsRedirectionEnabled true
+        self.set_lb_http_redirect(load_balancer_name)
 
         return {'lb_details': lb_details, 'cert_details': cert_details, 'route53': r53}
 

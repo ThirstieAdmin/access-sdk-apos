@@ -4,168 +4,192 @@
 
 {% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 0) %}
 
-{% if data.global.footerBackgroundImage.items | length %}
-  {% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
-  {% set footerBackgroundImgUrl = apos.attachment.url(footerBackgroundImg, { size: 'full' }) %}
-{% else %}
-  {% set footerBackgroundImgUrl = "" %}
-{% endif %}
+  {% if data.global.footerBackgroundImage.items | length %}
+    {% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
+    {% set footerBackgroundImgUrl = apos.attachment.url(footerBackgroundImg, { size: 'full' }) %}
+  {% else %}
+    {% set footerBackgroundImgUrl = "" %}
+  {% endif %}
 
-<style>
-  :root {
-    /* global settings */
-    --primary-color: {{ data.global.primaryColor or '#000' }};
-    --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
-    --secondary-color: {{ data.global.secondaryColor or '#fff' }};
-    --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000' }};
-    --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
-    --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
-    --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
-    --header-offset: {{ headerHeight }}px;
-    --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
-    --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
-    --header-icon: var(--header-text-color);
-    --footer-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerBackgroundColor) or data.global.secondaryColor or '#fff' }};
-    --footer-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerTextColor) or data.global.secondaryContrastingColor or '#000' }};
-    --footer-height: {{ data.global.footerHeight or '40vh' }};
-    --footer-bg-img: url({{ footerBackgroundImgUrl }});
-    --body-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.bodyBackgroundColor) or '#fff' }};
-    --th-c-header-icon-count: var(--header-background-color);
-    --th-availability-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBG) or data.global.primaryContrastingColor or '#fff' }};
-    --th-availability-border: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBorderColor) or 'var(--th-c-light)' }};
-    --th-availability-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.locationTextColor) or 'var(--primary-color)' }};
-    --th-zip-entry-bg: var(--th-availability-bg);
-    --th-zip-entry-border: var(--th-availability-border);
-    --th-ag-modal-width: 100vw;
-    --th-ag-modal-height: 100vh;
-    --th-ag-form-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormBG) or 'transparent' }};
-    --th-ag-textcolor: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateTextColor) or data.global.primaryContrastingColor or '#fff' }};
-    --th-ag-form-input-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputBG) or data.global.secondaryColor or '#FFF' }};
-    --th-ag-form-input-text: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputTextColor) or data.global.secondaryContrastingColor or '#000' }};
-    /* TODO set in global settings */
-    --th-ag-form-btn-bg: transparent;
-    --th-ag-form-btn-border: 2px solid white;
+  <link rel="stylesheet" type="text/css" href="https://cdn.thirstie.cloud/css/latest/thirstiebase.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.thirstie.cloud/css/latest/thirstieecomm.css" />
 
-    /* Standard values */
-    --th-c-white: #FFF;
-    --th-c-smokywhite: #FAFAFA;
-    --th-c-light: #e4e4e4;
-    --th-c-greysLightestGrey: #F2F2F2;
-    --th-c-greysLightGrey: #aaa;
-    --th-c-greysMediumLightGrey: #BDBDBD;
-    --th-c-greysMediumDarkGrey: #828282;
-    --th-c-greysDarkGrey: #4F4F4F;
-    --th-c-dark: #242424;
-    --th-c-black: #000;
-
-    --th-c-greysDisabledGrey: var(--th-c-greysMediumLightGrey);
-    --th-c-black-Blur: rgba(0, 0, 0, 0.14);
-    --th-c-blackLight-Blur: rgba(0, 0, 0, 0.2);
-    --th-c-blackLightest-Blur: rgba(0, 0, 0, 0.12);
-    --th-c-greysMediumDarkGrey-Blur: rgba(130,130,130, .25);
-
-    --th-c-alertWrongPrimary: #B71C1C;
-    --th-c-alertWrongTint: #FFE0E3;
-    --th-c-alertSuccessPrimary: #1B5E20;
-    --th-c-alertSuccessTint: #E3FAE4;
-    --th-c-alertWarningPrimary: #BA8808;
-    --th-c-alertWarningTint: #FFF1CC;
-
-    --th-c-lavendarIndigoLight: #646cff;
-    --th-c-fuchsia: #E600B4;
-    --th-c-paleYellow: #FFF8E1;
-
-    /* Style design tokens */
-    --th-color-scheme: light dark;
-    --th-font-family: {{ data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }};
-    --th-font-weight: 400;
-    --th-line-height: 1.5;
-    --th-border-radius: {{ data.global.borderRadius or '4px'}};
-    --th-btn-border-radius: {{ data.global.buttonBorderRadius }};
-    --th-border-color: var(--th-c-greysMediumLightGrey);
-    --th-border-form: 1px solid var(--th-border-color);
-    --th-input-focus-outline: 2px solid var(--th-c-greysDarkGrey);
-    --th-header-dividers: 1px solid var(--th-c-greysLightestGrey);
-    --th-account-dividers: 1px solid var(--th-c-gray);
-
-    --th-pdp-btn-disabled-bg: var(--th-c-greysMediumLightGrey);
-    --th-pdp-btn-disabled-color: var(--th-c-white);
-  
-    /* Checkout and cart styling tokens */
-    --th-checkout-breadcrumb-completed: var(--th-c-brandPrimaryColor, var(--th-c-dark));
-    --th-checkout-breadcrumb-inactive: var(--th-c-greysDisabledGrey);
-
-    --th-c-cart-message-bg: var(--th-c-greysLightestGrey);
-    --th-c-cart-message-text-color: var(--th-c-alertWarningPrimary);
-
-    --th-checkout-bg: var(--th-c-smokywhite, #fafafa);  /* .th-checkout */
-    --th-checkout-container-bg: var(--th-checkout-bg); /* .th-checkout-section--container */
-    --th-checkout-container-text-color: var(--th-c-dark, #242424); /* .th-checkout-form--container */
-
-    --th-checkout-payment-border: var(--th-border-form);
-    --th-checkout-payment-border-radius: var(--th-border-radius);
-    --th-checkout-payment-background-color: var(--th-c-white);
-    --th-checkout-payment-text-color: var(--th-c-dark);
-    --th-checkout-payment-header-color: var(--th-checkout-payment-text-color);
-    --th-checkout-payment-input-border: var(--th-border-form);
-    --th-checkout-payment-input-bg: var(--th-c-white);
-    --th-checkout-payment-input-text-color: var(--th-c-black);
-    --th-checkout-payment-placeholder-text-color: var(--th-c-greysMediumDarkGrey);
-    --th-checkout-payment-input-focus-outline: var(--th-input-focus-outline);
-
-    --th-image-widget__caption-text-color: var(--th-c-white);
-    --th-image-widget__caption-bg: rgba(0, 0, 0, .4);
-    --th-image-widget__caption-border-radius: 0;
-    --th-image-widget__caption-font-size: 2rem;
-    --th-image-widget__caption-font-family:inherit;
-    --th-image-widget__caption-font-style: normal;
-    --th-image-widget__caption-font-weight: normal;
-    --th-image-widget__caption-padding: 0 1rem;
-    --th-image-widget__caption-text-align:center;
-    --th-image-widget__caption-flex-align:center;
-    --th-image-widget__caption-flex-justify:center;
-  }
-</style>
-
-{% if data.user %}
   <style>
-    .th-fouc-block {
-      visibility: inherit;
-      opacity: inherit;
-      display: inherit;
+    :root {
+      /* global settings */
+      --primary-color: {{ data.global.primaryColor or '#000' }};
+      --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
+      --secondary-color: {{ data.global.secondaryColor or '#fff' }};
+      --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000' }};
+      --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
+      --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
+      --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
+      --header-offset: {{ headerHeight }}px;
+      --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
+      --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
+      --header-icon: var(--header-text-color);
+      --footer-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerBackgroundColor) or data.global.secondaryColor or '#fff' }};
+      --footer-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerTextColor) or data.global.secondaryContrastingColor or '#000' }};
+      --footer-height: {{ data.global.footerHeight or '40vh' }};
+      --footer-bg-img: url({{ footerBackgroundImgUrl }});
+      --body-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.bodyBackgroundColor) or '#fff' }};
+      --th-c-header-icon-count: var(--header-background-color);
+      --th-availability-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBG) or data.global.primaryContrastingColor or '#fff' }};
+      --th-availability-border: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBorderColor) or 'var(--th-c-light)' }};
+      --th-availability-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.locationTextColor) or 'var(--primary-color)' }};
+      --th-zip-entry-bg: var(--th-availability-bg);
+      --th-zip-entry-border: var(--th-availability-border);
+      --th-ag-modal-width: 100vw;
+      --th-ag-modal-height: 100vh;
+      --th-ag-form-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormBG) or 'transparent' }};
+      --th-ag-textcolor: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateTextColor) or data.global.primaryContrastingColor or '#fff' }};
+      --th-ag-form-input-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputBG) or data.global.secondaryColor or '#FFF' }};
+      --th-ag-form-input-text: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputTextColor) or data.global.secondaryContrastingColor or '#000' }};
+      /* TODO set in global settings */
+      --th-ag-form-btn-bg: transparent;
+      --th-ag-form-btn-border: 2px solid white;
+
+      /* Standard values */
+      --th-c-white: #FFF;
+      --th-c-smokywhite: #FAFAFA;
+      --th-c-light: #e4e4e4;
+      --th-c-greysLightestGrey: #F2F2F2;
+      --th-c-greysLightGrey: #aaa;
+      --th-c-greysMediumLightGrey: #BDBDBD;
+      --th-c-greysMediumDarkGrey: #828282;
+      --th-c-greysDarkGrey: #4F4F4F;
+      --th-c-dark: #242424;
+      --th-c-black: #000;
+
+      --th-c-greysDisabledGrey: var(--th-c-greysMediumLightGrey);
+      --th-c-black-Blur: rgba(0, 0, 0, 0.14);
+      --th-c-blackLight-Blur: rgba(0, 0, 0, 0.2);
+      --th-c-blackLightest-Blur: rgba(0, 0, 0, 0.12);
+      --th-c-greysMediumDarkGrey-Blur: rgba(130,130,130, .25);
+
+      --th-c-alertWrongPrimary: #B71C1C;
+      --th-c-alertWrongTint: #FFE0E3;
+      --th-c-alertSuccessPrimary: #1B5E20;
+      --th-c-alertSuccessTint: #E3FAE4;
+      --th-c-alertWarningPrimary: #BA8808;
+      --th-c-alertWarningTint: #FFF1CC;
+
+      --th-c-lavendarIndigoLight: #646cff;
+      --th-c-fuchsia: #E600B4;
+      --th-c-paleYellow: #FFF8E1;
+
+      /* Style design tokens */
+      --th-color-scheme: light dark;
+      --th-font-family: {{ data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif' }};
+      --th-font-weight: 400;
+      --th-font-color: {{ data.global.primaryFontColor or 'var(--th-c-black)' }};
+      --th-line-height: 1.5;
+      --th-border-radius: {{ data.global.borderRadius or '4px' }};
+      --th-btn-border-radius: {{ data.global.buttonBorderRadius or data.global.borderRadius or '4px' }};
+      --th-border-color: var(--th-c-greysMediumLightGrey);
+      --th-border-form: 1px solid var(--th-border-color);
+      --th-input-focus-outline: 2px solid var(--th-c-greysDarkGrey);
+      --th-header-dividers: 1px solid var(--th-c-greysLightestGrey);
+      --th-account-dividers: 1px solid var(--th-c-gray);
+
+      --th-pdp-btn-disabled-bg: var(--th-c-greysMediumLightGrey);
+      --th-pdp-btn-disabled-color: var(--th-c-white);
+    
+      /* Checkout and cart styling tokens */
+      --th-checkout-breadcrumb-completed: var(--th-c-brandPrimaryColor, var(--th-c-dark));
+      --th-checkout-breadcrumb-inactive: var(--th-c-greysDisabledGrey);
+
+      --th-c-cart-message-bg: var(--th-c-greysLightestGrey);
+      --th-c-cart-message-text-color: var(--th-c-alertWarningPrimary);
+
+      --th-checkout-bg: var(--th-c-smokywhite, #fafafa);  /* .th-checkout */
+      --th-checkout-container-bg: var(--th-checkout-bg); /* .th-checkout-section--container */
+      --th-checkout-container-text-color: var(--th-c-dark, #242424); /* .th-checkout-form--container */
+
+      --th-checkout-payment-border: var(--th-border-form);
+      --th-checkout-payment-border-radius: var(--th-border-radius);
+      --th-checkout-payment-background-color: var(--th-c-white);
+      --th-checkout-payment-text-color: var(--th-c-dark);
+      --th-checkout-payment-header-color: var(--th-checkout-payment-text-color);
+      --th-checkout-payment-input-border: var(--th-border-form);
+      --th-checkout-payment-input-bg: var(--th-c-white);
+      --th-checkout-payment-input-text-color: var(--th-c-black);
+      --th-checkout-payment-placeholder-text-color: var(--th-c-greysMediumDarkGrey);
+      --th-checkout-payment-input-focus-outline: var(--th-input-focus-outline);
+
+      --th-image-widget__caption-text-color: var(--th-c-white);
+      --th-image-widget__caption-bg: rgba(0, 0, 0, .4);
+      --th-image-widget__caption-border-radius: 0;
+      --th-image-widget__caption-font-size: 2rem;
+      --th-image-widget__caption-font-family:inherit;
+      --th-image-widget__caption-font-style: normal;
+      --th-image-widget__caption-font-weight: normal;
+      --th-image-widget__caption-padding: 0 1rem;
+      --th-image-widget__caption-text-align:center;
+      --th-image-widget__caption-flex-align:center;
+      --th-image-widget__caption-flex-justify:center;
     }
   </style>
-{% else %}
+
+  {% if data.user %}
+    <style>
+      .th-fouc-block {
+        visibility: inherit;
+        opacity: inherit;
+        display: inherit;
+      }
+    </style>
+  {% else %}
+    <style>
+      .th-fouc-block {
+        visibility: visible;
+        opacity: 0;
+        display: none;
+      }
+    </style>
+  {% endif %}
+
+  {% if data.global.footerBackgroundImage.items | length %}
+
   <style>
-    .th-fouc-block {
-      visibility: visible;
-      opacity: 0;
-      display: none;
+    .th-footer-background {
+      background-image:
+        linear-gradient(to bottom, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 0%, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 100%),
+        var(--footer-bg-img);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-clip: border-box;
     }
   </style>
-{% endif %}
 
-{% if data.global.footerBackgroundImage.items | length %}
+  {% else %}
+
+  <style>
+    .th-footer-background {
+      background-color: var(--footer-background-color, var(--secondary-color));
+    }
+  </style>
+
+  {% endif %}
+{% endif %}
+<styl>
 
 <style>
-  .th-footer-background {
-    background-image:
-      linear-gradient(to bottom, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 0%, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 100%),
-      var(--footer-bg-img);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-clip: border-box;
+  html,
+  body {
+    position: relative;
+    height: 100%;
+  }
+
+  body {
+    font-family: var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif);
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+  }
+  .th-wrapper {
+    font-family: var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif);
+    color: var(--th-font-color, var(--th-c-black));
   }
 </style>
-
-{% else %}
-
-<style>
-  .th-footer-background {
-    background-color: var(--footer-background-color, var(--secondary-color));
-  }
-</style>
-
-{% endif %}
-{% endif %}
