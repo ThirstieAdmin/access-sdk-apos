@@ -34,3 +34,7 @@ Work to be done:
 2. Create a new `.env` file with the appropriate environment variables for your site. (e.g., `THAPPNAME`, `THBASEURL`, `THAPIKEY`, etc.)
   - set THENV=sandbox
 3. Create thirstieadmin user with `npx dotenv -e .env -- node app @apostrophecms/user:add thirstieadmin admin`
+4. set theme colors
+  - header bg: primary, text: primaryContrasting
+  - footer bg: secondary, text: secondaryContrasting
+  - checkout banner bg: secondary
