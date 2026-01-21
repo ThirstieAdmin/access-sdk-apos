@@ -6,6 +6,7 @@ const standardPresetColors = [
   '--primary-color', '--primary-contrasting-color', '--secondary-color', '--secondary-contrasting-color',
   '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
   'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
+  '--th-c-black', '--th-c-white',
   'transparent'
 ];
 
@@ -141,9 +142,14 @@ export default {
       primaryFontFamily: {
         type: 'string',
         label: 'Primary font family',
-        def: 'Inter, system-ui, Helvetica Neue, Helvetica, Arial, sans-serif'
-        //  Inter, system-ui, Avenir, Helvetica, Arial, sans-serif
-        //  Nice system fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+      },
+      primaryFontColor: {
+        type: 'color',
+        label: 'Primary font color',
+        help: 'Defaults to black',
+        options: {
+          presetColors: standardPresetColors
+        }
       },
       primaryColor: {
         type: 'color',
@@ -404,8 +410,9 @@ export default {
         label: 'Theme & Brand Content',
         fields: [
           'brandLogo', 'brandLogoAltText', 'supportEmail', 'customCode',
-          'primaryFontFamily', 'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
-          'borderRadius', 'buttonBorderRadius',
+          'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
+          'borderRadius', 'buttonBorderRadius', 
+          'primaryFontFamily', 'primaryFontColor',
           'typekitId'
         ]
       },
