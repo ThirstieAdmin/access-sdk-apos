@@ -1,14 +1,7 @@
 import apostrophe from 'apostrophe';
+import { standardPresetColors } from '../../../lib/presets.js';
 import { default as richTextOptions } from '../../../lib/rich-text-options.js';
 import { default as urlScheme } from '../../../lib/url-scheme.js';
-
-const standardPresetColors = [
-  '--primary-color', '--primary-contrasting-color', '--secondary-color', '--secondary-contrasting-color',
-  '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
-  'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
-  '--th-c-black', '--th-c-white',
-  'transparent'
-];
 
 export default {
   fields: {
@@ -127,18 +120,14 @@ export default {
         type: 'color',
         label: 'Footer Background color',
         help: 'This color is used as an overlay if a footer background image is set, so it should be a semi-transparent color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       footerTextColor: {
         type: 'color',
         label: 'Footer text color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
-      /* Theme settings */
+      /* Typography settings */
       primaryFontFamily: {
         type: 'string',
         label: 'Primary font family',
@@ -147,10 +136,41 @@ export default {
         type: 'color',
         label: 'Primary font color',
         help: 'Defaults to black',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
+      headingOneFontFamily: {
+        type: 'string',
+        label: 'H1 font family',
+      },
+      headingTwoFontFamily: {
+        type: 'string',
+        label: 'H2 font family',
+      },
+      headingThreeFontFamily: {
+        type: 'string',
+        label: 'H3 font family',
+      },
+      headingFourFontFamily: {
+        type: 'string',
+        label: 'H4 font family',
+      },
+      headingOneFontSize: {
+        type: 'string',
+        label: 'H1 font size',
+      },
+      headingTwoFontSize: {
+        type: 'string',
+        label: 'H2 font size',
+      },
+      headingThreeFontSize: {
+        type: 'string',
+        label: 'H3 font size',
+      },
+      headingFourFontSize: {
+        type: 'string',
+        label: 'H4 font size',
+      },
+      /* Theme settings */
       primaryColor: {
         type: 'color',
         label: 'Primary brand color'
@@ -219,9 +239,7 @@ export default {
         if: {
           enableSiteBanner: true
         },
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       siteBannerBackgroundColor: {
         type: 'color',
@@ -230,9 +248,7 @@ export default {
         if: {
           enableSiteBanner: true
         },
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       siteBannerFontFamily: {
         type: 'string',
@@ -253,17 +269,13 @@ export default {
         type: 'color',
         label: 'Header Background Color',
         help: 'Defaults to Brand Primary Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       headerTextColor: {
         type: 'color',
         label: 'Header Text Color',
         help: 'Defaults to Brand Primary Contrasting Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       /* Age Gate Settings */
       ageGateType: {
@@ -325,47 +337,35 @@ export default {
       ageGateBackgroundColor: {
         type: 'color',
         label: 'Background Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       ageGateTextColor: {
         type: 'color',
         label: 'Text Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       ageGateFormInputBG: {
         type: 'color',
         label: 'Input Background Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       ageGateFormInputTextColor: {
         type: 'color',
         label: 'Input Text Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       ageGateFormBG: {
         type: 'color',
         label: 'Background for form elements',
         help: 'Use to ensure form is visible against background image',
         def: 'transparent',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       /* General */
       bodyBackgroundColor: {
         type: 'color',
         label: 'Page body background',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       locationType: {
         type: 'select',
@@ -386,23 +386,17 @@ export default {
       locationBG: {
         type: 'color',
         label: 'Availability background',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       locationBorderColor: {
         type: 'color',
         label: 'Availability border color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       locationTextColor: {
         type: 'color',
         label: 'Availability text color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       }
     },
     group: {
@@ -411,8 +405,17 @@ export default {
         fields: [
           'brandLogo', 'brandLogoAltText', 'supportEmail', 'customCode',
           'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
-          'borderRadius', 'buttonBorderRadius', 
+          'borderRadius', 'buttonBorderRadius',
+        ]
+      },
+      typography: {
+        label: 'Typography',
+        fields: [
           'primaryFontFamily', 'primaryFontColor',
+          'headingOneFontFamily', 'headingOneFontSize',
+          'headingTwoFontFamily', 'headingTwoFontSize',
+          'headingThreeFontFamily', 'headingThreeFontSize',
+          'headingFourFontFamily', 'headingFourFontSize',
           'typekitId'
         ]
       },
