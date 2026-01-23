@@ -16,7 +16,7 @@
 
   <style>
     :root {
-      /* global settings */
+      /* customStyles: global settings */
       --primary-color: {{ data.global.primaryColor or '#000' }};
       --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
       --secondary-color: {{ data.global.secondaryColor or '#fff' }};
@@ -45,6 +45,15 @@
       --th-ag-textcolor: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateTextColor) or data.global.primaryContrastingColor or '#fff' }};
       --th-ag-form-input-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputBG) or data.global.secondaryColor or '#FFF' }};
       --th-ag-form-input-text: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputTextColor) or data.global.secondaryContrastingColor or '#000' }};
+      /* Typography */
+      --th-h1-font-family: {{ data.global.headingOneFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h1-font-size: {{ data.global.headingOneFontSize or '2em' }};
+      --th-h2-font-family: {{ data.global.headingTwoFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h2-font-size: {{ data.global.headingTwoFontSize or '1.5em' }};
+      --th-h3-font-family: {{ data.global.headingThreeFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h3-font-size: {{ data.global.headingThreeFontSize or '1.25em' }};
+      --th-h4-font-family: {{ data.global.headingFourFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h4-font-size: {{ data.global.headingFourFontSize or '1em' }};
       /* TODO set in global settings */
       --th-ag-form-btn-bg: transparent;
       --th-ag-form-btn-border: 2px solid white;
@@ -173,23 +182,3 @@
 
   {% endif %}
 {% endif %}
-<styl>
-
-<style>
-  html,
-  body {
-    position: relative;
-    height: 100%;
-  }
-
-  body {
-    font-family: var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif);
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-  }
-  .th-wrapper {
-    font-family: var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif);
-    color: var(--th-font-color, var(--th-c-black));
-  }
-</style>
