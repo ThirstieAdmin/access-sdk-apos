@@ -33,12 +33,42 @@ figcaption.th-image-widget__caption {
   display:flex;
   background-color: var(--th-image-widget__caption-bg);
   border-radius: var(--th-image-widget__caption-border-radius);
-  color: var(--th-image-widget__caption-text-color);
+  color: var(--th-image-widget__caption-text-color, var(--th-c-white));
   font-size: var(--th-image-widget__caption-font-size);
+  font-family: var(--th-image-widget__caption-font-family, var(--th-font-family));
   font-style: var(--th-image-widget__caption-font-style);
   font-weight: var(--th-image-widget__caption-font-weight);
   padding: var(--th-image-widget__caption-padding);
   text-align: var(--th-image-widget__caption-text-align);
   align-items: var(--th-image-widget__caption-flex-align, center);
   justify-content: var(--th-image-widget__caption-flex-justify, center);
+}
+
+figcaption.th-image-widget__caption > h3,
+figcaption.th-image-widget__caption > h4 {
+  margin: 1rem auto;
+  padding: 0 2rem;
+}
+
+figcaption.th-image-widget__caption > h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+figcaption.th-image-widget__caption > h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+figcaption.th-image-widget__caption > p {
+  margin: .25rem auto;
+  padding: 0 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.marquee-widget__img {
+  max-height: 440px;
+  object-fit: cover;
 }

@@ -202,6 +202,7 @@ ul.nav-subitems {
     padding: 0 .5rem;
     height: auto;
     text-align: center;
+    font-size: .875rem;
   }
   .nav-subitems > .nav-el {
     padding: .5rem 1rem;
@@ -211,11 +212,11 @@ ul.nav-subitems {
     display: flex;
     float: none;
     justify-content: flex-start;
-    width: 25%;
+    width: 12.5%;
     order: 1;
   }
   .nav-menu {
-    width: 50%;
+    width: 75%;
     order: 2;
   }
   .nav-items {
@@ -247,7 +248,7 @@ ul.nav-subitems {
     display: flex;
     float: none;
     justify-content: flex-end;
-    width: 25%;
+    width: 12.5%;
     order:3;
   }
   

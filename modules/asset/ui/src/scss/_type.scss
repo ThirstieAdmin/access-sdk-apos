@@ -2,11 +2,12 @@ h1,
 h2,
 h3 {
   text-align: center;
+  font-weight: bold;
 }
 
 h1 {
-  font-size: 4em;
-  font-weight: 200;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 a {
@@ -73,4 +74,45 @@ pre {
   font-size: 16px;
   font-weight: 400;
   padding: 20px 30px;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+h1,
+th-acc-h1 {
+  font-family: var(--th-h1-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
+  font-size: var(--th-h1-font-size, 2em);
+}
+
+h2,
+th-acc-h2 {
+  font-family: var(--th-h2-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
+  font-size: var(--th-h2-font-size, 1.5em);
+}
+
+h3,
+th-acc-h3 {
+  font-family: var(--th-h3-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
+  font-size: var(--th-h3-font-size, 1.25em);
+}
+
+h4,
+th-acc-h4 {
+  font-family: var(--th-h4-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
+  font-size: var(--th-h4-font-size, 1em);
+}
+
+body {
+  font-family: var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif);
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+.th-wrapper {
+  font-family: var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif);
+  color: var(--th-font-color, var(--th-c-black));
 }
