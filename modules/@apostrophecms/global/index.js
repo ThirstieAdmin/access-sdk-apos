@@ -96,6 +96,18 @@ export default {
           }
         }
       },
+      footerBrandText: {
+        type: 'area',
+        label: 'Brand Additional Content',
+        help: "Additional content to appear in the footer above the trademark statement",
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/rich-text': richTextOptions,
+            '@apostrophecms/html': {}
+          }
+        }
+      },
       footerTrademarkText: {
         type: 'string',
         label: 'Trademark Text',
@@ -433,7 +445,7 @@ export default {
       },
       footerContent: {
         label: 'Footer',
-        fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerTrademarkText', 'footerBackgroundColor', 'footerTextColor', 'footerBackgroundImage', 'footerHeight' ]
+        fields: [ 'footerLogo', 'footerTop', 'footerNav', 'footerBrandText', 'footerTrademarkText', 'footerBackgroundColor', 'footerTextColor', 'footerBackgroundImage', 'footerHeight' ]
       },
       ageGate: {
         label: 'Age Gate',
