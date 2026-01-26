@@ -134,6 +134,7 @@ apostrophe({
     'product-grid-widget': {},
     'recipe-grid-widget': {},
     'thirstie-disclaimer-widget': {},
-    'marquee-widget': {}
+    'marquee-widget': {},
+    'social-links-widget': {}
   }
 });
