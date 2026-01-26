@@ -254,6 +254,20 @@ export default {
         textarea: true,
         required: false
       },
+      additionalDescription: {
+        type: 'area',
+        label: 'Additional Description',
+        help: 'If provided, this description will be shown below the main description on product detail pages',
+        textarea: true,
+        required: false,
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/rich-text': richTextOptions,
+            '@apostrophecms/html': {}
+          }
+        }
+      },
       productType: {
         type: 'string',
         label: 'Product Type',
@@ -351,7 +365,7 @@ export default {
       },
       additionalInformation: {
         label: 'Additional Information',
-        fields: ['shortDescription', 'altDescription', 'tastingNotes']
+        fields: ['shortDescription', 'altDescription', 'additionalDescription', 'tastingNotes']
       },
       images: {
         label: 'Images',
