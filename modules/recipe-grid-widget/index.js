@@ -1,9 +1,4 @@
-const standardPresetColors = [
-  '--primary-color', '--primary-contrasting-color', '--secondary-color', '--secondary-contrasting-color',
-  '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
-  'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
-  'transparent'
-];
+import { standardPresetColors } from '../../lib/presets.js';
 
 export default {
   extend: '@apostrophecms/widget-type',
@@ -25,9 +20,7 @@ export default {
       titleTextColor: {
         type: 'color',
         label: 'Title text Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       titleFontSize: {
         type: 'string',
@@ -48,16 +41,12 @@ export default {
       textColor: {
         type: 'color',
         label: 'Text Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       backgroundColor: {
         type: 'color',
         label: 'Recipe Background Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       borderRadius: {
         type: 'string',
