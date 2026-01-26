@@ -1,0 +1,44 @@
+.th-social__title,
+.th-social__item {
+  list-style-type: none;
+}
+
+.th-social__title {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+}
+
+.th-social__item {
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.th-social__item-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.th-social__icon {
+  background-color: transparent !important;
+}
+
+.th-social__social-icons {
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.th-social__item-link svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
