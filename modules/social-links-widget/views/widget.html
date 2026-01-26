@@ -1,0 +1,20 @@
+{% set textColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) or 'var(--th-font-color, #000000)' %}
+{% set iconBackgroundColor = apos.modules['theme-widget'].convertPreset(data.widget.iconBackgroundColor) or 'var(--primary-color, #000000)' %}
+{% set iconColor = apos.modules['theme-widget'].convertPreset(data.widget.iconColor) or 'var(--primary-contrasting-color, #ffffff)' %}
+
+<div class="flex flex-row w-full items-center justify-center my-12 py-4 th-social">
+  <div class="text-base th-social__title" style="color: {{ textColor }}">{{ data.widget.title }}</div>
+  <ul class="flex flex-row th-social__social-icons">
+    {% for item in data.widget.socialAccounts %}
+      {% set iconLink = apos.asset.url('/modules/theme-widget/images/svgs/svg.svg#' + item.icon) %}
+      <li class="th-social__item" style="background-color: {{ iconBackgroundColor }};color: {{ iconColor }};">
+        <a class="th-social__item-link" href="{{ item.url }}" target="_blank" aria-label="{{ item.title }} -  opens in new tab">
+          <svg role="img" aria-label="{{ item.title }}" class="th-social__icon" style="background-color: {{ iconBackgroundColor }};color: {{ iconColor }};">
+            <title>{{ item.title }}</title>
+            <use fill="currentColor" xlink:href="{{ iconLink }}"></use>
+          </svg>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
