@@ -39,6 +39,15 @@ export default {
       percentString(txtValue, precision) {
         const abv = parseFloat(txtValue).toFixed(precision || 1);
         return txtValue ? `${abv}%` : '';
+      },
+      decimalString(txtValue, precision = 1) {
+        let result = txtValue;
+        try {
+          result = parseFloat(txtValue).toFixed(precision);
+        } catch (error) {
+          return result;
+        }
+        return txtValue ? `${result}` : '';
       }
     }
   }

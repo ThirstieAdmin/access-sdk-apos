@@ -121,6 +121,15 @@
           {{ item.description }}
         {% endif %}
       </div>
+      {% if item.additionalDescription.items[0].type === "@apostrophecms/rich-text" %}
+        <div class="th-pdp-description__content">
+          {{ apos.area.richText(item.additionalDescription.items) }}
+        </div>
+      {% elif item.additionalDescription.items[0].type === "@apostrophecms/html" %}
+        <div class="th-pdp-description__content">
+          {{ item.additionalDescription.items[0].code | safe}}
+        </div>
+      {% endif %}
     </div>
     {% endif %}
 
@@ -139,7 +148,7 @@
     <div class="mt-4 py-4 th-pdp-description">
       <div class="th-pdp-description__content flex flex-row justify-between">
         <div><span class="font-bold">Alc./Vol.</span>&nbsp;&nbsp;<span>{{ apos.modules['theme-widget'].percentString(item.abvPercent) }}</span></div>
-        <div><span class="font-bold">Proof</span>&nbsp;&nbsp;<span>{{ item.proof }}</span></div>
+        <div><span class="font-bold">Proof</span>&nbsp;&nbsp;<span>{{apos.modules['theme-widget'].decimalString(item.proof) }}</span></div>
       </div>
     </div>
 
