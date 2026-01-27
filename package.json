@@ -11,7 +11,7 @@
     "local": "dotenv -e .env -- node app",
     "build": "NODE_ENV=production node app @apostrophecms/asset:build",
     "serve": "NODE_ENV=production node app",
-    "release": "npm run build && node app @apostrophecms/migration:migrate",
+    "release": "NODE_ENV=production npm run build && node app @apostrophecms/migration:migrate",
     "release:env": "npm install &&  dotenv -e .env -- npm run release",
     "serve:env": "dotenv -e .env -- npm run serve",
     "release:www": "dotenv -e /var/www/.env.access -- npm run release",
