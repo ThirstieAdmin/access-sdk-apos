@@ -3,9 +3,15 @@ import { standardPresetColors } from '../../../lib/presets.js';
 import { default as richTextOptions } from '../../../lib/rich-text-options.js';
 import { default as urlScheme } from '../../../lib/url-scheme.js';
 
+const thirstieEnvironment = process.env.THENV;
+
 export default {
   fields: {
     add: {
+      useProductionKeys: {
+        type: 'boolean',
+        label: `Use Production Keys`
+      },
       brandLogo: {
         type: 'url',
         label: 'Brand logo'
@@ -412,6 +418,10 @@ export default {
       }
     },
     group: {
+      generalContent: {
+        label: 'General Settings',
+        fields: [ 'useProductionKeys', 'bodyBackgroundColor', 'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
+      },
       themeBrandContent: {
         label: 'Theme & Brand Content',
         fields: [
@@ -430,10 +440,6 @@ export default {
           'headingFourFontFamily', 'headingFourFontSize',
           'typekitId'
         ]
-      },
-      generalContent: {
-        label: 'General',
-        fields: [ 'bodyBackgroundColor', 'locationTitle', 'locationType', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
       },
       bannerContent: {
         label: 'Banners',
