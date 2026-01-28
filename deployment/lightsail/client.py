@@ -20,7 +20,7 @@ from urllib.parse import urljoin
 import boto3
 import requests
 
-from jinja2 import Template, Environment, PackageLoader, select_autoescape
+from jinja2 import Template, Environment, FileSystemLoader, select_autoescape
 from requests.auth import HTTPDigestAuth
 
 
@@ -105,7 +105,10 @@ def create_launch_script(site_config, template_name=APOS_LS_LAUNCH_SCRIPT_TPLNAM
     Returns:
         str: The rendered launch script.
     """
-    env = Environment(loader=PackageLoader('lightsail', 'templates'), autoescape=select_autoescape(['html', 'xml']))
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    templates_path = os.path.join(script_dir, 'templates')
+
+    env = Environment(loader=FileSystemLoader(templates_path), autoescape=select_autoescape(['html', 'xml']))
     template = env.get_template(template_name)
     return template.render(**site_config)
 
@@ -937,3 +940,34 @@ class LightsailClient:
             self.logger.info(f"Successfully deleted instance: {instance_name}")
 
         return response
+
+
+if __name__ == '__main__':
+    import os
+    import argparse
+
+    from dotenv import dotenv_values
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('command', choices=['create', 'check'])
+    parser.add_argument('-e', '--env_file', type=str, help='Environment file for application')
+
+    args = parser.parse_args()
+
+    config_values = dotenv_values(args.env_file)
+    config = dict(
+        application_name=config_values.get('THAPPNAME'),
+        brand_urn=config_values.get('THBRANDURN'),
+        site_api_key=config_values.get('THAPIKEY'),
+        site_maps_key=config_values.get('THMAPSKEY'),
+        environment=config_values.get('THENV', 'sandbox')
+    )
+
+    client = LightsailClient(**config)
+
+    if args.command == 'create':
+        client.create_instance()
+        client.setup_lb_tls_for_instance()
+    elif args.command == 'check':
+        resources = client.get_resource_names(client.instance_name)
+        print(f"Resources: {json.dumps(resources, indent=2)}")
