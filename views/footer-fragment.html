@@ -71,5 +71,11 @@
     </div>
   </div>
 
+  {% if not data.global.useProductionKeys %}
+  <div class="w-full text-center" style="height: 2rem;background-color: #18244f;color: white;margin:auto;padding:.5rem">
+    <span>Sandbox Mode: No payments will be processed</span>
+  </div>
+  {% endif %}
+
 </footer>
 {% endfragment %}

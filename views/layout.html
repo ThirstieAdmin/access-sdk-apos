@@ -91,32 +91,34 @@
   {% set ageGatebackground = data.global.ageGateBackgroundColor or data.global.primaryColor or '#000' %}
 {% endif %}
 
+{% if not data.user %}
+{# only show age gate if user is not logged in #}
 <th-agegate-modal
   type="{{ ageGateType }}"
   class="th-fouc-block"
   {% if data.global.ageGateHideLogo %}hide-brand-logo{% endif %}
   style="--th-modal-width:100vw;--th-ag-background:{{ageGatebackground}};"
 >
+  <p slot="header">{{ ageGateHeaderText }}</p>
 
-<p slot="header">{{ ageGateHeaderText }}</p>
+  {% if data.global.ageGateSubHeaderContent.items[0].type === "@apostrophecms/rich-text" %}
+    <div slot="sub-header">{{ apos.area.richText(data.global.ageGateSubHeaderContent) }}</div>
+  {% elif data.global.ageGateSubHeaderContent.items[0].type === "@apostrophecms/html" %}
+    <div slot="sub-header">{{ data.global.ageGateSubHeaderContent.items[0].code | safe}}</div>
+  {% endif %}
 
-{% if data.global.ageGateSubHeaderContent.items[0].type === "@apostrophecms/rich-text" %}
-  <div slot="sub-header">{{ apos.area.richText(data.global.ageGateSubHeaderContent) }}</div>
-{% elif data.global.ageGateSubHeaderContent.items[0].type === "@apostrophecms/html" %}
-  <div slot="sub-header">{{ data.global.ageGateSubHeaderContent.items[0].code | safe}}</div>
-{% endif %}
-
-<div slot="fail-msg">
-{% if data.global.ageGateFailContent.items[0].type === "@apostrophecms/rich-text" %}
-  {{ apos.area.richText(data.global.ageGateFailContent) }}
-{% elif data.global.ageGateFailContent.items[0].type === "@apostrophecms/html" %}
-  {{ data.global.ageGateFailContent.items[0].code | safe}}
-{% else %}
-<span>You must be 21 or older to enter. Click <a href="https://responsibility.org" target="_blank" class="font-bold">here</a></span>
-{% endif %}
-</div>
-
+  <div slot="fail-msg">
+  {% if data.global.ageGateFailContent.items[0].type === "@apostrophecms/rich-text" %}
+    {{ apos.area.richText(data.global.ageGateFailContent) }}
+  {% elif data.global.ageGateFailContent.items[0].type === "@apostrophecms/html" %}
+    {{ data.global.ageGateFailContent.items[0].code | safe}}
+  {% else %}
+  <span>You must be 21 or older to enter. Click <a href="https://responsibility.org" target="_blank" class="font-bold">here</a></span>
+  {% endif %}
+  </div>
 </th-agegate-modal>
+{% endif %}
+
 {% endif %}
 
 {% endblock %}

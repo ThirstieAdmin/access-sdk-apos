@@ -31,6 +31,8 @@
           <ul>
             <li>Storefront application: <th-data-query context="session" query="application"></th-data-query></li>
             <li>Environment: {{ data.thirstieEnvironment }}</li>
+            <li>API Key: <code>{{ data.thirstieAPIKey }}</code></li>
+            <li>Maps Key: <code>{{ data.thirstieMapsKey }}</code></li>
           </ul>
         </figure>
       {% endif %}
