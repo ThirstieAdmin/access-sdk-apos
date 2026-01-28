@@ -6,10 +6,15 @@ export default {
     return {
       '@apostrophecms/page:beforeSend': {
         thirstie(req) {
-          req.data.isDev = (process.env.NODE_ENV !== 'production');
-          req.data.thirstieEnvironment = process.env.THENV;
-          req.data.thirstieAPIKey = process.env.THAPIKEY;
-          req.data.thirstieMapsKey = process.env.THMAPSKEY;
+          if (req.data.global?.useProductionKeys || process.env.THENV === 'prod') {
+            req.data.thirstieEnvironment = 'prod';
+            req.data.thirstieAPIKey = process.env.THAPIKEY_PROD;
+            req.data.thirstieMapsKey = process.env.THMAPSKEY_PROD;
+          } else {
+            req.data.thirstieEnvironment = process.env.THENV || 'sandbox';
+            req.data.thirstieAPIKey = process.env.THAPIKEY;
+            req.data.thirstieMapsKey = process.env.THMAPSKEY;
+          }
           req.data.copyrightYear = new Date().getFullYear();
         }
       }
