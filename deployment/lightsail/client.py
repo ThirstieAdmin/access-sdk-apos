@@ -57,8 +57,24 @@ def get_logger(name=None, level='info'):
     return logger
 
 
-def create_site_config(application_name, instance_name, brand_urn, site_api_key, site_maps_key, th_environment='sandbox', ssm_key=SSM_BASE_CONFIG_KEY):
+def create_site_config(application_name, instance_name, brand_urn, site_api_key, site_maps_key, site_api_key_prod, site_maps_key_prod, th_environment='sandbox', ssm_key=SSM_BASE_CONFIG_KEY):
+    """
+    Creates a site configuration dictionary for a Lightsail instance.
 
+    Args:
+        application_name (str): The name of the application.
+        instance_name (str): The name of the instance.
+        brand_urn (str): The brand URN.
+        site_api_key (str): The API key for the site.
+        site_maps_key (str): The Maps key for the site.
+        site_api_key_prod (str): The production API key for the site.
+        site_maps_key_prod (str): The production Maps key for the site.
+        th_environment (str): The environment that will be used for site development ('sandbox'[default], 'dev', 'prod').
+        ssm_key (str): The SSM parameter store key.
+
+    Returns:
+        dict: A dictionary containing the site configuration.
+    """
     ssm_client = boto3.client('ssm', region_name=AWS_REGION)
     params = ssm_client.get_parameter(Name=ssm_key, WithDecryption=True).get('Parameter', {}).get('Value')
     base_config = json.loads(params)
@@ -80,6 +96,8 @@ def create_site_config(application_name, instance_name, brand_urn, site_api_key,
         'brand_urn': brand_urn,
         'site_api_key': site_api_key,
         'site_maps_key': site_maps_key,
+        'site_api_key_prod': site_api_key_prod,
+        'site_maps_key_prod': site_maps_key_prod,
         'th_environment': th_environment,
         'base_url': base_url,
         'site_server_name': f'{brand_urn}.{base_url}',
@@ -115,7 +133,7 @@ def create_launch_script(site_config, template_name=APOS_LS_LAUNCH_SCRIPT_TPLNAM
 
 class LightsailClient:
     """
-    A client for managing AWS Lightsail instances with integrated Route 53 DNS and TLS support.
+    A client for managing AWS Lightsail instances for Thirstie Access with integrated Route 53 DNS and TLS support.
 
     This client simplifies deploying web applications to Lightsail by handling instance creation,
     load balancer setup, TLS certificate provisioning, and DNS configuration.
@@ -129,14 +147,13 @@ class LightsailClient:
         # Set up load balancer with TLS and DNS
         client.setup_lb_tls_for_instance()
 
-        # Delete instance and clean up resources
-        client.delete_instance(with_all_resources=True)
-
         # List existing instances
         instances = client.get_instances(service_tag='thirstieaccess')
+
+        # NOTE: use LightsailInstance class to delete instances
     """
 
-    def __init__(self, application_name, brand_urn, site_api_key, site_maps_key, environment='sandbox',region=AWS_REGION):
+    def __init__(self, application_name, brand_urn, site_api_key,  site_maps_key, site_api_key_prod, site_maps_key_prod, environment='sandbox', region=AWS_REGION):
         self.region_name = region
         self.lightsail = boto3.client('lightsail', region_name=self.region_name)
         self.route53 = boto3.client('route53')
@@ -145,9 +162,9 @@ class LightsailClient:
 
         self.application_name = application_name
         self.environment = environment
-        self.instance_name = f"{application_name}-{environment}"
+        self.instance_name = f"{application_name}-access"
 
-        self.site_config = create_site_config(self.application_name, self.instance_name, brand_urn, site_api_key, site_maps_key, th_environment=environment)
+        self.site_config = create_site_config(self.application_name, self.instance_name, brand_urn, site_api_key, site_maps_key, site_api_key_prod, site_maps_key_prod, th_environment='sandbox')
         self.resource_names = self.configure_resource_names()
 
         self.logger.info(f"Initialized LightsailClient for instance: {self.instance_name}, environment: {self.environment}")
@@ -548,7 +565,7 @@ class LightsailClient:
 
         results = [
             record_set for record_set in response.get('ResourceRecordSets', [])
-            if record_set.get('Name') == record_name and record_set.get('Type') == record_type
+            if record_set.get('Name').strip('.') == record_name.strip('.') and record_set.get('Type') == record_type
         ]
         return results
 
@@ -740,6 +757,37 @@ class LightsailClient:
 
         return {'lb_details': lb_details, 'cert_details': cert_details, 'route53': r53}
 
+
+class LightsailInstance(LightsailClient):
+    """
+    A client for managing AWS Lightsail instances for Thirstie Access
+
+    Basic usage:
+        client = LightsailInstance('instance_name')
+
+        # Delete instance and clean up resources
+        client.delete_instance(with_all_resources=True)
+
+        # List existing instances
+        instances = client.get_instances(service_tag='thirstieaccess')
+    """
+
+    def __init__(self, instance_name, region=AWS_REGION):
+        self.logger = get_logger('LightsailInstance')
+        self.instance_name = instance_name
+        self.region_name = region
+
+        self.lightsail = boto3.client('lightsail', region_name=self.region_name)
+        self.route53 = boto3.client('route53')
+
+        self.site_config = create_site_config('', self.instance_name, '', '', '', '', '', th_environment='')
+
+    def create_instance():
+        raise NotImplementedError("Use LightsailClient to create instances")
+
+    def setup_lb_tls_for_instance():
+        raise NotImplementedError("Use LightsailClient to create and configure instances")
+
     # instance management / delete_instance methods
     ###############################################
 
@@ -801,6 +849,26 @@ class LightsailClient:
 
         return response
 
+    def delete_route53_recordset(self, hosted_zone_id, resource_record_set):
+
+        if resource_record_set:
+            try:
+                self.route53.change_resource_record_sets(
+                    HostedZoneId=hosted_zone_id,
+                    ChangeBatch={
+                        'Changes': [{
+                            'Action': 'DELETE',
+                            'ResourceRecordSet': resource_record_set
+                        }]
+                    }
+                )
+            except Exception as e:
+                self.logger.error(f"Error deleting A record: {e}")
+            else:
+                self.logger.info(f"Successfully deleted A record")
+        else:
+            self.logger.info(f"No record set provided")
+
     def cleanup_network_resources(self, resource_names):
 
         resource_names = resource_names
@@ -827,31 +895,14 @@ class LightsailClient:
         load_balancer_dns_name = lb_details['loadBalancer']['dnsName']
 
         self.logger.info(f"1) Deleting Route 53 A record for instance {instance_name}")
-        if self.check_route53_record_set(hosted_zone_id, 'A', site_domain_name):
-            try:
-                self.route53.change_resource_record_sets(
-                    HostedZoneId=hosted_zone_id,
-                    ChangeBatch={
-                        'Changes': [{
-                            'Action': 'DELETE',
-                            'ResourceRecordSet': {
-                                'Name': site_domain_name,
-                                'Type': 'A',
-                                'AliasTarget': {
-                                    'DNSName': load_balancer_dns_name,
-                                    'EvaluateTargetHealth': False,
-                                    'HostedZoneId': AWS_LIGHTSAIL_ELB_HOSTED_ZONE
-                                }
-                            }
-                        }]
-                    }
-                )
-            except Exception as e:
-                self.logger.error(f"Error deleting A record: {e}")
-            else:
-                self.logger.info(f"Successfully deleted A record for instance {instance_name}")
-        else:
+        instance_a_recordset = self.check_route53_record_set(hosted_zone_id, 'A', site_domain_name)
+        if not instance_a_recordset:
             self.logger.info(f"Route53 A record does not exist for instance {instance_name}")
+        elif len(instance_a_recordset) == 1:
+            self.delete_route53_recordset(hosted_zone_id, instance_a_recordset[0])
+        else:
+            self.logger.info(f"Multiple A records for instance {instance_name}")
+
 
         self.logger.info(f"2) Deleting load balancer for instance {instance_name}")
         try:
@@ -913,7 +964,9 @@ class LightsailClient:
 
         return response
 
-    def delete_instance(self, instance_name, with_all_resources=True):
+    def delete_instance(self, instance_name=None, with_all_resources=True):
+
+        instance_name = instance_name or self.instance_name
 
         instance_resources = self.get_resource_names(instance_name)
         self.logger.info(f"Attempting to delete instance: {instance_name}")
@@ -956,10 +1009,12 @@ if __name__ == '__main__':
 
     config_values = dotenv_values(args.env_file)
     config = dict(
-        application_name=config_values.get('THAPPNAME'),
-        brand_urn=config_values.get('THBRANDURN'),
-        site_api_key=config_values.get('THAPIKEY'),
-        site_maps_key=config_values.get('THMAPSKEY'),
+        application_name=config_values['THAPPNAME'],
+        brand_urn=config_values['THBRANDURN'],
+        site_api_key=config_values['THAPIKEY'],
+        site_maps_key=config_values['THMAPSKEY'],
+        site_api_key_prod=config_values['THAPIKEY_PROD'],
+        site_maps_key_prod=config_values['THMAPSKEY_PROD'],
         environment=config_values.get('THENV', 'sandbox')
     )
 
