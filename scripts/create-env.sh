@@ -11,7 +11,8 @@ Usage: $0 [options]
 Options:
   -d, --domain          STOREFRONT_DOMAIN (required, e.g. fujiwhiskey)
   -a, --app             THAPPNAME (required, e.g. fuji_whiskey)
-  -k, --apikey          THAPIKEY (required)
+  -k, --apikey          THAPIKEY (sandbox key, required)
+  -p, --prod-apikey     THAPIKEY_PROD (production key, required)
   -o, --out             output filename (default: .env.<domain>)
   -c, --create-admin    create admin user
       --admin-file      path to admin env file to read (default: .env-admin)
@@ -20,7 +21,7 @@ Options:
   -h, --help            show this help
 
 Examples:
-  $0 --create-admin --domain=fujiwhiskey --app=fuji_whiskey --apikey=ABC123
+  $0 --create-admin --domain=fujiwhiskey --app=fuji_whiskey --apikey=ABC123 --prod-apikey=DEF456
   $0   (interactive)
 EOF
 }
@@ -47,6 +48,7 @@ confirm(){
 domain=""
 app=""
 apikey=""
+apikeyprod=""
 outfile=""
 create_admin=false
 admin_file=".env-admin"
@@ -61,6 +63,8 @@ while [ "$#" -gt 0 ]; do
     --app=*) app="${1#*=}"; shift;;
     -k|--apikey) apikey="$2"; shift 2;;
     --apikey=*) apikey="${1#*=}"; shift;;
+    -p|--prod-apikey) apikeyprod="$2"; shift 2;;
+    --prod-apikey=*) apikeyprod="${1#*=}"; shift;;
     -o|--out) outfile="$2"; shift 2;;
     --out=*) outfile="${1#*=}"; shift;;
     --create-admin) create_admin=true; shift;;
@@ -94,6 +98,13 @@ if [ -z "$apikey" ]; then
     echo "THAPIKEY is required" >&2; exit 2
   fi
   read -r -p "THAPIKEY: " apikey
+fi
+
+if [ -z "$apikeyprod" ]; then
+  if [ "$NONINTERACTIVE" = true ]; then
+    echo "THAPIKEY_PROD is required" >&2; exit 2
+  fi
+  read -r -p "THAPIKEY_PROD: " apikeyprod
 fi
 
 if [ -z "$outfile" ]; then
@@ -139,10 +150,13 @@ chmod 600 "$tmpfile"
 
 cat > "$tmpfile" <<EOF
 THAPPNAME=$app
+THBRANDURN=$domain
 THBASEURL=${THBASEURL:-http://localhost:3000}
 THENV=${THENV:-sandbox}
 THAPIKEY=$apikey
 THMAPSKEY=${THMAPSKEY:-}
+THAPIKEY_PROD=$apikeyprod
+THMAPSKEY_PROD=${THMAPSKEY_PROD:-}
 THEXPRESS_SECRET=${thexpress_secret:-}
 APOS_MONGODB_URI=mongodb+srv://${APOS_MONGODB_USER}:${APOS_MONGODB_SECRET}@${APOS_MONGODB_DOMAIN}/${app}?appName=${APOS_MONGODB_CLUSTER}&retryWrites=true&w=majority
 APOS_S3_BUCKET=${APOS_S3_BUCKET:-}
