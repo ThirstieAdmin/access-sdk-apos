@@ -12,6 +12,8 @@ Services used:
   - ip whitelist: Organization/Project -> Database & Network Access -> IP Access List
 
 '''
+import os
+
 import json
 import logging
 import time
@@ -105,12 +107,15 @@ def create_site_config(application_name, instance_name, brand_urn, site_api_key,
         'site_hosted_zone': site_hosted_zone,
         'APOS_REPO_URL': f'https://github.com/ThirstieAdmin/{base_config.get("APOS_REPO_NAME")}.git',
         'APOS_MONGODB_URI': apos_mongodb_conn_str,
-        'APOS_MONGO_ATLAS_GROUPID': base_config.get('APOS_MONGO_ATLAS_GROUPID')
+        'APOS_MONGO_ATLAS_GROUPID': base_config.get('APOS_MONGO_ATLAS_GROUPID'),
+        'APOS_S3_BUCKET': base_config.get('APOS_S3_BUCKET'),
+        'APOS_S3_REGION': base_config.get('APOS_S3_REGION'),
+        'APOS_S3_KEY': base_config.get('APOS_S3_KEY'),
+        'APOS_S3_SECRET': base_config.get('APOS_S3_SECRET')
     }
     site_config.update(base_config)
 
     return site_config
-
 
 def create_launch_script(site_config, template_name=APOS_LS_LAUNCH_SCRIPT_TPLNAME):
     """
@@ -128,6 +133,7 @@ def create_launch_script(site_config, template_name=APOS_LS_LAUNCH_SCRIPT_TPLNAM
 
     env = Environment(loader=FileSystemLoader(templates_path), autoescape=select_autoescape(['html', 'xml']))
     template = env.get_template(template_name)
+
     return template.render(**site_config)
 
 
@@ -355,6 +361,7 @@ class LightsailClient:
         # inspect logs with `less -F /var/log/cloud-init-output.log`
         # sudo su - nodeapps
         # pm2 list
+        # pm2 logs
         # journalctl -xeu nginx.service
         # systemctl status nginx.service
         '''

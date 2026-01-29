@@ -93,10 +93,10 @@ THAPIKEY_PROD={{site_api_key_prod}}
 THMAPSKEY_PROD={{site_maps_key_prod}}
 THEXPRESS_SECRET=9a3c6c5c00f0163acf8cf9ed9ecdc987d6a3c7711271d2c60f8ac84da0290592
 APOS_MONGODB_URI={{APOS_MONGODB_URI}}
-APOS_S3_BUCKET=access-sdk-apos
-APOS_S3_REGION=us-east-2
-APOS_S3_KEY=AKIAWFGNEL4HQBPVUKHL
-APOS_S3_SECRET=VY6LXPHmeTPTaFf1crYHGqlMoZTHcp wSsPUBq9t/yJ
+APOS_S3_BUCKET={{APOS_S3_BUCKET}}
+APOS_S3_REGION={{APOS_S3_REGION}}
+APOS_S3_KEY={{APOS_S3_KEY}}
+APOS_S3_SECRET={{APOS_S3_SECRET}}
 NODE_ENV=production 
 
 EOT
@@ -114,6 +114,10 @@ sudo -u nodeapps npm --prefix /home/nodeapps/access-sdk-apos install
 sudo -u nodeapps npm --prefix /home/nodeapps/{{APOS_REPO_NAME}} run release:www
 
 # have pm2 launch the site and save our `pm2` configuration for future reboots.
+export APOS_S3_BUCKET={{APOS_S3_BUCKET}}
+export APOS_S3_REGION={{APOS_S3_REGION}}
+export APOS_S3_KEY={{APOS_S3_KEY}}
+export APOS_S3_SECRET={{APOS_S3_SECRET}}
 sudo -u nodeapps pm2 --name={{brand_urn}} start npm -- --prefix /home/nodeapps/{{APOS_REPO_NAME}} run serve:www
 sudo -u nodeapps pm2 save
 
