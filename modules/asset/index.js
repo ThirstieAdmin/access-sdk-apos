@@ -15,6 +15,10 @@ export default {
             req.data.thirstieAPIKey = process.env.THAPIKEY;
             req.data.thirstieMapsKey = process.env.THMAPSKEY;
           }
+          req.data.apos_s3_key = process.env.APOS_S3_KEY;
+          req.data.apos_s3_secret = process.env.APOS_S3_SECRET;
+          req.data.apos_s3_region = process.env.APOS_S3_REGION;
+          req.data.apos_s3_bucket = process.env.APOS_S3_BUCKET;
           req.data.copyrightYear = new Date().getFullYear();
         }
       }
