@@ -7,6 +7,11 @@ export default {
   },
   fields: {
     add: {
+      titleOverride: {
+        type: 'string',
+        label: 'Product Listing Page Title',
+        help: 'Override the default title ("Products") on the product line page'
+      },
       ctaLabel: {
         type: 'string',
         label: 'CTA label',
@@ -52,6 +57,12 @@ export default {
           {label: 'carousel', value: 'carousel'},
         ]
       },
+      hideBreadcrumb: {
+        type: 'boolean',
+        label: 'Hide Breadcrumb',
+        help: 'Hide the breadcrumb navigation on the product pages',
+        def: false
+      },
       hideRelatedProductsPDP: {
         type: 'boolean',
         label: 'Hide related products on PDP',
@@ -66,12 +77,12 @@ export default {
       }
     },
     group: {
-      productCard: {
-        label: 'Product Cards',
-        fields: ['ctaLabel', 'locationLabel', 'unavailableLabel', 'showProductCardImageAs', 'linkText']
+      basics: {
+        label: "Product Listing Page",
+        fields: ['titleOverride', 'hideBreadcrumb', 'ctaLabel', 'locationLabel', 'unavailableLabel', 'showProductCardImageAs', 'linkText']
       },
       productDetail: {
-        label: 'Product Detail Page',
+        label: 'Product Detail Pages',
         fields: ['showPDPImageAs', 'hideRelatedProductsPDP', 'hideRecipesPDP']
       }
     }
