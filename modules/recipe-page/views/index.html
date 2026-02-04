@@ -2,6 +2,7 @@
 
 {% import '@apostrophecms/pager:macros.html' as pager with context %}
 {% import 'macros.html' as macros %}
+{% import 'breadcrumb-fragment.html' as breadcrumbFragment %}
 
 {% block main %}
   <div class="mt-0 mb-4 mx-0 px-4 md:p-0 gap-4 w-full">
@@ -10,19 +11,7 @@
       {{ macros.renderAddressAvailability() }}
     {% endif %}
 
-    {% if data.page and data.page._ancestors.length %}
-    <nav class="my-4 mx-2 th-breadcrumb">
-      {% for page in data.page._ancestors %}
-        <a href="{{ page._url }}">{{ page.title }}</a>&nbsp;<th-icon icon="chevron-forward" width="14" height="14"></th-icon>
-      {% endfor %}
-      {% if data.piece %}
-        <a href="{{ data.page._url }}">{{ data.page.title }}</a>&nbsp;<th-icon icon="chevron-forward" width="14" height="14"></th-icon>
-        <span>{{ data.piece.title }}</span>
-      {% else %}
-        <span>{{ data.page.title }}</span>
-      {% endif %}
-    </nav>
-    {% endif %}
+    {% render breadcrumbFragment.breadcrumb() %}
 
     <h1 class="th-recipe-page__title text-xl leading-loose mt-8">{{ data.page.title }}</h1>
     {% if data.page.subTitle %}
