@@ -41,10 +41,18 @@
       --th-zip-entry-border: var(--th-availability-border);
       --th-ag-modal-width: 100vw;
       --th-ag-modal-height: 100vh;
+      --th-ag-radius: 2px;
+      --th-ag-form-btn-border-radius: 2px;
       --th-ag-form-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormBG) or 'transparent' }};
       --th-ag-textcolor: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateTextColor) or data.global.primaryContrastingColor or '#fff' }};
       --th-ag-form-input-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputBG) or data.global.secondaryColor or '#FFF' }};
       --th-ag-form-input-text: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputTextColor) or data.global.secondaryContrastingColor or '#000' }};
+      --th-ag-form-btn-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateButtonBG) or 'transparent' }};
+      --th-ag-form-btn-border: none;
+      --th-ag-form-btn-border-bottom: none;
+      --th-ag-form-input-border: {{ data.global.ageGateInputBorder or '1px solid var(--th-c-greysMediumLightGrey)' }};
+      --th-ag-form-input-border-radius: {{ data.global.ageGateInputBorderRadius or 'var(--th-border-radius, 4px)' }};
+
       /* Typography */
       --th-h1-font-family: {{ data.global.headingOneFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
       --th-h1-font-size: {{ data.global.headingOneFontSize or '2em' }};
@@ -54,9 +62,6 @@
       --th-h3-font-size: {{ data.global.headingThreeFontSize or '1.25em' }};
       --th-h4-font-family: {{ data.global.headingFourFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
       --th-h4-font-size: {{ data.global.headingFourFontSize or '1em' }};
-      /* TODO set in global settings */
-      --th-ag-form-btn-bg: transparent;
-      --th-ag-form-btn-border: 2px solid white;
 
       /* Standard values */
       --th-c-white: #FFF;

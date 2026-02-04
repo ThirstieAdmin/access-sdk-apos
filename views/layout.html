@@ -4,10 +4,10 @@
 
 {% import 'header-fragment.html' as headerFragment %}
 {% import 'footer-fragment.html' as footerFragment %}
+{% import 'agegate-fragment.html' as ageGateFragment %}
 {% import 'thirstie-admin-fragment.html' as thirstieAdminFragment %}
 
 {% set title = data.piece.title or data.page.title %}
-{% set ageGateType = data.global.ageGateType or 'dob' %}
 
 {% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 112) %}
 
@@ -51,6 +51,10 @@
 {% endblock %}
 
 {% block beforeMain %}
+{% if data.global.customCodeBodyStart.items[0].type === "@apostrophecms/html" %}
+  {{ data.global.customCodeBodyStart.items[0].code | safe}}
+{% endif %}
+
 <div class="th-wrapper">
   {% render headerFragment.heading() %}
   <div class="th-inner-wrapper">
@@ -80,45 +84,10 @@
   {% render thirstieAdminFragment.floatingMenu() %}
 </div>{# Close .th-wrapper #}
 
-{% if ageGateType !== 'disabled' %}
-{% set ageGateHeaderText = data.global.ageGateHeaderText or 'You must be of legal drinking age to enter this site.' %}
+{% render ageGateFragment.ageGateModal() %}
 
-{% if data.global.ageGateBackgroundImage.items | length %}
-  {% set agegateBackgroundImg = apos.image.first(data.global.ageGateBackgroundImage) %}
-  {% set agegateBackgroundImgUrl = apos.attachment.url(agegateBackgroundImg, { size: 'full' }) %}
-  {% set ageGatebackground = "no-repeat center/cover url(" + agegateBackgroundImgUrl + ")" %}
-{% else %}
-  {% set ageGatebackground = data.global.ageGateBackgroundColor or data.global.primaryColor or '#000' %}
-{% endif %}
-
-{% if not data.user %}
-{# only show age gate if user is not logged in #}
-<th-agegate-modal
-  type="{{ ageGateType }}"
-  class="th-fouc-block"
-  {% if data.global.ageGateHideLogo %}hide-brand-logo{% endif %}
-  style="--th-modal-width:100vw;--th-ag-background:{{ageGatebackground}};"
->
-  <p slot="header">{{ ageGateHeaderText }}</p>
-
-  {% if data.global.ageGateSubHeaderContent.items[0].type === "@apostrophecms/rich-text" %}
-    <div slot="sub-header">{{ apos.area.richText(data.global.ageGateSubHeaderContent) }}</div>
-  {% elif data.global.ageGateSubHeaderContent.items[0].type === "@apostrophecms/html" %}
-    <div slot="sub-header">{{ data.global.ageGateSubHeaderContent.items[0].code | safe}}</div>
-  {% endif %}
-
-  <div slot="fail-msg">
-  {% if data.global.ageGateFailContent.items[0].type === "@apostrophecms/rich-text" %}
-    {{ apos.area.richText(data.global.ageGateFailContent) }}
-  {% elif data.global.ageGateFailContent.items[0].type === "@apostrophecms/html" %}
-    {{ data.global.ageGateFailContent.items[0].code | safe}}
-  {% else %}
-  <span>You must be 21 or older to enter. Click <a href="https://responsibility.org" target="_blank" class="font-bold">here</a></span>
-  {% endif %}
-  </div>
-</th-agegate-modal>
-{% endif %}
-
+{% if data.global.customCodeBodyEnd.items[0].type === "@apostrophecms/html" %}
+  {{ data.global.customCodeBodyEnd.items[0].code | safe}}
 {% endif %}
 
 {% endblock %}
