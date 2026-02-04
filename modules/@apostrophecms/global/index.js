@@ -22,8 +22,30 @@ export default {
       },
       customCode: {
         type: 'area',
-        label: 'Custom code',
+        label: 'Custom code -- HEAD',
         help: 'Placed in page head',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/html': {}
+          }
+        }
+      },
+      customCodeBodyStart: {
+        type: 'area',
+        label: 'Custom code -- BODY START',
+        help: 'Placed at the beginning of the body tag',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/html': {}
+          }
+        }
+      },
+      customCodeBodyEnd: {
+        type: 'area',
+        label: 'Custom code -- BODY END',
+        help: 'Placed at the end of the body tag',
         options: {
           max: 1,
           widgets: {
@@ -296,6 +318,42 @@ export default {
         options: standardPresetColors
       },
       /* Age Gate Settings */
+      ageGateLogo: {
+        type: 'area',
+        label: 'Age Gate Logo',
+        help: 'Optional. Will use brand logo if not set.',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/image': {}
+          }
+        }
+      },
+      ageGateButtonBG: {
+        type: 'color',
+        label: 'Age Gate Button Background Color',
+        options: standardPresetColors
+      },
+      ageGateButtonBorder: {
+        type: 'string',
+        label: 'Age Gate Button Border',
+        help: 'Defaults to 1px solid var(ageGateButtonBG)'
+      },
+      ageGateButtonBorderRadius: {
+        type: 'string',
+        label: 'Age Gate Button Border Radius',
+        help: 'Defaults to borderRadius(4px)'
+      },
+      ageGateInputBorder: {
+        type: 'string',
+        label: 'Age Gate Input Border',
+        help: 'Defaults to 1px solid var(--th-c-greysMediumLightGrey)'
+      },
+      ageGateInputBorderRadius: {
+        type: 'string',
+        label: 'Age Gate Input Border Radius',
+        help: 'Defaults to borderRadius(4px)'
+      },
       ageGateType: {
         type: 'select',
         label: 'Age Gate Type',
@@ -308,7 +366,7 @@ export default {
           { label: 'Disabled', value: 'disabled' }
         ]
       },
-      ageGateHidLogo: {
+      ageGateHideLogo: {
         type: 'boolean',
         label: 'Hide brand logo on age gate',
         help: 'Logo is set in brand content',
@@ -425,20 +483,9 @@ export default {
       themeBrandContent: {
         label: 'Theme & Brand Content',
         fields: [
-          'brandLogo', 'brandLogoAltText', 'supportEmail', 'customCode',
+          'brandLogo', 'brandLogoAltText', 'supportEmail',
           'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
           'borderRadius', 'buttonBorderRadius',
-        ]
-      },
-      typography: {
-        label: 'Typography',
-        fields: [
-          'primaryFontFamily', 'primaryFontColor',
-          'headingOneFontFamily', 'headingOneFontSize',
-          'headingTwoFontFamily', 'headingTwoFontSize',
-          'headingThreeFontFamily', 'headingThreeFontSize',
-          'headingFourFontFamily', 'headingFourFontSize',
-          'typekitId'
         ]
       },
       bannerContent: {
@@ -456,9 +503,25 @@ export default {
       ageGate: {
         label: 'Age Gate',
         fields: [
-          'ageGateType', 'ageGateHidLogo', 'ageGateHeaderText', 'ageGateSubHeaderContent', 'ageGateFailContent',
+          'ageGateType', 'ageGateLogo','ageGateHideLogo', 'ageGateHeaderText', 'ageGateSubHeaderContent', 'ageGateFailContent',
+          'ageGateButtonBG', 'ageGateButtonBorder', 'ageGateButtonBorderRadius', 'ageGateInputBorder', 'ageGateInputBorderRadius',
           'ageGateBackgroundColor', 'ageGateTextColor', 'ageGateFormInputBG', 'ageGateFormInputTextColor',
           'ageGateBackgroundImage', 'ageGateFormBG'
+        ]
+      },
+      customCode: {
+        label: 'Custom Code',
+        fields: ['customCode', 'customCodeBodyStart', 'customCodeBodyEnd']
+      },
+      typography: {
+        label: 'Typography',
+        fields: [
+          'primaryFontFamily', 'primaryFontColor',
+          'headingOneFontFamily', 'headingOneFontSize',
+          'headingTwoFontFamily', 'headingTwoFontSize',
+          'headingThreeFontFamily', 'headingThreeFontSize',
+          'headingFourFontFamily', 'headingFourFontSize',
+          'typekitId'
         ]
       }
     }
