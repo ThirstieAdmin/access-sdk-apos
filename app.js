@@ -22,16 +22,9 @@ apostrophe({
     'admin-ui-overrides': {},
     '@apostrophecms/page': {
       options: {
-        /*
-        TODO: should also park:
-          - faq
-          - privacy / terms
-          - /user
-          - /order-status-update 
-        */
         park: [
           {
-            title: 'Our Products',
+            title: 'Products',
             type: 'product-line-page',
             slug: '/products',
             parkedId: 'productListingPage'
