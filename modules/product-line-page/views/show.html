@@ -2,6 +2,8 @@
 {% extends "layout.html" %}
 
 {% import 'macros.html' as macros %}
+
+{% import 'breadcrumb-fragment.html' as breadcrumbFragment %}
 {% import 'recipe-fragment.html' as recipeFragment %}
 
 {% set item = data.piece %}
@@ -16,19 +18,9 @@
 {% endif %}
 
 {% block main %}
-{% if data.page and data.page._ancestors.length %}
-  <nav class="w-full my-4 mx-2 th-breadcrumb ">
-    {% for page in data.page._ancestors %}
-      <a href="{{ page._url }}">{{ page.title }}</a>&nbsp;<th-icon icon="chevron-forward" width="14" height="14"></th-icon>
-    {% endfor %}
-    {% if data.piece %}
-      <a href="{{ data.page._url }}">{{ data.page.title }}</a>&nbsp;<th-icon icon="chevron-forward" width="14" height="14"></th-icon>
-      <span>{{ data.piece.title }}</span>
-    {% else %}
-      <span>{{ data.page.title }}</span>
-    {% endif %}
-  </nav>
-{% endif %}
+
+{% render breadcrumbFragment.breadcrumb() %}
+
 <section class="border-box flex flex-row md:flex-col items-start md:items-center justify-center px-4 th-pdp-content">
   <div class="my-0 mx-auto pt-8 th-pdp-left">
     <div class="flex flex-col items-center th-pdp-left-content ">
@@ -39,7 +31,7 @@
         space-between="10"
         navigation="true"
         pagination="true"
-        loop="false"
+        loop="true"
         style="--swiper-navigation-color: #0f0f0f; --swiper-pagination-color: #0f0f0f;--swiper-navigation-size: 28px;"
       >
         <swiper-slide>
@@ -159,7 +151,9 @@
 <h3>Related products</h3>
 <div class="flex flex-row md:flex-col items-center justify-center gap-4 m-0 p-8">
   {% for productLine in item._productlines %}
+    {% if productLine.thirstiePLID != item.thirstiePLID %}
     <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" show-link no-collection></th-product-add-to-cart>
+    {% endif %}
   {% endfor %}
 </div>
 {% endif %}
@@ -171,7 +165,7 @@
     class="th-pdp-recipe-swiper"
     navigation="true"
     pagination="false"
-    loop="true"
+    loop="false"
     style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
   >
   {% for recipe in item._recipes %}

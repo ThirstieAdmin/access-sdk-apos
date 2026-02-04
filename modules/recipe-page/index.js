@@ -19,6 +19,12 @@ export default {
         label: 'Subtitle',
         required: false
       },
+      hideBreadcrumb: {
+        type: 'boolean',
+        label: 'Hide Breadcrumb',
+        help: 'Hide the breadcrumb navigation on the recipe pages',
+        def: false
+      },
       textColor: {
         type: 'color',
         label: 'Text Color',
@@ -37,7 +43,7 @@ export default {
     group: {
       basics: {
         label: 'Basics',
-        fields: ['title', 'subTitle', 'textColor', 'backgroundColor']
+        fields: ['title', 'subTitle', 'hideBreadcrumb','textColor', 'backgroundColor']
       }
     }
   }
