@@ -16,6 +16,39 @@
 
   <style>
     :root {
+            /* Standard values */
+      --th-c-white: #FFF;
+      --th-c-smokywhite: #FAFAFA;
+      --th-c-light: #e4e4e4;
+      --th-c-greysLightestGrey: #F2F2F2;
+      --th-c-greysLightGrey: #aaa;
+      --th-c-greysMediumLightGrey: #BDBDBD;
+      --th-c-greysMediumDarkGrey: #828282;
+      --th-c-greysDarkGrey: #4F4F4F;
+      --th-c-dark: #242424;
+      --th-c-black: #000;
+
+      --th-c-greysDisabledGrey: var(--th-c-greysMediumLightGrey);
+      --th-c-black-Blur: rgba(0, 0, 0, 0.14);
+      --th-c-blackLight-Blur: rgba(0, 0, 0, 0.2);
+      --th-c-blackLightest-Blur: rgba(0, 0, 0, 0.12);
+      --th-c-greysMediumDarkGrey-Blur: rgba(130,130,130, .25);
+
+      --th-c-alertWrongPrimary: #B71C1C;
+      --th-c-alertWrongTint: #FFE0E3;
+      --th-c-alertSuccessPrimary: #1B5E20;
+      --th-c-alertSuccessTint: #E3FAE4;
+      --th-c-alertWarningPrimary: #BA8808;
+      --th-c-alertWarningTint: #FFF1CC;
+
+      --th-c-lavendarIndigoLight: #646cff;
+      --th-c-fuchsia: #E600B4;
+      --th-c-paleYellow: #FFF8E1;
+      --th-c-seafoamGreen: #00C49A;
+      --th-c-cobaltBlue: #0047AB;
+      --th-c-forestGreen: #228B22;
+      --th-c-orange: #FF6F00; 
+
       /* customStyles: global settings */
       --primary-color: {{ data.global.primaryColor or '#000' }};
       --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
@@ -53,50 +86,11 @@
       --th-ag-form-input-border: {{ data.global.ageGateInputBorder or '1px solid var(--th-c-greysMediumLightGrey)' }};
       --th-ag-form-input-border-radius: {{ data.global.ageGateInputBorderRadius or 'var(--th-border-radius, 4px)' }};
 
-      /* Typography */
-      --th-h1-font-family: {{ data.global.headingOneFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h1-font-size: {{ data.global.headingOneFontSize or '2em' }};
-      --th-h2-font-family: {{ data.global.headingTwoFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h2-font-size: {{ data.global.headingTwoFontSize or '1.5em' }};
-      --th-h3-font-family: {{ data.global.headingThreeFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h3-font-size: {{ data.global.headingThreeFontSize or '1.25em' }};
-      --th-h4-font-family: {{ data.global.headingFourFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h4-font-size: {{ data.global.headingFourFontSize or '1em' }};
-
-      /* Standard values */
-      --th-c-white: #FFF;
-      --th-c-smokywhite: #FAFAFA;
-      --th-c-light: #e4e4e4;
-      --th-c-greysLightestGrey: #F2F2F2;
-      --th-c-greysLightGrey: #aaa;
-      --th-c-greysMediumLightGrey: #BDBDBD;
-      --th-c-greysMediumDarkGrey: #828282;
-      --th-c-greysDarkGrey: #4F4F4F;
-      --th-c-dark: #242424;
-      --th-c-black: #000;
-
-      --th-c-greysDisabledGrey: var(--th-c-greysMediumLightGrey);
-      --th-c-black-Blur: rgba(0, 0, 0, 0.14);
-      --th-c-blackLight-Blur: rgba(0, 0, 0, 0.2);
-      --th-c-blackLightest-Blur: rgba(0, 0, 0, 0.12);
-      --th-c-greysMediumDarkGrey-Blur: rgba(130,130,130, .25);
-
-      --th-c-alertWrongPrimary: #B71C1C;
-      --th-c-alertWrongTint: #FFE0E3;
-      --th-c-alertSuccessPrimary: #1B5E20;
-      --th-c-alertSuccessTint: #E3FAE4;
-      --th-c-alertWarningPrimary: #BA8808;
-      --th-c-alertWarningTint: #FFF1CC;
-
-      --th-c-lavendarIndigoLight: #646cff;
-      --th-c-fuchsia: #E600B4;
-      --th-c-paleYellow: #FFF8E1;
-
       /* Style design tokens */
       --th-color-scheme: light dark;
       --th-font-family: {{ data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif' }};
       --th-font-weight: 400;
-      --th-font-color: {{ data.global.primaryFontColor or 'var(--th-c-black)' }};
+      --th-font-color: {{ apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-c-black)' }};
       --th-line-height: 1.5;
       --th-border-radius: {{ data.global.borderRadius or '4px' }};
       --th-btn-border-radius: {{ data.global.buttonBorderRadius or data.global.borderRadius or '4px' }};
@@ -108,7 +102,21 @@
 
       --th-pdp-btn-disabled-bg: var(--th-c-greysMediumLightGrey);
       --th-pdp-btn-disabled-color: var(--th-c-white);
-    
+
+      /* Typography */
+      --th-h1-font-family: {{ data.global.headingOneFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h1-font-size: {{ data.global.headingOneFontSize or '2em' }};
+      --th-h1-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingOneFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
+      --th-h2-font-family: {{ data.global.headingTwoFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h2-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingTwoFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
+      --th-h2-font-size: {{ data.global.headingTwoFontSize or '1.5em' }};
+      --th-h3-font-family: {{ data.global.headingThreeFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h3-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingThreeFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
+      --th-h3-font-size: {{ data.global.headingThreeFontSize or '1.25em' }};
+      --th-h4-font-family: {{ data.global.headingFourFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
+      --th-h4-font-size: {{ data.global.headingFourFontSize or '1em' }};
+      --th-h4-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingFourFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
+
       /* Checkout and cart styling tokens */
       --th-checkout-breadcrumb-completed: var(--th-c-brandPrimaryColor, var(--th-c-dark));
       --th-checkout-breadcrumb-inactive: var(--th-c-greysDisabledGrey);
