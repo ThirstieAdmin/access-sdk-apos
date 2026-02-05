@@ -83,27 +83,38 @@ body {
 }
 
 h1,
-th-acc-h1 {
+.th-acc-h1 {
   font-family: var(--th-h1-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
   font-size: var(--th-h1-font-size, 2em);
+  color: var(--th-h1-color, var(--th-font-color, var(--th-c-black)));
 }
 
 h2,
-th-acc-h2 {
+.th-acc-h2 {
   font-family: var(--th-h2-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
   font-size: var(--th-h2-font-size, 1.5em);
+  color: var(--th-h2-color, var(--th-font-color, var(--th-c-black)));
 }
 
 h3,
-th-acc-h3 {
+.th-acc-h3 {
   font-family: var(--th-h3-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
   font-size: var(--th-h3-font-size, 1.25em);
+  color: var(--th-h3-color, var(--th-font-color, var(--th-c-black)));
 }
 
 h4,
-th-acc-h4 {
+.th-acc-h4 {
   font-family: var(--th-h4-font-family, var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif));
   font-size: var(--th-h4-font-size, 1em);
+  color: var(--th-h4-color, var(--th-font-color, var(--th-c-black)));
+}
+
+.th-rich-text p {
+  font-family: var(--th-font-family, Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif);
+  font-size: 16px;
+  color: var(--th-font-color, var(--th-c-black));
+  margin: 0;
 }
 
 body {

@@ -178,6 +178,30 @@ export default {
         help: 'Defaults to black',
         options: standardPresetColors
       },
+      headingOneFontColor: {
+        type: 'color',
+        label: 'H1 font color',
+        help: 'Defaults to primary font color',
+        options: standardPresetColors
+      },
+      headingTwoFontColor: {
+        type: 'color',
+        label: 'H2 font color',
+        help: 'Defaults to primary font color',
+        options: standardPresetColors
+      },
+      headingThreeFontColor: {
+        type: 'color',
+        label: 'H3 font color',
+        help: 'Defaults to primary font color',
+        options: standardPresetColors
+      },
+      headingFourFontColor: {
+        type: 'color',
+        label: 'H4 font color',
+        help: 'Defaults to primary font color',
+        options: standardPresetColors
+      },
       headingOneFontFamily: {
         type: 'string',
         label: 'H1 font family',
@@ -517,10 +541,10 @@ export default {
         label: 'Typography',
         fields: [
           'primaryFontFamily', 'primaryFontColor',
-          'headingOneFontFamily', 'headingOneFontSize',
-          'headingTwoFontFamily', 'headingTwoFontSize',
-          'headingThreeFontFamily', 'headingThreeFontSize',
-          'headingFourFontFamily', 'headingFourFontSize',
+          'headingOneFontFamily', 'headingOneFontSize', 'headingOneFontColor',
+          'headingTwoFontFamily', 'headingTwoFontSize', 'headingTwoFontColor',
+          'headingThreeFontFamily', 'headingThreeFontSize', 'headingThreeFontColor',
+          'headingFourFontFamily', 'headingFourFontSize', 'headingFourFontColor',
           'typekitId'
         ]
       }
