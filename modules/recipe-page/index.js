@@ -19,6 +19,20 @@ export default {
         label: 'Subtitle',
         required: false
       },
+      listingType: {
+        type: 'select',
+        label: 'Listing Type',
+        choices: [
+          {
+            label: 'Thumbnails',
+            value: 'thumbnails'
+          },
+          {
+            label: 'Cards',
+            value: 'cards'
+          }
+        ]
+      },
       hideBreadcrumb: {
         type: 'boolean',
         label: 'Hide Breadcrumb',
@@ -43,7 +57,7 @@ export default {
     group: {
       basics: {
         label: 'Basics',
-        fields: ['title', 'subTitle', 'hideBreadcrumb','textColor', 'backgroundColor']
+        fields: ['title', 'subTitle', 'listingType', 'hideBreadcrumb','textColor', 'backgroundColor']
       }
     }
   }

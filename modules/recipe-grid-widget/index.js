@@ -71,10 +71,23 @@ export default {
           { label: 'grid', value: 'grid' }
         ]
       },
+      showShopSection: {
+        type: 'boolean',
+        label: 'Show "Shop the Ingredients" section'
+      },
+      shopSectionTitle: {
+        type: 'string',
+        label: 'Shop the Ingredients section title',
+        def: 'Shop the Ingredients',
+        if: {
+          showShopSection: true
+        }
+      },
       _recipes: {
         type: 'relationship',
         label: 'Recipes',
         withType: 'recipe',
+        withRelationships: ['ingredients._productLine', '_productlines'],
         builders: {
           project: {
             title: 1,
@@ -84,7 +97,8 @@ export default {
             primaryImage: 1,
             ingredients: 1,
             directions: 1,
-            extraContent: 1
+            extraContent: 1,
+            _productlines: 1
           }
         }
       }
@@ -95,7 +109,8 @@ export default {
         fields: [
           'title', 'titleTextColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName',
           'textColor', 'backgroundColor', 'borderRadius', 'imgHeight',
-          'showDivider', 'displayType', '_recipes'
+          'showDivider', 'displayType', 'showShopSection', 'shopSectionTitle',
+          '_recipes'
         ]
       }
     }
