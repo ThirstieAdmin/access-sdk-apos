@@ -76,20 +76,6 @@ export default {
         label: 'Product Ingredients',
         help: 'Product lines to highlight',
         withType: 'product-line',
-        fields: {
-          add: {
-            quantity: {
-              type: 'string',
-              label: 'How much'
-            }
-          },
-          group: {
-            measures: {
-              label: 'Measures',
-              fields: [ 'quantity' ]
-            }
-          }
-        },
         builders: {
           project: {
             title: 1,

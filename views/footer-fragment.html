@@ -4,10 +4,8 @@
 
   <div class="grid grid-cols-2 md:flex md:flex-col gap-2 th-footer-content th-footer-background">
     <nav class="my-0 py-0 th-footer-nav ">
+      {% if data.global.footerNav | length %}
       <ul class="flex flex-row justify-between th-footer-nav__links">
-        <li><a href="/faq">FAQ</a></li>
-        <li><a href="/support">Support</a></li>
-
         {% for item in data.global.footerNav %}
           {% if item.urlType === 'custom' %}
             <li><a href="{{ item.url }}" target="_blank">{{ item.label }}</a></li>
@@ -16,6 +14,13 @@
           {% endif %}
         {% endfor %}
       </ul>
+      {% endif %}
+
+      <ul class="my-4 flex flex-row justify-center gap-4 th-footer-nav__links">
+        <li><a href="/faq">Thirstie FAQ</a></li>
+        <li><a href="/support">Thirstie Support</a></li>
+      </ul>
+
     </nav>
     <div class="th-footer-top">
       {% if data.global.footerTop.items[0].type === "@apostrophecms/rich-text" %}

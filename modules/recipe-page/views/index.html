@@ -2,6 +2,7 @@
 
 {% import '@apostrophecms/pager:macros.html' as pager with context %}
 {% import 'macros.html' as macros %}
+{% import 'recipe-fragment.html' as recipeFragment %}
 {% import 'breadcrumb-fragment.html' as breadcrumbFragment %}
 
 {% block main %}
@@ -18,31 +19,36 @@
       <h2 class="th-recipe-page__subtitle text-xl my-4">{{ data.page.subTitle }}</h2>
     {% endif %}
  
-    <div class="grid grid-cols-3 md:grid-cols-1 items-center justify-center">
+    <div class="grid grid-cols-3 md:grid-cols-1 gap-4 items-center justify-center">
       {% for recipe in data.pieces | sort(false, false, 'title') %}
-        {% set attachment = apos.image.first(recipe.primaryImage or {}) %}
-        {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
-        {% set altText = attachment.title %}
-        {% if recipe._productlines | length %}
-          {% set product = recipe._productlines[0] %}
-          {% set productType = product.productType %}
+
+        {% if data.page.listingType == 'thumbnails' %}
+          {% set attachment = apos.image.first(recipe.primaryImage or {}) %}
+          {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+          {% set altText = attachment.title %}
+          {% if recipe._productlines | length %}
+            {% set product = recipe._productlines[0] %}
+            {% set productType = product.productType %}
+          {% else %}
+            {% set product = {"title": "n/a"} %}
+            {% set productType = "" %}
+          {% endif %}
+          <div class="flex flex-col items-start justify-start my-4 mx-auto">
+            <figure style="height:30vh">
+              <a href="{{ recipe._url }}">
+                <img
+                  class="th-recipe-card__primary_img h-full"
+                  src="{{ imageUrl }}" 
+                  alt="{{altText}}"
+                />
+              </a>
+              <figcaption class="th-recipe-card__title"><a href="{{ recipe._url }}">{{ recipe.title }}</a></figcaption>
+              <figcaption class="th-recipe-card__subtitle">{{ productType }}</figcaption>
+            </figure>
+          </div>
         {% else %}
-          {% set product = {"title": "n/a"} %}
-          {% set productType = "" %}
+          {% render recipeFragment.recipeCard(recipe, {textColor: apos.modules['theme-widget'].convertPreset(data.page.textColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.page.backgroundColor)}) %}
         {% endif %}
-        <div class="flex flex-col items-start justify-start my-4 mx-auto">
-          <figure style="height:30vh">
-            <a href="{{ recipe._url }}">
-              <img
-                class="th-recipe-card__primary_img h-full"
-                src="{{ imageUrl }}" 
-                alt="{{altText}}"
-              />
-            </a>
-            <figcaption class="th-recipe-card__title"><a href="{{ recipe._url }}">{{ recipe.title }}</a></figcaption>
-            <figcaption class="th-recipe-card__subtitle">{{ productType }}</figcaption>
-          </figure>
-        </div>
       {% endfor %}
     </div>
     {{ pager.render({
