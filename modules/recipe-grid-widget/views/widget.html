@@ -39,8 +39,14 @@
   {% for recipe in data.widget._recipes %}
     {% render recipeFragment.recipeCard(
       recipe,
-      {textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.widget.backgroundColor),
-      borderRadius: data.widget.borderRadius, imgHeight: data.widget.imgHeight}
+      {
+        textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor),
+        backgroundColor: apos.modules['theme-widget'].convertPreset(data.widget.backgroundColor),
+        borderRadius: data.widget.borderRadius,
+        imgHeight: data.widget.imgHeight,
+        showShopSection: data.widget.showShopSection,
+        shopSectionTitle: data.widget.shopSectionTitle
+      }
     ) %}
   {% endfor %}
   </div>
