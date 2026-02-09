@@ -342,10 +342,22 @@ export default {
         options: standardPresetColors
       },
       /* Age Gate Settings */
+      ageGateType: {
+        type: 'select',
+        label: 'Age Gate Type',
+        def: 'dob',
+        help: 'Defaults to date of birth. If set to disabled, users will be asked to enter date of birth at checkout.',
+        choices: [
+          { label: 'Date of Birth', value: 'dob' },
+          { label: 'Yes/No', value: 'yesno' },
+          { label: 'Confirm', value: 'confirm' },
+          { label: 'Disabled', value: 'disabled' }
+        ]
+      },
       ageGateLogo: {
         type: 'area',
         label: 'Age Gate Logo',
-        help: 'Optional. Will use brand logo if not set.',
+        help: 'Optional',
         options: {
           max: 1,
           widgets: {
@@ -356,6 +368,7 @@ export default {
       ageGateButtonBG: {
         type: 'color',
         label: 'Age Gate Button Background Color',
+        help: 'Defaults to transparent (--th-ag-form-btn-bg)',
         options: standardPresetColors
       },
       ageGateButtonBorder: {
@@ -371,30 +384,18 @@ export default {
       ageGateInputBorder: {
         type: 'string',
         label: 'Age Gate Input Border',
-        help: 'Defaults to 1px solid var(--th-c-greysMediumLightGrey)'
+        help: 'Defaults to 1px solid var(--th-c-greysMediumLightGrey)',
+        if: {
+          ageGateType: 'dob'
+        }
       },
       ageGateInputBorderRadius: {
         type: 'string',
         label: 'Age Gate Input Border Radius',
-        help: 'Defaults to borderRadius(4px)'
-      },
-      ageGateType: {
-        type: 'select',
-        label: 'Age Gate Type',
-        def: 'dob',
-        help: 'Defaults to date of birth. If set to disabled, users will be asked to enter date of birth at checkout.',
-        choices: [
-          { label: 'Date of Birth', value: 'dob' },
-          { label: 'Yes/No', value: 'yesno' },
-          { label: 'Confirm', value: 'confirm' },
-          { label: 'Disabled', value: 'disabled' }
-        ]
-      },
-      ageGateHideLogo: {
-        type: 'boolean',
-        label: 'Hide brand logo on age gate',
-        help: 'Logo is set in brand content',
-        def: false
+        help: 'Defaults to borderRadius(4px)',
+        if: {
+          ageGateType: 'dob'
+        }
       },
       ageGateHeaderText: {
         type: 'string',
@@ -447,19 +448,31 @@ export default {
       ageGateFormInputBG: {
         type: 'color',
         label: 'Input Background Color',
-        options: standardPresetColors
+        help: '(--th-ag-form-input-bg)',
+        options: standardPresetColors,
+        if: {
+          ageGateType: 'dob'
+        }
       },
       ageGateFormInputTextColor: {
         type: 'color',
         label: 'Input Text Color',
-        options: standardPresetColors
+        options: standardPresetColors,
+        if: {
+          ageGateType: 'dob'
+        }
       },
       ageGateFormBG: {
         type: 'color',
         label: 'Background for form elements',
-        help: 'Use to ensure form is visible against background image',
+        help: 'Use to ensure form is visible against background image (--th-ag-form-bg)',
         def: 'transparent',
         options: standardPresetColors
+      },
+      ageGateHideThirstieDisclaimer: {
+        type: 'boolean',
+        label: 'Hide Thirstie disclaimer in age gate',
+        help: 'This will hide the "All sales of alcohol are fulfilled by licensed retailers on the Thirstie Network." message that appears after users pass the age gate. We recommend keeping this message visible to ensure compliance with alcohol retail regulations.'
       },
       /* General */
       bodyBackgroundColor: {
@@ -527,10 +540,11 @@ export default {
       ageGate: {
         label: 'Age Gate',
         fields: [
-          'ageGateType', 'ageGateLogo','ageGateHideLogo', 'ageGateHeaderText', 'ageGateSubHeaderContent', 'ageGateFailContent',
+          'ageGateType', 'ageGateLogo', 'ageGateHeaderText', 'ageGateSubHeaderContent', 'ageGateFailContent',
           'ageGateButtonBG', 'ageGateButtonBorder', 'ageGateButtonBorderRadius', 'ageGateInputBorder', 'ageGateInputBorderRadius',
           'ageGateBackgroundColor', 'ageGateTextColor', 'ageGateFormInputBG', 'ageGateFormInputTextColor',
-          'ageGateBackgroundImage', 'ageGateFormBG'
+          'ageGateBackgroundImage', 'ageGateFormBG',
+          'ageGateHideThirstieDisclaimer'
         ]
       },
       customCode: {
