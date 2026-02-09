@@ -12,6 +12,10 @@ export default {
         type: 'boolean',
         label: `Use Production Keys`
       },
+      siteTitle: {
+        type: 'string',
+        label: 'Site title'
+      },
       brandLogo: {
         type: 'url',
         label: 'Brand logo'
@@ -515,7 +519,7 @@ export default {
     group: {
       generalContent: {
         label: 'General Settings',
-        fields: [ 'useProductionKeys', 'bodyBackgroundColor', 'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
+        fields: [ 'siteTitle', 'useProductionKeys', 'bodyBackgroundColor', 'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
       },
       themeBrandContent: {
         label: 'Theme & Brand Content',

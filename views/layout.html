@@ -7,7 +7,11 @@
 {% import 'agegate-fragment.html' as ageGateFragment %}
 {% import 'thirstie-admin-fragment.html' as thirstieAdminFragment %}
 
-{% set title = data.piece.title or data.page.title %}
+{% set pageTitle = data.piece.title or data.page.title %}
+{% if pageTitle == 'Home' %}
+  {% set pageTitle = 'Shop Now' %}
+{% endif %}
+{% set title = (data.global.siteTitle or 'Thirstie Access') ~ ' | ' ~ pageTitle %}
 
 {% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 112) %}
 
