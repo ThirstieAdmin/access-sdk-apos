@@ -44,6 +44,10 @@ figcaption.th-image-widget__caption {
   justify-content: var(--th-image-widget__caption-flex-justify, center);
 }
 
+figcaption.th-image-widget__caption > * {
+  color: var(--th-image-widget__caption-text-color, var(--th-c-white));
+}
+
 figcaption.th-image-widget__caption > h3,
 figcaption.th-image-widget__caption > h4 {
   margin: 1rem auto;

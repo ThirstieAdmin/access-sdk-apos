@@ -2,11 +2,13 @@
 {% set attachment = apos.image.first(data.widget.image or {}) %}
 {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
 {% set altText = attachment.title %}
+{% set captionTextColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) or 'var(--th-c-white)' %}
+{% set captionFontFamily = data.widget.textFontFamily or 'var(--th-font-family)' %}
 
 <div class="m-0 p-0 w-full marquee-widget ">
   <figure
   class="m-0 p-0 th-image-widget__wrapper marquee-widget__figure"
-  style="--th-image-widget__caption-text-color: {{ data.widget.textColor or 'var(--th-c-white)' }}; --th-image-widget__caption-font-family: {{ data.widget.textFontFamily or 'var(--th-font-family)' }};"
+  style="--th-image-widget__caption-text-color: {{ captionTextColor }}; --th-image-widget__caption-font-family: {{ captionFontFamily }};"
   >
     <img class="w-full th-image-widget__img marquee-widget__img" src="{{ imageUrl }}" alt="{{ altText }}" />
     <figcaption class="th-image-widget__caption flex flex-col marquee-widget__caption">
