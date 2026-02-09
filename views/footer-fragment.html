@@ -16,11 +16,6 @@
       </ul>
       {% endif %}
 
-      <ul class="my-4 flex flex-row justify-center gap-4 th-footer-nav__links">
-        <li><a href="/faq">Thirstie FAQ</a></li>
-        <li><a href="/support">Thirstie Support</a></li>
-      </ul>
-
     </nav>
     <div class="th-footer-top">
       {% if data.global.footerTop.items[0].type === "@apostrophecms/rich-text" %}
@@ -46,9 +41,13 @@
         </a>
       </div>
       <nav class="my-0 py-0 th-footer-nav ">
-      <ul class="flex flex-row justify-around th-footer-nav__links">
+      <ul class="flex flex-row justify-start th-footer-nav__links">
         <li><a href="/thirstie-terms-of-use">Thirstie Terms & Conditions</a></li>
         <li><a href="/thirstie-privacy-policy">Thirstie Privacy Policy</a></li>
+      </ul>
+      <ul class="flex flex-row justify-start th-footer-nav__links">
+        <li><a href="/faq">Thirstie FAQ</a></li>
+        <li><a href="/support">Contact Thirstie Support</a></li>
       </ul>
     </div>
     <div class="flex flex-col justify-end items-end th-font-16 th-footer-brand">
