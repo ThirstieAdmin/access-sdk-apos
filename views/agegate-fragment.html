@@ -22,7 +22,7 @@
     {# only show age gate if user is not logged in #}
     <th-conditional-modal query="ageGatePassed">
       <div class="p-0 m-0 w-screen h-screen flex flex-col items-center justify-center th-fouc-block" style="background:{{ageGatebackground}};color:var(--th-ag-textcolor, --th-c-white);" >
-        <div style="background-color: var(--th-ag-form-input-bg, red);" class="flex flex-col items-center justify-center p-8 th-ag-form-input">
+        <div style="background-color: var(--th-ag-form-bg, transparent);" class="flex flex-col items-center justify-center p-8 th-ag-form-input">
           {% if ageGateLogo %}
             <div class="m-0 py-4">
               <img class="m-0" src="{{ apos.attachment.url(ageGateLogo, { size: 'full' }) }}" alt="{{ ageGateLogo.alt or 'Age Gate Logo' }}" style="max-height:125px"/>
@@ -38,7 +38,7 @@
               {% endif %}
             </div>
           </div>
-          <th-age-verification type="{{ ageGateType }}" confirm-text="Enter" style="--th-border-radius: 2px"></th-age-verification>
+          <th-age-verification type="{{ ageGateType }}" confirm-text="Enter"></th-age-verification>
           <th-conditional-label query="ageGatePassed" alt-label="All sales of alcohol are fulfilled by licensed retailers on the Thirstie Network." class="my-4">
             {% if data.global.ageGateFailContent.items[0].type === "@apostrophecms/rich-text" %}
               {{ apos.area.richText(data.global.ageGateFailContent) }}
@@ -48,9 +48,14 @@
               <span>You must be 21 or older to enter. Click <a href="https://responsibility.org" target="_blank" class="font-bold">here</a></span>
             {% endif %}
           </th-conditional-label>
-          <div style="color:var(--th-ag-textcolor, --th-c-white);">
-            <th-disclaimer text-color="var(--th-ag-textcolor, --th-c-white)" text-align="center" />
-          </div>
+          {% if not data.global.ageGateHideThirstieDisclaimer %}
+            <div class="my-4 text-center text-sm" style="color: var(--th-ag-textcolor, --th-c-white);">
+              All sales of alcohol are fulfilled by licensed retailers on the Thirstie Network.
+            </div>
+            <div style="color:var(--th-ag-textcolor, --th-c-white);">
+              <th-disclaimer text-color="var(--th-ag-textcolor, --th-c-white)" text-align="center" />
+            </div>
+          {% endif %}
         </div>
       </div>
     </th-conditional-modal>
