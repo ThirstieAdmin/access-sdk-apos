@@ -10,7 +10,7 @@
   {% endif %}
 
   {% if data.global.ageGateBackgroundImage.items | length %}
-    {% set ageGatebackgroundColor = apos.modules['theme-widget'].convertPreset(data.global.ageGateBackgroundColor) or rgba(50,50,50,0.5) %}
+    {% set ageGatebackgroundColor = apos.modules['theme-widget'].convertPreset(data.global.ageGateBackgroundColor) or 'rgba(50,50,50,0.5)' %}
     {% set agegateBackgroundImg = apos.image.first(data.global.ageGateBackgroundImage) %}
     {% set agegateBackgroundImgUrl = apos.attachment.url(agegateBackgroundImg, { size: 'full' }) %}
     {% set ageGatebackground = "linear-gradient(to bottom, " + ageGatebackgroundColor +" 0%, " + ageGatebackgroundColor + " 100%), url(" + agegateBackgroundImgUrl + ") no-repeat center/cover" %}
@@ -49,9 +49,6 @@
             {% endif %}
           </th-conditional-label>
           {% if not data.global.ageGateHideThirstieDisclaimer %}
-            <div class="my-4 text-center text-sm" style="color: var(--th-ag-textcolor, --th-c-white);">
-              All sales of alcohol are fulfilled by licensed retailers on the Thirstie Network.
-            </div>
             <div style="color:var(--th-ag-textcolor, --th-c-white);">
               <th-disclaimer text-color="var(--th-ag-textcolor, --th-c-white)" text-align="center" />
             </div>
