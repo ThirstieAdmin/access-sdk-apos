@@ -2,7 +2,7 @@
 
 {% if data.global %}
 
-{% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 0) %}
+  {% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 0) %}
 
   {% if data.global.footerBackgroundImage.items | length %}
     {% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
@@ -80,7 +80,7 @@
       --th-ag-form-input-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputBG) or data.global.secondaryColor or 'transparent' }};
       --th-ag-form-input-text: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateFormInputTextColor) or data.global.secondaryContrastingColor or '#000' }};
       --th-ag-form-btn-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.ageGateButtonBG) or 'transparent' }};
-      --th-ag-form-btn-border: {{ data.global.ageGateButtonBorder or 'none' }};
+      --th-ag-form-btn-border: {{ data.global.ageGateButtonBorder or '1px solid var(--th-c-greysMediumLightGrey)' }};
       --th-ag-form-btn-border-bottom: var(--th-ag-form-btn-border);
       --th-ag-form-input-border: {{ data.global.ageGateInputBorder or '1px solid var(--th-c-greysMediumLightGrey)' }};
       --th-ag-form-input-border-radius: {{ data.global.ageGateInputBorderRadius or 'var(--th-border-radius, 4px)' }};
@@ -171,26 +171,23 @@
   {% endif %}
 
   {% if data.global.footerBackgroundImage.items | length %}
-
-  <style>
-    .th-footer-background {
-      background-image:
-        linear-gradient(to bottom, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 0%, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 100%),
-        var(--footer-bg-img);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-clip: border-box;
-    }
-  </style>
-
+    <style>
+      .th-footer-background {
+        background-image:
+          linear-gradient(to bottom, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 0%, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 100%),
+          var(--footer-bg-img);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-clip: border-box;
+      }
+    </style>
   {% else %}
-
-  <style>
-    .th-footer-background {
-      background-color: var(--footer-background-color, var(--secondary-color));
-    }
-  </style>
-
+    <style>
+      .th-footer-background {
+        background-color: var(--footer-background-color, var(--secondary-color));
+      }
+    </style>
   {% endif %}
+
 {% endif %}

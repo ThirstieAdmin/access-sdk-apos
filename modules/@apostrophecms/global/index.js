@@ -330,6 +330,11 @@ export default {
       typekitId: {
         type: 'string',
         label: 'Typekit ID',
+        help: 'like abc3dkdf'
+      },
+      typekitAPIToken: {
+        type: 'string',
+        label: 'Typekit API Token',
         help: 'like 03b90b08892e1b1ccd363b84150dbb71e7fcc76f'
       },
       /* Header settings */
@@ -378,7 +383,7 @@ export default {
       ageGateButtonBorder: {
         type: 'string',
         label: 'Age Gate Button Border',
-        help: 'Defaults to 1px solid var(ageGateButtonBG)'
+        help: 'Defaults to `1px solid var(--th-c-greysMediumLightGrey)` (--th-ag-form-btn-border)'
       },
       ageGateButtonBorderRadius: {
         type: 'string',
@@ -442,6 +447,7 @@ export default {
       ageGateBackgroundColor: {
         type: 'color',
         label: 'Background Color',
+        help: 'Used as a background color for the age gate. Defaults to var(--th-primary-color)',
         options: standardPresetColors
       },
       ageGateTextColor: {
@@ -517,16 +523,19 @@ export default {
       }
     },
     group: {
-      generalContent: {
-        label: 'General Settings',
-        fields: [ 'siteTitle', 'useProductionKeys', 'bodyBackgroundColor', 'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor' ]
-      },
       themeBrandContent: {
         label: 'Theme & Brand Content',
         fields: [
           'brandLogo', 'brandLogoAltText', 'supportEmail',
           'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
           'borderRadius', 'buttonBorderRadius',
+        ]
+      },
+      generalContent: {
+        label: 'User Experience',
+        fields: [
+          'siteTitle', 'useProductionKeys', 'bodyBackgroundColor',
+          'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor'
         ]
       },
       bannerContent: {
@@ -563,7 +572,7 @@ export default {
           'headingTwoFontFamily', 'headingTwoFontSize', 'headingTwoFontColor',
           'headingThreeFontFamily', 'headingThreeFontSize', 'headingThreeFontColor',
           'headingFourFontFamily', 'headingFourFontSize', 'headingFourFontColor',
-          'typekitId'
+          'typekitId', 'typekitAPIToken'
         ]
       }
     }
