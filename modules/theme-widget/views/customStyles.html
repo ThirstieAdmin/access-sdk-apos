@@ -9,7 +9,7 @@
 
   <style>
     :root {
-            /* Standard values */
+      /* Standard values */
       --th-c-white: #FFF;
       --th-c-smokywhite: #FAFAFA;
       --th-c-light: #e4e4e4;
@@ -40,7 +40,11 @@
       --th-c-seafoamGreen: #00C49A;
       --th-c-cobaltBlue: #0047AB;
       --th-c-forestGreen: #228B22;
-      --th-c-orange: #FF6F00; 
+      --th-c-orange: #FF6F00;
+
+      --th-standard-sanserif: Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif;
+      --th-standard-serif: Merriweather, Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif;
+      --th-standard-monospace: SF Mono, SF Mono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
       /* customStyles: global settings */
       --primary-color: {{ data.global.primaryColor or '#000' }};
@@ -49,7 +53,7 @@
       --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000' }};
       --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
       --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
-      --banner-font-family: {{ data.global.siteBannerFontFamily or 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'}};
+      --banner-font-family: {{ data.global.siteBannerFontFamily or 'var(--th-standard-sanserif)' }};
       --header-offset: {{ headerHeight }}px;
       --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
       --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
@@ -78,9 +82,8 @@
 
       /* Style design tokens */
       --th-color-scheme: light dark;
-      --th-font-family: {{ data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif' }};
+      --th-font-family: var(--primary-font-family, var(--th-standard-sanserif));
       --th-font-weight: 400;
-      --th-font-color: {{ apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-c-black)' }};
       --th-line-height: 1.5;
       --th-border-radius: {{ data.global.borderRadius or '4px' }};
       --th-btn-border-radius: {{ data.global.buttonBorderRadius or data.global.borderRadius or '4px' }};
@@ -92,20 +95,6 @@
 
       --th-pdp-btn-disabled-bg: var(--th-c-greysMediumLightGrey);
       --th-pdp-btn-disabled-color: var(--th-c-white);
-
-      /* Typography */
-      --th-h1-font-family: {{ data.global.headingOneFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h1-font-size: {{ data.global.headingOneFontSize or '2em' }};
-      --th-h1-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingOneFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
-      --th-h2-font-family: {{ data.global.headingTwoFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h2-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingTwoFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
-      --th-h2-font-size: {{ data.global.headingTwoFontSize or '1.5em' }};
-      --th-h3-font-family: {{ data.global.headingThreeFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h3-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingThreeFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
-      --th-h3-font-size: {{ data.global.headingThreeFontSize or '1.25em' }};
-      --th-h4-font-family: {{ data.global.headingFourFontFamily or data.global.primaryFontFamily or 'Inter, system-ui, Avenir, Helvetica Neue, Helvetica, Arial, sans-serif'}};
-      --th-h4-font-size: {{ data.global.headingFourFontSize or '1em' }};
-      --th-h4-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headingFourFontColor) or apos.modules['theme-widget'].convertPreset(data.global.primaryFontColor) or 'var(--th-font-color, var(--th-c-black))' }};
 
       /* Checkout and cart styling tokens */
       --th-checkout-breadcrumb-completed: var(--th-c-brandPrimaryColor, var(--th-c-dark));

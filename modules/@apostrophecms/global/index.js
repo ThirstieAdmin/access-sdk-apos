@@ -171,73 +171,6 @@ export default {
         label: 'Footer text color',
         options: standardPresetColors
       },
-      /* Typography settings */
-      primaryFontFamily: {
-        type: 'string',
-        label: 'Primary font family',
-      },
-      primaryFontColor: {
-        type: 'color',
-        label: 'Primary font color',
-        help: 'Defaults to black',
-        options: standardPresetColors
-      },
-      headingOneFontColor: {
-        type: 'color',
-        label: 'H1 font color',
-        help: 'Defaults to primary font color',
-        options: standardPresetColors
-      },
-      headingTwoFontColor: {
-        type: 'color',
-        label: 'H2 font color',
-        help: 'Defaults to primary font color',
-        options: standardPresetColors
-      },
-      headingThreeFontColor: {
-        type: 'color',
-        label: 'H3 font color',
-        help: 'Defaults to primary font color',
-        options: standardPresetColors
-      },
-      headingFourFontColor: {
-        type: 'color',
-        label: 'H4 font color',
-        help: 'Defaults to primary font color',
-        options: standardPresetColors
-      },
-      headingOneFontFamily: {
-        type: 'string',
-        label: 'H1 font family',
-      },
-      headingTwoFontFamily: {
-        type: 'string',
-        label: 'H2 font family',
-      },
-      headingThreeFontFamily: {
-        type: 'string',
-        label: 'H3 font family',
-      },
-      headingFourFontFamily: {
-        type: 'string',
-        label: 'H4 font family',
-      },
-      headingOneFontSize: {
-        type: 'string',
-        label: 'H1 font size',
-      },
-      headingTwoFontSize: {
-        type: 'string',
-        label: 'H2 font size',
-      },
-      headingThreeFontSize: {
-        type: 'string',
-        label: 'H3 font size',
-      },
-      headingFourFontSize: {
-        type: 'string',
-        label: 'H4 font size',
-      },
       /* Theme settings */
       primaryColor: {
         type: 'color',
@@ -536,10 +469,11 @@ export default {
           'borderRadius', 'buttonBorderRadius',
         ]
       },
-      generalContent: {
-        label: 'User Experience',
+      generalSettings: {
+        label: 'General Settings',
         fields: [
           'siteTitle', 'useProductionKeys',
+          'typekitId', 'typekitAPIToken',
           'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor'
         ]
       },
@@ -568,17 +502,6 @@ export default {
       customCode: {
         label: 'Custom Code',
         fields: ['customCode', 'customCodeBodyStart', 'customCodeBodyEnd']
-      },
-      typography: {
-        label: 'Typography',
-        fields: [
-          'primaryFontFamily', 'primaryFontColor',
-          'headingOneFontFamily', 'headingOneFontSize', 'headingOneFontColor',
-          'headingTwoFontFamily', 'headingTwoFontSize', 'headingTwoFontColor',
-          'headingThreeFontFamily', 'headingThreeFontSize', 'headingThreeFontColor',
-          'headingFourFontFamily', 'headingFourFontSize', 'headingFourFontColor',
-          'typekitId', 'typekitAPIToken'
-        ]
       }
     }
   }
