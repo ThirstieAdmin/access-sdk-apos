@@ -148,36 +148,53 @@
 </section>
 
 {% if item._productlines | length and not data.page.hideRelatedProductsPDP %}
-<h3>Related products</h3>
-<div class="flex flex-row md:flex-col items-center justify-center gap-4 m-0 p-8">
-  {% for productLine in item._productlines %}
-    {% if productLine.thirstiePLID != item.thirstiePLID %}
-    <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" show-link no-collection></th-product-add-to-cart>
-    {% endif %}
-  {% endfor %}
-</div>
+<section class="border-box my-8 w-screen flex flex-col items-start md:items-center justify-center">
+  <div class="my-8 mx-auto flex flex-col th-related-products">
+    <h3>Related products</h3>
+    <swiper-container
+        class="th-swiper__container th-pdp-related-products-swiper"
+        navigation="true"
+        pagination="false"
+        space-between="10"
+        loop="false"
+        style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+      >
+        {% for productLine in item._productlines %}
+          <swiper-slide class="my-0 mx-auto">
+            {% if productLine.thirstiePLID != item.thirstiePLID %}
+            <div class="my-0 mx-auto">
+              <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" show-link no-collection></th-product-add-to-cart>
+            </div>
+            {% endif %}
+          </swiper-slide>
+        {% endfor %}
+    </swiper-container>
+  </div>
+</section>
 {% endif %}
 
 {% if item._recipes | length and not data.page.hideRecipesPDP %}
-<div class="relative">
-  <h3>Featured Cocktails</h3>
-  <swiper-container
-    class="th-pdp-recipe-swiper"
-    navigation="true"
-    pagination="false"
-    loop="false"
-    style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
-  >
-  {% for recipe in item._recipes %}
-    <swiper-slide>
-      <div class="th-pdp-recipe-card">
-        {% render recipeFragment.recipeCardWide(
-          recipe,
-          {textColor: apos.modules['theme-widget'].convertPreset(data.global.primaryColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.global.primaryContrastingColor)}
-        ) %}
-      </div>
-    </swiper-slide>
-  {% endfor %}
-</div>
+<section class="my-8">
+  <div class="my-8 th-pdp-recipes">
+    <h3>Featured Cocktails</h3>
+    <swiper-container
+      class="th-pdp-recipe-swiper"
+      navigation="true"
+      pagination="false"
+      loop="true"
+      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+    >
+    {% for recipe in item._recipes %}
+      <swiper-slide>
+        <div class="th-pdp-recipe-card">
+          {% render recipeFragment.recipeCardWide(
+            recipe,
+            {textColor: apos.modules['theme-widget'].convertPreset(data.global.primaryColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.global.primaryContrastingColor)}
+          ) %}
+        </div>
+      </swiper-slide>
+    {% endfor %}
+  </div>
+</section>
 {% endif %}
 {% endblock %}
