@@ -11,7 +11,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  font-family: var(--th-font-family);
+  font-family: var(--primary-font-family);
   background-color: var(--body-background-color, '#FFF');
   background-image: var(--body-background-image, 'none');
   background-size: cover;
@@ -136,7 +136,7 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   z-index: 1;
   position: relative;
   padding: 10px 30px;
-  background: inherit;
+  background-color: var(--body-background-color, inherit);
 }
 
 .th-availability-container {
