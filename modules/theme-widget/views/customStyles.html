@@ -4,13 +4,6 @@
 
   {% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 0) %}
 
-  {% if data.global.footerBackgroundImage.items | length %}
-    {% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
-    {% set footerBackgroundImgUrl = apos.attachment.url(footerBackgroundImg, { size: 'full' }) %}
-  {% else %}
-    {% set footerBackgroundImgUrl = "" %}
-  {% endif %}
-
   <link rel="stylesheet" type="text/css" href="https://cdn.thirstie.cloud/css/latest/thirstiebase.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.thirstie.cloud/css/latest/thirstieecomm.css" />
 
@@ -64,8 +57,6 @@
       --footer-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerBackgroundColor) or data.global.secondaryColor or '#fff' }};
       --footer-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerTextColor) or data.global.secondaryContrastingColor or '#000' }};
       --footer-height: {{ data.global.footerHeight or '40vh' }};
-      --footer-bg-img: url({{ footerBackgroundImgUrl }});
-      --body-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.bodyBackgroundColor) or '#fff' }};
       --th-c-header-icon-count: var(--header-background-color);
       --th-availability-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBG) or data.global.primaryContrastingColor or '#fff' }};
       --th-availability-border: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBorderColor) or 'var(--th-c-light)' }};
@@ -171,8 +162,11 @@
   {% endif %}
 
   {% if data.global.footerBackgroundImage.items | length %}
+    {% set footerBackgroundImg = apos.image.first(data.global.footerBackgroundImage) %}
+    {% set footerBackgroundImgUrl = apos.attachment.url(footerBackgroundImg, { size: 'full' }) %}
     <style>
       .th-footer-background {
+        --footer-bg-img: url({{ footerBackgroundImgUrl }});
         background-image:
           linear-gradient(to bottom, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 0%, var(--footer-background-color, rgba(50, 50, 50, 0.5)) 100%),
           var(--footer-bg-img);
@@ -186,6 +180,22 @@
     <style>
       .th-footer-background {
         background-color: var(--footer-background-color, var(--secondary-color));
+      }
+    </style>
+  {% endif %}
+
+  {% if data.global.bodyBackgroundImage.items | length %}
+    {% set bodyBackgroundImg = apos.image.first(data.global.bodyBackgroundImage) %}
+    {% set bodyBackgroundImgUrl = apos.attachment.url(bodyBackgroundImg, { size: 'full' }) %}
+    <style>
+      :root {
+        --body-background-image: url({{ bodyBackgroundImgUrl }});
+      }
+    </style>
+  {% else %}
+    <style>
+      :root {
+        --body-background-image: none;
       }
     </style>
   {% endif %}
