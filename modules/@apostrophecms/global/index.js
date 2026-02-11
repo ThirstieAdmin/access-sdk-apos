@@ -266,6 +266,16 @@ export default {
         label: 'Button border radius',
         help: 'Defaults to borderRadius(4px)'
       },
+      bodyBackgroundImage: {
+        type: 'area',
+        label: 'Body Background Image',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/image': {}
+          }
+        }
+      },
       /* Banner settings */
       enableSiteBanner: {
         type: 'boolean',
@@ -485,11 +495,6 @@ export default {
         help: 'This will hide the "All sales of alcohol are fulfilled by licensed retailers on the Thirstie Network." message that appears after users pass the age gate. We recommend keeping this message visible to ensure compliance with alcohol retail regulations.'
       },
       /* General */
-      bodyBackgroundColor: {
-        type: 'color',
-        label: 'Page body background',
-        options: standardPresetColors
-      },
       locationType: {
         type: 'select',
         label: 'Delivery location type',
@@ -534,7 +539,7 @@ export default {
       generalContent: {
         label: 'User Experience',
         fields: [
-          'siteTitle', 'useProductionKeys', 'bodyBackgroundColor',
+          'siteTitle', 'useProductionKeys',
           'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor'
         ]
       },
