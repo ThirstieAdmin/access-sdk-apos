@@ -3,7 +3,7 @@
 {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
 {% set altText = attachment.title %}
 {% set captionTextColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) or 'var(--th-c-white)' %}
-{% set captionFontFamily = data.widget.textFontFamily or 'var(--th-font-family)' %}
+{% set captionFontFamily = data.widget.textFontFamily or 'var(--primary-font-family)' %}
 
 <div class="m-0 p-0 w-full marquee-widget ">
   <figure

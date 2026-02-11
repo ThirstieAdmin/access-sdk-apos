@@ -35,7 +35,7 @@ figcaption.th-image-widget__caption {
   border-radius: var(--th-image-widget__caption-border-radius);
   color: var(--th-image-widget__caption-text-color, var(--th-c-white));
   font-size: var(--th-image-widget__caption-font-size);
-  font-family: var(--th-image-widget__caption-font-family, var(--th-font-family));
+  font-family: var(--th-image-widget__caption-font-family, var(--primary-font-family));
   font-style: var(--th-image-widget__caption-font-style);
   font-weight: var(--th-image-widget__caption-font-weight);
   padding: var(--th-image-widget__caption-padding);
