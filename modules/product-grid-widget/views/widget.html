@@ -20,16 +20,16 @@
     className: data.widget.titleClassName
   }) }}
   <th-catalog-collection>
-    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-text-color: {{ textColor }}">
+    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }}">
       {% if data.widget.gridType == 'flex' %}
-      <div class="flex flex-wrap gap-x-0 gap-y-0 py-4 items-center justify-between th-product-grid ">
+      <div class="flex flex-wrap gap-x-0 gap-y-8 py-4 items-center justify-between th-product-grid ">
       {% else %}
       <div class="grid grid-cols-{{ data.widget.gridType }} md:grid-cols-1 gap-0 items-center justify-between th-product-grid">
       {% endif %}
         {% for productLine in data.widget._productlines %}
         <div
-          class="flex flex-grow flex-basis-3 flex-col items-center th-product-grid__card"
-          style="--product-grid-bg: {{ backgroundColor }};--product-grid-border: {{ borderColor }};"
+          class="flex flex-grow flex-basis-3 flex-col items-center"
+          style="--product-grid-border: {{ borderColor }};"
         >
           {% if productLine.primaryImage.items | length %}
             {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
@@ -39,6 +39,7 @@
             {% set imageUrl = productLine.imageSpec | replace("{dims}.", ".") %}
             {% set altText = productLine.title or "product image" %}
           {% endif %}
+          <div class="flex flex-grow flex-col items-center th-product-grid__card">
           <swiper-container
             class="th-plp-swiper__container"
             space-between="10"
@@ -77,6 +78,7 @@
               {{ showProductType }} {{ pdpLink }} {{ showImage }}
               style="--th-product-line-selector__bg: var(--product-grid-bg, #FFF)"
             ></th-product-line-selector>
+          </div>
           </div>
         </div>
       {% endfor %}
