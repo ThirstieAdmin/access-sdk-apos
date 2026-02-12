@@ -466,6 +466,7 @@ export default {
         fields: [
           'brandLogo', 'brandLogoAltText', 'supportEmail',
           'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
+          'bodyBackgroundImage',
           'borderRadius', 'buttonBorderRadius',
         ]
       },

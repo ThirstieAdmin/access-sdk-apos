@@ -46,11 +46,29 @@
       --th-standard-serif: Merriweather, Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif;
       --th-standard-monospace: SF Mono, SF Mono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
-      /* customStyles: global settings */
+      /* Style design tokens */
+
       --primary-color: {{ data.global.primaryColor or '#000' }};
       --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
       --secondary-color: {{ data.global.secondaryColor or '#fff' }};
       --secondary-contrasting-color: {{ data.global.secondaryContrastingColor or '#000' }};
+
+      --th-color-scheme: light dark;
+      --th-font-family: var(--primary-font-family, var(--th-standard-sanserif));
+      --th-font-weight: 400;
+      --th-line-height: 1.5;
+      --th-border-radius: {{ data.global.borderRadius or '4px' }};
+      --th-btn-border-radius: {{ data.global.buttonBorderRadius or data.global.borderRadius or '4px' }};
+      --th-border-color: var(--th-c-greysMediumLightGrey);
+      --th-border-form: 1px solid var(--th-border-color);
+      --th-input-focus-outline: 2px solid var(--th-c-greysDarkGrey);
+      --th-header-dividers: 1px solid var(--th-c-greysLightestGrey);
+      --th-account-dividers: 1px solid var(--th-c-gray);
+
+      --th-pdp-btn-disabled-bg: var(--th-c-greysMediumLightGrey);
+      --th-pdp-btn-disabled-color: var(--th-c-white);
+
+      /* customStyles: global settings */
       --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
       --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
       --banner-font-family: {{ data.global.siteBannerFontFamily or 'var(--th-standard-sanserif)' }};
@@ -79,22 +97,6 @@
       --th-ag-form-btn-border-bottom: var(--th-ag-form-btn-border);
       --th-ag-form-input-border: {{ data.global.ageGateInputBorder or '1px solid var(--th-c-greysMediumLightGrey)' }};
       --th-ag-form-input-border-radius: {{ data.global.ageGateInputBorderRadius or 'var(--th-border-radius, 4px)' }};
-
-      /* Style design tokens */
-      --th-color-scheme: light dark;
-      --th-font-family: var(--primary-font-family, var(--th-standard-sanserif));
-      --th-font-weight: 400;
-      --th-line-height: 1.5;
-      --th-border-radius: {{ data.global.borderRadius or '4px' }};
-      --th-btn-border-radius: {{ data.global.buttonBorderRadius or data.global.borderRadius or '4px' }};
-      --th-border-color: var(--th-c-greysMediumLightGrey);
-      --th-border-form: 1px solid var(--th-border-color);
-      --th-input-focus-outline: 2px solid var(--th-c-greysDarkGrey);
-      --th-header-dividers: 1px solid var(--th-c-greysLightestGrey);
-      --th-account-dividers: 1px solid var(--th-c-gray);
-
-      --th-pdp-btn-disabled-bg: var(--th-c-greysMediumLightGrey);
-      --th-pdp-btn-disabled-color: var(--th-c-white);
 
       /* Checkout and cart styling tokens */
       --th-checkout-breadcrumb-completed: var(--th-c-brandPrimaryColor, var(--th-c-dark));
