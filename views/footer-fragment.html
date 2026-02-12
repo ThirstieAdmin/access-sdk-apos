@@ -2,29 +2,33 @@
 
 <footer class="th-footer">
 
+  {% set footerGridRow = 1 %}
   <div class="grid grid-cols-2 md:flex md:flex-col gap-2 th-footer-content th-footer-background">
-    <nav class="my-0 py-0 th-footer-nav ">
-      {% if data.global.footerNav | length %}
-      <ul class="flex flex-row justify-between th-footer-nav__links">
-        {% for item in data.global.footerNav %}
-          {% if item.urlType === 'custom' %}
-            <li><a href="{{ item.url }}" target="_blank">{{ item.label }}</a></li>
-          {% else %}
-            <li><a href="{{ item._page[0].slug }}">{{ item.label }}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      {% endif %}
-
-    </nav>
-    <div class="th-footer-top">
-      {% if data.global.footerTop.items[0].type === "@apostrophecms/rich-text" %}
-        {{ apos.area.richText(data.global.footerTop) }}
-      {% elif data.global.footerTop.items[0].type === "@apostrophecms/html" %}
-        {{ data.global.footerTop.items[0].code | safe}}
-      {% endif %}
-    </div>
-    <div class="flex flex-col justify-end items-start  th-font-16 th-footer-thirstie">
+    {% if data.global.footerNav | length %}
+      <nav class="my-0 py-0 th-footer-grid-row-{{ footerGridRow }} th-footer-nav">
+        <ul class="flex flex-row justify-between th-footer-nav__links">
+          {% for item in data.global.footerNav %}
+            {% if item.urlType === 'custom' %}
+              <li><a href="{{ item.url }}" target="_blank">{{ item.label }}</a></li>
+            {% else %}
+              <li><a href="{{ item._page[0].slug }}">{{ item.label }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      {% set footerGridRow = footerGridRow + 1 %}
+    {% endif %}
+    {% if data.global.footerTop.items | length %}
+      <div class="th-footer-top th-footer-grid-row-{{ footerGridRow }}">
+        {% if data.global.footerTop.items[0].type === "@apostrophecms/rich-text" %}
+          {{ apos.area.richText(data.global.footerTop) }}
+        {% elif data.global.footerTop.items[0].type === "@apostrophecms/html" %}
+          {{ data.global.footerTop.items[0].code | safe}}
+        {% endif %}
+      </div>
+      {% set footerGridRow = footerGridRow + 1 %}
+    {% endif %}
+    <div class="flex flex-col justify-end items-start  th-font-16 th-footer-grid-row-3 th-footer-thirstie">
       <div class="mx-0 my-0 p-0">
         <span class="m-0 p-0">Shopping experience powered by</span>
         <a
@@ -50,7 +54,7 @@
         <li><a href="/support">Contact Thirstie Support</a></li>
       </ul>
     </div>
-    <div class="flex flex-col justify-end items-end th-font-16 th-footer-brand">
+    <div class="flex flex-col justify-end items-end th-font-16 th-footer-grid-row-3 th-footer-brand">
       {% if data.global.footerLogo.items | length %}
         {% set imageObj = apos.image.first(data.global.footerLogo) %}
         {% set imageText = data.global.footerLogo.items[0].alt or data.global.footerLogo.items[0].title %}
