@@ -3,6 +3,7 @@
 {% set pdpLink = "show-link" if data.widget.showPDPLink else "" %}
 {% set showProductType = "show-product-type" if data.widget.showProductType else "" %}
 {% set backgroundColor = apos.modules['theme-widget'].convertPreset(data.widget.bgColor) %}
+{% set textColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) %}
 {% set borderColor = apos.modules['theme-widget'].convertPreset(data.widget.borderColor) or "transparent" %}
 {% if data.widget.showProductCardImageAs in ("no-image", "carousel") %}
   {% set showImage = "no-image" %}
@@ -12,14 +13,14 @@
 <div>
   {{ macros.renderSectionTitle(data.widget.title, {
     showDivider: data.widget.showDivider,
-    textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor),
+    textColor: textColor,
     fontFamily: data.widget.titleFontFamily,
     fontSize: data.widget.titleFontSize,
     fontWeight: data.widget.titleFontWeight,
     className: data.widget.titleClassName
   }) }}
   <th-catalog-collection>
-    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper">
+    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-text-color: {{ textColor }}">
       {% if data.widget.gridType == 'flex' %}
       <div class="flex flex-wrap gap-x-0 gap-y-0 py-4 items-center justify-between th-product-grid ">
       {% else %}
@@ -65,7 +66,7 @@
             {% endfor %}
           </swiper-container>
 
-          <div class="md:w-full th-product-grid__card">
+          <div class="md:w-full">
             <th-product-line-selector
               product-line-id="{{ productLine.thirstiePLID }}"
               pdp-link="{{ productLine._url }}"

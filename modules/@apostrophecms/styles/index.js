@@ -20,12 +20,53 @@ export default {
         property: '--primary-text-color',
         options: standardPresetColors
       },
+      primaryFontWeight: {
+        type: 'select',
+        label: 'Primary font weight',
+        def: '400',
+        selector: ':root',
+        property: '--primary-font-weight',
+        choices: [
+          { value: '100', label: 'Thin (100)' },
+          { value: '200', label: 'Extra Light (200)' },
+          { value: '300', label: 'Light (300)' },
+          { value: '400', label: 'Normal (400)' },
+          { value: '500', label: 'Medium (500)' },
+          { value: '600', label: 'Semi Bold (600)' },
+          { value: '700', label: 'Bold (700)' },
+          { value: '800', label: 'Extra Bold (800)' },
+          { value: '900', label: 'Black (900)' }
+        ]
+      },
       primaryFontFamily: {
         type: 'string',
         label: 'Primary font family',
         def: 'var(--th-standard-sanserif)',
         selector: ':root',
         property: '--primary-font-family',
+      },
+      primaryLineHeight: {
+        type: 'string',
+        label: 'Primary line height',
+        def: '1.5',
+        selector: ':root',
+        property: '--primary-line-height',
+      },
+      borderRadius: {
+        type: 'string',
+        label: 'Global border radius',
+        help: 'Sets the default border radius for elements such as buttons and cards.',
+        def: '4px',
+        selector: ':root',
+        property: '--th-border-radius'
+      },
+      buttonBorderRadius: {
+        type: 'string',
+        label: 'Button border radius',
+        help: 'Sets the border radius specifically for buttons.',
+        def: '4px',
+        selector: ':root',
+        property: '--th-button-border-radius'
       },
       headingOneFontFamily: {
         type: 'string',
@@ -119,11 +160,16 @@ export default {
     group: {
       pageStyles: {
         label: 'Page Styles',
-        fields: ['backgroundColor', 'primaryTextColor', 'primaryFontFamily']
+        fields: [
+          'backgroundColor',
+          'primaryLineHeight',
+          'borderRadius', 'buttonBorderRadius'
+        ]
       },
       typography: {
         label: 'Typography',
         fields: [
+          'primaryTextColor', 'primaryFontFamily', 'primaryFontWeight',
           'headingOneFontFamily', 'headingOneFontSize', 'headingOneFontColor',
           'headingTwoFontFamily', 'headingTwoFontSize', 'headingTwoFontColor',
           'headingThreeFontFamily', 'headingThreeFontSize', 'headingThreeFontColor',

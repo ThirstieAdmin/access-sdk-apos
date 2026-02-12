@@ -2,6 +2,8 @@
   box-sizing:border-box;
   background-color: var(--header-background-color, #000);
   color: var(--header-text-color, #fff);
+  font-family: var(--header-font-family, inherit);
+  font-weight: var(--header-font-weight, inherit);
   position: fixed !important;
   width: 100%;
   z-index: 3;
@@ -66,6 +68,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   height: 6.875rem;
   line-height: 4rem;
 }
+
 .th-navbar.nav--format--short {
   height: 4.375rem;
 }
@@ -227,7 +230,8 @@ ul.nav-subitems {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: 2rem;
     background-color: transparent;
   }
   .nav-subitems {

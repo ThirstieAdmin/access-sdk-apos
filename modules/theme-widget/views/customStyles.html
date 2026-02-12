@@ -47,7 +47,7 @@
       --th-standard-monospace: SF Mono, SF Mono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
       /* Style design tokens */
-
+      /* Basic values are set in the styles module, brand theme colors are set here because they are needed for initialization */
       --primary-color: {{ data.global.primaryColor or '#000' }};
       --primary-contrasting-color: {{ data.global.primaryContrastingColor or '#fff' }};
       --secondary-color: {{ data.global.secondaryColor or '#fff' }};
@@ -55,10 +55,8 @@
 
       --th-color-scheme: light dark;
       --th-font-family: var(--primary-font-family, var(--th-standard-sanserif));
-      --th-font-weight: 400;
-      --th-line-height: 1.5;
-      --th-border-radius: {{ data.global.borderRadius or '4px' }};
-      --th-btn-border-radius: {{ data.global.buttonBorderRadius or data.global.borderRadius or '4px' }};
+      --th-font-weight: var(--primary-font-weight, 400);
+      --th-line-height: var(--primary-line-height, 1.5);
       --th-border-color: var(--th-c-greysMediumLightGrey);
       --th-border-form: 1px solid var(--th-border-color);
       --th-input-focus-outline: 2px solid var(--th-c-greysDarkGrey);
@@ -75,6 +73,8 @@
       --header-offset: {{ headerHeight }}px;
       --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
       --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
+      --header-font-family: {{ data.global.headerFontFamily or 'var(--primary-font-family, var(--th-standard-sanserif))' }};
+      --header-font-weight: {{ data.global.headerFontWeight or 'var(--primary-font-weight, 400)' }};
       --header-icon: var(--header-text-color);
       --footer-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerBackgroundColor) or data.global.secondaryColor or '#fff' }};
       --footer-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.footerTextColor) or data.global.secondaryContrastingColor or '#000' }};

@@ -54,7 +54,7 @@
       {% if data.global.footerLogo.items | length %}
         {% set imageObj = apos.image.first(data.global.footerLogo) %}
         {% set imageText = data.global.footerLogo.items[0].alt or data.global.footerLogo.items[0].title %}
-        {% set imageUrl = apos.attachment.url(imageObj, { size: 'one-third' }) %}
+        {% set imageUrl = apos.attachment.url(imageObj, { size: 'full' }) %}
         <div class="my-1 th-footer-brand__logo">
           <img src="{{ imageUrl }}" alt="{{imageText}}" height="36"/>
         </div>
