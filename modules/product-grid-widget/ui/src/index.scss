@@ -2,6 +2,11 @@
   --swiper-size: 400px;
 }
 
+.th-product-grid-wrapper {
+  max-width: 100vw;
+  background-color: var(--product-grid-bg,#FFF);
+}
+
 .th-product-grid .th-product-grid__card {
   box-sizing: border-box;
   background-color: var(--product-grid-bg,#FFF);
