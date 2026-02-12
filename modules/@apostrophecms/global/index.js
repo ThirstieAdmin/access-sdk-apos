@@ -189,16 +189,6 @@ export default {
         type: 'color',
         label: 'Contrasting color for secondary'
       },
-      borderRadius: {
-        type: 'string',
-        label: 'General border radius',
-        help: 'Defaults to 4px'
-      },
-      buttonBorderRadius: {
-        type: 'string',
-        label: 'Button border radius',
-        help: 'Defaults to borderRadius(4px)'
-      },
       bodyBackgroundImage: {
         type: 'area',
         label: 'Body Background Image',
@@ -292,6 +282,27 @@ export default {
         label: 'Header Text Color',
         help: 'Defaults to Brand Primary Contrasting Color',
         options: standardPresetColors
+      },
+      headerFontFamily: {
+        type: 'string',
+        label: 'Header Font Family',
+        help: 'Defaults to primary font family'
+      },
+      headerFontWeight: {
+        type: 'select',
+        label: 'Header Font Weight',
+        help: 'Defaults to primary font weight',
+        choices: [
+          { value: '100', label: 'Thin (100)' },
+          { value: '200', label: 'Extra Light (200)' },
+          { value: '300', label: 'Light (300)' },
+          { value: '400', label: 'Normal (400)' },
+          { value: '500', label: 'Medium (500)' },
+          { value: '600', label: 'Semi Bold (600)' },
+          { value: '700', label: 'Bold (700)' },
+          { value: '800', label: 'Extra Bold (800)' },
+          { value: '900', label: 'Black (900)' }
+        ]
       },
       /* Age Gate Settings */
       ageGateType: {
@@ -466,8 +477,7 @@ export default {
         fields: [
           'brandLogo', 'brandLogoAltText', 'supportEmail',
           'primaryColor', 'primaryContrastingColor', 'secondaryColor', 'secondaryContrastingColor',
-          'bodyBackgroundImage',
-          'borderRadius', 'buttonBorderRadius',
+          'bodyBackgroundImage'
         ]
       },
       generalSettings: {
@@ -484,7 +494,7 @@ export default {
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'navFormat', 'navHeight', 'navShadow' ]
+        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'headerFontFamily', 'headerFontWeight', 'navFormat', 'navHeight', 'navShadow' ]
       },
       footerContent: {
         label: 'Footer',

@@ -26,9 +26,10 @@
   width:auto;
   height:auto;
   max-width: calc(var(--swiper-size) - 3.75rem);
-  max-height: calc(var(--swiper-size) - 3.75rem);
+  max-height: calc(var(--swiper-size) - 3.75rem); 
 }
 
 .th-product-grid__card {
   max-width: 100vw;
+  color: var(--product-grid-text-color, var(--primary-text-color, #000));
 }
