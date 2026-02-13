@@ -4,7 +4,8 @@
 {% set showProductType = "show-product-type" if data.widget.showProductType else "" %}
 {% set backgroundColor = apos.modules['theme-widget'].convertPreset(data.widget.bgColor) %}
 {% set textColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) %}
-{% set borderColor = apos.modules['theme-widget'].convertPreset(data.widget.borderColor) or "transparent" %}
+{% set cardBorderColor = apos.modules['theme-widget'].convertPreset(data.widget.cardBorderColor) or "transparent" %}
+{% set outerBorderColor = apos.modules['theme-widget'].convertPreset(data.widget.outerBorderColor) or "transparent" %}
 {% if data.widget.showProductCardImageAs in ("no-image", "carousel") %}
   {% set showImage = "no-image" %}
 {% else %}
@@ -20,17 +21,14 @@
     className: data.widget.titleClassName
   }) }}
   <th-catalog-collection>
-    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }}">
+    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }};--product-grid-border: {{ cardBorderColor }};--product-grid-outer-border-color: {{ outerBorderColor }};">
       {% if data.widget.gridType == 'flex' %}
       <div class="flex flex-wrap gap-x-0 gap-y-8 py-4 items-center justify-between th-product-grid ">
       {% else %}
       <div class="grid grid-cols-{{ data.widget.gridType }} md:grid-cols-1 gap-0 items-center justify-between th-product-grid">
       {% endif %}
         {% for productLine in data.widget._productlines %}
-        <div
-          class="flex flex-grow flex-basis-3 flex-col items-center"
-          style="--product-grid-border: {{ borderColor }};"
-        >
+        <div class="flex flex-grow flex-basis-3 flex-col items-center th-product-grid__item">
           {% if productLine.primaryImage.items | length %}
             {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
             {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
