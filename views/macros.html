@@ -2,7 +2,8 @@
   {% set textColor = ("color: " + options.textColor) + ";" if options.textColor else "" %}
   {% set fontSize = ("font-size: " + options.fontSize) + ";" if options.fontSize else "" %}
   {% set fontWeight = ("font-weight: " + options.fontWeight) + ";" if options.fontWeight else "" %}
-  {% set titleStyle = textColor + fontSize + fontWeight %}
+  {% set fontFamily = ("font-family: " + options.fontFamily) + ";" if options.fontFamily else "" %}
+  {% set titleStyle = textColor + fontSize + fontWeight + fontFamily %}
   {% if sectionTitle | length %}
     <div class="th-section-title">
       <p class="th-section-title__label {{ options.className }}" style="{{ titleStyle }}">{{ sectionTitle }}</p>
