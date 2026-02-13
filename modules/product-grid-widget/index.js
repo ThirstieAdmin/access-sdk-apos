@@ -37,9 +37,17 @@ export default {
           presetColors: standardPresetColors
         }
       },
-      borderColor: {
+      cardBorderColor: {
         type: 'color',
-        label: 'Border Color',
+        label: 'Border Color for Product Cards',
+        def: 'transparent',
+        options: {
+          presetColors: standardPresetColors
+        }
+      },
+      outerBorderColor: {
+        type: 'color',
+        label: 'Border Color for Product Card Grid Tiles',
         def: 'transparent',
         options: {
           presetColors: standardPresetColors
@@ -124,7 +132,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: ['title', 'textColor', 'bgColor', 'borderColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
+        fields: ['title', 'textColor', 'bgColor', 'cardBorderColor', 'outerBorderColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
       }
     }
   }
