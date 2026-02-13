@@ -5,9 +5,12 @@
 .th-product-grid-wrapper {
   max-width: 100vw;
   background-color: var(--product-grid-bg,#FFF);
-  padding-bottom: 4rem;
+  margin-bottom: 4rem;
 }
-
+.th-product-grid .th-product-grid__item {
+  box-sizing: border-box;
+  border: .5px solid var(--product-grid-outer-border-color, transparent);
+}
 .th-product-grid .th-product-grid__card {
   box-sizing: border-box;
   background-color: var(--product-grid-bg,#FFF);
