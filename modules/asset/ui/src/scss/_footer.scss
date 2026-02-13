@@ -8,6 +8,8 @@
   padding: 0;
   box-sizing: border-box;
   color: var(--footer-text-color, var(--secondary-contrasting-color));
+  font-family: var(--footer-font-family, var(--primary-font-family, var(--th-standard-sanserif)));
+  font-weight: var(--footer-font-weight, var(--primary-font-weight, 400));
   background-color: var(--footer-background-color, var(--secondary-color));
 }
 .th-footer-content {
