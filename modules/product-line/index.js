@@ -268,6 +268,21 @@ export default {
           }
         }
       },
+      featuredContent: {
+        type: 'area',
+        label: 'Featured Content',
+        help: 'If provided, this content will be shown in a featured section on product detail pages',
+        textarea: true,
+        required: false,
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/layout': {},
+            '@apostrophecms/rich-text': richTextOptions,
+            '@apostrophecms/html': {}
+          }
+        }
+      },
       productType: {
         type: 'string',
         label: 'Product Type',
@@ -365,7 +380,7 @@ export default {
       },
       additionalInformation: {
         label: 'Additional Information',
-        fields: ['shortDescription', 'altDescription', 'additionalDescription', 'tastingNotes']
+        fields: ['shortDescription', 'altDescription', 'additionalDescription', 'tastingNotes', 'featuredContent']
       },
       images: {
         label: 'Images',

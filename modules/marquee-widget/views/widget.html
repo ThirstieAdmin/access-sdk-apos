@@ -2,20 +2,28 @@
 {% set attachment = apos.image.first(data.widget.image or {}) %}
 {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
 {% set altText = attachment.title %}
-{% set captionTextColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) or 'var(--th-c-white)' %}
 {% set captionFontFamily = data.widget.textFontFamily or 'var(--primary-font-family)' %}
 
-<div class="m-0 p-0 w-full marquee-widget ">
+<div class="m-0 p-0 w-full marquee-widget__container">
   <figure
   class="m-0 p-0 th-image-widget__wrapper marquee-widget__figure"
-  style="--th-image-widget__caption-text-color: {{ captionTextColor }}; --th-image-widget__caption-font-family: {{ captionFontFamily }};"
+  style="--th-image-widget__caption-font-family: {{ captionFontFamily }};"
   >
     <img class="w-full th-image-widget__img marquee-widget__img" src="{{ imageUrl }}" alt="{{ altText }}" />
     <figcaption class="th-image-widget__caption flex flex-col marquee-widget__caption">
+      {% if data.widget.title %}
+        <h2 class="th-image-widget__title marquee-widget__title">{{ data.widget.title }}</h2>
+      {% endif %}
       {% if data.widget.caption.items[0].type === "@apostrophecms/rich-text" %}
         {{ apos.area.richText(data.widget.caption) }}
       {% elif data.widget.caption.items[0].type === "@apostrophecms/html" %}
         {{ data.widget.caption.items[0].code | safe }}
+      {% endif %}
+      {% if data.widget.showCTA and data.widget.ctaNav.length > 0 %}
+        {% set ctaNav = data.widget.ctaNav[0] %}
+        <button class="th-image-widget__cta-button marquee-widget__cta-button">
+          <a href="{{ ctaNav.url }}" class="th-image-widget__cta-link marquee-widget__cta-link">{{ ctaNav.label }}</a>
+        </button>
       {% endif %}
     </figcaption>
   </figure>
