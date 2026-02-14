@@ -147,6 +147,33 @@
   </div>
 </section>
 
+{% area item, 'featuredContent' %}
+
+{% if item._recipes | length and not data.page.hideRecipesPDP %}
+<section class="my-8">
+  <div class="my-8 th-pdp-recipes">
+    <h3>Featured Cocktails</h3>
+    <swiper-container
+      class="th-pdp-recipe-swiper"
+      navigation="true"
+      pagination="false"
+      loop="true"
+      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+    >
+    {% for recipe in item._recipes %}
+      <swiper-slide>
+        <div class="th-pdp-recipe-card">
+          {% render recipeFragment.recipeCardWide(
+            recipe,
+            {textColor: apos.modules['theme-widget'].convertPreset(data.global.primaryColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.global.primaryContrastingColor)}
+          ) %}
+        </div>
+      </swiper-slide>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 {% if item._productlines | length and not data.page.hideRelatedProductsPDP %}
 <section class="border-box my-8 w-screen flex flex-col items-start md:items-center justify-center">
   <div class="my-8 px-8 mx-auto flex flex-col th-related-products">
@@ -175,28 +202,4 @@
 </section>
 {% endif %}
 
-{% if item._recipes | length and not data.page.hideRecipesPDP %}
-<section class="my-8">
-  <div class="my-8 th-pdp-recipes">
-    <h3>Featured Cocktails</h3>
-    <swiper-container
-      class="th-pdp-recipe-swiper"
-      navigation="true"
-      pagination="false"
-      loop="true"
-      style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
-    >
-    {% for recipe in item._recipes %}
-      <swiper-slide>
-        <div class="th-pdp-recipe-card">
-          {% render recipeFragment.recipeCardWide(
-            recipe,
-            {textColor: apos.modules['theme-widget'].convertPreset(data.global.primaryColor), backgroundColor: apos.modules['theme-widget'].convertPreset(data.global.primaryContrastingColor)}
-          ) %}
-        </div>
-      </swiper-slide>
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
 {% endblock %}
