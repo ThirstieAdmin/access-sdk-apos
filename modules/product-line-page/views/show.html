@@ -103,7 +103,7 @@
     </th-pdp-commerce>
     {% if item.description or item.altDescription.items | length %}
     <div class="mt-4 py-4 th-pdp-description">
-      <div class="font-bold th-pdp-description__title">Description</div>
+      <h2 class="th-pdp-description__title">Description</h2>
       <div class="th-pdp-description__content">
         {% if item.altDescription.items[0].type === "@apostrophecms/rich-text" %}
           {{ apos.area.richText(item.altDescription.items) }}
@@ -127,7 +127,7 @@
 
     {% if item.tastingNotes.items | length %}
     <div class="mt-4 py-4 th-pdp-description">
-      <div class="th-pdp-description__title font-bold">Tasting Notes</div>
+      <h2 class="th-pdp-description__title">Tasting Notes</h2>
       <div class="th-pdp-description__content">
         {% if item.tastingNotes.items[0].type === "@apostrophecms/rich-text" %}
           {{ apos.area.richText(item.tastingNotes.items) }}
