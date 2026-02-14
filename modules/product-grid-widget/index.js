@@ -1,9 +1,4 @@
-const standardPresetColors = [
-  '--primary-color', '--primary-contrasting-color', '--secondary-color', '--secondary-contrasting-color',
-  '--th-c-alertSuccessPrimary', '--th-c-alertWarningPrimary', '--th-c-alertWrongPrimary',
-  'rgb(59, 130, 246)', 'rgba(59, 130, 246, 0.5)',
-  'transparent'
-];
+import { standardPresetColors } from '../../lib/presets.js';
 
 export default {
   extend: '@apostrophecms/widget-type',
@@ -25,33 +20,13 @@ export default {
       textColor: {
         type: 'color',
         label: 'Text Color',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       bgColor: {
         type: 'color',
         label: 'Background Color',
         def: '#FFF',
-        options: {
-          presetColors: standardPresetColors
-        }
-      },
-      cardBorderColor: {
-        type: 'color',
-        label: 'Border Color for Product Cards',
-        def: 'transparent',
-        options: {
-          presetColors: standardPresetColors
-        }
-      },
-      outerBorderColor: {
-        type: 'color',
-        label: 'Border Color for Product Card Grid Tiles',
-        def: 'transparent',
-        options: {
-          presetColors: standardPresetColors
-        }
+        options: standardPresetColors
       },
       titleFontSize: {
         type: 'string',
@@ -133,6 +108,43 @@ export default {
       content: {
         label: 'Content',
         fields: ['title', 'textColor', 'bgColor', 'cardBorderColor', 'outerBorderColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
+      }
+    }
+  },
+  styles: {
+    add: {
+      gridBoxBorder: {
+        preset: 'border',
+        label: 'Product Grid ItemOuter Border',
+        selector: '.th-product-grid .th-product-grid__item',
+        property: 'border',
+      },
+      cardBackgroundColor: {
+        type: 'color',
+        label: 'Product Card Background Color',
+        selector: '.th-product-grid .th-product-grid__card',
+        property: 'background-color',
+        options: standardPresetColors
+      },
+      cardBorder: {
+        preset: 'border',
+        label: 'Product Card Border',
+        selector: '.th-product-grid .th-product-grid__card',
+        property: 'border',
+      },
+      cardBorderRadius: {
+        type: 'string',
+        label: 'Product Card Border Radius',
+        selector: '.th-product-grid .th-product-grid__card',
+        property: 'border-radius',
+        def: 'var(--th-border-radius, 4px)'
+      },
+      cardTextColor: {
+        type: 'color',
+        label: 'Product Card Text Color',
+        selector: '.th-product-grid .th-product-grid__card',
+        property: 'color',
+        options: standardPresetColors
       }
     }
   }

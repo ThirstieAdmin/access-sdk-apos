@@ -4,14 +4,12 @@
 {% set showProductType = "show-product-type" if data.widget.showProductType else "" %}
 {% set backgroundColor = apos.modules['theme-widget'].convertPreset(data.widget.bgColor) %}
 {% set textColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) %}
-{% set cardBorderColor = apos.modules['theme-widget'].convertPreset(data.widget.cardBorderColor) or "transparent" %}
-{% set outerBorderColor = apos.modules['theme-widget'].convertPreset(data.widget.outerBorderColor) or "transparent" %}
 {% if data.widget.showProductCardImageAs in ("no-image", "carousel") %}
   {% set showImage = "no-image" %}
 {% else %}
   {% set showImage = "" %}
 {% endif %}
-<div>
+<div class="th-product-grid-container">
   {{ macros.renderSectionTitle(data.widget.title, {
     showDivider: data.widget.showDivider,
     textColor: textColor,
@@ -21,7 +19,7 @@
     className: data.widget.titleClassName
   }) }}
   <th-catalog-collection>
-    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }};--product-grid-border: {{ cardBorderColor }};--product-grid-outer-border-color: {{ outerBorderColor }};">
+    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }};">
       {% if data.widget.gridType == 'flex' %}
       <div class="flex flex-wrap gap-x-0 gap-y-8 py-4 items-center justify-between th-product-grid ">
       {% else %}
