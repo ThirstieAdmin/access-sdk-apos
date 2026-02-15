@@ -33,51 +33,109 @@ export default {
           }
         }
       },
-      showCTA: {
-        type: 'boolean',
-        label: 'Show Call to Action',
-        def: false
-      },
-      ctaText: {
-        type: 'string',
-        label: 'Call to Action Text',
-        def: 'Learn More',
-        if: {
-          showCTA: true
-        }
-      },
-      ctaNav: {
-        type: 'array',
-        label: 'Call to Action navigation',
-        titleField: 'label',
-        options: {
-          max: 1
-        },
-        fields: {
-          add: {
-            ...urlScheme,
-          }
-        },
-        if: {
-          showCTA: true
-        }
-      },
-      image: {
+      marqueeImage: {
         type: 'area',
-        label: 'Background Image',
+        label: ' Marquee Image',
         options: {
           max: 1,
           widgets: {
             '@apostrophecms/image': {}
           }
         }
+      },
+      ctaType: {
+        type: 'select',
+        label: 'Type of Call to Action',
+        choices: [
+          {
+            value: 'none',
+            label: 'None'
+          },
+          {
+            value: 'productDetailPage',
+            label: 'Product Detail Page'
+          },
+          {
+            value: 'pageLink',
+            label: 'Page Link'
+          },
+          {
+            value: 'externalLink',
+            label: 'External Link'
+          }
+        ]
+      },
+      ctaNewPage: {
+        type: 'boolean',
+        label: 'Open links in new page',
+        def: false,
+        if: {
+          showCTA: { $ne: 'none' }
+        }
+      },
+      ctaText: {
+        type: 'string',
+        label: 'Call to Action Text',
+        def: 'Learn More',
+        if: {
+          showCTA: { $ne: 'none' }
+        }
+      },
+      _ctaProductDetailPage: {
+        type: 'relationship',
+        label: 'Product Lines',
+        withType: 'product-line',
+        max: 1,
+        builders: {
+          project: {
+            title: 1,
+            slug: 1,
+            type: 1,
+            _url: 1,
+            thirstiePLID: 1
+          }
+        },
+        if: {
+          ctaType: 'productDetailPage'
+        }
+      },
+      ctaExternalUrl: {
+        type: 'url',
+        label: 'External URL',
+        required: true,
+        if: {
+          ctaType: 'externalLink'
+        }
+      },
+      _ctaPageLink: {
+        label: 'Page Link',
+        type: 'relationship',
+        withType: '@apostrophecms/any-page-type',
+        max: 1,
+        builders: {
+          areas: false,
+          relationships: false,
+          project: {
+            title: 1,
+            slug: 1,
+            _url: 1,
+            type: 1
+          }
+        },
+        required: true,
+        if: {
+          ctaType: 'pageLink'
+        }
       }
     },
     group: {
       content: {
         label: 'Content',
-        fields: [ 'image', 'caption' ]
-      }
+        fields: [ 'title', 'marqueeImage', 'caption' ]
+      },
+      cta: {
+        label: 'Call to Action',
+        fields: [ 'ctaType', 'ctaNewPage', 'ctaText', '_ctaProductDetailPage', 'ctaExternalUrl', '_ctaPageLink' ]}
     }
   },
   styles: {
