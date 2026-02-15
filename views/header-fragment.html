@@ -31,15 +31,9 @@
             {% set navElClassList = 'nav-el' %}
           {% endif %}
 
-          {% if item.newPage %}
-            {% set linkTarget = '_blank' %}
-          {% else %}
-            {% set linkTarget = '_self' %}
-          {% endif %}
-
           <li class="{{ navElClassList }}">
           {% if item.urlType === 'custom' %}
-            <a href="{{ item.url }}" target="{{ linkTarget}}">{{ item.label }}</a>
+            <a href="{{ item.url }}" {% if item.newPage %}target="_blank" rel="noopener"{% endif %}>{{ item.label }}</a>
           {% elif item.urlType === 'page' %}
             <a href="{{ item._page[0].slug }}" target="_self">{{ item.label }}</a>
           {% else %}
@@ -49,14 +43,8 @@
           <ul class="nav-subitems">
             {% for subItem in item.subMenuItems %}
 
-            {% if subItem.newPage %}
-              {% set linkTarget = '_blank' %}
-            {% else %}
-              {% set linkTarget = '_self' %}
-            {% endif %}
-
             {% if subItem.urlType === 'custom' %}
-            <li class="nav-el"><a href="{{ subItem.url }}" target="{{ linkTarget}}">{{ subItem.label }}</a></li>
+            <li class="nav-el"><a href="{{ subItem.url }}" {% if subItem.newPage %}target="_blank" rel="noopener"{% endif %}>{{ subItem.label }}</a></li>
             {% elif subItem.urlType === 'page' %}
               <li class="nav-el"><a href="{{ subItem._page[0].slug }}" target="_self">{{ subItem.label }}</a></li>
             {% endif %}

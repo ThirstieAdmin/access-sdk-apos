@@ -1,28 +1,35 @@
 
-{% set attachment = apos.image.first(data.widget.image or {}) %}
-{% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
-{% set altText = attachment.title %}
-{% set captionFontFamily = data.widget.textFontFamily or 'var(--primary-font-family)' %}
+{% set marqueeImage = apos.image.first(data.widget.marqueeImage or {}) %}
+{% set marqueeImageUrl = apos.attachment.url(marqueeImage, { size: 'full' }) %}
+{% set altText = marqueeImage.title %}
 
 <div class="m-0 p-0 w-full marquee-widget__container">
   <figure
   class="m-0 p-0 th-image-widget__wrapper marquee-widget__figure"
-  style="--th-image-widget__caption-font-family: {{ captionFontFamily }};"
   >
-    <img class="w-full th-image-widget__img marquee-widget__img" src="{{ imageUrl }}" alt="{{ altText }}" />
+    <img class="w-full th-image-widget__img marquee-widget__img" src="{{ marqueeImageUrl }}" alt="{{ altText }}" />
     <figcaption class="th-image-widget__caption flex flex-col marquee-widget__caption">
       {% if data.widget.title %}
         <h2 class="th-image-widget__title marquee-widget__title">{{ data.widget.title }}</h2>
       {% endif %}
-      {% if data.widget.caption.items[0].type === "@apostrophecms/rich-text" %}
-        {{ apos.area.richText(data.widget.caption) }}
-      {% elif data.widget.caption.items[0].type === "@apostrophecms/html" %}
-        {{ data.widget.caption.items[0].code | safe }}
-      {% endif %}
-      {% if data.widget.showCTA and data.widget.ctaNav.length > 0 %}
-        {% set ctaNav = data.widget.ctaNav[0] %}
+      <div class="marquee-widget__caption-content">
+        {% if data.widget.caption.items[0].type === "@apostrophecms/rich-text" %}
+          {{ apos.area.richText(data.widget.caption) }}
+        {% elif data.widget.caption.items[0].type === "@apostrophecms/html" %}
+          {{ data.widget.caption.items[0].code | safe }}
+        {% endif %}
+      </div>
+      {% if data.widget.ctaType != 'none' %}
         <button class="th-image-widget__cta-button marquee-widget__cta-button">
-          <a href="{{ ctaNav.url }}" class="th-image-widget__cta-link marquee-widget__cta-link">{{ ctaNav.label }}</a>
+        {% if data.widget.ctaType == 'productDetailPage' and data.widget._ctaProductDetailPage.length > 0 %}
+          {% set ctaNav = data.widget._ctaProductDetailPage[0] %}
+            <a href="{{ ctaNav._url }}" class="th-image-widget__cta-link marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+        {% elif data.widget.ctaType == 'externalLink' %}
+          <a href="{{ data.widget.ctaExternalUrl }}" class="th-image-widget__cta-link marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+        {% elif data.widget.ctaType == 'pageLink' and data.widget._ctaPageLink.length > 0 %}
+          {% set ctaNav = data.widget._ctaPageLink[0] %}
+            <a href="{{ ctaNav._url }}" class="th-image-widget__cta-link marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+        {% endif %}
         </button>
       {% endif %}
     </figcaption>
