@@ -40,6 +40,22 @@
   window.thData.brandLogoAltText = "{{ data.global.brandLogoAltText }}";
   window.thData.supportEmail = "{{ data.global.supportEmail }}";
 </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P34XK55Z');</script>
+{% if data.global.googleTagManagerId %}
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{{ data.global.googleTagManagerId }}');</script>
+<!-- End Google Tag Manager -->
+{% endif %}
+
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-element-bundle.min.js"></script>
 
 {% if data.global.typekitId %}
@@ -55,6 +71,15 @@
 {% endblock %}
 
 {% block beforeMain %}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P34XK55Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% if data.global.googleTagManagerId %}
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ data.global.googleTagManagerId }}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{% endif %}
+<!-- End Google Tag Manager (noscript) -->
+
 {% if data.global.customCodeBodyStart.items[0].type === "@apostrophecms/html" %}
   {{ data.global.customCodeBodyStart.items[0].code | safe}}
 {% endif %}
