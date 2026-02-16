@@ -24,6 +24,25 @@ export default {
         label: 'Title',
         help: 'Add a title to the marquee. This will appear above the caption.'
       },
+      figureStyle: {
+        type: 'select',
+        label: 'Figure Style',
+        required: true,
+        choices: [
+          {
+            value: 'background-image',
+            label: 'Background Image'
+          },
+          {
+            value: 'side-image-left',
+            label: 'Side Image Left'
+          },
+          {
+            value: 'side-image-right',
+            label: 'Side Image Right'
+          }
+        ]
+      },
       caption: {
         type: 'area',
         options: {
@@ -131,7 +150,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: [ 'title', 'marqueeImage', 'caption' ]
+        fields: [ 'title', 'figureStyle', 'marqueeImage', 'caption' ]
       },
       cta: {
         label: 'Call to Action',
@@ -144,7 +163,7 @@ export default {
         type: 'color',
         label: 'Background Color',
         help: 'Set the background color for the marquee. This will apply to the area behind the image and caption.',
-        selector: 'marquee-widget__container',
+        selector: '.marquee-widget__container',
         property: 'background-color',
         def: 'inherit',
         options: standardPresetColors
@@ -153,17 +172,29 @@ export default {
         type: 'color',
         label: 'Text Color',
         help: 'Set the text color for the marquee.',
-        selector: 'marquee-widget__figure',
+        selector: '.marquee-widget__container',
         property: '--th-image-widget__caption-text-color',
         options: standardPresetColors
       },
       textFontFamily: {
         type: 'string',
         label: 'Text Font Family',
-        selector: 'marquee-widget__figure',
+        selector: '.marquee-widget__container',
         property: '--th-image-widget__caption-font-family',
         def: 'var(--primary-font-family)'
-      }
+      },
+      widgetWidth: {
+        preset: 'width',
+        label: 'Widget Width',
+        selector: '.marquee-widget__container'
+      },
+      widgetBorder: {
+        preset: 'border',
+        label: 'Widget Border',
+        selector: '.marquee-widget__container'
+      },
+      widgetMargin: 'margin',
+      widgetPadding: 'padding'
     }
   }
 };
