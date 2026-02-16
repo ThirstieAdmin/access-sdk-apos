@@ -506,6 +506,7 @@ export default {
         fields: [
           'siteTitle', 'useProductionKeys',
           'typekitId', 'typekitAPIToken',
+          'googleTagManagerId',
           'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor'
         ]
       },
