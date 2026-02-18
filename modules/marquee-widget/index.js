@@ -168,19 +168,21 @@ export default {
         def: 'inherit',
         options: standardPresetColors
       },
+      widgetMargin: 'margin',
+      widgetPadding: 'padding',
       textColor: {
         type: 'color',
         label: 'Text Color',
         help: 'Set the text color for the marquee.',
         selector: '.marquee-widget__container',
-        property: '--th-image-widget__caption-text-color',
+        property: '--marquee-widget__caption-text-color',
         options: standardPresetColors
       },
       textFontFamily: {
         type: 'string',
         label: 'Text Font Family',
         selector: '.marquee-widget__container',
-        property: '--th-image-widget__caption-font-family',
+        property: '--marquee-widget__caption-font-family',
         def: 'var(--primary-font-family)'
       },
       widgetWidth: {
@@ -193,8 +195,127 @@ export default {
         label: 'Widget Border',
         selector: '.marquee-widget__container'
       },
-      widgetMargin: 'margin',
-      widgetPadding: 'padding'
+      captionPadding: {
+        preset: 'padding',
+        label: 'Caption Padding',
+        selector: '.marquee-widget__caption'
+      },
+      captionAlignment: {
+        type: 'select',
+        label: 'Caption Alignment',
+        selector: '.marquee-widget__caption',
+        property: 'align-items',
+        choices: [
+          { value: 'self-start', label: 'Left' },
+          { value: 'center', label: 'Center' },
+          { value: 'self-end', label: 'Right' }
+        ]
+      },
+      captionJustifyContent: {
+        type: 'select',
+        label: 'Caption Justify Content',
+        selector: '.marquee-widget__caption',
+        property: 'justify-content',
+        choices: [
+          { value: 'flex-start', label: 'Top' },
+          { value: 'center', label: 'Center' },
+          { value: 'flex-end', label: 'Bottom' },
+          { value: 'space-between', label: 'Space Between' },
+          { value: 'space-around', label: 'Space Around' },
+          { value: 'space-evenly', label: 'Space Evenly'}
+        ]
+      },
+      titleFontSize: {
+        type: 'range',
+        label: 'Title Font Size',
+        selector: '.marquee-widget__title',
+        property: 'font-size',
+        min: 12,
+        max: 72,
+        def: 24,
+        unit: 'px'
+      },
+      titleFontColor: {
+        type: 'color',
+        label: 'Title Font Color',
+        selector: '.marquee-widget__title',
+        property: 'color',
+        options: standardPresetColors
+      },
+      titleFontFamily: {
+        type: 'string',
+        label: 'Title Font Family',
+        selector: '.marquee-widget__title',
+        property: 'font-family',
+        def: 'var(--primary-font-family)'
+      },
+      titleFontWeight: {
+        type: 'select',
+        label: 'Title Font Weight',
+        selector: '.marquee-widget__title',
+        property: 'font-weight',
+        choices: [
+          { value: '100', label: 'Thin (100)' },
+          { value: '200', label: 'Extra Light (200)' },
+          { value: '300', label: 'Light (300)' },
+          { value: '400', label: 'Normal (400)' },
+          { value: '500', label: 'Medium (500)' },
+          { value: '600', label: 'Semi Bold (600)' },
+          { value: '700', label: 'Bold (700)' },
+          { value: '800', label: 'Extra Bold (800)' },
+          { value: '900', label: 'Black (900)' }
+        ]
+      },
+      ctaBackgroundColor: {
+        type: 'color',
+        label: 'CTA Background Color',
+        selector: '.marquee-widget__cta-button',
+        property: 'background-color',
+        options: standardPresetColors
+      },
+      ctaTextColor: {
+        type: 'color',
+        label: 'CTA Text Color',
+        selector: '.marquee-widget__cta-button a',
+        property: 'color',
+        options: standardPresetColors
+      },
+      ctaFontFamily: {
+        type: 'string',
+        label: 'CTA Font Family',
+        selector: '.marquee-widget__cta-button a',
+        property: 'font-family',
+        def: 'var(--primary-font-family)'
+      },
+      ctaFontWeight: {
+        type: 'select',
+        label: 'CTA Font Weight',
+        selector: '.marquee-widget__cta-button a',
+        property: 'font-weight',
+        choices: [
+          { value: '100', label: 'Thin (100)' },
+          { value: '200', label: 'Extra Light (200)' },
+          { value: '300', label: 'Light (300)' },
+          { value: '400', label: 'Normal (400)' },
+          { value: '500', label: 'Medium (500)' },
+          { value: '600', label: 'Semi Bold (600)' },
+          { value: '700', label: 'Bold  (700)' },
+          { value: '800', label: 'Extra Bold (800)' },
+          { value: '900', label: 'Black (900)' }
+        ]
+      },
+      ctaBorder: {
+        preset: 'border',
+        label: 'CTA Border',
+        selector: '.marquee-widget__cta-button'
+      },
+      ctaBorderRadius: {
+        type: 'string',
+        label: 'CTA Border Radius',
+        selector: '.marquee-widget__cta-button',
+        property: 'border-radius',
+        def: '4px'
+      }
     }
   }
 };

@@ -8,73 +8,46 @@
 <div class="m-0 p-0 w-full marquee-widget__container">
 
   {%if figureStyle == 'background-image' %}
-
-    <figure class="m-0 p-0 th-image-widget__wrapper marquee-widget__figure">
-      <img class="w-full th-image-widget__img marquee-widget__image--background" src="{{ marqueeImageUrl }}" alt="{{ altText }}" />
-      <figcaption class="th-image-widget__caption flex flex-col marquee-widget__caption">
-        {% if data.widget.title %}
-          <h2 class="marquee-widget__title">{{ data.widget.title }}</h2>
-        {% endif %}
-        <div class="marquee-widget__caption-content">
-          {% if data.widget.caption.items[0].type === "@apostrophecms/rich-text" %}
-            {{ apos.area.richText(data.widget.caption) }}
-          {% elif data.widget.caption.items[0].type === "@apostrophecms/html" %}
-            {{ data.widget.caption.items[0].code | safe }}
-          {% endif %}
-        </div>
-        {% if data.widget.ctaType != 'none' %}
-          <button class="th-image-widget__cta-button marquee-widget__cta-button">
-          {% if data.widget.ctaType == 'productDetailPage' and data.widget._ctaProductDetailPage.length > 0 %}
-            {% set ctaNav = data.widget._ctaProductDetailPage[0] %}
-              <a href="{{ ctaNav._url }}" class="th-image-widget__cta-link marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
-          {% elif data.widget.ctaType == 'externalLink' %}
-            <a href="{{ data.widget.ctaExternalUrl }}" class="th-image-widget__cta-link marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
-          {% elif data.widget.ctaType == 'pageLink' and data.widget._ctaPageLink.length > 0 %}
-            {% set ctaNav = data.widget._ctaPageLink[0] %}
-              <a href="{{ ctaNav._url }}" class="th-image-widget__cta-link marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
-          {% endif %}
-          </button>
-        {% endif %}
-      </figcaption>
-    </figure>
-
+    {% set widgetFormat = 'background' %}
+      <!--background image-->
+      {% set imageSide = 'background' %}
   {% else %}
-    {% if data.widget.figureStyle == 'side-image-left' %}
+    {% set widgetFormat = 'side' %}
+    {% if data.widget.imageSide == 'left' %}
       <!--left side image-->
       {% set imageSide = 'left' %}
     {% else %}
       <!--right side image-->
       {% set imageSide = 'right' %}
     {% endif %}
-    <figure class="m-0 p-0 marquee-widget__figure marquee-widget__image-side marquee-widget__figure-image-{{ imageSide }}">
-      <img class="w-full" src="{{ marqueeImageUrl }}" alt="{{ altText }}" />
-      <figcaption class="flex flex-col h-full marquee-widget__caption">
-        {% if data.widget.title %}
-          <h2 class="marquee-widget__title">{{ data.widget.title }}</h2>
+  {% endif %}
+  <figure class="m-0 p-0 marquee-widget__figure-{{ widgetFormat }} marquee-widget__figure-image-{{ imageSide }}">
+    <img src="{{ marqueeImageUrl }}" alt="{{ altText }}" />
+    <figcaption class="flex flex-col h-full marquee-widget__caption">
+      {% if data.widget.title %}
+        <h2 class="marquee-widget__title">{{ data.widget.title }}</h2>
+      {% endif %}
+      <div class="marquee-widget__caption-content">
+        {% if data.widget.caption.items[0].type === "@apostrophecms/rich-text" %}
+          {{ apos.area.richText(data.widget.caption) }}
+        {% elif data.widget.caption.items[0].type === "@apostrophecms/html" %}
+          {{ data.widget.caption.items[0].code | safe }}
         {% endif %}
-        <div class="marquee-widget__caption-content">
-          {% if data.widget.caption.items[0].type === "@apostrophecms/rich-text" %}
-            {{ apos.area.richText(data.widget.caption) }}
-          {% elif data.widget.caption.items[0].type === "@apostrophecms/html" %}
-            {{ data.widget.caption.items[0].code | safe }}
-          {% endif %}
-        </div>
-        {% if data.widget.ctaType != 'none' %}
-          <button class="marquee-widget__cta-button">
-          {% if data.widget.ctaType == 'productDetailPage' and data.widget._ctaProductDetailPage.length > 0 %}
-            {% set ctaNav = data.widget._ctaProductDetailPage[0] %}
-              <a href="{{ ctaNav._url }}" class="marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
-          {% elif data.widget.ctaType == 'externalLink' %}
-            <a href="{{ data.widget.ctaExternalUrl }}" class="marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
-          {% elif data.widget.ctaType == 'pageLink' and data.widget._ctaPageLink.length > 0 %}
-            {% set ctaNav = data.widget._ctaPageLink[0] %}
-              <a href="{{ ctaNav._url }}" class="marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
-          {% endif %}
-          </button>
+      </div>
+      {% if data.widget.ctaType != 'none' %}
+        <button class="marquee-widget__cta-button">
+        {% if data.widget.ctaType == 'productDetailPage' and data.widget._ctaProductDetailPage.length > 0 %}
+          {% set ctaNav = data.widget._ctaProductDetailPage[0] %}
+            <a href="{{ ctaNav._url }}" class="marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+        {% elif data.widget.ctaType == 'externalLink' %}
+          <a href="{{ data.widget.ctaExternalUrl }}" class="marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+        {% elif data.widget.ctaType == 'pageLink' and data.widget._ctaPageLink.length > 0 %}
+          {% set ctaNav = data.widget._ctaPageLink[0] %}
+            <a href="{{ ctaNav._url }}" class="marquee-widget__cta-link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
         {% endif %}
-      </figcaption>
-    </figure>
-
-    {% endif %}
+        </button>
+      {% endif %}
+    </figcaption>
+  </figure>
 
 </div>
