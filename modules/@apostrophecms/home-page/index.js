@@ -6,6 +6,12 @@ export default {
   },
   fields: {
     add: {
+      hideAddressWidget: {
+        type: 'boolean',
+        label: 'Hide Address Widget',
+        help: 'Check this box to hide the address widget (if Location Type is "address entry").',
+        def: false
+      },
       main: {
         type: 'area',
         options: {
@@ -25,7 +31,8 @@ export default {
         fields: [
           'title',
           'main',
-          'hero'
+          'hero',
+          'hideAddressWidget'
         ]
       }
     }
