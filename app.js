@@ -128,6 +128,7 @@ apostrophe({
     'recipe-grid-widget': {},
     'thirstie-disclaimer-widget': {},
     'marquee-widget': {},
+    'button-widget': {},
     'social-links-widget': {}
   }
 });

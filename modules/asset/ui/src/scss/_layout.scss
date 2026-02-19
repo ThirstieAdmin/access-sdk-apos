@@ -139,6 +139,7 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   font-family: var(--th-h1-font-family, var(--primary-font-family));
   font-size: var(--th-h1-font-size, 2rem);
   background: inherit;
+  background-color: var(--body-background-color, '#FFF');
 }
 
 .th-availability-container {

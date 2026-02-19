@@ -6,17 +6,8 @@ export default {
   extend: '@apostrophecms/widget-type',
   options: {
     label: 'Marquee Widget',
-    icon: 'image-plus'
+    icon: 'image-plus-icon'
   },
-  // see list of icons in node_modules/@apostrophecms/vue-material-design-icons
-  // or https://pictogrammers.com/library/mdi/
-  icons: {
-    'image-plus': 'ImagePlus'
-  },
-  /* TODO: 
-  - add title, content and CTA fields.
-  - add side image option with image position (left or right) and text alignment (left, center, right) options.
-  */
   fields: {
     add: {
       title: {
@@ -89,7 +80,7 @@ export default {
         label: 'Open links in new page',
         def: false,
         if: {
-          showCTA: { $ne: 'none' }
+          ctaType: { $ne: 'none' }
         }
       },
       ctaText: {
@@ -97,7 +88,7 @@ export default {
         label: 'Call to Action Text',
         def: 'Learn More',
         if: {
-          showCTA: { $ne: 'none' }
+          ctaType: { $ne: 'none' }
         }
       },
       _ctaProductDetailPage: {
@@ -318,10 +309,3 @@ export default {
     }
   }
 };
-
-/* 
-(SHIPPING IN AZ, CA, CO, CT, DC, FL, IA, ID, IL, KY, LA, MD, MN, MO, MT, NE, NV, NH, NJ, NM, ND, NY, OR, SC, VA, WA, WI, WV, WY)
-OR CLICK HERE TO FIND IN STORE
-
-font-family
-*/

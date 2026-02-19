@@ -12,6 +12,7 @@ export default {
             'thirstie-disclaimer': {},
             'product-grid': {},
             'recipe-grid': {},
+            'button': {},
             'marquee': {}
           }
         }
