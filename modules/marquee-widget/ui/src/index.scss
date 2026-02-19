@@ -1,3 +1,7 @@
+.marquee-widget__container {
+  background-color: var(--marquee-widget__background-color, inherit);
+}
+
 .marquee-widget__container,
 .marquee-widget__container * {
   color: var(--marquee-widget__caption-text-color, var(--primary-color));
@@ -39,6 +43,7 @@
 .marquee-widget__figure-background figcaption {
   display:flex;
   position:absolute;
+  background-color: var(--marquee-widget__background-color, inherit);
   box-sizing: border-box;
   top: 0;
   left: 0;
