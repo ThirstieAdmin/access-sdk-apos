@@ -205,7 +205,7 @@ ul.nav-subitems {
     padding: 0 .5rem;
     height: auto;
     text-align: center;
-    font-size: 1rem;
+    font-size: var(--header-font-size, 1rem);
   }
   .nav-subitems > .nav-el {
     padding: .5rem 1rem;

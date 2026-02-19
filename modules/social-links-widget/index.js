@@ -4,7 +4,7 @@ export default {
   extend: '@apostrophecms/widget-type',
   options: {
     label: 'Social Links',
-    icon: 'web'
+    icon: 'web-icon'
   },
   fields: {
     add: {

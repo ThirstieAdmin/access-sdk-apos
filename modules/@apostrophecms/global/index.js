@@ -309,6 +309,11 @@ export default {
         label: 'Header Font Family',
         help: 'Defaults to primary font family'
       },
+      headerFontSize: {
+        type: 'string',
+        label: 'Header Font Size',
+        help: 'Defaults to 1rem'
+      },
       headerFontWeight: {
         type: 'select',
         label: 'Header Font Weight',
@@ -516,7 +521,7 @@ export default {
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'headerFontFamily', 'headerFontWeight', 'navFormat', 'navHeight', 'navShadow' ]
+        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'headerFontFamily', 'headerFontSize', 'headerFontWeight', 'navFormat', 'navHeight', 'navShadow' ]
       },
       footerContent: {
         label: 'Footer',
