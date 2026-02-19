@@ -10,7 +10,7 @@
         {% area data.page, 'hero' %}
       </div>
 
-      {% if data.global.locationType === 'address' %}
+      {% if data.global.locationType === 'address' and not data.page.hideAddressWidget %}
         {{ macros.renderAddressAvailability() }}
       {% endif %}
 
