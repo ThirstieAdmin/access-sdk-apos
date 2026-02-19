@@ -164,8 +164,7 @@ export default {
         label: 'Background Color',
         help: 'Set the background color for the marquee. This will apply to the area behind the image and caption.',
         selector: '.marquee-widget__container',
-        property: 'background-color',
-        def: 'inherit',
+        property: '--marquee-widget__background-color',
         options: standardPresetColors
       },
       widgetMargin: 'margin',
