@@ -1,0 +1,11 @@
+.button-widget__button {
+  background-color: var(--primary-color, '#000');
+  color: var(--primary-contrasting-color, '#FFF');
+  font-family: var(--primary-font-family);
+  font-size: var(--button-widget__font-size, 1rem);
+  padding: var(--button-widget__padding, .75rem 1.5rem);
+  border: var(--button-widget__border, none);
+  border-radius: var(--button-widget__border-radius, 4px);
+  margin: 0 auto;
+  cursor: pointer;
+}
