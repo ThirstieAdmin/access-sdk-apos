@@ -1,0 +1,11 @@
+<button class="button-widget__button">
+  {% if data.widget.ctaType == 'productDetailPage' and data.widget._ctaProductDetailPage.length > 0 %}
+    {% set ctaNav = data.widget._ctaProductDetailPage[0] %}
+      <a href="{{ ctaNav._url }}" class="button-widget__link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+  {% elif data.widget.ctaType == 'externalLink' %}
+    <a href="{{ data.widget.ctaExternalUrl }}" class="button-widget__link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+  {% elif data.widget.ctaType == 'pageLink' and data.widget._ctaPageLink.length > 0 %}
+    {% set ctaNav = data.widget._ctaPageLink[0] %}
+      <a href="{{ ctaNav._url }}" class="button-widget__link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+  {% endif %}
+</button>
