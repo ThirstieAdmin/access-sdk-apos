@@ -17,7 +17,7 @@
     <div class="th-availability__form--wrapper box-border th-fouc-block">
       <div class="th-availability__form">
         <div class="th-availability__form__title box-border">{{ data.global.locationTitle or "Available in your area?" }}</div>
-        <th-address-check text-color="var(--th-availability-text-color)" />
+        <th-address-check text-color="var(--th-availability-text-color)" style="--th-input-bg: transparent" />
       </div>
     </div>
   </section>
@@ -32,7 +32,7 @@
           <th-icon icon="info-filled" width="16" height="16" />
         </th-tooltip>
       </div>
-      <th-address-check text-color="var(--th-availability-text-color)" />
+      <th-address-check text-color="var(--th-availability-text-color)" style="--th-input-bg: transparent"/>
     </div>
   </section>
 {% endmacro %}

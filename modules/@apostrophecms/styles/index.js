@@ -66,7 +66,7 @@ export default {
         help: 'Sets the border radius specifically for buttons.',
         def: '4px',
         selector: ':root',
-        property: '--th-button-border-radius'
+        property: '--th-btn-border-radius'
       },
       headingOneFontFamily: {
         type: 'string',
@@ -158,8 +158,8 @@ export default {
       }
     },
     group: {
-      pageStyles: {
-        label: 'Page Styles',
+      globalStyles: {
+        label: 'Global Styles',
         fields: [
           'backgroundColor',
           'primaryLineHeight',

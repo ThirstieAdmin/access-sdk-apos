@@ -5,7 +5,19 @@
   font-size: var(--button-widget__font-size, 1rem);
   padding: var(--button-widget__padding, .75rem 1.5rem);
   border: var(--button-widget__border, none);
-  border-radius: var(--button-widget__border-radius, 4px);
+  border-radius: var(--button-widget__border-radius, var(--th-btn-border-radius, var(--th-border-radius, 4px)));
   margin: 0 auto;
   cursor: pointer;
+}
+
+.button-widget__button a,
+.button-widget__button a:hover {
+  color: inherit;
+  text-decoration: none;
+  font-style: oblique;
+  opacity: 1.0;
+}
+
+.button-widget__button:hover {
+  background-color: var(--primary-color-hover, inherit);
 }
