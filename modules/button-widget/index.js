@@ -104,8 +104,16 @@ export default {
       backgroundColor: {
         type: 'color',
         label: 'Background Color',
-        help: 'Set the background color for the marquee. This will apply to the area behind the image and caption.',
+        help: 'Set the background color for the button.',
         selector: '.button-widget__button',
+        property: 'background-color',
+        options: standardPresetColors
+      },
+      backgroundHoverColor: {
+        type: 'color',
+        label: 'Background Hover Color',
+        help: 'Set the background color for the button on hover.',
+        selector: '.button-widget__button:hover',
         property: 'background-color',
         options: standardPresetColors
       },
