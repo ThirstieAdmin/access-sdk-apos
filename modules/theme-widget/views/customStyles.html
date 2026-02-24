@@ -82,6 +82,7 @@
       --footer-font-family: {{ data.global.footerFontFamily or 'var(--primary-font-family, var(--th-standard-sanserif))' }};
       --footer-font-weight: {{ data.global.footerFontWeight or 'var(--primary-font-weight, 400)' }};
       --footer-height: {{ data.global.footerHeight or '40vh' }};
+      --th-c-header-icon: var(--header-text-color);
       --th-c-header-icon-count: var(--header-background-color);
       --th-availability-bg: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBG) or data.global.primaryContrastingColor or '#fff' }};
       --th-availability-border: {{ apos.modules['theme-widget'].convertPreset(data.global.locationBorderColor) or 'var(--th-c-light)' }};
