@@ -18,6 +18,8 @@
     {% set ageGatebackground = apos.modules['theme-widget'].convertPreset(data.global.ageGateBackgroundColor) or data.global.primaryColor or '#000' %}
   {% endif %}
 
+  {% set ageGateLogoHeight = data.global.ageGateLogoHeight or '125px' %}
+
   {% if not data.user %}
     {# only show age gate if user is not logged in #}
     <th-conditional-modal query="ageGatePassed">
@@ -25,7 +27,7 @@
         <div style="background-color: var(--th-ag-form-bg, transparent);" class="flex flex-col items-center justify-center w-full p-4 box-border th-ag-form-content">
           {% if ageGateLogo %}
             <div class="m-0 py-4">
-              <img class="m-0" src="{{ apos.attachment.url(ageGateLogo, { size: 'full' }) }}" alt="{{ ageGateLogo.alt or 'Age Gate Logo' }}" style="max-height:125px"/>
+              <img class="m-0" src="{{ apos.attachment.url(ageGateLogo, { size: 'full' }) }}" alt="{{ ageGateLogo.alt or 'Age Gate Logo' }}" style="max-height:{{ageGateLogoHeight}}"/>
             </div>
           {% endif %}
           <div class="my-4 flex flex-col items-center justify-center text-center">
