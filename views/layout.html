@@ -88,7 +88,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   {% render headerFragment.heading() %}
   <div class="th-inner-wrapper">
     {% if data.global.locationType === 'stickyzip' %}
-    <th-availability-minify header-height="{{ headerHeight }}" initial-offset="0" background-color-min="{{ data.global.secondaryColor }}" text-color-min="{{ data.global.secondaryContrastingColor }}">
+    <th-availability-minify header-height="{{ headerHeight }}" initial-offset="0" background-color-min="var(--th-zip-entry-min-bg, {{ data.global.secondaryColor }})" text-color-min="var(--th-zip-entry-min-text, {{ data.global.secondaryContrastingColor }})">
       <main class="th-main">
     {% else %}
       <main class="th-main">
