@@ -155,6 +155,22 @@ export default {
         selector: ':root',
         property: '--th-h4-color',
         options: standardPresetColors
+      },
+      zipEntryMinimizedBackgroundColor: {
+        type: 'color',
+        label: 'Zip entry minimized background color',
+        help: 'Set the background color for the zip entry when it is in a minimized state.',
+        selector: ':root',
+        property: '--th-zip-entry-min-bg',
+        options: standardPresetColors
+      },
+      zipEntryMinimizedTextColor: {
+        type: 'color',
+        label: 'Zip entry minimized text color',
+        help: 'Set the text color for the zip entry when it is in a minimized state.',
+        selector: ':root',
+        property: '--th-zip-entry-min-text',
+        options: standardPresetColors
       }
     },
     group: {
@@ -175,7 +191,11 @@ export default {
           'headingThreeFontFamily', 'headingThreeFontSize', 'headingThreeFontColor',
           'headingFourFontFamily', 'headingFourFontSize', 'headingFourFontColor'
         ]
+      },
+      Availability: {
+        label: 'Address/Zip Entry',
+        fields: ['zipEntryMinimizedBackgroundColor', 'zipEntryMinimizedTextColor']
       }
-    }
+     }
   }
 };
