@@ -354,6 +354,12 @@ export default {
           }
         }
       },
+      ageGateLogoHeight: {
+        type: 'string',
+        label: 'Age Gate Logo Height',
+        help: 'Set a max height for the age gate logo to ensure it fits well on the page. Defaults to 125px.',
+        def: '125px'
+      },
       ageGateButtonBG: {
         type: 'color',
         label: 'Age Gate Button Background Color',
@@ -535,7 +541,7 @@ export default {
       ageGate: {
         label: 'Age Gate',
         fields: [
-          'ageGateType', 'ageGateLogo', 'ageGateHeaderText', 'ageGateSubHeaderContent', 'ageGateFailContent',
+          'ageGateType', 'ageGateLogo', 'ageGateLogoHeight', 'ageGateHeaderText', 'ageGateSubHeaderContent', 'ageGateFailContent',
           'ageGateButtonBG', 'ageGateButtonBorder', 'ageGateButtonBorderRadius', 'ageGateInputBorder', 'ageGateInputBorderRadius',
           'ageGateBackgroundColor', 'ageGateTextColor', 'ageGateFormInputBG', 'ageGateFormInputTextColor',
           'ageGateBackgroundImage', 'ageGateFormBG',
