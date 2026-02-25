@@ -292,6 +292,16 @@ export default {
         help: 'like 03b90b08892e1b1ccd363b84150dbb71e7fcc76f'
       },
       /* Header settings */
+      headerLogo: {
+        type: 'area',
+        label: 'Header Logo',
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/image': {}
+          }
+        }
+      },
       headerBackgroundColor: {
         type: 'color',
         label: 'Header Background Color',
@@ -527,7 +537,7 @@ export default {
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'headerFontFamily', 'headerFontSize', 'headerFontWeight', 'navFormat', 'navHeight', 'navShadow' ]
+        fields: [ 'headerLogo', 'navFormat', 'navHeight', 'navShadow', 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'headerFontFamily', 'headerFontSize', 'headerFontWeight' ]
       },
       footerContent: {
         label: 'Footer',
