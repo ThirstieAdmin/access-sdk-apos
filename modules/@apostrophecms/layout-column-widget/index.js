@@ -18,5 +18,11 @@ export default {
         }
       }
     }
+  },
+  styles: {
+    add: {
+      widgetMargin: 'margin',
+      widgetPadding: 'padding',
+    }
   }
 };
