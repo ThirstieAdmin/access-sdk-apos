@@ -71,3 +71,14 @@ figcaption.th-image-widget__caption > p {
   font-size: 1rem;
   font-weight: 400;
 }
+
+.th-image-widget__zoom .th-image-widget__wrapper {
+  overflow: hidden;
+}
+.th-image-widget__zoom .th-image-widget__wrapper img {
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+.th-image-widget__zoom .th-image-widget__wrapper:hover img {
+  transform: scale(1.05);
+}

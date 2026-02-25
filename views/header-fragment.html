@@ -4,6 +4,15 @@
 {% set navShadow = data.global.navShadow or 'none' %}
 {% set navHeight = data.global.navHeight or 'normal' %}
 
+{% if data.global.headerLogo.items | length %}
+  {% set logoObj = apos.image.first(data.global.headerLogo) %}
+  {% set logoText = logoObj.alt or logoObj.title %}
+  {% set logoUrl = apos.attachment.url(logoObj, { size: 'full' }) %}
+{% else %}
+  {% set logoText = data.global.brandLogalAltText %}
+  {% set logoUrl = data.global.brandLogo %}
+{% endif %}
+
 <header class="th-header m-0 p-0">
   {% if enableBanner %}
     <div class="th-header__banner w-full py-2 px-0 m-0 flex flex-row items-center justify-center">
@@ -15,7 +24,7 @@
   <nav class="th-navbar nav--format-{{ navFormat }} nav--format--{{ navShadow }} nav--format--{{ navHeight }}">
     <div class="nav-el nav-logo">
       <a href="/">
-        <img class="th-header__logo nav--format--{{ navHeight }}" src="{{ data.global.brandLogo }}" alt="{{ data.global.brandLogalAltText}}">
+        <img class="th-header__logo nav--format--{{ navHeight }}" src="{{ logoUrl }}" alt="{{ logoText }}">
       </a>
     </div>
 
