@@ -3,7 +3,7 @@
 {% set ageGateType = data.global.ageGateType or 'dob' %}
 
 {% if ageGateType !== 'disabled' %}
-  {% set ageGateHeaderText = data.global.ageGateHeaderText or 'You must be of legal drinking age to enter this site.' %}
+  {% set ageGateHeaderText = data.global.ageGateHeaderText %}
 
   {% if data.global.ageGateLogo.items | length %}
     {% set ageGateLogo = apos.image.first(data.global.ageGateLogo) %}
