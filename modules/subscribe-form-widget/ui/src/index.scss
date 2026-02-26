@@ -1,0 +1,80 @@
+/* _big-input.scss */
+.th-sf-input {
+  position: relative;
+}
+
+.th-sf-input__input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 20px 30px;
+  border: 1px solid var(--th-c-greysMediumLightGrey);
+  &::placeholder {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.th-sf-input__input.o-small {
+  line-height: 1;
+}
+
+.th-sf-input__button {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: auto;
+  margin-top: 0;
+  align-items: center;
+  height: 100%;
+  max-height: 100%;
+  /* stylelint-disable */
+  padding: 0 2rem !important;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+}
+
+/* _button.scss */
+.th-sf-button {
+  display: inline-block;
+}
+
+.th-sf-button-primary,
+.th-sf-button-secondary,
+.th-sf-button-tertiary {
+  border-style: solid;
+  border-width: 0;
+}
+
+.th-sf-button--full { width: 100%; }
+
+
+/* _social.scss */
+.th-sf {
+  padding: 4rem 0;
+}
+
+
+.th-sf__mailing-list-input {
+  width: 45%;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .th-sf-input__button {
+    display: block;
+    width: 100%;
+    margin: 0;
+    top:unset;
+    right:unset;
+  }
+  .th-sf__mailing-list-input {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+}
