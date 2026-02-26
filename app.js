@@ -87,7 +87,8 @@ apostrophe({
     },
     '@apostrophecms/image-widget': {
       options: {
-        className: 'th-image-widget'
+        className: 'th-image-widget',
+        minSize: [ 100, 100 ]
       }
     },
     '@apostrophecms/video-widget': {
@@ -129,6 +130,7 @@ apostrophe({
     'thirstie-disclaimer-widget': {},
     'marquee-widget': {},
     'button-widget': {},
-    'social-links-widget': {}
+    'social-links-widget': {},
+    'subscribe-form-widget': {}
   }
 });
