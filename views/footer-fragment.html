@@ -24,6 +24,8 @@
           {{ apos.area.richText(data.global.footerTop) }}
         {% elif data.global.footerTop.items[0].type === "@apostrophecms/html" %}
           {{ data.global.footerTop.items[0].code | safe}}
+        {% else %}
+          {% area data.global, 'footerTop' %}
         {% endif %}
       </div>
       {% set footerGridRow = footerGridRow + 1 %}
