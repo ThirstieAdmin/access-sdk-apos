@@ -119,12 +119,14 @@ export default {
       },
       footerTop: {
         type: 'area',
-        label: 'Top Content',
+        label: 'Footer Top Content',
         options: {
           max: 1,
           widgets: {
             '@apostrophecms/rich-text': richTextOptions,
-            '@apostrophecms/html': {}
+            '@apostrophecms/html': {},
+            'social-links': {},
+            'subscribe-form': {}
           }
         }
       },
@@ -136,7 +138,9 @@ export default {
           max: 1,
           widgets: {
             '@apostrophecms/rich-text': richTextOptions,
-            '@apostrophecms/html': {}
+            '@apostrophecms/html': {},
+            'social-links': {},
+            'subscribe-form': {}
           }
         }
       },
