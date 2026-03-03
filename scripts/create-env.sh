@@ -14,6 +14,7 @@ Options:
   -k, --apikey          THAPIKEY (sandbox key, required)
   -p, --prod-apikey     THAPIKEY_PROD (production key, required)
   -o, --out             output filename (default: .env.<domain>)
+
   -c, --create-admin    create admin user
       --admin-file      path to admin env file to read (default: .env-admin)
   -f, --force           overwrite existing file without prompting
@@ -57,7 +58,7 @@ NONINTERACTIVE=false
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
-    -b|--domain) domain="$2"; shift 2;;
+    -d|--domain) domain="$2"; shift 2;;
     --domain=*) domain="${1#*=}"; shift;;
     -a|--app) app="$2"; shift 2;;
     --app=*) app="${1#*=}"; shift;;
