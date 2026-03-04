@@ -145,6 +145,25 @@ export default {
         selector: '.th-product-grid .th-product-grid__card',
         property: 'color',
         options: standardPresetColors
+      },
+      titleColor: {
+        type: 'color',
+        label: 'Product title color',
+        selector: '.th-product-grid__selector',
+        property: '--th-product-line-selector__title--color',
+        options: standardPresetColors
+      },
+      titleFontFamily: {
+        type: 'string',
+        label: 'Product title font-family',
+        selector: '.th-product-grid__selector',
+        property: '--th-product-line-selector__title--font-family'
+      },
+      titleFontWeight: {
+        type: 'string',
+        label: 'Product title font-weight',
+        selector: '.th-product-grid__selector',
+        property: '--th-product-line-selector__title--font-weight'
       }
     }
   }

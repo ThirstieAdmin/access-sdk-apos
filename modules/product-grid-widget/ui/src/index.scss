@@ -40,3 +40,10 @@
   max-width: calc(var(--swiper-size) - 3.75rem);
   max-height: calc(var(--swiper-size) - 3.75rem); 
 }
+.th-product-grid__selector {
+  --th-product-line-selector__title--color: var(--product-grid-text-color, var(--primary-text-color, #000));
+  --th-product-line-selector__title--font-family: var(--th-h1-font-family, var(--primary-font-family));
+  --th-product-line-selector__title--font-weight: 600;
+  --th-product-line-selector__variant-color: var(--th-c-greysMediumDarkGrey);
+  color: var(--product-grid-text-color, var(--primary-text-color, #000));
+}
