@@ -18,6 +18,13 @@
   max-height: calc(300px - 3.75rem);
 }
 
+.th-pdp-content {
+  --th-pdp-price-color: var(--th-h1-color, var(--primary-text-color, var(--th-c-black)));
+  --th-pdp-tax-color: var(--primary-text-color, #000);
+  --th-pdp-variant-text-color: var(--primary-text-color, #000);
+  --th-pdp-variant-secondary-text-color: var(--primary-text-color, #000);
+  --th-retailer-text-color: var(--primary-text-color, #000);
+}
 .th-pdp-left {
   width: 60vw;
   height: 642px;
@@ -94,27 +101,19 @@ h1.th-pdp-right__title {
   line-height: 2.25rem;
 }
 
-@media screen and (max-width: 768px) {
-  .th-pdp-content {
-    grid-template-columns: 1fr;
-  }
+.th-related-products__container {
+  --th-product-add-to-cart__bg: var(--body-background-color, inherit);
+  --swiper-size: 300px;
+  max-width: 100vw;
+}
 
-  .th-pdp-left {
-    width: 100vw;
-    height: 100%;
-  }
-
-  .th-pdp-left-content {
-    width: 100%;
-  }
-
-  .th-pdp-right {
-    width: 100vw;
-  }
-  .th-pdp-img-container {
-    width:100vw;
-    height:100%;
-  }
+.th-related-products__product-img {
+  margin:0;
+  padding: 0;
+  width:auto;
+  height:auto;
+  max-width: calc(var(--swiper-size) - 3.75rem);
+  max-height: calc(var(--swiper-size) - 3.75rem); 
 }
 
 .product-pager {
@@ -158,20 +157,45 @@ h1.th-pdp-right__title {
 }
 
 @media screen and (max-width: 768px) {
-.th-pdp-related-products-swiper,
-.th-pdp-recipe-swiper {
-  width: 95vw;
-  max-width: 95vw;
-}
+  .th-pdp-content {
+    grid-template-columns: 1fr;
+  }
 
-.th-pdp-related-products-swiper swiper-slide,
-.th-pdp-recipe-swiper swiper-slide {
-  padding: 0;
-  margin: 0;
-}
-.th-pdp-recipe-card {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-}
+  .th-pdp-left {
+    width: 100vw;
+    height: 100%;
+  }
+
+  .th-pdp-left-content {
+    width: 100%;
+  }
+
+  .th-pdp-right {
+    width: 100vw;
+  }
+  .th-pdp-img-container {
+    width:100vw;
+    height:100%;
+  }
+
+  .th-pdp-description h2,
+  .th-pdp-description div {
+    padding-left: .5rem
+  }
+  .th-pdp-related-products-swiper,
+  .th-pdp-recipe-swiper {
+    width: 95vw;
+    max-width: 95vw;
+  }
+
+  .th-pdp-related-products-swiper swiper-slide,
+  .th-pdp-recipe-swiper swiper-slide {
+    padding: 0;
+    margin: 0;
+  }
+  .th-pdp-recipe-card {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+  }
 }
