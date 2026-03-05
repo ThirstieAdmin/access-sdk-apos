@@ -1,3 +1,5 @@
+import { standardPresetColors } from '../../../lib/presets.js';
+
 export default {
   fields: {
     add: {
@@ -5,6 +7,7 @@ export default {
         type: 'area',
         options: {
           widgets: {
+            '@apostrophecms/layout': {},
             '@apostrophecms/rich-text': {},
             '@apostrophecms/image': {},
             '@apostrophecms/video': {},
@@ -22,7 +25,19 @@ export default {
   styles: {
     add: {
       widgetMargin: 'margin',
-      widgetPadding: 'padding'
+      widgetPadding: 'padding',
+      widgetMaxHeight: {
+        type: 'integer',
+        unit: 'px',
+        label: 'Max Height for layout section',
+        property: 'max-height'
+      },
+      backgroundColor: {
+        type: 'color',
+        label: 'section background color',
+        property: 'background-color',
+        options: standardPresetColors
+      }
     }
   }
 };

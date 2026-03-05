@@ -74,6 +74,20 @@ export default {
         label: 'Hide related recipes on PDP',
         help: 'Hide related recipes on Product Line page',
         def: false
+      },
+      pdpFeaturedContent: {
+        type: 'area',
+        label: 'PDP Featured Content',
+        help: 'If provided, this content will be shown in a featured section on product detail pages',
+        textarea: true,
+        required: false,
+        options: {
+          max: 1,
+          widgets: {
+            '@apostrophecms/layout': {},
+            '@apostrophecms/html': {}
+          }
+        }
       }
     },
     group: {
@@ -83,7 +97,7 @@ export default {
       },
       productDetail: {
         label: 'Product Detail Pages',
-        fields: ['showPDPImageAs', 'hideRelatedProductsPDP', 'hideRecipesPDP']
+        fields: ['showPDPImageAs', 'pdpFeaturedContent', 'hideRelatedProductsPDP', 'hideRecipesPDP']
       }
     }
   }
