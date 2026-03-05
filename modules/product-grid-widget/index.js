@@ -164,6 +164,12 @@ export default {
         label: 'Product title font-weight',
         selector: '.th-product-grid__selector',
         property: '--th-product-line-selector__title--font-weight'
+      },
+      variantTextColor: {
+        type: 'color',
+        selector: '.th-product-grid__selector',
+        property: '--th-product-line-selector__variant-color',
+        options: standardPresetColors
       }
     }
   }

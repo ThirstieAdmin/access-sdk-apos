@@ -3,7 +3,7 @@
 
 {% block beforeMain %}
   <div class="th-wrapper">
-    <main class="th-main">
+    <main class="h-full th-checkout-main">
     <th-checkout
       continue-button-label="Go on"
       complete-button-label="Complete Checkout" 
@@ -34,6 +34,6 @@
 
 {% block afterMain %}
   {% render footerFragment.footer() %}
-  </main>{# Close .th-main #}
+  </main>{# Close .th-checkout-main #}
 </div>{# Close .th-wrapper #}
 {% endblock %}

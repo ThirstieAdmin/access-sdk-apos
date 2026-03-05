@@ -345,6 +345,8 @@ export default {
             slug: 1,
             type: 1,
             _url: 1,
+            primaryImage: 1,
+            imageSpec: 1,
             productType: 1,
             thirstiePLID: 1
           }
