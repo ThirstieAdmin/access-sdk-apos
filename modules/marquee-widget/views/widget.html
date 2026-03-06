@@ -22,7 +22,11 @@
     {% endif %}
   {% endif %}
   <figure class="m-0 p-0 marquee-widget__figure-{{ widgetFormat }} marquee-widget__figure-image-{{ imageSide }}">
+    {% if data.widget.mediaType == 'image' %}
     <img src="{{ marqueeImageUrl }}" alt="{{ altText }}" />
+    {% elif data.widget.mediaType == 'video' %}
+      <video class="marquee__video" src="{{ data.widget.marqueeVideoUrl }}" poster="{{ marqueeImageUrl }}" autoplay muted loop></video>
+    {% endif %}
     <figcaption class="flex flex-col h-full marquee-widget__caption">
       {% if data.widget.title %}
         <h2 class="marquee-widget__title">{{ data.widget.title }}</h2>

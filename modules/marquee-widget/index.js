@@ -43,9 +43,24 @@ export default {
           }
         }
       },
+      mediaType: {
+        type: 'select',
+        label: 'Image vs Video',
+        def: 'image',
+        choices: [
+          {
+            value: 'image',
+            label: 'Image'
+          },
+          {
+            value: 'video',
+            label: 'Video'
+          }
+        ]
+      },
       marqueeImage: {
         type: 'area',
-        label: ' Marquee Image',
+        label: 'Marquee Image',
         options: {
           max: 1,
           widgets: {
@@ -53,9 +68,21 @@ export default {
           }
         }
       },
+      marqueeVideoUrl: {
+        type: 'url',
+        label: 'Video Url',
+        help: 'Marquee Image is displayed during video load',
+        if: {
+          mediaType: 'video'
+        },
+        requiredIf: {
+          mediaType: 'video'
+        }
+      },
       ctaType: {
         type: 'select',
         label: 'Type of Call to Action',
+        def: 'none',
         choices: [
           {
             value: 'none',
@@ -141,7 +168,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: [ 'title', 'figureStyle', 'marqueeImage', 'caption' ]
+        fields: [ 'title', 'figureStyle', 'mediaType', 'marqueeVideoUrl', 'marqueeImage', 'caption' ]
       },
       cta: {
         label: 'Call to Action',
