@@ -101,6 +101,16 @@
   text-decoration: none;
 }
 
+.marquee__video,
+.marquee__video-placeholder {
+  width: 100%;
+}
+.marquee__video {
+  position: relative;
+  object-fit: cover;
+  min-height: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .marquee-widget__figure-side {
     padding: 0;
