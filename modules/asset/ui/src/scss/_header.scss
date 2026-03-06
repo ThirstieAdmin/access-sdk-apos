@@ -57,6 +57,9 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
 .th-header__logo.nav--format--short {
   max-height: 2.75rem;
 }
+.th-header__logo.nav--format--tall {
+  max-height: 6rem;
+}
 .th-navbar {
   display: flex;
   box-sizing: border-box;
@@ -71,6 +74,9 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
 
 .th-navbar.nav--format--short {
   height: 4.375rem;
+}
+.th-navbar.nav--format--tall {
+  height: 9.375rem;
 }
 .th-navbar a {
   color: var(--header-text-color, #000);

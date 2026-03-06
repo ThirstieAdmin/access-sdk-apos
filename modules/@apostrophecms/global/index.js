@@ -93,6 +93,7 @@ export default {
         label: 'Navigation bar height',
         choices: [
           { label: 'Normal (110px)', value: 'normal' },
+          { label: 'Tall (150px)', value: 'tall' },
           { label: 'Narrow (70px)', value: 'short' }
         ]
       },
@@ -229,6 +230,15 @@ export default {
         type: 'boolean',
         label: 'Enable Site Banner',
         def: false
+      },
+      siteBannerLocation: {
+        type: 'select',
+        label: 'Banner location relative to nav header',
+        choices: [
+          { value: 'top', label: 'Top' },
+          { value: 'bottom', label: 'Bottom' }
+        ],
+        def: 'top'
       },
       siteBannerText: {
         type: 'area',
@@ -537,7 +547,7 @@ export default {
       },
       bannerContent: {
         label: 'Banners',
-        fields: [ 'enableSiteBanner', 'siteBannerFontFamily', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor' ]
+        fields: [ 'enableSiteBanner', 'siteBannerLocation', 'siteBannerFontFamily', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor' ]
       },
       headerContent: {
         label: 'Header',

@@ -25,6 +25,8 @@ export default {
         let headerHeight = 0;
         if(data?.global?.navHeight === 'short') {
           headerHeight = 70;
+        } else if (data?.global?.navHeight == 'tall') {
+          headerHeight = 150;
         } else {
           headerHeight = 110;
         }
