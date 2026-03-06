@@ -171,6 +171,62 @@ export default {
         selector: ':root',
         property: '--th-zip-entry-min-text',
         options: standardPresetColors
+      },
+      cartHeaderBG: {
+        type: 'color',
+        label: 'Cart summary header background color',
+        selector: 'th-cart-summary-drawer',
+        property: '--th-cart-header-bg-color',
+        options: standardPresetColors
+      },
+      cartHeaderColor: {
+        type: 'color',
+        label: 'Cart summary header text color',
+        selector: 'th-cart-summary-drawer',
+        property: '--th-cart-header-text-color',
+        options: standardPresetColors
+      },
+      cartFooterBG: {
+        type: 'color',
+        label: 'Cart summary footer background',
+        selector: 'th-cart-summary-drawer',
+        property: '--th-cart-footer-bg-color',
+        options: standardPresetColors
+      },
+      cartCTACheckoutBG: {
+        type: 'color',
+        label: 'Cart summary checkout button',
+        selector: 'th-cart-summary-drawer',
+        property: '--th-cart-cta-checkout-bg-color',
+        options: standardPresetColors
+      },
+      cartCTACheckoutColor: {
+        type: 'color',
+        label: 'Cart summary checkout button text',
+        selector: 'th-cart-summary-drawer',
+        property: '--th-cart-cta-checkout-text-color',
+        options: standardPresetColors
+      },
+      cartCTAContinueBG: {
+        type: 'color',
+        label: 'Cart summary continue button',
+        selector: 'th-cart-summary-drawer',
+        property: '--th-cart-cta-continue-bg-color',
+        options: standardPresetColors
+      },
+      cartCTAContinueColor: {
+        type: 'color',
+        label: 'Cart summary continue button text',
+        selector: 'th-cart-summary-drawer',
+        property: '--th-cart-cta-continue-text-color',
+        options: standardPresetColors
+      },
+      buttonDisabledBG: {
+        type: 'color',
+        label: 'Disabled button color',
+        selector: 'th-checkout',
+        property: '--th-checkout-button-disabled-bg',
+        options: standardPresetColors
       }
     },
     group: {
@@ -195,6 +251,14 @@ export default {
       Availability: {
         label: 'Address/Zip Entry',
         fields: ['zipEntryMinimizedBackgroundColor', 'zipEntryMinimizedTextColor']
+      },
+      cartSummary: {
+        label: 'Cart Summary',
+        fields: ['cartHeaderBG', 'cartHeaderColor', 'cartFooterBG', 'cartCTACheckoutBG', 'cartCTACheckoutColor', 'cartCTAContinueBG', 'cartCTAContinueColor']
+      },
+      checkout: {
+        label: 'Checkout',
+        fields: ['buttonDisabledBG']
       }
      }
   }
