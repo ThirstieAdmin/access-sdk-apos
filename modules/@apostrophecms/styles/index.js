@@ -227,6 +227,20 @@ export default {
         selector: 'th-checkout',
         property: '--th-checkout-button-disabled-bg',
         options: standardPresetColors
+      },
+      buttonHoverBG: {
+        type: 'color',
+        label: 'Hover effect button color',
+        selector: ':root',
+        property: '--th-btn-background-hover',
+        options: standardPresetColors
+      },
+      ageGateButtonHoverBG: {
+        type: 'color',
+        label: 'Age Gate hover effect  button color',
+        selector: 'th-age-verification',
+        property: '--th-btn-background-hover',
+        options: standardPresetColors
       }
     },
     group: {
@@ -235,7 +249,9 @@ export default {
         fields: [
           'backgroundColor',
           'primaryLineHeight',
-          'borderRadius', 'buttonBorderRadius'
+          'borderRadius', 'buttonBorderRadius',
+          'buttonHoverBG',
+          'ageGateButtonHoverBG'
         ]
       },
       typography: {
