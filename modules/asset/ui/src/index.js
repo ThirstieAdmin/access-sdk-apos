@@ -28,6 +28,7 @@ export default () => {
       checkout: '/checkout',
       shopping: '/'
     },
+    enableCartCheckoutButtonHover: true
   };
 
   initApp(thirstieAppConfig);

@@ -40,7 +40,7 @@
               {% endif %}
             </div>
           </div>
-          <th-age-verification class="w-full" type="{{ ageGateType }}" confirm-text="Enter"></th-age-verification>
+          <th-age-verification class="w-full" type="{{ ageGateType }}" confirm-text="Enter" with-hover></th-age-verification>
           <th-conditional-label query="ageGatePassed" alt-label="All sales of alcohol are fulfilled by licensed retailers on the Thirstie Network." class="my-4">
             {% if data.global.ageGateFailContent.items[0].type === "@apostrophecms/rich-text" %}
               {{ apos.area.richText(data.global.ageGateFailContent) }}
