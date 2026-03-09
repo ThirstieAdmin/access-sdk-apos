@@ -16,7 +16,7 @@
 
 <header class="th-header m-0 p-0">
   {% if enableBanner and bannerLocation == 'top' %}
-    <div class="th-header__banner w-full py-2 px-0 m-0 flex flex-row items-center justify-center">
+    <div class="th-header__banner w-full py-2 px-0 m-0 flex flex-col items-center justify-center">
       {% if data.global.siteBannerText.items[0].type === "@apostrophecms/rich-text" %}
       {{ apos.area.richText(data.global.siteBannerText) }}
       {% endif %}
