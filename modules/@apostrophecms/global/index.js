@@ -244,7 +244,7 @@ export default {
         type: 'area',
         label: 'Site Banner',
         options: {
-          max: 1,
+          max: 2,
           widgets: {
             '@apostrophecms/rich-text': {
               toolbar: [
