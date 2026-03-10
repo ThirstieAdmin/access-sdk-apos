@@ -215,7 +215,9 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
 }
 
 @media screen and (max-width: 768px) {
-
+  .th-inner-wrapper {
+    margin-top: var(--header-offset-mobile);
+  }
   .th-availability__form {
     padding:2rem 0 .5rem;
   }

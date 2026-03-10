@@ -38,6 +38,23 @@ export default {
         }
         return headerHeight;
       },
+      calcHeaderHeightMobile(data, adminUserAdjustment) {
+        let headerHeight = 0;
+        if(data?.global?.navHeight === 'short') {
+          headerHeight = 70;
+        } else if (data?.global?.navHeight == 'tall') {
+          headerHeight = 110;
+        } else {
+          headerHeight = 110;
+        }
+        if(data?.global?.enableSiteBanner) {
+          headerHeight += 48;
+        }
+        if(data?.user) {
+          headerHeight += adminUserAdjustment;
+        }
+        return headerHeight;
+      },
       percentString(txtValue, precision) {
         const abv = parseFloat(txtValue).toFixed(precision || 1);
         return txtValue ? `${abv}%` : '';
