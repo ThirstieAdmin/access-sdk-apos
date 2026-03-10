@@ -147,9 +147,13 @@
   </div>
 </section>
 
+<div class="my-12">
 {% area item, 'featuredContent' %}
+</div>
 
+<div class="my-12">
 {% area data.page, 'pdpFeaturedContent' %}
+</div>
 
 {% if item._recipes | length and not data.page.hideRecipesPDP %}
 <section class="my-8">
@@ -206,7 +210,7 @@
                 src="{{ imageUrl }}" 
                 alt="{{ altText }}"
               />
-              <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" no-collection no-brand-name no-image></th-product-add-to-cart>
+              <th-product-add-to-cart product-line-id="{{ productLine.thirstiePLID }}" pdp-link="{{ productLine._url }}" link-text="Learn more" show-link no-collection no-brand-name no-image></th-product-add-to-cart>
             </div>
           </swiper-slide>
           {% endif %}

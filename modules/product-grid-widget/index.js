@@ -146,6 +146,17 @@ export default {
         property: 'color',
         options: standardPresetColors
       },
+      cardTextTransform: {
+        type: 'select',
+        label: 'Product Card text-transform',
+        selector: 'th-product-line-selector.th-product-grid__selector',
+        property: 'text-transform',
+        choices: [
+          { label: 'none', value: 'none' },
+          { label: 'uppercase', value: 'uppercase' },
+          { label: 'lowercase', value: 'lowercase' }
+        ]
+      },
       titleColor: {
         type: 'color',
         label: 'Product title color',
