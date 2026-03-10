@@ -241,6 +241,74 @@ export default {
         selector: 'th-age-verification',
         property: '--th-btn-background-hover',
         options: standardPresetColors
+      },
+      pdpContentTitleFontFamily: {
+        type: 'string',
+        label: 'PDP Content Title font-family',
+        selector: '.th-pdp-description__title',
+        property: 'font-family',
+      },
+      pdpContentTitleFontWeight: {
+        type: 'select',
+        label: 'PDP Content Title font-weight',
+        selector: '.th-pdp-description__title',
+        property: 'font-weight',
+        choices: [
+          { value: '100', label: 'Thin (100)' },
+          { value: '200', label: 'Extra Light (200)' },
+          { value: '300', label: 'Light (300)' },
+          { value: '400', label: 'Normal (400)' },
+          { value: '500', label: 'Medium (500)' },
+          { value: '600', label: 'Semi Bold (600)' },
+          { value: '700', label: 'Bold (700)' },
+          { value: '800', label: 'Extra Bold (800)' },
+          { value: '900', label: 'Black (900)' }
+        ]
+      },
+      pdpContentTitleTextTransform: {
+        type: 'select',
+        label: 'PDP Content Title text-transform',
+        selector: '.th-pdp-description__title',
+        property: 'text-transform',
+        choices: [
+          { label: 'none', value: 'none' },
+          { label: 'uppercase', value: 'uppercase' },
+          { label: 'lowercase', value: 'lowercase' }
+        ]
+      },
+      pdpContentDescriptionFontFamily: {
+        type: 'string',
+        label: 'PDP Descriptive Content font-family',
+        selector: '.th-pdp-description__content',
+        property: 'font-family',
+      },
+      pdpContentDescriptionFontWeight: {
+        type: 'select',
+        label: 'PDP Descriptive Content font-weight',
+        selector: '.th-pdp-description__content',
+        property: 'font-weight',
+        choices: [
+          { value: '100', label: 'Thin (100)' },
+          { value: '200', label: 'Extra Light (200)' },
+          { value: '300', label: 'Light (300)' },
+          { value: '400', label: 'Normal (400)' },
+          { value: '500', label: 'Medium (500)' },
+          { value: '600', label: 'Semi Bold (600)' },
+          { value: '700', label: 'Bold (700)' },
+          { value: '800', label: 'Extra Bold (800)' },
+          { value: '900', label: 'Black (900)' }
+        ]
+      },
+      pdpContentDescriptionTextTransform: {
+        type: 'select',
+        label: 'PDP Descriptive Content text-transform',
+        selector: '.th-pdp-description__content',
+        property: 'text-transform',
+        choices: [
+          { label: 'none', value: 'none' },
+          { label: 'uppercase', value: 'uppercase' },
+          { label: 'lowercase', value: 'lowercase' }
+        ]
       }
     },
     group: {
@@ -267,6 +335,13 @@ export default {
       Availability: {
         label: 'Address/Zip Entry',
         fields: ['zipEntryMinimizedBackgroundColor', 'zipEntryMinimizedTextColor']
+      },
+      productDetail: {
+        label: 'Product Detail Pages',
+        fields: [
+          'pdpContentTitleFontFamily', 'pdpContentTitleFontWeight', 'pdpContentTitleTextTransform',
+          'pdpContentDescriptionFontFamily', 'pdpContentDescriptionFontWeight', 'pdpContentDescriptionTextTransform',
+        ]
       },
       cartSummary: {
         label: 'Cart Summary',
