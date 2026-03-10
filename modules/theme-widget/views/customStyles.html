@@ -3,6 +3,7 @@
 {% if data.global %}
 
   {% set headerHeight = apos.modules['theme-widget'].calcHeaderHeight(data, 0) %}
+  {% set headerHeightMobile = apos.modules['theme-widget'].calcHeaderHeightMobile(data, 0) %}
 
   <link rel="stylesheet" type="text/css" href="https://cdn.thirstie.cloud/css/latest/thirstiebase.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.thirstie.cloud/css/latest/thirstieecomm.css" />
@@ -71,6 +72,7 @@
       --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
       --banner-font-family: {{ data.global.siteBannerFontFamily or 'var(--th-standard-sanserif)' }};
       --header-offset: {{ headerHeight }}px;
+      --header-offset-mobile: {{ headerHeightMobile }}px;
       --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
       --header-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerTextColor) or data.global.primaryContrastingColor or '#fff' }};
       --header-font-family: {{ data.global.headerFontFamily or 'var(--primary-font-family, var(--th-standard-sanserif))' }};
