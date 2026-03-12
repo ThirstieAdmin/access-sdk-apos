@@ -311,6 +311,9 @@ ul.nav-subitems {
   .th-header__banner  {
     justify-content: flex-start;
   }
+  .th-header__banner > p {
+    padding: .25rem 0;
+  }
   .th-header__logo.nav--format--tall {
     max-height: 4.375rem;
   }

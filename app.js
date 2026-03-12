@@ -105,6 +105,7 @@ apostrophe({
     },
     '@apostrophecms/favicon': {},
     '@apostrophecms/seo': {},
+    '@apostrophecms/open-graph': {},
     // `asset` supports the project's build for client-side assets.
     asset: {},
     // theming variables
