@@ -27,6 +27,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   font-weight: 400;
   height: 3rem;
   padding: 1rem 0;
+  overflow-y:hidden;
 }
 .th-header__banner * {
   color: var(--banner-text-color, var(--th-primary-color, #FFF1CC));
@@ -307,6 +308,9 @@ ul.nav-subitems {
 }
 
 @media screen and (max-width: 768px) {
+  .th-header__banner  {
+    justify-content: flex-start;
+  }
   .th-header__logo.nav--format--tall {
     max-height: 4.375rem;
   }
