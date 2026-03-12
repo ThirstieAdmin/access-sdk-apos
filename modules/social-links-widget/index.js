@@ -63,5 +63,38 @@ export default {
         ]
       }
     }
+  },
+  styles: {
+    add: {
+      fontFamily: {
+        type: 'string',
+        label: 'Label font-family',
+        selector: '.th-social',
+        property: 'font-family'
+      },
+      fontSize: {
+        type: 'string',
+        label: 'Label font-size',
+        selector: '.th-social',
+        property: 'font-size'
+      },
+      fontWeight: {
+        type: 'string',
+        label: 'Label font-weight',
+        selector: '.th-social',
+        property: 'font-weight'
+      },
+      textTransform: {
+        type: 'select',
+        label: 'Label text-transform',
+        selector: '.th-social',
+        property: 'text-transform',
+        choices: [
+          { label: 'none', value: 'none' },
+          { label: 'uppercase', value: 'uppercase' },
+          { label: 'lowercase', value: 'lowercase' }
+        ]
+      }
+    }
   }
 };
