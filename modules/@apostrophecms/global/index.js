@@ -295,16 +295,6 @@ export default {
           enableSiteBanner: true
         }
       },
-      typekitId: {
-        type: 'string',
-        label: 'Typekit ID',
-        help: 'like abc3dkdf'
-      },
-      typekitAPIToken: {
-        type: 'string',
-        label: 'Typekit API Token',
-        help: 'like 03b90b08892e1b1ccd363b84150dbb71e7fcc76f'
-      },
       /* Header settings */
       headerLogo: {
         type: 'area',
@@ -525,6 +515,24 @@ export default {
         type: 'color',
         label: 'Availability text color',
         options: standardPresetColors
+      },
+      typekitId: {
+        type: 'string',
+        label: 'Typekit ID',
+        help: 'like abc3dkdf'
+      },
+      typekitAPIToken: {
+        type: 'string',
+        label: 'Typekit API Token',
+        help: 'like 03b90b08892e1b1ccd363b84150dbb71e7fcc76f'
+      },
+      googleTagManagerId: {
+        type: 'string',
+        label: 'Custom GTM Container ID'
+      },
+      fbPixelCode: {
+        type: 'string',
+        label: 'Facebook Pixel Code'
       }
     },
     group: {
@@ -541,7 +549,7 @@ export default {
         fields: [
           'siteTitle', 'useProductionKeys',
           'typekitId', 'typekitAPIToken',
-          'googleTagManagerId',
+          'googleTagManagerId', 'fbPixelCode',
           'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor'
         ]
       },
