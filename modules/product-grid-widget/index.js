@@ -83,6 +83,11 @@ export default {
           {label: 'carousel', value: 'carousel'},
         ]
       },
+      hideDescription: {
+        type: 'boolean',
+        label: 'Hide description on product card (bottle size will be shown)',
+        def: false
+      },
       _productlines: {
         type: 'relationship',
         label: 'Product Lines',
@@ -107,7 +112,11 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: ['title', 'textColor', 'bgColor', 'cardBorderColor', 'outerBorderColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'gridType', '_productlines']
+        fields: ['title', 'textColor', 'bgColor', 'cardBorderColor', 'outerBorderColor', 'titleFontFamily', 'titleFontSize', 'titleFontWeight', 'titleClassName', 'showDivider', 'gridType', '_productlines']
+      },
+      cardLayout: {
+        label: 'Card Layout',
+        fields: [ 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'hideDescription' ]
       }
     }
   },

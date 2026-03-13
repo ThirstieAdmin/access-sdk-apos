@@ -437,6 +437,7 @@ export default {
       ageGateBackgroundImage: {
         type: 'area',
         label: 'Age Gate Background Image',
+        help: 'Set Background Color to have transparency if setting a background image',
         options: {
           max: 1,
           widgets: {

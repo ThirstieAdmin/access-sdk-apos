@@ -56,7 +56,17 @@ export default {
         return headerHeight;
       },
       percentString(txtValue, precision) {
-        const abv = parseFloat(txtValue).toFixed(precision || 1);
+        if (Number.isNaN(parseFloat(txtValue))) {
+          return txtValue;
+        }
+
+        let abv = parseFloat(txtValue);
+        try {
+          abv.toFixed(precision || 1);
+        } catch (e) {
+          return txtValue;
+        }
+
         return txtValue ? `${abv}%` : '';
       },
       decimalString(txtValue, precision = 1) {
