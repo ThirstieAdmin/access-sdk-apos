@@ -221,7 +221,7 @@ export default {
         property: '--th-cart-cta-continue-text-color',
         options: standardPresetColors
       },
-      buttonDisabledBG: {
+      checkoutButtonDisabledBG: {
         type: 'color',
         label: 'Disabled button color',
         selector: 'th-checkout',
@@ -235,11 +235,24 @@ export default {
         property: '--th-btn-background-hover',
         options: standardPresetColors
       },
+      buttonHoverTextColor: {
+        type: 'color',
+        label: 'Hover effect button text color',
+        selector: ':root',
+        property: '--th-btn-text-hover'
+      },
       ageGateButtonHoverBG: {
         type: 'color',
         label: 'Age Gate hover effect  button color',
         selector: 'th-age-verification',
         property: '--th-btn-background-hover',
+        options: standardPresetColors
+      },
+      ageGateButtonHoverTextColor: {
+        type: 'color',
+        label: 'Age Gate hover effect button text color',
+        selector: 'th-age-verification',
+        property: '--th-ag-form-btn-text-color',
         options: standardPresetColors
       },
       pdpContentTitleFontFamily: {
@@ -319,7 +332,7 @@ export default {
           'primaryLineHeight',
           'borderRadius', 'buttonBorderRadius',
           'buttonHoverBG',
-          'ageGateButtonHoverBG'
+          'buttonHoverTextColor'
         ]
       },
       typography: {
@@ -331,6 +344,10 @@ export default {
           'headingThreeFontFamily', 'headingThreeFontSize', 'headingThreeFontColor',
           'headingFourFontFamily', 'headingFourFontSize', 'headingFourFontColor'
         ]
+      },
+      ageGate: {
+        label: 'Age Gate',
+        fields: [ 'ageGateButtonHoverBG', 'ageGateButtonHoverTextColor' ]
       },
       Availability: {
         label: 'Address/Zip Entry',
@@ -349,7 +366,7 @@ export default {
       },
       checkout: {
         label: 'Checkout',
-        fields: ['buttonDisabledBG']
+        fields: ['checkoutButtonDisabledBG']
       }
      }
   }

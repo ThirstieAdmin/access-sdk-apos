@@ -495,6 +495,11 @@ export default {
           { label: 'Address entry', value: 'address' }
         ]
       },
+      disableButtonHover: {
+        type: 'boolean',
+        label: 'Disable button hover effect on ecommerce components',
+        def: false
+      },
       locationTitle: {
         type: 'string',
         lable: 'Heading for availabilty widget',

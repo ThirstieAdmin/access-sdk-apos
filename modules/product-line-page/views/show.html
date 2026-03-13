@@ -3,6 +3,8 @@
 
 {% import 'macros.html' as macros %}
 
+{% set withHover = "" if data.global.disableButtonHover else "with-hover" %}
+
 {% import 'breadcrumb-fragment.html' as breadcrumbFragment %}
 {% import 'recipe-fragment.html' as recipeFragment %}
 
@@ -93,7 +95,7 @@
     </div>
   </div>
   <div class="th-pdp-right">
-    <th-pdp-commerce product-line-id="{{ item.thirstiePLID }}" hide-product-name hide-other-info hide-details-footer>
+    <th-pdp-commerce product-line-id="{{ item.thirstiePLID }}" {{ withHover }} hide-product-name hide-other-info hide-details-footer>
       <div slot="additional-content">
         <h1 class="th-pdp-right__title">{{ item.title }}</h1>
         {% if data.global.locationType === 'address' %}
