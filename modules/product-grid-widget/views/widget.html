@@ -1,10 +1,10 @@
 {% import 'macros.html' as macros %}
 
-{% set pdpLink = "show-link" if data.widget.showPDPLink else "" %}
 {% set showProductType = "show-product-type" if data.widget.showProductType else "" %}
 {% set hideDescription = "no-description" if data.widget.hideDescription else "" %}
 {% set backgroundColor = apos.modules['theme-widget'].convertPreset(data.widget.bgColor) %}
 {% set textColor = apos.modules['theme-widget'].convertPreset(data.widget.textColor) %}
+{% set withHover = "" if data.global.disableButtonHover else "with-hover" %}
 
 {% if data.widget.showProductCardImageAs in ("no-image", "carousel") %}
   {% set showImage = "no-image" %}
@@ -73,7 +73,7 @@
               location-label="{{ data.widget.pdpLinkText }}"
               center-align
               preview-description="{{ productLine.shortDescription or productLine.description | truncate(180) }}"
-              {{ hideDescription }} {{ showProductType }} {{ pdpLink }} {{ showImage }}
+              {{ withHover }} {{ hideDescription }} {{ showProductType }} {{ showImage }}
               style="--th-product-line-selector__bg: var(--product-grid-bg, #FFF)"
               class="th-product-grid__selector"
             ></th-product-line-selector>

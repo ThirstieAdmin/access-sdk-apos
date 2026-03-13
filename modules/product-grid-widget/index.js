@@ -48,17 +48,10 @@ export default {
         type: 'boolean',
         label: 'Show section divider with title'
       },
-      showPDPLink: {
-        type: 'boolean',
-        label: 'Always show link to PDP'
-      },
       pdpLinkText: {
         type: 'string',
         label: 'Text for PDP Link',
-        def: 'Learn more',
-        requiredIf: {
-          showPDPLink: true
-        }
+        def: 'Learn more'
       },
       gridType: {
         type: 'select',
@@ -86,6 +79,11 @@ export default {
       hideDescription: {
         type: 'boolean',
         label: 'Hide description on product card (bottle size will be shown)',
+        def: false
+      },
+      showProductType: {
+        type: 'boolean',
+        label: 'Show Product Type on product card',
         def: false
       },
       _productlines: {
@@ -116,7 +114,7 @@ export default {
       },
       cardLayout: {
         label: 'Card Layout',
-        fields: [ 'showProductCardImageAs', 'showPDPLink', 'pdpLinkText', 'hideDescription' ]
+        fields: [ 'showProductCardImageAs', 'showProductType', 'pdpLinkText', 'hideDescription' ]
       }
     }
   },
@@ -187,6 +185,7 @@ export default {
       },
       variantTextColor: {
         type: 'color',
+        label: 'Text color for product variant text',
         selector: '.th-product-grid__selector',
         property: '--th-product-line-selector__variant-color',
         options: standardPresetColors
@@ -194,3 +193,6 @@ export default {
     }
   }
 };
+/* TODO: add styles for buttons
+- see thirstieaccess.html in thirstiejs-monorepo 
+*/
