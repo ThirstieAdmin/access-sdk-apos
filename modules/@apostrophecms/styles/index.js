@@ -241,6 +241,12 @@ export default {
         selector: ':root',
         property: '--th-btn-text-hover'
       },
+      buttonHoverBorder: {
+        type: 'string',
+        label: 'Hover effect button border',
+        selector: ':root',
+        property: '--th-btn-border-hover'
+      },
       ageGateButtonHoverBG: {
         type: 'color',
         label: 'Age Gate hover effect  button color',
@@ -254,6 +260,12 @@ export default {
         selector: 'th-age-verification',
         property: '--th-ag-form-btn-text-color',
         options: standardPresetColors
+      },
+      ageGateButtonHoverBorder: {
+        type: 'string',
+        label: 'Age Gate hover effect button border',
+        selector: 'th-age-verification',
+        property: '--th-btn-border-hover'
       },
       pdpContentTitleFontFamily: {
         type: 'string',
@@ -331,8 +343,7 @@ export default {
           'backgroundColor',
           'primaryLineHeight',
           'borderRadius', 'buttonBorderRadius',
-          'buttonHoverBG',
-          'buttonHoverTextColor'
+          'buttonHoverBG', 'buttonHoverTextColor', 'buttonHoverBorder'
         ]
       },
       typography: {
@@ -347,7 +358,7 @@ export default {
       },
       ageGate: {
         label: 'Age Gate',
-        fields: [ 'ageGateButtonHoverBG', 'ageGateButtonHoverTextColor' ]
+        fields: [ 'ageGateButtonHoverBG', 'ageGateButtonHoverTextColor', 'ageGateButtonHoverBorder' ]
       },
       Availability: {
         label: 'Address/Zip Entry',
