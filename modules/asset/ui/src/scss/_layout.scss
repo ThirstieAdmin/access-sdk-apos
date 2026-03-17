@@ -213,6 +213,12 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   padding: 1rem;
   margin: 0;
 }
+.th-ag-form-logo {
+  width: 100%;
+}
+.th-ag-form-logo img {
+  max-width: 100%;
+}
 
 @media screen and (max-width: 768px) {
   .th-inner-wrapper {
@@ -222,7 +228,6 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
     padding:2rem 0 .5rem;
   }
   .th-ag-form-content {
-    padding: 0;
     max-width:95vw;
   }
 

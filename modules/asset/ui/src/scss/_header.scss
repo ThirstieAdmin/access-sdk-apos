@@ -35,7 +35,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
 }
 .th-header__banner > p {
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   overflow-wrap: break-word;
   text-align: center;
   padding: 0;
@@ -49,6 +49,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: flex-end;
   margin: auto 0;
   cursor: pointer;
 }
