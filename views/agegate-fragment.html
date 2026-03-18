@@ -26,7 +26,7 @@
       <div class="th-fouc-block p-0 m-0 w-screen h-screen flex flex-col items-center justify-center box-border th-ag-container" style="background:{{ageGatebackground}};color:var(--th-ag-textcolor, --th-c-white);" >
         <div style="background-color: var(--th-ag-form-bg, transparent);" class="flex flex-col items-center justify-center w-full p-4 box-border th-ag-form-content">
           {% if ageGateLogo %}
-            <div class="m-0 py-4 th-ag-form-logo">
+            <div class="m-0 py-4 flex text-center justify-center th-ag-form-logo">
               <img class="m-0" src="{{ apos.attachment.url(ageGateLogo, { size: 'full' }) }}" alt="{{ ageGateLogo.alt or 'Age Gate Logo' }}" style="max-height:{{ageGateLogoHeight}}"/>
             </div>
           {% endif %}
