@@ -51,7 +51,7 @@
           <swiper-slide>
             <div class="th-pdp-img-container">
               <img
-              class="th-pdp-left__primary_img md:w-screen"
+              class="md:w-screen th-pdp-left__primary_img"
               src="{{ altImageUrl }}" 
               alt="{{altImageAltText}}"
             /></div>
@@ -86,11 +86,13 @@
       </swiper-container>
       {% endif %}
       {% else %}
-      <img
-        class="th-pdp-left__primary_img w-full md:w-screen mx-auto"
-        src="{{ imageUrl }}" 
-        alt="{{ altText }}"
-      />
+      <div class="th-pdp-img-container">
+        <img
+          class="w-full md:w-screen mx-auto th-pdp-left__primary_img"
+          src="{{ imageUrl }}" 
+          alt="{{ altText }}"
+        />
+      </div>
       {% endif %}
     </div>
   </div>
