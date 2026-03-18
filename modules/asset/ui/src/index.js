@@ -48,5 +48,16 @@ export default () => {
         thOverlay.scrollTop = 0;
       }
     });
+
+    // Listener for scroll behavior
+    const accessHeader = document.querySelector("#th-access-header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        accessHeader.classList.add("th-scrolled");
+      } else {
+        accessHeader.classList.remove("th-scrolled");
+      }
+    });
+
   });
 };

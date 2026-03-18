@@ -2,8 +2,8 @@
 {% set enableBanner = data.global.enableSiteBanner %}
 {% set bannerLocation = data.global.siteBannerLocation or 'top' %}
 {% set navFormat = data.global.navFormat or 'left' %}
-{% set navShadow = data.global.navShadow or 'none' %}
 {% set navHeight = data.global.navHeight or 'normal' %}
+{% set navShadow = data.global.navShadow or 'none' %}
 
 {% if data.global.headerLogo.items | length %}
   {% set logoObj = apos.image.first(data.global.headerLogo) %}
@@ -14,7 +14,7 @@
   {% set logoUrl = data.global.brandLogo %}
 {% endif %}
 
-<header class="th-header m-0 p-0">
+<header id="th-access-header" class="th-header m-0 p-0">
   {% if enableBanner and bannerLocation == 'top' %}
     <div class="w-screen py-2 px-0 m-0 md:p-0 flex flex-col items-center justify-center th-header__banner">
       {% if data.global.siteBannerText.items[0].type === "@apostrophecms/rich-text" %}
@@ -22,7 +22,7 @@
       {% endif %}
     </div>
   {% endif %}
-  <nav class="th-navbar nav--format-{{ navFormat }} nav--format--{{ navShadow }} nav--format--{{ navHeight }}">
+  <nav class="th-navbar nav--format-{{ navFormat }} nav--format--{{ navHeight }} nav--border-bottom--{{ navShadow }}">
     <div class="nav-el nav-logo">
       <a href="/">
         <img class="th-header__logo nav--format--{{ navHeight }}" src="{{ logoUrl }}" alt="{{ logoText }}">

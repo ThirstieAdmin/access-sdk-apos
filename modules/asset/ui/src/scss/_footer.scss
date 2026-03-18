@@ -17,7 +17,7 @@
   height: 100%;
   width: 100%;
   grid-template-rows: 3rem minmax(0, 1fr) minmax(0, 1fr);
-  padding: 0 4rem;
+  padding: 1rem 4rem;
   box-sizing: border-box;
 }
 
@@ -82,7 +82,7 @@
   .th-footer,
   .th-footer-content {
     height: 100%;
-    padding: 0 .25rem;
+    padding: .25rem;
   }
 
   .th-footer-thirstie {
