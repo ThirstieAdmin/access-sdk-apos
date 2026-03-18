@@ -224,8 +224,11 @@ body[data-breakpoint-preview-mode] .hide-in-preview {
   .th-inner-wrapper {
     margin-top: var(--header-offset-mobile);
   }
+  .th-availability__form--wrapper {
+    padding: 1rem .5rem;
+  }
   .th-availability__form {
-    padding:2rem 0 .5rem;
+    padding:2rem .5rem .5rem;
   }
   .th-ag-form-content {
     max-width:95vw;
