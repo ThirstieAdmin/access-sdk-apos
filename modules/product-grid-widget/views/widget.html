@@ -28,6 +28,7 @@
       <div class="grid grid-cols-{{ data.widget.gridType }} md:grid-cols-1 gap-0 md:px-2 items-center justify-between th-product-grid">
       {% endif %}
         {% for productLine in data.widget._productlines %}
+        {% set ctaLabel = data.widget.pdpCTAText or data.widget.pdpLinkText or "Add to Cart" %}
         <div class="flex flex-grow flex-basis-3 flex-col items-center th-product-grid__item">
           {% if productLine.primaryImage.items | length %}
             {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
@@ -56,6 +57,7 @@
               {% set imgAttachment = apos.image.first(productImage or {}) %}
               {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
               {% set altImageAltText = imgAttachment.title or productLine.title or "product image" %}
+
               <swiper-slide>
                 <img
                 class="th-plp__primary_img"
@@ -69,7 +71,7 @@
             <th-product-line-selector
               product-line-id="{{ productLine.thirstiePLID }}"
               pdp-link="{{ productLine._url }}"
-              cta-label="{{ data.widget.pdpLinkText }}"
+              cta-label="{{ ctaLabel }}"
               location-label="{{ data.widget.pdpLinkText }}"
               center-align
               preview-description="{{ productLine.shortDescription or productLine.description | truncate(180) }}"
