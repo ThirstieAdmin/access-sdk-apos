@@ -142,27 +142,27 @@ export default {
       },
       cardBorder: {
         preset: 'border',
-        label: 'Product Card Border',
+        label: 'Card Border',
         selector: '.th-product-grid .th-product-grid__card',
         property: 'border',
       },
       cardBorderRadius: {
         type: 'string',
-        label: 'Product Card Border Radius',
+        label: 'Card Border Radius',
         selector: '.th-product-grid .th-product-grid__card',
         property: 'border-radius',
         def: 'var(--th-border-radius, 4px)'
       },
       cardTextColor: {
         type: 'color',
-        label: 'Product Card Text Color',
+        label: 'Card Text Color',
         selector: '.th-product-grid .th-product-grid__card',
         property: 'color',
         options: standardPresetColors
       },
       cardTextTransform: {
         type: 'select',
-        label: 'Product Card text-transform',
+        label: 'Card text-transform',
         selector: 'th-product-line-selector.th-product-grid__selector',
         property: 'text-transform',
         choices: [
@@ -170,6 +170,26 @@ export default {
           { label: 'uppercase', value: 'uppercase' },
           { label: 'lowercase', value: 'lowercase' }
         ]
+      },
+      cardButtonBG: {
+        type: 'color',
+        label: 'Card button background',
+        selector: 'th-product-line-selector.th-product-grid__selector',
+        property: '--th-plp-btn-bg',
+        options: standardPresetColors
+      },
+      cardButtonTextColor: {
+        type: 'color',
+        label: 'Card button text color',
+        selector: 'th-product-line-selector.th-product-grid__selector',
+        property: '--th-plp-btn-color',
+        options: standardPresetColors
+      },
+      cardButtonBorder: {
+        type: 'string',
+        label: 'Card button border',
+        selector: 'th-product-line-selector.th-product-grid__selector',
+        property: '--th-btn-border'
       },
       titleColor: {
         type: 'color',
