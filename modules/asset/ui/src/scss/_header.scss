@@ -203,6 +203,11 @@ ul.nav-subitems {
   top:0;
 }
 
+.nav--border-bottom--shadow,
+.th-scrolled {
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,.2);
+}
+
 @media screen and (min-width: 768px) {
   .th-navbar {
     display: flex;
@@ -270,10 +275,6 @@ ul.nav-subitems {
     order:3;
   }
   
-  .nav--format--shadow {
-    box-shadow: 0 5px 5px -5px rgba(0,0,0,.2);
-  }
-
   .nav--format-center {
     position: relative;
     .nav-logo {
