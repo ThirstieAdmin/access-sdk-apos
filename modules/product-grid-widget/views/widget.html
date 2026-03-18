@@ -23,9 +23,9 @@
   <th-catalog-collection>
     <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }};">
       {% if data.widget.gridType == 'flex' %}
-      <div class="flex flex-wrap gap-x-0 gap-y-8 py-4 items-center justify-between th-product-grid ">
+      <div class="flex flex-wrap gap-x-0 gap-y-8 py-4 md:px-2 items-center justify-between th-product-grid ">
       {% else %}
-      <div class="grid grid-cols-{{ data.widget.gridType }} md:grid-cols-1 gap-0 items-center justify-between th-product-grid">
+      <div class="grid grid-cols-{{ data.widget.gridType }} md:grid-cols-1 gap-0 md:px-2 items-center justify-between th-product-grid">
       {% endif %}
         {% for productLine in data.widget._productlines %}
         <div class="flex flex-grow flex-basis-3 flex-col items-center th-product-grid__item">
