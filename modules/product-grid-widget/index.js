@@ -127,12 +127,6 @@ export default {
   },
   styles: {
     add: {
-      gridBoxBorder: {
-        preset: 'border',
-        label: 'Product Grid ItemOuter Border',
-        selector: '.th-product-grid .th-product-grid__item',
-        property: 'border',
-      },
       cardBackgroundColor: {
         type: 'color',
         label: 'Product Card Background Color',
@@ -140,11 +134,12 @@ export default {
         property: 'background-color',
         options: standardPresetColors
       },
-      cardBorder: {
-        preset: 'border',
-        label: 'Card Border',
+      cardTextColor: {
+        type: 'color',
+        label: 'Card Text Color',
         selector: '.th-product-grid .th-product-grid__card',
-        property: 'border',
+        property: 'color',
+        options: standardPresetColors
       },
       cardBorderRadius: {
         type: 'string',
@@ -153,12 +148,17 @@ export default {
         property: 'border-radius',
         def: 'var(--th-border-radius, 4px)'
       },
-      cardTextColor: {
-        type: 'color',
-        label: 'Card Text Color',
+      gridBoxBorder: {
+        preset: 'border',
+        label: 'Grid Item Outer Border',
+        selector: '.th-product-grid .th-product-grid__item',
+        property: 'border',
+      },
+      cardBorder: {
+        preset: 'border',
+        label: 'Card Inner Border',
         selector: '.th-product-grid .th-product-grid__card',
-        property: 'color',
-        options: standardPresetColors
+        property: 'border',
       },
       cardTextTransform: {
         type: 'select',
@@ -216,6 +216,16 @@ export default {
         selector: '.th-product-grid__selector',
         property: '--th-product-line-selector__variant-color',
         options: standardPresetColors
+      },
+      cardHeight: {
+        type: 'select',
+        label: 'Card description height',
+        selector: 'th-product-line-selector.th-product-grid__selector',
+        property: '--th-product-line-selector__height',
+        choices: [
+          { label: 'normal', value: 'initial'},
+          { label: 'large', value: '300px'}
+        ]
       }
     }
   }
