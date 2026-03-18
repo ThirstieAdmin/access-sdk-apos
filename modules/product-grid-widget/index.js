@@ -51,7 +51,14 @@ export default {
       pdpLinkText: {
         type: 'string',
         label: 'Text for PDP Link',
+        help: 'Shown when no location has been provided.',
         def: 'Learn more'
+      },
+      pdpCTAText: {
+        type: 'string',
+        label: 'Text for CTA to Add to Cart',
+        help: 'Shown when location has been provided and item can be added',
+        def: 'Add To Cart'
       },
       gridType: {
         type: 'select',
@@ -114,7 +121,7 @@ export default {
       },
       cardLayout: {
         label: 'Card Layout',
-        fields: [ 'showProductCardImageAs', 'showProductType', 'pdpLinkText', 'hideDescription' ]
+        fields: [ 'showProductCardImageAs', 'showProductType', 'pdpLinkText', 'pdpCTAText', 'hideDescription' ]
       }
     }
   },
