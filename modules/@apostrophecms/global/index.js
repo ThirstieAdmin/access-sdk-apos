@@ -160,11 +160,6 @@ export default {
           }
         }
       },
-      footerHeight: {
-        type: 'string',
-        label: 'Footer height',
-        def: '40vh'
-      },
       footerBackgroundColor: {
         type: 'color',
         label: 'Footer Background color',
@@ -572,8 +567,7 @@ export default {
         fields: [
           'footerLogo', 'footerTop', 'footerNav', 'footerBrandText', 'footerTrademarkText',
           'footerBackgroundColor', 'footerTextColor', 'footerFontFamily', 'footerFontWeight',
-          'footerBackgroundImage',
-          'footerHeight'
+          'footerBackgroundImage'
         ]
       },
       ageGate: {
