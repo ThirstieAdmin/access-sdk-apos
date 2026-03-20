@@ -185,6 +185,17 @@ export default {
         property: '--marquee-widget__background-color',
         options: standardPresetColors
       },
+      imageHeightMax: {
+        type:'range',
+        label: 'Max. Image Height',
+        selector: '.marquee-widget__figure-background img',
+        property: 'max-height',
+        min: 1,
+        max: 1000,
+        step: 1,
+        def: 540,
+        unit: 'px'
+      },
       widgetMargin: 'margin',
       widgetPadding: 'padding',
       textColor: {
@@ -201,6 +212,16 @@ export default {
         selector: '.marquee-widget__container',
         property: '--marquee-widget__caption-font-family',
         def: 'var(--primary-font-family)'
+      },
+      contentLineHeight: {
+        type: 'float',
+        label: 'Text content line-height',
+        selector: '.marquee-widget__caption-content',
+        property: 'line-height',
+        min: 50,
+        max: 300,
+        def: 125,
+        unit: '%'
       },
       widgetWidth: {
         preset: 'width',
@@ -332,6 +353,11 @@ export default {
         selector: '.marquee-widget__cta-button',
         property: 'border-radius',
         def: '4px'
+      },
+      ctaPadding: {
+        preset: 'padding',
+        label: 'CTA button padding',
+        selector: '.marquee-widget__cta-button'
       }
     }
   }

@@ -191,6 +191,13 @@ export default {
         selector: 'th-product-line-selector.th-product-grid__selector',
         property: '--th-btn-border'
       },
+      dividerColor: {
+        type: 'color',
+        label: 'Title Divider color',
+        selector: '.th-section-title__rule',
+        property: 'background-color',
+        options: standardPresetColors
+      },
       titleColor: {
         type: 'color',
         label: 'Product title color',
