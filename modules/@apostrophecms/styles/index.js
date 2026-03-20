@@ -258,7 +258,7 @@ export default {
         type: 'color',
         label: 'Age Gate hover effect button text color',
         selector: 'th-age-verification',
-        property: '--th-ag-form-btn-text-color',
+        property: '--th-btn-text-hover',
         options: standardPresetColors
       },
       ageGateButtonHoverBorder: {
