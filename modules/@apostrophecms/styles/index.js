@@ -228,6 +228,20 @@ export default {
         property: '--th-checkout-button-disabled-bg',
         options: standardPresetColors
       },
+      checkoutHeaderBG: {
+        type: 'color',
+        label: 'Checkout header background',
+        selector: 'th-checkout',
+        property: '--th-checkout-header-bg',
+        options: standardPresetColors
+      },
+      checkoutHeaderTextColor: {
+        type: 'color',
+        label: 'Checkout header text color',
+        selector: 'th-checkout',
+        property: '--th-checkout-header-text-color',
+        options: standardPresetColors
+      },
       buttonHoverBG: {
         type: 'color',
         label: 'Hover effect button color',
@@ -334,6 +348,20 @@ export default {
           { label: 'uppercase', value: 'uppercase' },
           { label: 'lowercase', value: 'lowercase' }
         ]
+      },
+      footerHeight: {
+        type: 'string',
+        label: 'Footer height',
+        selector: [':root', '.th-footer'],
+        property: '--footer-height',
+        def: '40vh'
+      },
+      footerTopPadding: {
+        type: 'string',
+        label: 'Footer top padding',
+        help: 'default: 2rem',
+        selector: 'footer.th-footer',
+        property: 'padding-top'
       }
     },
     group: {
@@ -371,13 +399,17 @@ export default {
           'pdpContentDescriptionFontFamily', 'pdpContentDescriptionFontWeight', 'pdpContentDescriptionTextTransform',
         ]
       },
+      footer: {
+        label: 'Footer',
+        fields: [ 'footerHeight', 'footerTopPadding' ]
+      },
       cartSummary: {
         label: 'Cart Summary',
-        fields: ['cartHeaderBG', 'cartHeaderColor', 'cartFooterBG', 'cartCTACheckoutBG', 'cartCTACheckoutColor', 'cartCTAContinueBG', 'cartCTAContinueColor']
+        fields: [ 'cartHeaderBG', 'cartHeaderColor', 'cartFooterBG', 'cartCTACheckoutBG', 'cartCTACheckoutColor', 'cartCTAContinueBG', 'cartCTAContinueColor' ]
       },
       checkout: {
         label: 'Checkout',
-        fields: ['checkoutButtonDisabledBG']
+        fields: [ 'checkoutHeaderBG', 'checkoutHeaderTextColor', 'checkoutButtonDisabledBG' ]
       }
      }
   }

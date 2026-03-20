@@ -76,6 +76,7 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   align-items: center;
   justify-content: space-between;
   width: 100vw;
+  max-width: 1400px;
   height: 6.875rem;
   line-height: 4rem;
 }
@@ -124,10 +125,10 @@ body[data-breakpoint-preview-mode] #apos-admin-bar ~ [data-apos-refreshable] .th
   background-color: var(--header-background-color, #000);
   color: var(--header-text-color, #fff);
   margin: 0;
-  padding: 0;
+  padding: 0 1rem;
   max-height: 0;
   transition: max-height .2s ease-out;
-  line-height: 1.25rem;
+  line-height: 125%;
 }
 .nav-subitems {
   background-color: var(--header-background-color, #000);

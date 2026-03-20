@@ -30,7 +30,12 @@
       </div>
       {% set footerGridRow = footerGridRow + 1 %}
     {% endif %}
-    <div class="flex flex-col justify-end items-start  th-font-16 th-footer-grid-row-3 th-footer-thirstie">
+    {% if footerGridRow <= 2 %}
+      <div class="th-footer-top th-footer-grid-row-{{ footerGridRow }}">
+        <p>&nbsp;</p>
+      </div>
+    {% endif %}
+    <div class="flex flex-col justify-end items-start th-font-16 th-footer-grid-row-3 th-footer-thirstie">
       <div class="mx-0 my-0 p-0">
         <span class="m-0 p-0">Shopping experience powered by</span>
         <a
@@ -47,11 +52,11 @@
         </a>
       </div>
       <nav class="my-0 py-0 th-footer-nav ">
-      <ul class="flex flex-row justify-start th-footer-nav__links">
+      <ul class="flex flex-row justify-start my-1 th-footer-nav__links">
         <li><a href="/thirstie-terms-of-use">Thirstie Terms & Conditions</a></li>
         <li><a href="/thirstie-privacy-policy">Thirstie Privacy Policy</a></li>
       </ul>
-      <ul class="flex flex-row justify-start th-footer-nav__links">
+      <ul class="flex flex-row justify-start my-1 th-footer-nav__links">
         <li><a href="/faq">Thirstie FAQ</a></li>
         <li><a href="/support">Contact Thirstie Support</a></li>
       </ul>
