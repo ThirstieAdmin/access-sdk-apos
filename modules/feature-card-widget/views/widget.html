@@ -1,0 +1,18 @@
+{% set ctaNav = data.widget._ctaPageLink[0] %}
+
+<section class="feature-widget__container">
+  <div class="feature-widget__content">
+    {% area data.widget, 'featureImage' %}
+    <h4 class="text-center feature-widget__caption">{{ data.widget.featureCaption }}</h4>
+    <h3 class="feature-widget__title">{{ data.widget.featureTitle }}</h3>
+    <div class="flex flex-col items-center justify-between">
+      {% if data.widget.ctaType == 'pageLinkText' and data.widget._ctaPageLink.length > 0 %}
+        <a href="{{ ctaNav._url }}" class="feature-widget__link" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+      {% elif data.widget.ctaType == 'pageLinkButton' and data.widget._ctaPageLink.length > 0 %}
+        <button class="feature-widget__button">
+          <a href="{{ ctaNav._url }}" class="feature-widget__button" {% if data.widget.ctaNewPage %}target="_blank" rel="noopener"{% endif %}>{{ data.widget.ctaText }}</a>
+        </button>
+      {% endif %}
+    </div>
+  </div>
+  </section>

@@ -131,6 +131,7 @@ apostrophe({
     'thirstie-disclaimer-widget': {},
     'marquee-widget': {},
     'button-widget': {},
+    'feature-card-widget': {},
     'social-links-widget': {},
     'subscribe-form-widget': {}
   }

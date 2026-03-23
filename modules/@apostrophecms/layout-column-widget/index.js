@@ -16,6 +16,7 @@ export default {
             'product-grid': {},
             'recipe-grid': {},
             'button': {},
+            'feature-card': {},
             'marquee': {}
           }
         }
