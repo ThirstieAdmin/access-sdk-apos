@@ -13,6 +13,22 @@ export default {
         options: {
           widgets: areaWidgetFullConfig
         }
+      },
+      contentClass: {
+        type: 'string',
+        label: 'Class to apply to th-content'
+      },
+      contentMargin: {
+        type: 'string',
+        label: 'Margin property for th-content'
+      },
+      contentPadding: {
+        type: 'string',
+        label: 'Padding property for th-content'
+      },
+      contentMaxWidth: {
+        type: 'string',
+        label: 'max-width property for th-content'
       }
     },
     group: {
@@ -20,7 +36,11 @@ export default {
         label: 'Basics',
         fields: [
           'title',
-          'main'
+          'main',
+          'contentClass',
+          'contentMargin',
+          'contentPadding',
+          'contentMaxWidth'
         ]
       }
     }

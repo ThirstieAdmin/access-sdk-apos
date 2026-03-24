@@ -6,7 +6,16 @@
 {% extends "layout.html" %}
 
 {% block main %}
-  <section class="th-content">
+  {% set options = data.page %}
+  {% set contentMargin = ("margin: " + options.contentMargin) + ";" if options.contentMargin else "" %}
+  {% set contentPadding = ("padding: " + options.contentPadding) + ";" if options.contentPadding else "" %}
+  {% set contentMaxWidth = ("max-width: " + options.contentMaxWidth) + ";" if options.contentMaxWidth else "" %}
+  {% set titleStyle = contentMargin + contentPadding + contentMaxWidth %}
+
+  <section
+    style="{{ titleStyle }}"
+    class="th-content {{ data.page.contentClass}}"
+  >
     {% area data.page, 'main' %}
   </section>
 {% endblock %}
