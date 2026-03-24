@@ -45,12 +45,17 @@ export default {
       },
       mediaType: {
         type: 'select',
-        label: 'Image vs Video',
+        label: 'Media Type',
+        help: 'Image, Video or Carousel gallery',
         def: 'image',
         choices: [
           {
             value: 'image',
             label: 'Image'
+          },
+          {
+            value: 'gallery',
+            label: 'Carousel gallery'
           },
           {
             value: 'video',
@@ -66,6 +71,34 @@ export default {
           widgets: {
             '@apostrophecms/image': {}
           }
+        },
+        if: {
+          mediaType: 'image'
+        },
+        requiredIf: {
+          mediaType: 'image'
+        }
+      },
+      _galleryImages: {
+        label: 'Additional images (Carousel)',
+        type: 'relationship',
+        withType: '@apostrophecms/image',
+        max: 5,
+        builders: {
+          project: {
+            titleSortified: 0,
+            highSearchText: 0,
+            highSearchWords: 0,
+            lowSearchText: 0,
+            searchSummary: 0,
+            advisoryLock: 0
+          }
+        },
+        if: {
+          mediaType: 'gallery'
+        },
+        requiredIf: {
+          mediaType: 'gallery'
         }
       },
       marqueeVideoUrl: {
@@ -168,7 +201,7 @@ export default {
     group: {
       content: {
         label: 'Content',
-        fields: [ 'title', 'figureStyle', 'mediaType', 'marqueeVideoUrl', 'marqueeImage', 'caption' ]
+        fields: [ 'title', 'figureStyle', 'mediaType', 'marqueeVideoUrl', 'marqueeImage', '_galleryImages', 'caption' ]
       },
       cta: {
         label: 'Call to Action',

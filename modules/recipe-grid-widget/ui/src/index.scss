@@ -1,5 +1,8 @@
 .th-recipe-grid-swiper__container {
   background-color: #FFF;
+  --swiper-pagination-color: var(--th-c-black);
+  --swiper-pagination-bullet-inactive-color: #000;
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
 }
 .th-recipe-grid-swiper__container swiper-slide {
   padding: 0 1.875rem;

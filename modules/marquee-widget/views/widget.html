@@ -4,26 +4,50 @@
 {% set altText = marqueeImage.title %}
 {% set figureStyle = data.widget.figureStyle or 'background-image' %}
 
+{%if figureStyle == 'background-image' %}
+  {% set widgetFormat = 'background' %}
+    <!--background image-->
+    {% set imageSide = 'background' %}
+{% else %}
+  {% set widgetFormat = 'side' %}
+  {% if data.widget.imageSide == 'left' %}
+    <!--left side image-->
+    {% set imageSide = 'left' %}
+  {% else %}
+    <!--right side image-->
+    {% set imageSide = 'right' %}
+  {% endif %}
+{% endif %}
 
 <div class="m-0 p-0 w-full marquee-widget__container">
-
-  {%if figureStyle == 'background-image' %}
-    {% set widgetFormat = 'background' %}
-      <!--background image-->
-      {% set imageSide = 'background' %}
-  {% else %}
-    {% set widgetFormat = 'side' %}
-    {% if data.widget.imageSide == 'left' %}
-      <!--left side image-->
-      {% set imageSide = 'left' %}
-    {% else %}
-      <!--right side image-->
-      {% set imageSide = 'right' %}
-    {% endif %}
-  {% endif %}
   <figure class="m-0 p-0 marquee-widget__figure-{{ widgetFormat }} marquee-widget__figure-image-{{ imageSide }}">
     {% if data.widget.mediaType == 'image' %}
     <img src="{{ marqueeImageUrl }}" alt="{{ altText }}" />
+    {% elif data.widget.mediaType == 'gallery' %}
+      <swiper-container
+        class="marquee-widget-swiper__container"
+        space-between="10"
+        centered-slides="true"
+        navigation="false"
+        pagination="false"
+        autoplay-delay="3500"
+        autoplay-disable-on-interaction="true"
+        loop="true"
+      >
+        {% for image in data.widget._galleryImages %}
+          {% set imgAttachment = apos.image.first(image or {}) %}
+          {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
+          {% set altImageAltText = imgAttachment.title or "image" %}
+          <swiper-slide>
+            <div class="marquee-widget-swiper__img-container">
+              <img
+              class="md:w-screen marquee-widget-swiper__img"
+              src="{{ altImageUrl }}" 
+              alt="{{altImageAltText}}"
+            /></div>
+          </swiper-slide>
+        {% endfor %}
+      </swiper-container>
     {% elif data.widget.mediaType == 'video' %}
       <video class="marquee__video" src="{{ data.widget.marqueeVideoUrl }}" poster="{{ marqueeImageUrl }}" autoplay muted loop></video>
     {% endif %}
