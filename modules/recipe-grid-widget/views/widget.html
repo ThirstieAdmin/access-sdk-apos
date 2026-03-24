@@ -21,11 +21,21 @@
   pagination="true"
   pagination-clickable="true"
   loop="false"
-  style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+  style="max-width:850px;--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
 >
 {% for recipe in data.widget._recipes %}
 <swiper-slide>
-  {% render recipeFragment.recipeCardWide(recipe) %}
+  {% render recipeFragment.recipeCardWide(
+    recipe,
+    {
+      textColor: apos.modules['theme-widget'].convertPreset(data.widget.textColor),
+      backgroundColor: apos.modules['theme-widget'].convertPreset(data.widget.backgroundColor),
+      borderRadius: data.widget.borderRadius,
+      imgHeight: data.widget.imgHeight,
+      showShopSection: data.widget.showShopSection,
+      shopSectionTitle: data.widget.shopSectionTitle
+    }
+  ) %}
 </swiper-slide>
 {% endfor %}
 </swiper-container>
