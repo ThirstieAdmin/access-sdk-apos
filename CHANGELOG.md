@@ -11,18 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - **Minor Version**: Introduces new features in a backward compatible manner. Note that this can include deprecations that do not impact the overall use of the platform.
     - **Patch**: Fixes to restore previously documented behavior or to improve obvious shortcomings of new features. Also includes security and dependency upgrades.
 
-## [Unreleased]
-
-### Fixed
+## [v0.5.0] - 2026-03-25
 
 
 ### Added
 
-- 
+- MVP release
 
-### Removed
-
-- 
 
 ## [major.minor.patch] - YYYY-MM-DD
 
