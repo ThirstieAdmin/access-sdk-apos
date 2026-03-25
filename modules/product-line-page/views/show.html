@@ -162,7 +162,7 @@
 {% if item._recipes | length and not data.page.hideRecipesPDP %}
 <section class="my-8">
   <div class="my-8 th-pdp-recipes">
-    <h3>Featured Cocktails</h3>
+    <h3>{{ data.global.featureRecipesTitle or 'Featured Cocktails' }}</h3>
     <swiper-container
       class="th-pdp-recipe-swiper"
       navigation="true"

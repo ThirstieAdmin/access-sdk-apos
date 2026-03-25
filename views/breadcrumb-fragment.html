@@ -1,6 +1,6 @@
 {% fragment breadcrumb() %}
 
-  {% if data.page and data.page._ancestors.length and not data.page.hideBreadcrumb %}
+  {% if data.global.showBreadCrumbs and data.page and data.page._ancestors.length and not data.page.hideBreadcrumb %}
   <nav class="my-4 mx-4 th-breadcrumb">
     {% for page in data.page._ancestors %}
       <a href="{{ page._url }}">{{ page.title }}</a>&nbsp;<th-icon icon="chevron-forward" width="14" height="14"></th-icon>
