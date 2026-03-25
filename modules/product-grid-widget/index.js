@@ -93,6 +93,15 @@ export default {
         label: 'Show Product Type on product card',
         def: false
       },
+      pricePreviewType: {
+        type: 'select',
+        label: 'Price Preview Type',
+        help: 'default: range',
+        choices: [
+          { label: 'Range', value: 'range' },
+          { label: 'Starting at', value: 'starting' }
+        ]
+      },
       _productlines: {
         type: 'relationship',
         label: 'Product Lines',
@@ -121,7 +130,7 @@ export default {
       },
       cardLayout: {
         label: 'Card Layout',
-        fields: [ 'showProductCardImageAs', 'showProductType', 'pdpLinkText', 'pdpCTAText', 'hideDescription' ]
+        fields: [ 'showProductCardImageAs', 'showProductType', 'pricePreviewType', 'pdpLinkText', 'pdpCTAText', 'hideDescription' ]
       }
     }
   },
@@ -237,6 +246,3 @@ export default {
     }
   }
 };
-/* TODO: add styles for buttons
-- see thirstieaccess.html in thirstiejs-monorepo 
-*/
