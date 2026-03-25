@@ -517,6 +517,16 @@ export default {
         label: 'Availability text color',
         options: standardPresetColors
       },
+      showBreadCrumbs: {
+        type: 'boolean',
+        label: 'Show breadcrumb navigation on detail pages',
+        def: false
+      },
+      featureRecipesTitle: {
+        type: 'string',
+        label: 'Title for featured cocktails',
+        help: 'default "Feature Cocktails"'
+      },
       typekitId: {
         type: 'string',
         label: 'Typekit ID',
@@ -551,7 +561,9 @@ export default {
           'siteTitle', 'useProductionKeys',
           'typekitId', 'typekitAPIToken',
           'googleTagManagerId', 'fbPixelCode',
-          'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor'
+          'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor',
+          'disableButtonHover',
+          'showBreadCrumbs', 'featureRecipesTitle'
         ]
       },
       bannerContent: {
