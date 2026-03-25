@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - MVP release
 
+## [0.6.0] - YYYY-MM-DD
+
+### Added
+
+- header with bottom nav menu
+
+
 
 ## [major.minor.patch] - YYYY-MM-DD
 
