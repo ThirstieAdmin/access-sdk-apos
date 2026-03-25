@@ -253,7 +253,8 @@ export default {
         type: 'color',
         label: 'Hover effect button text color',
         selector: ':root',
-        property: '--th-btn-text-hover'
+        property: '--th-btn-text-hover',
+        options: standardPresetColors
       },
       buttonHoverBorder: {
         type: 'string',
