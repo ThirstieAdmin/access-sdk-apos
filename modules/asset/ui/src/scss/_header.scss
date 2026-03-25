@@ -302,6 +302,33 @@ ul.nav-subitems {
     }
   }
 
+  .nav--format-below {
+    flex-wrap: wrap;
+    height: auto;
+
+    .nav-logo {
+      order: 1;
+      width: auto;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-menu {
+      order: 4;
+      width: 100%;
+      flex: 0 0 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .nav-items {
+      justify-content: center;
+    }
+    .nav-profile {
+      order: 3;
+      width: auto;
+      flex: 0 1 auto;
+    }
+  }
+
   .nav-menu-icon {
     display:none;
   }

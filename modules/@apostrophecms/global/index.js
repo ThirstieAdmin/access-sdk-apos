@@ -77,7 +77,8 @@ export default {
         def: 'left',
         choices: [
           { label: 'Left align logo and navigation', value: 'left' },
-          { label: 'Center align logo, left align navigation', value: 'center' }
+          { label: 'Center align logo, left align navigation', value: 'center' },
+          { label: 'Center align logo, navigation below', value: 'below' }
         ]
       },
       navShadow: {
