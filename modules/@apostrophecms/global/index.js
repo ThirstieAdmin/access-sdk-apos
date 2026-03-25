@@ -372,7 +372,7 @@ export default {
       ageGateButtonBG: {
         type: 'color',
         label: 'Age Gate Button Background Color',
-        help: 'Defaults to transparent (--th-ag-form-btn-bg)',
+        help: 'Overridden in styles',
         options: standardPresetColors
       },
       ageGateButtonBorder: {
