@@ -281,6 +281,20 @@ export default {
         selector: 'th-age-verification',
         property: '--th-btn-border-hover'
       },
+      ageGateFormButtonTextColor: {
+        type: 'color',
+        label: 'Age Gate button text color',
+        selector: 'th-age-verification',
+        property: '--th-ag-form-btn-text-color',
+        options: standardPresetColors
+      },
+      ageGateFormButtonBG: {
+        type: 'color',
+        label: 'Age Gate button background',
+        selector: 'th-age-verification',
+        property: '--th-ag-form-btn-bg',
+        options: standardPresetColors
+      },
       pdpContentTitleFontFamily: {
         type: 'string',
         label: 'PDP Content Title font-family',
@@ -386,7 +400,7 @@ export default {
       },
       ageGate: {
         label: 'Age Gate',
-        fields: [ 'ageGateButtonHoverBG', 'ageGateButtonHoverTextColor', 'ageGateButtonHoverBorder' ]
+        fields: [ 'ageGateFormButtonBG', 'ageGateFormButtonTextColor', 'ageGateButtonHoverBG', 'ageGateButtonHoverTextColor', 'ageGateButtonHoverBorder' ]
       },
       Availability: {
         label: 'Address/Zip Entry',

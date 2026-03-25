@@ -27,6 +27,16 @@
         </p>
         <hr>
         <figure>
+          <figcaption><h2>Theme settings</h2></figcaption>
+          <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+            <div style="height:2.5rem;width:16rem;padding:.5rem 1rem;background-color: var(--primary-color);color:var(--primary-contrasting-color);line-height:125%">Primary Color: <br />{{ data.global.primaryColor }}</div>
+            <div style="height:2.5rem;width:16rem;padding:.5rem 1rem;background-color: var(--primary-contrasting-color);color:var(--primary-color);line-height:125%">Primary Contrasting Color: <br />{{ data.global.primaryContrastingColor }}</div>
+            <div style="height:2.5rem;width:16rem;padding:.5rem 1rem;background-color: var(--secondary-color);color:var(--secondary-contrasting-color);line-height:125%">Secondary Color: <br />{{ data.global.primaryColor }}</div>
+            <div style="height:2.5rem;width:16rem;padding:.5rem 1rem;background-color: var(--secondary-contrasting-color);color:var(--secondary-color);line-height:125%">Secondary Contrasting Color: <br />{{ data.global.primaryContrastingColor }}</div>
+          </div>
+        </figure>
+        <hr />
+        <figure>
           <figcaption><h2>Site settings</h2></figcaption>
           <ul>
             <li>Storefront application: <th-data-query context="session" query="application"></th-data-query></li>
