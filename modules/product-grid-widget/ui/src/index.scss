@@ -12,7 +12,7 @@
 }
 .th-product-grid .th-product-grid__card {
   box-sizing: border-box;
-  background-color: #FFF;
+  background-color: var(--product-grid-bg, #F0F);
   border: none;
   border-radius: var(--th-border-radius, 4px);
   color: var(--product-grid-text-color, var(--primary-text-color, #000));

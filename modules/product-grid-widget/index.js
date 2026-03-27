@@ -140,7 +140,7 @@ export default {
         type: 'color',
         label: 'Product Card Background Color',
         selector: '.th-product-grid .th-product-grid__card',
-        property: 'background-color',
+        property: '--product-grid-bg',
         options: standardPresetColors
       },
       cardTextColor: {
