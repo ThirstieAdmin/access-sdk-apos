@@ -371,10 +371,16 @@ export default {
         property: '--footer-height',
         def: '40vh'
       },
+      footerMargin: {
+        preset: 'margin',
+        label: 'Footer margin',
+        help: 'default: 0',
+        selector: 'footer.th-footer'
+      },
       footerTopPadding: {
         type: 'string',
         label: 'Footer top padding',
-        help: 'default: 2rem',
+        help: 'default: 0',
         selector: 'footer.th-footer',
         property: 'padding-top'
       }
