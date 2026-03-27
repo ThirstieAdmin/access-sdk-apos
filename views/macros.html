@@ -14,10 +14,12 @@
 
 {% macro renderAddressAvailability() %}
   <section class="my-4 box-border th-availability-container">
-    <div class="th-availability__form--wrapper box-border th-fouc-block">
+    <div class="th-availability__form--wrapper box-border">
       <div class="th-availability__form">
         <div class="th-availability__form__title box-border">{{ data.global.locationTitle or "Available in your area?" }}</div>
-        <th-address-check text-color="var(--th-availability-text-color)" style="--th-input-bg: transparent" />
+        <th-address-check text-color="var(--th-availability-text-color)" style="--th-input-bg: transparent">
+          <div style="width:100%;height:44.5px">&nbsp;</div>
+        </th-address-check>
       </div>
     </div>
   </section>
@@ -25,14 +27,14 @@
 
 {% macro renderAddressAvailabilityInLine() %}
   <section class="box-border th-availability-inline-container">
-    <div class="th-availability-inline__form box-border th-fouc-block">
+    <div class="th-availability-inline__form box-border">
       <div class="box-border p-0 m-0 th-availability-inline__form-container">
         <span class="th-availability-inline__form__title">For pricing and availability, enter delivery address</span>
         <th-tooltip text="Enter a valid street address where you want your order sent to see available purchase options." position="top" theme="dark">
           <th-icon icon="info-filled" width="16" height="16" />
         </th-tooltip>
       </div>
-      <th-address-check text-color="var(--th-availability-text-color)" style="--th-input-bg: transparent"/>
+      <th-address-check class="th-fouc-block" text-color="var(--th-availability-text-color)" style="--th-input-bg: transparent"/>
     </div>
   </section>
 {% endmacro %}
