@@ -27,10 +27,18 @@ export default {
     add: {
       widgetMargin: 'margin',
       widgetPadding: 'padding',
+      widgetHeight: {
+        type: 'string',
+        label: 'Height for layout section',
+        help: 'defaults to "auto", please include units',
+        property: 'height',
+        def: 'auto'
+      },
       widgetMaxHeight: {
         type: 'integer',
         unit: 'px',
-        label: 'Max Height for layout section',
+        label: 'Max Height for layout section (px)',
+        help: 'Must be in px',
         property: 'max-height'
       },
       backgroundColor: {

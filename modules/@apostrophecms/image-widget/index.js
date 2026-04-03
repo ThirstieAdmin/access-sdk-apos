@@ -8,6 +8,13 @@ export default {
     add: {
       margin: 'margin',
       padding: 'padding',
+      imageHeight: {
+        type: 'integer',
+        label: 'Image Height (px)',
+        unit: 'px',
+        selector: 'img.th-image-widget',
+        property: 'height'
+      },
       zoomOnHover: {
         type: 'boolean',
         label: 'Apply zoom on hover effect',
