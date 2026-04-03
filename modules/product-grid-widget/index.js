@@ -240,7 +240,9 @@ export default {
         property: '--th-product-line-selector__height',
         choices: [
           { label: 'normal', value: 'initial'},
-          { label: 'large', value: '300px'}
+          { label: 'large', value: '300px'},
+          { label: 'medium', value: '256px'},
+          { label: 'small', value: '224px'}
         ]
       }
     }
