@@ -302,6 +302,13 @@ export default {
           }
         }
       },
+      headerLogoLinkURL: {
+        type: 'url',
+        label: 'Header Logo link URL',
+        help: 'Navigation link when clicking header logo (defaults to "/")',
+        required: false,
+        def: ''
+      },
       headerBackgroundColor: {
         type: 'color',
         label: 'Header Background Color',
@@ -573,7 +580,7 @@ export default {
       },
       headerContent: {
         label: 'Header',
-        fields: [ 'headerLogo', 'navFormat', 'navHeight', 'navShadow', 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'headerFontFamily', 'headerFontSize', 'headerFontWeight' ]
+        fields: [ 'headerLogo', 'headerLogoLinkURL', 'navFormat', 'navHeight', 'navShadow', 'headerNav', 'headerBackgroundColor', 'headerTextColor', 'headerFontFamily', 'headerFontSize', 'headerFontWeight' ]
       },
       footerContent: {
         label: 'Footer',
