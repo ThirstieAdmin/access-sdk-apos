@@ -47,11 +47,11 @@
   "dependencies": {
     "@apostrophecms/favicon": "^1.1.3",
     "@apostrophecms/open-graph": "^1.2.3",
-    "@apostrophecms/seo": "^1.4.0",
+    "@apostrophecms/seo": "^1.4.2",
     "@apostrophecms/sitemap": "^1.2.0",
     "@apostrophecms/vite": "^1.1.1",
-    "@thirstie/ecomm-vue": "1.5.10",
-    "apostrophe": "4.27.1",
+    "@thirstie/ecomm-vue": "1.5.12",
+    "apostrophe": "4.29.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
