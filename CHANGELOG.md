@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - **Minor Version**: Introduces new features in a backward compatible manner. Note that this can include deprecations that do not impact the overall use of the platform.
     - **Patch**: Fixes to restore previously documented behavior or to improve obvious shortcomings of new features. Also includes security and dependency upgrades.
 
+# [0.8.0] - 2026-05-01
+
+### Fixed
+
+- bumped versions of apostrophe & @thirstie/ecomm-vue
+
 
 # [0.7.0] - 2026-05-01
 
