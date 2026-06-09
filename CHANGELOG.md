@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - **Minor Version**: Introduces new features in a backward compatible manner. Note that this can include deprecations that do not impact the overall use of the platform.
     - **Patch**: Fixes to restore previously documented behavior or to improve obvious shortcomings of new features. Also includes security and dependency upgrades.
 
+
+# [5.0.0] - 2026-06-09
+
+### Added
+
+- deploying as new major version of Thirstie Access (replacing old apostrophe version)
+- adds auto cart preview setting
+
+
 # [0.8.0] - 2026-05-01
 
 ### Fixed
