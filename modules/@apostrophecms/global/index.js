@@ -552,6 +552,12 @@ export default {
       fbPixelCode: {
         type: 'string',
         label: 'Facebook Pixel Code'
+      },
+      openCartOnAdd: {
+        type: 'boolean',
+        label: 'Enable Auto Cart Preview',
+        help: 'If true, then cart preview will open when items are added to cart',
+        def: true
       }
     },
     group: {
@@ -571,7 +577,8 @@ export default {
           'googleTagManagerId', 'fbPixelCode',
           'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor',
           'disableButtonHover',
-          'showBreadCrumbs', 'featureRecipesTitle'
+          'showBreadCrumbs', 'featureRecipesTitle',
+          'openCartOnAdd'
         ]
       },
       bannerContent: {
