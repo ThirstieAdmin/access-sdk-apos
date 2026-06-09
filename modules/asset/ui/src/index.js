@@ -9,7 +9,7 @@ export default () => {
   // Initialize Thirstie SDK
   const {
     primaryColor, secondaryColor, primaryContrastingColor, secondaryContrastingColor,
-    brandLogo, brandLogoAltText, supportEmail
+    brandLogo, brandLogoAltText, supportEmail, openCartOnAdd
   } = window.thData;
 
   const thirstieAppConfig = {
@@ -24,6 +24,7 @@ export default () => {
     brandLogo,
     brandLogoAltText,
     supportEmail,
+    openCartOnAdd,
     routes: {
       checkout: '/checkout',
       shopping: '/'
