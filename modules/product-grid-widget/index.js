@@ -102,6 +102,15 @@ export default {
           { label: 'Starting at', value: 'starting' }
         ]
       },
+      pricePreviewText: {
+        type: 'string',
+        label: 'Price Preview Text',
+        help: 'Starting at...',
+        def: 'Starting at',
+        if: {
+          pricePreviewType: 'starting'
+        }
+      },
       _productlines: {
         type: 'relationship',
         label: 'Product Lines',
@@ -130,7 +139,7 @@ export default {
       },
       cardLayout: {
         label: 'Card Layout',
-        fields: [ 'showProductCardImageAs', 'showProductType', 'pricePreviewType', 'pdpLinkText', 'pdpCTAText', 'hideDescription' ]
+        fields: [ 'showProductCardImageAs', 'showProductType', 'pricePreviewType', 'pricePreviewText', 'pdpLinkText', 'pdpCTAText', 'hideDescription' ]
       }
     }
   },
