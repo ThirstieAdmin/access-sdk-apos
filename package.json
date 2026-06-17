@@ -52,7 +52,7 @@
     "@apostrophecms/sitemap": "^1.2.0",
     "@apostrophecms/vite": "^1.1.1",
     "@thirstie/ecomm-vue": "1.5.16",
-    "apostrophe": "4.30.0",
+    "apostrophe": "4.31.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
