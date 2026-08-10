@@ -1,6 +1,6 @@
 {
   "name": "thirstie-access-apostrophecms",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "ApostropheCMS Essential Starter Kit Site",
   "main": "app.js",
   "type": "module",
