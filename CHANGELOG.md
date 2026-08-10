@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - **Patch**: Fixes to restore previously documented behavior or to improve obvious shortcomings of new features. Also includes security and dependency upgrades.
 
 
+# [5.0.2] - 2026-08-10
+
+### Changed
+
+- Updated to Apostrophe 4.32.0 from 4.31.0
+- Update to Thirstie/ecomm-vue 1.6.1 (with Datalayer updates)
+
+
 # [5.0.1] - 2026-06-17
 
 ### Added
