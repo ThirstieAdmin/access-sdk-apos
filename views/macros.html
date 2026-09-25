@@ -29,10 +29,10 @@
   <section class="box-border th-availability-inline-container">
     <div class="th-availability-inline__form box-border">
       <div class="box-border p-0 m-0 th-availability-inline__form-container">
-        <span class="th-availability-inline__form__title">For pricing and availability, enter delivery address</span>
-        <th-tooltip text="Enter a valid street address where you want your order sent to see available purchase options." position="top" theme="dark">
-          <th-icon icon="info-filled" width="16" height="16" />
-        </th-tooltip>
+        <!-- TODO: TH-5904 replace with conditional label for locationHash -->
+        <th-conditional-label query="isInCoverage" alt-label="Showing pricing and availability for your address" class="th-availability-inline__form__title">
+          <span>For pricing and availability, enter delivery address</span>
+        </th-conditional-label>
       </div>
       <th-address-check class="th-fouc-block" text-color="var(--th-availability-text-color)" style="--th-input-bg: transparent"/>
     </div>
