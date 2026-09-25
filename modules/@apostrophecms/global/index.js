@@ -533,7 +533,7 @@ export default {
       featureRecipesTitle: {
         type: 'string',
         label: 'Title for featured cocktails',
-        help: 'default "Feature Cocktails"'
+        help: 'default "Featured Cocktails"'
       },
       typekitId: {
         type: 'string',
@@ -558,6 +558,12 @@ export default {
         label: 'Enable Auto Cart Preview',
         help: 'If true, then cart preview will open when items are added to cart',
         def: true
+      },
+      useOnePageCheckout: {
+        type: 'boolean',
+        label: 'Use Single Page Checkout',
+        help: 'If true, use single page checkout',
+        def: false
       }
     },
     group: {
@@ -578,7 +584,8 @@ export default {
           'locationType', 'locationTitle', 'locationBG', 'locationBorderColor', 'locationTextColor',
           'disableButtonHover',
           'showBreadCrumbs', 'featureRecipesTitle',
-          'openCartOnAdd'
+          'openCartOnAdd',
+          'useOnePageCheckout'
         ]
       },
       bannerContent: {
