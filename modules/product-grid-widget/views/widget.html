@@ -23,72 +23,70 @@
     fontWeight: data.widget.titleFontWeight,
     className: data.widget.titleClassName
   }) }}
-  <th-catalog-collection>
-    <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }};">
-      {% if data.widget.gridType == 'flex' %}
-      <div class="flex flex-wrap gap-x-0 gap-y-8 py-4 md:px-2 items-center justify-center th-product-grid ">
-      {% else %}
-      <div class="grid grid-cols-{{ data.widget.gridType }} md:grid-cols-1 gap-0 md:px-2 items-center justify-between th-product-grid">
-      {% endif %}
-        {% for productLine in data.widget._productlines %}
-        {% set ctaLabel = data.widget.pdpCTAText or data.widget.pdpLinkText or "Add to Cart" %}
-        <div class="flex flex-grow flex-basis-3 flex-col items-center th-product-grid__item">
-          {% if productLine.primaryImage.items | length %}
-            {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
-            {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
-            {% set altText = attachment.title or productLine.title or "product image" %}
-          {% else %}
-            {% set imageUrl = productLine.imageSpec | replace("{dims}.", ".") %}
-            {% set altText = productLine.title or "product image" %}
-          {% endif %}
-          <div class="flex flex-grow flex-col items-center th-product-grid__card">
-          <swiper-container
-            class="th-plp-swiper__container"
-            space-between="10"
-            navigation="true"
-            pagination="false"
-            loop="false"
-            style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
-          >
+  <div class="my-12 mx-auto box-border px-8 md:p-0 w-full th-product-grid-wrapper" style="--product-grid-bg: {{ backgroundColor }};--product-grid-text-color: {{ textColor }};">
+    {% if data.widget.gridType == 'flex' %}
+    <div class="flex flex-wrap gap-x-0 gap-y-8 py-4 md:px-2 items-center justify-center th-product-grid ">
+    {% else %}
+    <div class="grid grid-cols-{{ data.widget.gridType }} md:grid-cols-1 gap-0 md:px-2 items-center justify-between th-product-grid">
+    {% endif %}
+      {% for productLine in data.widget._productlines %}
+      {% set ctaLabel = data.widget.pdpCTAText or data.widget.pdpLinkText or "Add to Cart" %}
+      <div class="flex flex-grow flex-basis-3 flex-col items-center th-product-grid__item">
+        {% if productLine.primaryImage.items | length %}
+          {% set attachment = apos.image.first(productLine.primaryImage or {}) %}
+          {% set imageUrl = apos.attachment.url(attachment, { size: 'full' }) %}
+          {% set altText = attachment.title or productLine.title or "product image" %}
+        {% else %}
+          {% set imageUrl = productLine.imageSpec | replace("{dims}.", ".") %}
+          {% set altText = productLine.title or "product image" %}
+        {% endif %}
+        <div class="flex flex-grow flex-col items-center th-product-grid__card">
+        <swiper-container
+          class="th-plp-swiper__container"
+          space-between="10"
+          navigation="true"
+          pagination="false"
+          loop="false"
+          style="--swiper-navigation-color: #4f4f4f; --swiper-navigation-size: 1.5rem;"
+        >
+          <swiper-slide>
+            <img
+            class="th-plp__primary_img"
+            src="{{ imageUrl }}" 
+            alt="{{ altText }}"
+          /></swiper-slide>
+          {% for productImage in productLine._images %}
+            {% set imgAttachment = apos.image.first(productImage or {}) %}
+            {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
+            {% set altImageAltText = imgAttachment.title or productLine.title or "product image" %}
+
             <swiper-slide>
               <img
               class="th-plp__primary_img"
-              src="{{ imageUrl }}" 
-              alt="{{ altText }}"
+              src="{{ altImageUrl }}" 
+              alt="{{altImageAltText}}"
             /></swiper-slide>
-            {% for productImage in productLine._images %}
-              {% set imgAttachment = apos.image.first(productImage or {}) %}
-              {% set altImageUrl = apos.attachment.url(imgAttachment, { size: 'full' }) %}
-              {% set altImageAltText = imgAttachment.title or productLine.title or "product image" %}
+          {% endfor %}
+        </swiper-container>
 
-              <swiper-slide>
-                <img
-                class="th-plp__primary_img"
-                src="{{ altImageUrl }}" 
-                alt="{{altImageAltText}}"
-              /></swiper-slide>
-            {% endfor %}
-          </swiper-container>
-
-          <div class="md:w-full th-product-grid__card-container">
-            <th-product-line-selector
-              product-line-id="{{ productLine.thirstiePLID }}"
-              pdp-link="{{ productLine._url }}"
-              cta-label="{{ ctaLabel }}"
-              location-label="{{ data.widget.pdpLinkText }}"
-              center-align
-              preview-description="{{ productLine.shortDescription or productLine.description | truncate(180) }}"
-              price-preview-type="{{ pricePreviewType }}"
-              price-preview-text="{{ pricePreviewText }}"
-              {{ withHover }} {{ hideDescription }} {{ showProductType }} {{ showImage }}
-              style="--th-product-line-selector__bg: var(--product-grid-bg, #FFF)"
-              class="th-product-grid__selector"
-            ></th-product-line-selector>
-          </div>
-          </div>
+        <div class="md:w-full th-product-grid__card-container">
+          <th-product-line-selector
+            product-line-id="{{ productLine.thirstiePLID }}"
+            pdp-link="{{ productLine._url }}"
+            cta-label="{{ ctaLabel }}"
+            location-label="{{ data.widget.pdpLinkText }}"
+            center-align
+            preview-description="{{ productLine.shortDescription or productLine.description | truncate(180) }}"
+            price-preview-type="{{ pricePreviewType }}"
+            price-preview-text="{{ pricePreviewText }}"
+            {{ withHover }} {{ hideDescription }} {{ showProductType }} {{ showImage }}
+            style="--th-product-line-selector__bg: var(--product-grid-bg, #FFF)"
+            class="th-product-grid__selector"
+          ></th-product-line-selector>
         </div>
-      {% endfor %}
+        </div>
       </div>
+    {% endfor %}
     </div>
-  </th-catalog-collection>
+  </div>
 </div>

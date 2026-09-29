@@ -5,19 +5,21 @@
 {% block main %}
   <section class="mx-auto th-home">
     <div class="mt-0 th-home__area">
+      <th-catalog-collection>
 
-      <div class="th-home__hero">
-        {% area data.page, 'hero' %}
-      </div>
+        <div class="th-home__hero">
+          {% area data.page, 'hero' %}
+        </div>
 
-      {% if data.global.locationType === 'address' and not data.page.hideAddressWidget %}
-        {{ macros.renderAddressAvailability() }}
-      {% endif %}
+        {% if data.global.locationType === 'address' and not data.page.hideAddressWidget %}
+          {{ macros.renderAddressAvailability() }}
+        {% endif %}
 
-      <div class="my-12 th-home__main">
-        {% area data.page, 'main' %}
-      </div>
+        <div class="my-12 th-home__main">
+          {% area data.page, 'main' %}
+        </div>
 
+      </th-catalog-collection>
     </div>
   </section>
 {% endblock %}
