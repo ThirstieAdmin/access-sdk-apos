@@ -12,6 +12,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - **Patch**: Fixes to restore previously documented behavior or to improve obvious shortcomings of new features. Also includes security and dependency upgrades.
 
 
+# [5.1.0] - 2026-10-02
+
+### Added
+
+- Onepage checkout 
+
+### Changed
+
+- Accessibility improvements
+- Product Line Selector / Product Card UX improvements
+- Update to Thirstie/ecomm-vue 1.7.2
+
+
 # [5.0.3] - 2026-08-10
 
 ### Changed
