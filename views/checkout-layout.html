@@ -19,16 +19,16 @@
       {% endif %}
 
       {% set headerLogoLinkURL = data.global.headerLogoLinkURL or "/" %}
-      <header id="th-access-header" class="th-header m-0 p-0">
+      <header id="th-access-header" class="th-header-checkout m-0 p-0" style="position: static">
         <nav class="th-navbar mx-auto nav--format-{{ navFormat }} nav--format--{{ navHeight }} nav--border-bottom--{{ navShadow }}">
-          <div class="nav-el nav-logo">
+          <div class="mx-2 nav-el nav-logo-checkout">
             <a href="{{ headerLogoLinkURL }}">
               <img class="th-header__logo nav--format--{{ navHeight }}" src="{{ logoUrl }}" alt="{{ logoText }}">
             </a>
           </div>
         </nav>
       </header>
-      <div>
+      <div class="relative">
         <th-checkout-onepage
           complete-button-label="{{ data.page.completeButtonLabel }}"
           opt-in-required
