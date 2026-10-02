@@ -4,20 +4,61 @@
 {% block beforeMain %}
   <div class="th-wrapper">
     <main class="h-full th-checkout-main">
+    {% if data.global.useOnePageCheckout === true %}
+      {% set navFormat = data.global.navFormat or 'left' %}
+      {% set navHeight = data.global.navHeight or 'normal' %}
+      {% set navShadow = data.global.navShadow or 'none' %}
+
+      {% if data.global.headerLogo.items | length %}
+        {% set logoObj = apos.image.first(data.global.headerLogo) %}
+        {% set logoText = logoObj.alt or logoObj.title %}
+        {% set logoUrl = apos.attachment.url(logoObj, { size: 'full' }) %}
+      {% else %}
+        {% set logoText = data.global.brandLogalAltText %}
+        {% set logoUrl = data.global.brandLogo %}
+      {% endif %}
+
+      {% set headerLogoLinkURL = data.global.headerLogoLinkURL or "/" %}
+      <header id="th-access-header" class="th-header m-0 p-0">
+        <nav class="th-navbar mx-auto nav--format-{{ navFormat }} nav--format--{{ navHeight }} nav--border-bottom--{{ navShadow }}">
+          <div class="nav-el nav-logo">
+            <a href="{{ headerLogoLinkURL }}">
+              <img class="th-header__logo nav--format--{{ navHeight }}" src="{{ logoUrl }}" alt="{{ logoText }}">
+            </a>
+          </div>
+        </nav>
+      </header>
+      <div>
+        <th-checkout-onepage
+          complete-button-label="{{ data.page.completeButtonLabel }}"
+          opt-in-required
+        >
+            <div id="th-stripe-mount-point" slot="th-stripe-payment"></div>
+            <div slot="additional-checkout-content"><p></p></div>
+            <div slot="support-content"></div>
+            <div slot="additional-confirmation-content">
+              <div class="th-fouc-block">
+                <p>{{ data.page.confirmationMessage }}</p>
+              </div>
+            </div>
+        </th-checkout-onepage>
+      </div>
+    {% else %}
       <th-checkout
         continue-button-label="{{ data.page.continueButtonLabel }}"
         complete-button-label="{{ data.page.completeButtonLabel }}" 
         opt-in-required
       >
           <div id="th-stripe-mount-point" slot="th-stripe-payment"></div>
-          <div slot="support-content"></div>
           <div slot="additional-checkout-content"><p></p></div>
+          <div slot="support-content"></div>
           <div slot="additional-confirmation-content">
             <div class="th-fouc-block">
               <p>{{ data.page.confirmationMessage }}</p>
             </div>
           </div>
       </th-checkout>
+    {% endif %}
 {% endblock %}
 
 {% block main %}
