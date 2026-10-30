@@ -1,5 +1,14 @@
 {# Automatically extends the right outer layout and also handles AJAX siutations #}
 {% extends "layout.html" %}
+{% set enableBanner = data.global.enableCheckoutBanner %}
+
+{% fragment checkoutBanner() %}
+    <div class="w-screen py-2 px-0 m-0 md:p-0 flex flex-col items-center justify-center th-checkout-header__banner">
+      {% if data.global.checkoutBannerText.items[0].type === "@apostrophecms/rich-text" %}
+      {{ apos.area.richText(data.global.checkoutBannerText) }}
+      {% endif %}
+    </div>
+{% endfragment %}
 
 {% block beforeMain %}
   <div class="th-wrapper">
@@ -20,6 +29,10 @@
 
       {% set headerLogoLinkURL = data.global.headerLogoLinkURL or "/" %}
       <header id="th-access-header" class="th-header-checkout m-0 p-0" style="position: static">
+        {% if enableBanner %}
+          {% render checkoutBanner() %}
+        {% endif %}
+
         <nav class="th-navbar mx-auto nav--format-{{ navFormat }} nav--format--{{ navHeight }} nav--border-bottom--{{ navShadow }}">
           <div class="mx-2 nav-el nav-logo-checkout">
             <a href="{{ headerLogoLinkURL }}">
@@ -44,6 +57,12 @@
         </th-checkout-onepage>
       </div>
     {% else %}
+      
+      {% if enableBanner %}
+        <header id="th-access-header" class="th-header-checkout m-0 p-0" style="position: static">
+            {% render checkoutBanner() %}
+        </header>
+      {% endif %}
       <th-checkout
         continue-button-label="{{ data.page.continueButtonLabel }}"
         complete-button-label="{{ data.page.completeButtonLabel }}" 

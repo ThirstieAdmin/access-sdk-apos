@@ -222,6 +222,7 @@ export default {
         }
       },
       /* Banner settings */
+      /* site banner */
       enableSiteBanner: {
         type: 'boolean',
         label: 'Enable Site Banner',
@@ -284,11 +285,73 @@ export default {
       },
       siteBannerFontFamily: {
         type: 'string',
-        label: 'Font family for site banners',
+        label: 'Site Banner Font Family',
         help: 'Default: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
         def: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
         if: {
           enableSiteBanner: true
+        }
+      },
+
+      /* checkout banner */
+      enableCheckoutBanner: {
+        type: 'boolean',
+        label: 'Enable Checkout Banner',
+        def: false
+      },
+      checkoutBannerText: {
+        type: 'area',
+        label: 'Checkout Banner Content',
+        options: {
+          max: 2,
+          widgets: {
+            '@apostrophecms/rich-text': {
+              toolbar: [
+                'bold',
+                'italic',
+                'strike',
+                'link',
+                '|',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+                'alignJustify',
+                '|',
+                'undo',
+                'redo'
+              ]
+            }
+          }
+        },
+        if: {
+          enableCheckoutBanner: true
+        }
+      },
+      checkoutBannerTextColor: {
+        type: 'color',
+        label: 'Checkout Banner Text Color',
+        help: 'Defaults to Brand Primary Color',
+        if: {
+          enableCheckoutBanner: true
+        },
+        options: standardPresetColors
+      },
+      checkoutBannerBackgroundColor: {
+        type: 'color',
+        label: 'Checkout Banner Background Color',
+        help: 'Defaults to Brand Primary Contrasting Color',
+        if: {
+          enableCheckoutBanner: true
+        },
+        options: standardPresetColors
+      },
+      checkoutBannerFontFamily: {
+        type: 'string',
+        label: 'Checkout Banner Font Family',
+        help: 'Default: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+        def: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+        if: {
+          enableCheckoutBanner: true
         }
       },
       /* Header settings */
@@ -590,7 +653,10 @@ export default {
       },
       bannerContent: {
         label: 'Banners',
-        fields: [ 'enableSiteBanner', 'siteBannerLocation', 'siteBannerFontFamily', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor' ]
+        fields: [
+          'enableSiteBanner', 'siteBannerLocation', 'siteBannerFontFamily', 'siteBannerText', 'siteBannerTextColor', 'siteBannerBackgroundColor',
+          'enableCheckoutBanner', 'checkoutBannerFontFamily', 'checkoutBannerText', 'checkoutBannerTextColor', 'checkoutBannerBackgroundColor'
+        ]
       },
       headerContent: {
         label: 'Header',
