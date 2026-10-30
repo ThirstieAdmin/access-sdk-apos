@@ -71,6 +71,11 @@
       --banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerTextColor) or data.global.primaryColor or '#000' }};
       --banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.siteBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
       --banner-font-family: {{ data.global.siteBannerFontFamily or 'var(--th-standard-sanserif)' }};
+
+      --checkout-banner-text-color: {{ apos.modules['theme-widget'].convertPreset(data.global.checkoutBannerTextColor) or data.global.primaryColor or '#000' }};
+      --checkout-banner-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.checkoutBannerBackgroundColor) or data.global.primaryContrastingColor or '#fff' }};
+      --checkout-banner-font-family: {{ data.global.checkoutBannerFontFamily or 'var(--th-standard-sanserif)' }};
+
       --header-offset: {{ headerHeight }}px;
       --header-offset-mobile: {{ headerHeightMobile }}px;
       --header-background-color: {{ apos.modules['theme-widget'].convertPreset(data.global.headerBackgroundColor) or data.global.primaryColor or '#000' }};
