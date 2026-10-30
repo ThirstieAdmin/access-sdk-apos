@@ -214,6 +214,9 @@ ul.nav-subitems {
 }
 
 /* nav button click behavior */
+.nav-menu-btn:not(:checked) ~ .nav-items {
+  display: none;
+}
 .nav-menu-btn:checked ~ .nav-items {
   position:absolute;
   top: var(--header-offset, 4rem);
