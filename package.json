@@ -51,8 +51,8 @@
     "@apostrophecms/seo": "^1.7.0",
     "@apostrophecms/sitemap": "^1.5.1",
     "@apostrophecms/vite": "^1.2.0",
-    "@thirstie/ecomm-vue": "1.7.3",
-    "apostrophe": "4.33.0",
+    "@thirstie/ecomm-vue": "1.7.5",
+    "apostrophe": "4.34.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
@@ -61,5 +61,13 @@
     "eslint": "^10.12.0",
     "eslint-config-apostrophe": "^6.1.0",
     "nodemon": "^3.1.14"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "better-sqlite3@12.11.1": true,
+    "fsevents@2.3.3": true,
+    "unrs-resolver@1.12.2": true,
+    "vue-demi@0.14.10": true,
+    "esbuild@0.25.12": true
   }
 }
