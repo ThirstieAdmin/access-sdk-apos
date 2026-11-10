@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - **Minor Version**: Introduces new features in a backward compatible manner. Note that this can include deprecations that do not impact the overall use of the platform.
     - **Patch**: Fixes to restore previously documented behavior or to improve obvious shortcomings of new features. Also includes security and dependency upgrades.
 
+# [5.2.1] - 2026-11-10
+
+### Changed
+
+- Bump thirstie/ecomm-vue version 1.7.6
+
+
 # [5.2.0] - 2026-10-30
 
 ### Added
