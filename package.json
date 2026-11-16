@@ -48,17 +48,17 @@
   "dependencies": {
     "@apostrophecms/favicon": "^1.1.4",
     "@apostrophecms/open-graph": "^1.2.3",
-    "@apostrophecms/seo": "^1.7.0",
+    "@apostrophecms/seo": "^1.7.1",
     "@apostrophecms/sitemap": "^1.5.1",
     "@apostrophecms/vite": "^1.2.0",
-    "@thirstie/ecomm-vue": "1.7.6",
-    "apostrophe": "4.34.0",
+    "@thirstie/ecomm-vue": "1.7.7",
+    "apostrophe": "4.34.1",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.6.1",
-    "dotenv-cli": "^11.0.0",
-    "eslint": "^10.12.0",
+    "autoprefixer": "^10.6.2",
+    "dotenv-cli": "^11.1.0",
+    "eslint": "^10.14.0",
     "eslint-config-apostrophe": "^6.1.0",
     "nodemon": "^3.1.14"
   },

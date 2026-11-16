@@ -1,15 +1,11 @@
-# Changelog
+ 
 
-All notable changes to this project will be documented in this file.
+# [5.2.2] - 2026-11-10
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Changed
 
-### Semantic Versioning Guidelines
-
-    - **Major Version**: Introduces incompatible changes in the API or application. There should be compelling business reasons, on top of technical concerns, when the interface changes. 
-    - **Minor Version**: Introduces new features in a backward compatible manner. Note that this can include deprecations that do not impact the overall use of the platform.
-    - **Patch**: Fixes to restore previously documented behavior or to improve obvious shortcomings of new features. Also includes security and dependency upgrades.
+- Bump thirstie/ecomm-vue version 1.7.6
+- update apostrophe version
 
 # [5.2.1] - 2026-11-10
 
