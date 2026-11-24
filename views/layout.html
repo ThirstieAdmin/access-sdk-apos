@@ -26,6 +26,7 @@
 {% if not data.global.favicon.items[0] %}
 <link rel="icon" href="/images/thirstie_dkblue.ico" />
 {% endif %}
+
 <script>
   window.thData = {};
   window.thData.k = "{{ data.thirstieAPIKey }}";
@@ -39,7 +40,8 @@
   window.thData.brandLogo = "{{ data.global.brandLogo }}";
   window.thData.brandLogoAltText = "{{ data.global.brandLogoAltText }}";
   window.thData.supportEmail = "{{ data.global.supportEmail }}";
-  window.thData.openCartOnAdd = "{{ data.global.openCartOnAdd }}"
+  window.thData.openCartOnAdd = "{{ data.global.openCartOnAdd }}";
+  window.thData.customProductMap = {{ (data.global.customProductMap or []) | json }};
 </script>
 <!-- Google Tag Manager: Thirstie Access GTM Container -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
