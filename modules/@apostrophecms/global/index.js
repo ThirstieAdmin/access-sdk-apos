@@ -57,6 +57,24 @@ export default {
           }
         }
       },
+      customProductMap: {
+        type: 'array',
+        label: 'product id mappings',
+        help: 'array of key value pairs',
+        titleField: 'thirstieProductId',
+        fields: {
+          add: {
+            thirstieProductId: {
+              type: 'string',
+              label: 'Thirstie Product ID'
+            },
+            productSlug: {
+              type: 'string',
+              label: 'Product Slug'
+            }
+          }
+        }
+      },
       supportEmail: {
         type: 'email',
         label: 'support@email.com'
@@ -682,7 +700,7 @@ export default {
       },
       customCode: {
         label: 'Custom Code',
-        fields: ['customCode', 'customCodeBodyStart', 'customCodeBodyEnd']
+        fields: ['customCode', 'customCodeBodyStart', 'customCodeBodyEnd', 'customProductMap']
       }
     }
   }

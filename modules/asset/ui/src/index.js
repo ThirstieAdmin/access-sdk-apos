@@ -9,8 +9,18 @@ export default () => {
   // Initialize Thirstie SDK
   const {
     primaryColor, secondaryColor, primaryContrastingColor, secondaryContrastingColor,
-    brandLogo, brandLogoAltText, supportEmail, openCartOnAdd
+    brandLogo, brandLogoAltText, supportEmail, openCartOnAdd, customProductMap
   } = window.thData;
+
+  const productSlugMapping = (customProductMap || []).reduce(
+    (acc, { thirstieProductId, productSlug }) => {
+      if (thirstieProductId && productSlug) {
+        acc[thirstieProductId] = productSlug;
+      }
+      return acc;
+    },
+    {}
+  );
 
   const thirstieAppConfig = {
     APIKEY: window.thData.k,
@@ -29,7 +39,8 @@ export default () => {
       checkout: '/checkout',
       shopping: '/'
     },
-    enableCartCheckoutButtonHover: true
+    enableCartCheckoutButtonHover: true,
+    productSlugMapping: productSlugMapping
   };
 
   initApp(thirstieAppConfig);
@@ -37,7 +48,7 @@ export default () => {
   // Add site helper functions, listeners, etc
   const thOverlayBtns = document.querySelectorAll('.th-overlay-btn');
   const thOverlay = document.querySelector('.th-overlay');
-  
+
   [].forEach.call(thOverlayBtns, (btn) => {
     btn.addEventListener('change', function() {
       if (!btn.checked) {
