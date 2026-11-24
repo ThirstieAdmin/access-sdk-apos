@@ -1,4 +1,11 @@
  
+# [5.2.3] - 2026-11-24
+
+### Changed
+
+- Bump thirstie/ecomm-vue version 1.7.8
+- custom product id map
+
 
 # [5.2.2] - 2026-11-10
 
